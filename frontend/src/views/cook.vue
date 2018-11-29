@@ -53,6 +53,7 @@
       <h3>70$<span class="title-span">Price per person</span></h3>
       <span class="title">Date</span>
       <input type="date">
+     <!-- <date-picker class = "date"></date-picker> -->
       <span class="title">Guests</span>
       <select name="" id="">
           <option>2</option>
@@ -81,17 +82,16 @@
 
 <script>
 import requestModal from '@/components/requestModal.vue'
+// import datePicker from 'vuejs-datepicker';
+// import "vue-date-pick/dist/vueDatePick.css";
 
 export default {
   name: 'cookPage',
   props: ['cook'],
-  data(){
-    return{
+  data: () => ({
       isShowModal : false,
-      isAdmin: false //true
-
-    }
-  },
+      isAdmin: false , //true
+    }),
   methods:{
     openModal(){
       return this.isSend = true;
@@ -102,10 +102,11 @@ export default {
     },
     created(){
       isShowModal = false;
-    }
+    },
   },
   components: {
-    requestModal
+    requestModal,
+    // datePicker
   }
 };
 </script>
@@ -198,4 +199,6 @@ input{
   margin-top: 5px;
   font-size: 14px;
 }
+
+
 </style>
