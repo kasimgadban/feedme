@@ -4,7 +4,7 @@
       <displayed-cook></displayed-cook>
       <displayed-cook></displayed-cook>
       <displayed-cook></displayed-cook>
-      <displayed-cook></displayed-cook>
+      <displayed-cook></displayed-cook> 
       <displayed-cook></displayed-cook>
       </div>
     </section>
