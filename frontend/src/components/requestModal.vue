@@ -19,7 +19,7 @@
           </div>
 
           <div class="modal-footer">
-            <slot name="footer">
+            <!-- <slot name="footer"> -->
               default footer
               <button class="modal-default-button" @click="$emit('close')">
                 OK
@@ -27,7 +27,7 @@
               <button class="modal-default-button" @click="$emit('close')">
                 cancel
               </button>
-            </slot>
+            <!-- </slot> -->
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default {
 
 .modal-wrapper {
   display: table-cell;
-  vertical-align: middle;
+  vertical-Align: middle;
 }
 
 .modal-container {

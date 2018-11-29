@@ -5,8 +5,39 @@ var cooks = [
         id: utilService.makeId(),
         username: 'tot',
         password: '123',
-        firstName: 'tamara',
-        lastName: 'ali',
+        firstName: 'Tamara',
+        lastName: 'Ali',
+        userImage: 'https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg',
+        age: 25,
+        phone: '0528172685',
+        address: {
+            district: 'north',
+            city: 'kawkab abu alhiga',
+        },
+        food: [
+            {
+                name: 'kabab',
+                description: 'kabab is good',
+            }
+        ],
+        about: 'my kabab is the top',
+        reviews:[
+            {
+                name: 'kasim',
+                content:'ugly',
+                rating:0
+            }
+        ],
+        dates: ['30/11/18' , '7/12/18'],
+        foodImages: [],
+        price: ''
+    },
+    {
+        id: utilService.makeId(),
+        username: 'tot',
+        password: '123',
+        firstName: 'Tamara',
+        lastName: 'Ali',
         userImage: '',
         age: 25,
         phone: '0528172685',
@@ -30,43 +61,14 @@ var cooks = [
         ],
         dates: ['30/11/18' , '7/12/18'],
         foodImages: [],
+        price: ''
     },
     {
         id: utilService.makeId(),
         username: 'tot',
         password: '123',
-        firstName: 'tamara',
-        lastName: 'ali',
-        userImage: '',
-        age: 25,
-        phone: '0528172685',
-        address: {
-            district: 'north',
-            city: 'kawkab abu alhiga',
-        },
-        food: [
-            {
-                name: 'kabab',
-                description: 'kabab is good',
-            }
-        ],
-        about: 'my kabab is the top',
-        reviews:[
-            {
-                name: 'kasim',
-                content:'ugly',
-                rating:0
-            }
-        ],
-        dates: ['30/11/18' , '7/12/18'],
-        foodImages: [],
-    },
-    {
-        id: utilService.makeId(),
-        username: 'tot',
-        password: '123',
-        firstName: 'tamara',
-        lastName: 'ali',
+        firstName: 'Tamara',
+        lastName: 'Ali',
         userImage: '',
         age: 25,
         phone: '0528172685',
@@ -90,6 +92,7 @@ var cooks = [
         ],
         dates: ['30/11/18' , '7/12/18'],
         foodImages: [],
+        price: ''
     },
 ]
 

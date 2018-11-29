@@ -4,25 +4,25 @@
     </div>
    <div class="wrapper">
       <div class="details">
-      <section style="display:inline-block;" v-if="isAdmin">
+      <section style="display:inline-block;">
       <h2 style="display:inline-block;">Sentence about the food</h2>
-      <button style="margin:5px;width:90px;height:30px;font-size:20px" v-if="isAdmin">Edit</button> 
-      <button style="margin:5px;width:90px;height:30px;font-size:20px" v-if="isAdmin">Del</button>
+      <button style="margin:5px;width:90px;height:30px;font-size:20px">Edit</button> 
+      <button style="margin:5px;width:90px;height:30px;font-size:20px">Del</button>
       </section>
 
-      <div class="top" v-if="!isAdmin">
+      <div class="top">
       <div>Menu</div>
       <div>*****</div>
       <div>location</div> 
       <div>rating</div> 
     </div>
 
-      <div class="top" v-if="!isAdmin">
+      <div class="top">
       <div>time</div>
       <div>guest range</div>
     </div>
 
-    <div class="desc" v-if="isAdmin">
+    <div class="desc">
       <h2>Info abou the host</h2>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
       <h2>Info abou the area</h2>
@@ -42,14 +42,14 @@
       <p>some desc about the dish</p>
     </div>
 
-    <div class="map" v-if="!isAdmin">
+    <div class="map">
       map goes here
     </div>
-    <div v-else>
+    <div >
     <input type="text" placeholder="Enter Your Address">
     </div>
     </div>
-    <div class="order-form" v-if="!isAdmin">
+    <div class="order-form">
       <h3>70$<span class="title-span">Price per person</span></h3>
       <span class="title">Date</span>
       <input type="date">
@@ -90,7 +90,7 @@ export default {
   props: ['cook'],
   data: () => ({
       isShowModal : false,
-      isAdmin: false , //true
+      // isAdmin: false , //true
     }),
   methods:{
     openModal(){
@@ -102,8 +102,14 @@ export default {
     },
     created(){
       isShowModal = false;
+      this.$store.dispatch({type: 'loadCooks'})
     },
   },
+  computed:{
+        cooks(){
+            return this.$store.getters.getCooks
+        }
+    },
   components: {
     requestModal,
     // datePicker
@@ -160,7 +166,7 @@ export default {
     border-radius: 5px;
 }
 .menu{
-  align-items: center;
+  Align-items: center;
 }
 .title-span{
   font-size: 12px;

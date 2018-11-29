@@ -1,7 +1,7 @@
 <template>
   <section>
     <app-header />
-    <displayed-cooks />
+    <cook-list :cooks="cooks" />
     <app-desc style="background-color: pink"/>
     <top-rated />
     
@@ -13,7 +13,7 @@
 import appHeader from '@/components/appHeader.vue'
 import appDesc from '@/components/appDescreption.vue'
 import topRated from '@/components/topRated.vue'
-import displayedCooks from '@/components/displayedCooks.vue'
+import cookList from '@/components/cookList.vue'
 import appFooter from '@/components/footer.vue'
 import searchBar from '@/components/searchBar.vue'
 
@@ -23,9 +23,17 @@ export default {
     appHeader,
     appDesc,
     topRated,
-    displayedCooks,
+    cookList,
     appFooter
-  }
+  },
+  created() {
+        this.$store.dispatch({type: 'loadCooks'})
+    },
+   computed: {
+       cooks(){
+            return this.$store.getters.getCooks;
+        }
+   }
 }
 </script>
 

@@ -1,9 +1,9 @@
-// import cookService from '../service/cookService.js'
+import cookService from '../services/cookService.js'
 
 
 export default {
     state: {
-        cooks: [],
+        cooks: cookService.query(),
     },
     mutations: {
         setCooks(state, { cooks }) {
@@ -11,9 +11,18 @@ export default {
         },
     },
     actions: {
+        loadCooks(context) {
+            return cookService.query()
+                .then(cooks => {
+                    console.log({ cooks })
+                    context.commit({ type: 'setCooks', cooks })
+                })
+        }
     },
     getters: {
         getCooks: (state) => { return state.cooks },
     }
+    
+
 }
 
