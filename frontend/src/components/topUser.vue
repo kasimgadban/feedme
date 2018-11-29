@@ -1,7 +1,7 @@
 <template>
     <section class="top-user">
         <img src="./../images/food1.jpg" alt="" srcset="">
-        <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur reiciendis consequuntur voluptate ab sint facilis aspernatur? Nemo, libero odit eum cupiditate maxime laboriosam debitis aliquid commodi explicabo nisi hic optio.</div>
+        <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur reiciendis consequuntur voluptate ab sint facilis aspernatur? Nemo, libero odit eum cupiditate maxime laboriosam debitis Aliquid commodi explicabo nisi hic optio.</div>
        <div>*********</div>
         <div class="cook-img">Cook img</div>
     </section>
