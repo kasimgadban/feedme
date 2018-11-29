@@ -28,7 +28,7 @@ function addCookRoutes(app){
     // CREATE
     app.post('/cook', (req, res) => {
         const cook = req.body;
-        cookService.add(car)
+        cookService.add(cook)
             .then(cook => {
                 res.json(cook)
             })
