@@ -8,13 +8,6 @@
             <!-- <pre>
                 {{cooks}}
                 </pre> -->
-                
-            <!-- <cook-preview :cooks="cook" ></cook-preview> -->
-      <!-- <displayed-cook></displayed-cook>
-      <displayed-cook></displayed-cook>
-      <displayed-cook></displayed-cook>
-      <displayed-cook></displayed-cook>
-      <displayed-cook></displayed-cook> -->
       </div>
     </section>
 </template>

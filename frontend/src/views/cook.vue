@@ -5,15 +5,13 @@
    <div class="wrapper">
       <div class="details">
       <section style="display:inline-block;">
-      <h2 style="display:inline-block;">Sentence about the food</h2>
-      <button style="margin:5px;width:90px;height:30px;font-size:20px">Edit</button> 
-      <button style="margin:5px;width:90px;height:30px;font-size:20px">Del</button>
+      <h2 style="display:inline-block;">{{cook.firstName}} Kitchen</h2>
       </section>
 
       <div class="top">
-      <div>Menu</div>
-      <div>*****</div>
-      <div>location</div> 
+      <div>{{cook.food[0].name}}</div>
+      <div>{{cook.food[0].description}}</div>
+      <div>{{cook.address.city}}</div> 
       <div>rating</div> 
     </div>
 
@@ -45,65 +43,47 @@
     <div class="map">
       map goes here
     </div>
-    <div >
-    <input type="text" placeholder="Enter Your Address">
-    </div>
-    </div>
-    <div class="order-form">
-      <h3>70$<span class="title-span">Price per person</span></h3>
-      <span class="title">Date</span>
-      <input type="date">
-     <!-- <date-picker class = "date"></date-picker> -->
-      <span class="title">Guests</span>
-      <select name="" id="">
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-        </select>
-        <input type="text" class="buyer" placeholder="Enter your name">
-        <input type="text" class="buyer" placeholder="Enter your number">
-
-        <button @click="isShowModal = true" class="send">Send request</button> 
     
     </div>
+    <request-box :cook="cook">
+    </request-box>
     
     </div>
-    <request-modal v-if="isShowModal" 
-        @close="isShowModal = false" >
-  </request-modal>
-    
+   
   </section>
   
 </template>
 
 <script>
 import requestModal from '@/components/requestModal.vue'
-// import datePicker from 'vuejs-datepicker';
-// import "vue-date-pick/dist/vueDatePick.css";
+import requestBox from '@/components/requestBox.vue';
 
 export default {
   name: 'cookPage',
-  props: ['cook'],
-  data: () => ({
-      isShowModal : false,
-      // isAdmin: false , //true
-    }),
+  data(){
+      return {
+              cook : null
+      }
+    },
+    created(){
+      const cookId = this.$route.params.id
+      console.log('cook id ',cookId)
+      if(cookId){
+
+        this.$store.dispatch({type: "getById",cookId}).then(cook => {
+        this.cook = cook;
+        console.log('cook ',cook);
+        })
+      }
+    },
   methods:{
     openModal(){
       return this.isSend = true;
     },
-    testlll(){
-      this.isShowModal = true; 
-      console.log('I was clicked',this.isShowModal)
+    getCookById(){
+
     },
-    created(){
-      isShowModal = false;
-      this.$store.dispatch({type: 'loadCooks'})
-    },
+   
   },
   computed:{
         cooks(){
@@ -112,7 +92,7 @@ export default {
     },
   components: {
     requestModal,
-    // datePicker
+    requestBox
   }
 };
 </script>
