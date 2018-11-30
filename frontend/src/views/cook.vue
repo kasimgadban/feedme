@@ -1,6 +1,8 @@
 <template>
   <section class="container">
     <div class="images-container">
+      <!-- <button>Back</button> -->
+      
     </div>
    <div class="wrapper">
       <div class="details">
@@ -135,7 +137,7 @@ export default {
   flex-direction: column;
 }
 .order-form{
-    position: fixed;
+    /* position: fixed; */
     padding: 10px;
     right: 6%;
     width: 245px;

@@ -1,13 +1,11 @@
 <template>
     <section class="topCooks">
+        <h2>Top rated hosts</h2>
         <div class="cmp-container">
             <li v-for="cook in cooks"
                :key="cook.id">
-        <cook-preview :cook="cook" />
+        <cook-preview :cook="cook"/>
         </li>
-            <!-- <pre>
-                {{cooks}}
-                </pre> -->
       </div>
     </section>
 </template>
@@ -35,7 +33,7 @@ export default {
 
 <style scoped lang="scss">
 .topCooks{
-    background: gray;
+    background:#80808036;
     margin-top: 10px;
 }
 
@@ -44,9 +42,22 @@ width: 80%;
 margin: 0 auto;
 // margin-top: 10px;
 display: flex;
-// flex-direction: row;
-// flex-wrap: wrap;
+flex-direction: row;
+flex-wrap: wrap;
 justify-content: space-between;
+text-decoration: none
+
+}
+
+li{
+    list-style-type: none;
+    width: 30%;
+}
+
+h2{
+    text-align: center;
+    padding: 5px;
+    margin: 0;
 }
 
 

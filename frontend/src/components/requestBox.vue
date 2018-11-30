@@ -1,13 +1,15 @@
 <template>
   <section>
      <div >
-    <!-- <input type="text" placeholder="Enter Your Address"> -->
     </div>
     <div class="order-form">
       <h3>${{cook.price}}<span class="title-span">Price per person</span></h3>
       <span class="title">Date</span>
-      <input type="date" v-model="order.date"> 
-     <!-- <date-picker class = "date"></date-picker> -->
+      <!-- <input type="date" v-model="order.date">  -->
+      
+     <date-picker class = "date"
+     :inline="true"></date-picker>
+     
       <span class="title">Guests</span>
       <select name="" v-model="order.guests">
           <option>2</option>
@@ -34,6 +36,8 @@
 
 <script>
 import requestModal from '@/components/requestModal.vue'
+import datePicker from 'vuejs-datepicker';
+
 
 export default {
   name: 'requestBox',
@@ -52,9 +56,16 @@ export default {
   created(){
       console.log('the isShowModal',isShowModal)
   },
-
+  methods: {
+    // customFormatter(date) {
+    //   // return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+    //   // customFormatter() {
+    //   //   return Date.now();
+    // }
+  },
   components: {
-      requestModal
+      requestModal,
+      datePicker
   },
 
 };
@@ -100,10 +111,12 @@ export default {
   flex-direction: column;
 }
 .order-form{
-    position: fixed;
+    /* position: fixed; */
+    /* display: block; */
     padding: 10px;
     right: 6%;
     width: 245px;
+    /* height: 100vh; */
     margin-top: 10px;
     background: #8080801f;
     -webkit-box-shadow: 5px 7px #453e3e1f;
@@ -149,6 +162,19 @@ input{
   padding: 5px;
   margin-top: 5px;
   font-size: 14px;
+}
+
+.date-picker{
+  /* height: 300px; */
+  /* position: relative; */
+  /* position: absolute; */
+  /* display: block; */
+}
+
+.date:first-child{
+  /* border: 1px solid gray !important; */
+  width: 100% !important;
+
 }
 
 

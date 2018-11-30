@@ -1,10 +1,8 @@
 <template>
   <section>
     <app-header />
+    <city-list></city-list>
     <cook-list :cooks="cooks" />
-    <app-desc style="background-color: pink"/>
-    <top-rated />
-    
     <app-footer />
   </section>
 </template>
@@ -16,6 +14,7 @@ import topRated from '@/components/topRated.vue'
 import cookList from '@/components/cookList.vue'
 import appFooter from '@/components/footer.vue'
 import searchBar from '@/components/searchBar.vue'
+import cityList from '@/components/cityList.vue'
 
 export default {
   name: 'home',
@@ -24,7 +23,8 @@ export default {
     appDesc,
     topRated,
     cookList,
-    appFooter
+    appFooter,
+    cityList
   },
   created() {
         this.$store.dispatch({type: 'loadCooks'})
@@ -38,11 +38,6 @@ export default {
 </script>
 
 <style scoped lang = "scss" >
-/* header {
-  background: blue;
-  width: 100%;
-  height: 600px;
-} */
 .cmp-container{
 width: 80%;
 }

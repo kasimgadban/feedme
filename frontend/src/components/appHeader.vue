@@ -9,9 +9,8 @@
         <router-link to = "/">Login</router-link>
       </div>
       </div>
-      <div class="search-bar kasim">
+      <div class="search-bar">
         <searchBar></searchBar>
-        <!-- <input type="text" placeholder="Search by location"/> -->
         <input type="date" placeholder="Date" />
         <select name="" id="">
           <option>2</option>
@@ -67,6 +66,7 @@ export default {
   display: flex;
   justify-content: center;
   margin-bottom: 70px;
+  // width: 80%;
 }
 
 .nav-bar{
@@ -84,5 +84,9 @@ export default {
   
   padding: 10px;
   font-size: 1.2em;
+}
+
+.input{
+  // padding: 17px
 }
 </style>
