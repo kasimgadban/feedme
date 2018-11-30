@@ -50,7 +50,6 @@
         <section class="cooks-images-container">
         <div class="user-card">
            <img src="../images/cook1.jpg" class="cook_image" alt="">
-            <!-- <h4>Kasim Tabach</h4> -->
             <span class="user-name">Kasim Tabach</span>
             <star-rating v-model="rating" 
             v-bind:star-size = "20"
@@ -60,7 +59,6 @@
         </div>
         <div class="user-card">
            <img src="../images/cook5.jpg" class="cook_image" alt="">
-            <!-- <h4>Sawsan Tabachet</h4> -->
             <sapn class="user-name">Sawsan Tabachet</sapn>
             <star-rating v-model="rating" 
             v-bind:star-size = "20"
@@ -91,7 +89,7 @@ export default {
   props: ['hosting'],
   data: () => ({
       isShowModal : false,
-      isAdmin: false , //true
+      isAdmin: false ,
       rating:3
     }),
   methods:{
@@ -109,7 +107,6 @@ export default {
   components: {
     requestModal,
     StarRating
-    // datePicker
   }
 };
 </script>
@@ -175,6 +172,4 @@ margin-bottom: 10px;
   position: relative;
   border: 2px solid black;
 }
-
-
 </style>
