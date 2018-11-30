@@ -21,7 +21,7 @@ export default {
 <style scoped lang="scss">
 
 .topRated{
-  background: #e9b8a4c2;
+  background: #e9b8a442;
   margin-top: 10px;
   // width: 100%;
   // height: 400px;

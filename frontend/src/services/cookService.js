@@ -9,10 +9,10 @@ var cooks = [
         lastName: 'Ali',
         userImage: 'https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg',
         // age: 25,
-        phone: '0528172685',
+        // phone: '0528172685',
         address: {
             district: 'north',
-            city: 'kawkab abu alhija',
+            city: 'Kawkab',
         },
         foodCategory: '',
         food: [
@@ -44,10 +44,10 @@ var cooks = [
         lastName: 'Ali',
         userImage: '',
         // age: 25,
-        phone: '0528172685',
+        // phone: '0528172685',
         address: {
             district: 'north',
-            city: 'kawkab abu alhija',
+            city: 'Kawkab',
         },
         food: [
             {
@@ -79,10 +79,10 @@ var cooks = [
         lastName: 'Ali',
         userImage: '',
         // age: 25,
-        phone: '0528172685',
+        // phone: '0528172685',
         address: {
             district: 'north',
-            city: 'kawkab abu alhija',
+            city: 'Kawkaba',
         },
         food: [
             {
@@ -93,6 +93,108 @@ var cooks = [
         prevDesc:'Join me in my house for a hot meal and fun company',
 
         about: 'my kabab is the top',
+        reviews:[
+            {
+                name: 'kasim',
+                content:'ugly',
+                rating: 5
+            }
+        ],
+        dates: ['30/11/18' , '7/12/18'],
+        foodImages: [],
+        price: '',
+        ratingAvg : 5
+    },
+    {
+        id: utilService.makeId(),
+        username: 'saw',
+        password: '124',
+        firstName: 'Sawsan',
+        lastName: 'Elhade',
+        userImage: '',
+        // age: 25,
+        // phone: '0528172685',
+        address: {
+            district: 'north',
+            city: 'Haifa',
+        },
+        food: [
+            {
+                name: 'Taboli',
+                description: 'Taboli is good',
+            }
+        ],
+        prevDesc:'Come eat at my house',
+
+        about: 'my Taboli is the top',
+        reviews:[
+            {
+                name: 'kasim',
+                content:'ugly',
+                rating: 5
+            }
+        ],
+        dates: ['30/11/18' , '7/12/18'],
+        foodImages: [],
+        price: '',
+        ratingAvg : 5
+    },
+    {
+        id: utilService.makeId(),
+        username: 'saw',
+        password: '124',
+        firstName: 'Sawsan',
+        lastName: 'Elhade',
+        userImage: '',
+        // age: 25,
+        // phone: '0528172685',
+        address: {
+            district: 'north',
+            city: 'Haifa',
+        },
+        food: [
+            {
+                name: 'Taboli',
+                description: 'Taboli is good',
+            }
+        ],
+        prevDesc:'Come eat at my house',
+
+        about: 'my Taboli is the top',
+        reviews:[
+            {
+                name: 'kasim',
+                content:'ugly',
+                rating: 5
+            }
+        ],
+        dates: ['30/11/18' , '7/12/18'],
+        foodImages: [],
+        price: '',
+        ratingAvg : 5
+    },
+    {
+        id: utilService.makeId(),
+        username: 'saw',
+        password: '124',
+        firstName: 'Sawsan',
+        lastName: 'Elhade',
+        userImage: '',
+        // age: 25,
+        // phone: '0528172685',
+        address: {
+            district: 'north',
+            city: 'Haifa',
+        },
+        food: [
+            {
+                name: 'Taboli',
+                description: 'Taboli is good',
+            }
+        ],
+        prevDesc:'Come eat at my house',
+
+        about: 'my Taboli is the top',
         reviews:[
             {
                 name: 'kasim',
