@@ -5,21 +5,23 @@ var cooks = [
         id: utilService.makeId(),
         username: 'tot',
         password: '123',
-        firstName: 'tamara',
-        lastName: 'ali',
-        userImage: '',
-        age: 25,
+        firstName: 'Tamara',
+        lastName: 'Ali',
+        userImage: 'https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg',
+        // age: 25,
         phone: '0528172685',
         address: {
             district: 'north',
-            city: 'kawkab abu alhiga',
+            city: 'kawkab abu alhija',
         },
+        foodCategory: '',
         food: [
             {
-                name: 'kabab',
-                description: 'kabab is good',
+                name: 'sawsan',
+                description: 'sawsan well done ',
             }
         ],
+        prevDesc:'Join me in my house for a hot meal and fun company',
         about: 'my kabab is the top',
         reviews:[
             {
@@ -30,19 +32,22 @@ var cooks = [
         ],
         dates: ['30/11/18' , '7/12/18'],
         foodImages: [],
+        price: 99,
+        ratingAvg : 5
+
     },
     {
         id: utilService.makeId(),
         username: 'tot',
         password: '123',
-        firstName: 'tamara',
-        lastName: 'ali',
+        firstName: 'Tamara',
+        lastName: 'Ali',
         userImage: '',
-        age: 25,
+        // age: 25,
         phone: '0528172685',
         address: {
             district: 'north',
-            city: 'kawkab abu alhiga',
+            city: 'kawkab abu alhija',
         },
         food: [
             {
@@ -50,6 +55,8 @@ var cooks = [
                 description: 'kabab is good',
             }
         ],
+        prevDesc:'Join me in my house for a hot meal and fun company',
+
         about: 'my kabab is the top',
         reviews:[
             {
@@ -60,19 +67,22 @@ var cooks = [
         ],
         dates: ['30/11/18' , '7/12/18'],
         foodImages: [],
+        price: '',
+        ratingAvg : 5
+
     },
     {
         id: utilService.makeId(),
         username: 'tot',
         password: '123',
-        firstName: 'tamara',
-        lastName: 'ali',
+        firstName: 'Tamara',
+        lastName: 'Ali',
         userImage: '',
-        age: 25,
+        // age: 25,
         phone: '0528172685',
         address: {
             district: 'north',
-            city: 'kawkab abu alhiga',
+            city: 'kawkab abu alhija',
         },
         food: [
             {
@@ -80,16 +90,20 @@ var cooks = [
                 description: 'kabab is good',
             }
         ],
+        prevDesc:'Join me in my house for a hot meal and fun company',
+
         about: 'my kabab is the top',
         reviews:[
             {
                 name: 'kasim',
                 content:'ugly',
-                rating: 0
+                rating: 5
             }
         ],
         dates: ['30/11/18' , '7/12/18'],
         foodImages: [],
+        price: '',
+        ratingAvg : 5
     },
 ]
 

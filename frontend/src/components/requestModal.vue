@@ -7,27 +7,33 @@
         <div class="modal-container">
 
           <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
+            <!-- <slot name="header"> -->
+              {{order.guestName}}
+            <!-- </slot> -->
           </div>
 
           <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
+            {{order.guestNumber}}
+          </div>
+
+           <div class="modal-body">
+            {{order.date}}
+          </div>
+
+           <div class="modal-body">
+            {{order.guests}}
           </div>
 
           <div class="modal-footer">
-            <slot name="footer">
-              default footer
+            <!-- <slot name="footer"> -->
+              <hr />
               <button class="modal-default-button" @click="$emit('close')">
                 OK
               </button>
               <button class="modal-default-button" @click="$emit('close')">
                 cancel
               </button>
-            </slot>
+            <!-- </slot> -->
           </div>
         </div>
       </div>
@@ -39,9 +45,11 @@
 <script>
 
 export default {
+  props:['order'],
     created(){
       console.log('I am into the requestModal ')
-    }
+    },
+    
 }
 </script>
 <style lang="scss" scoped>
@@ -59,7 +67,7 @@ export default {
 
 .modal-wrapper {
   display: table-cell;
-  vertical-align: middle;
+  vertical-Align: middle;
 }
 
 .modal-container {
