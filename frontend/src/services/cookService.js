@@ -27,7 +27,7 @@ var cooks = [
             {
                 name: 'kasim',
                 content:'ugly',
-                rating:0
+                rating: 0
             }
         ],
         dates: ['30/11/18' , '7/12/18'],
