@@ -218,7 +218,7 @@ function query() {
 
 function addNewcook(newcook) {
     cooks.push(newcook)
-    console.log(cooks);
+    // console.log(cooks);
     return Promise.resolve(newcook)
 }
 
