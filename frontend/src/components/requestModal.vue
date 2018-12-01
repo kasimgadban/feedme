@@ -7,20 +7,26 @@
         <div class="modal-container">
 
           <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
+            <!-- <slot name="header"> -->
+              {{order.guestName}}
+            <!-- </slot> -->
           </div>
 
           <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
+            {{order.guestNumber}}
+          </div>
+
+           <div class="modal-body">
+            {{order.date}}
+          </div>
+
+           <div class="modal-body">
+            {{order.guests}}
           </div>
 
           <div class="modal-footer">
             <!-- <slot name="footer"> -->
-              default footer
+              <hr />
               <button class="modal-default-button" @click="$emit('close')">
                 OK
               </button>
@@ -39,9 +45,11 @@
 <script>
 
 export default {
+  props:['order'],
     created(){
       console.log('I am into the requestModal ')
-    }
+    },
+    
 }
 </script>
 <style lang="scss" scoped>
