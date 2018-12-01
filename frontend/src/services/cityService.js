@@ -14,6 +14,8 @@ function query() {
 }
 
 function getById(id) {
+    console.log('get city service id is,',id);
+    
     var city = cities.find(city => city.id === id);
     if (city)  return Promise.resolve(city);
     else return Promise.reject('Unknown city');
@@ -23,7 +25,7 @@ function getById(id) {
 function _createCities() {
 
     var allCities = require('../../data/city.json')
-    console.log('cities line 24',allCities);
+    // console.log('cities line 24',allCities);
     
     if (allCities && allCities.length) return allCities;
 }

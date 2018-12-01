@@ -8,7 +8,7 @@ export default {
     },
     getters: {
         getEvents: (state) => { 
-            console.log('events getters',state.events);
+            // console.log('events getters',state.events);
             
             return state.events 
         },

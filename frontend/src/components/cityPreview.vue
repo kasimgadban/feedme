@@ -3,32 +3,39 @@
     <!-- <router-link :to="'city/'+city.id" :city="city">
       <img class="card-img" src="https://www.odysseytraveller.com/app/uploads/2017/11/Barcelona-Spain-iStock-619257048.jpg" alt srcset  >
     </router-link> -->
-    city preview file=> city_id<pre>{{city_id}}</pre>
-    <pre>{{city}}</pre>
+    city : {{city}} 
+    <!-- <pre>{{city}}</pre> -->
   </section>
 </template>
 <script>
+
 export default {
-  
+  data(){
+    return{
+      city:null
+    }
+  },
   name: 'cityPreview',
   props: ['city_id'],
   components: {},
   created() {
-    // if(this.city_id) 
-    console.log('I was created as a city preview the city_id is',this.city_id);
-    var x = this.city_id
-    this.$store.dispatch({type: 'getCityById',x})
+    var cityId = this.city_id
+    console.log('cityId city preview created',cityId);
+     this.$store.dispatch({type: 'getCityById',cityId})
+     this.getCurCity()
   },
-  computed:{
-    city(){
-      var bb = this.$store.getters.getCurrCity
-      console.log('bb ',bb)
-      
-      return bb
+  methods:{
+    getCurCity() {
+      this.city = this.$store.getters.getCurrCity
+      console.log('the city is line 30',this.city)
     }
-  }
-
-};
+  },
+  // mounted() {
+  //   console.log('I am in here',this.city);
+    
+  //   this.getCurCity()
+  // },
+  };
 </script>
 
 <style scoped lang="scss">
