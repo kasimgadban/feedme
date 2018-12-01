@@ -16,7 +16,7 @@ export default {
         loadCooks(context) {
             return cookService.query()
                 .then(cooks => {
-                    console.log({ cooks })
+                    // console.log({ cooks })
                     context.commit({ type: 'setCooks', cooks })
                 })
         },
