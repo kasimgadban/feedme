@@ -1,5 +1,5 @@
-import fs from 'fs'; 
-import eventService from './eventService.js'
+// import fs from 'fs'; 
+// import eventService from './eventService.js'
 
 export default {
     query,
@@ -17,6 +17,7 @@ function getById(id) {
     console.log('get city service id is,',id);
     
     var city = cities.find(city => city.id === id);
+    console.log('test city',city)
     if (city)  return Promise.resolve(city);
     else return Promise.reject('Unknown city');
 }

@@ -29,6 +29,7 @@ export default {
                 console.log('then of get by id cityservice',city);
                 
                 context.commit({type: 'setCity',city})
+                // console.log('commit cityservice',city);
                 return city;
             })
         }

@@ -2,7 +2,7 @@
   <section>
     <app-header />
     <city-list :cities="cities" />
-    <cook-list :cooks="cooks" />
+    <!-- <cook-list :cooks="cooks" /> -->
     <event-list :events="events" ></event-list>
     <app-footer />
   </section>

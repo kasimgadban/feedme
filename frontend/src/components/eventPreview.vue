@@ -1,35 +1,29 @@
 <template>
   <section class="displayed-cook">
-    <!-- <router-link :to="'cook/'+cook.id" :cook="cook">
+    <router-link :to="'event/'+event.id" :event="event">
       <img class="card-img" src="./../images/food1.jpg" alt srcset  >
     </router-link>
     <div class="host-card"> 
-        <div >Hosted by {{cook.firstName}} in {{cook.address.city}}</div>
+        <div >Hosted by {{event.cookId}} at {{event.address}}</div>
                 <img class="user-img"  :src = "`https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg`">
-        <h3>{{cook.prevDesc}}</h3>
-        <h4>{{cook.ratingAvg}}</h4>
-        </div> -->
-        <pre>
+        <h3>{{event.date}}</h3>
+        <h4>{{event.time}}</h4>
+        </div> 
+        <!-- <pre>
           {{event.id}}
           {{event.date}}
           {{event.time}}
           {{event.address}}
-        </pre>
+        </pre> -->
   </section>
 </template>
 <script>
 export default {
   name: 'eventPreview',
   props: ['event'],
-  // data: {
-  //   cook: []
-  // },
+  
   components: {},
-  // computed: {
-  //   cookId() {
-  //     return cook.id;
-  //   }
-  // }
+  
 };
 </script>
 
