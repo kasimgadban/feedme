@@ -1,10 +1,18 @@
 <template>
   <section>
+<<<<<<< HEAD
     <app-header/>
     <city-list :cities="cities"/>
     <cook-list :cooks="cooks"/>
     <event-list :events="events"></event-list>
     <app-footer/>
+=======
+    <app-header />
+    <city-list :cities="cities" />
+    <!-- <cook-list :cooks="cooks" /> -->
+    <event-list :events="events" ></event-list>
+    <app-footer />
+>>>>>>> 5b59c53d1968fe8c0f0c77e4c5dc4abc8aba155d
   </section>
 </template>
 

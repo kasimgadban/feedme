@@ -1,13 +1,13 @@
 const cityService = require('../services/city.Service')
 
 
-function addcityRoutes(app){
+function addcityRoutes(app) {
     // LIST
     app.get('/city', (req, res) => {
         //filter = req.query
         cityService.query()
             .then(cities => res.json(cities))
-            
+
     })
 
     // SINGLE - GET Full details including reviews

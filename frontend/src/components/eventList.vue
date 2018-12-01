@@ -4,35 +4,32 @@
     <div class="cmp-container">
       <li v-for="event in events" :key="event.id">
         <event-preview :event="event"/>
-      </li>
-      <pre>
-        <!-- {{events}} -->
-        <!-- {{events[0].cityId}} -->
-        </pre>
-    </div>
-  </section>
+        </li>
+      </div>
+    </section>
 </template>
 <script>
 import eventPreview from "@/components/eventPreview.vue";
 
 export default {
-  name: "eventList",
-  props: {
-    events: {}
-  },
-  components: {
-    eventPreview
-  },
-  created() {
-    console.log("events from event list file", this.events);
-    // this.events =
-  }
-  //    computed: {
-  //        cooks(){
-  //             return this.$store.getters.getCooks;
-  //         }
-  //    }
-};
+   name:'eventList',
+   props: {
+       events:{}
+   },
+   components: {
+     eventPreview
+   },
+   created() {
+        // console.log('events from event list file',this.events);
+        // this.events = 
+        
+    },
+//    computed: {
+//        cooks(){
+//             return this.$store.getters.getCooks;
+//         }
+//    }
+}
 </script>
 
 <style scoped lang="scss">

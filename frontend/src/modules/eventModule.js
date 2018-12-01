@@ -7,10 +7,17 @@ export default {
         eventsCities: eventService.getEventsCities()
     },
     getters: {
+<<<<<<< HEAD
         getEvents: (state) => {
             console.log('events getters', state.events);
 
             return state.events
+=======
+        getEvents: (state) => { 
+            // console.log('events getters',state.events);
+            
+            return state.events 
+>>>>>>> 5b59c53d1968fe8c0f0c77e4c5dc4abc8aba155d
         },
         getEventById: (state) => { return state.eventId },
         getEventsCities: (state) => { return state.eventsCities }
