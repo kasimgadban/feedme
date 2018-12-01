@@ -25,7 +25,7 @@ export default {
      eventPreview
    },
    created() {
-        console.log('events from event list file',this.events);
+        // console.log('events from event list file',this.events);
         // this.events = 
         
     },
