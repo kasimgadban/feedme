@@ -6,10 +6,6 @@
                :key="event.id">
         <event-preview :event="event"/>
         </li>
-        <pre>
-        <!-- {{events}} -->
-        <!-- {{events[0].cityId}} -->
-        </pre>
       </div>
     </section>
 </template>

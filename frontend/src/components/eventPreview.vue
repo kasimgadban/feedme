@@ -4,17 +4,11 @@
       <img class="card-img" src="./../images/food1.jpg" alt srcset  >
     </router-link>
     <div class="host-card"> 
-        <div >Hosted by {{event.cookId}} at {{event.address}}</div>
+        <div >Hosted by {{cook.fullName}} at {{event.address}}</div>
                 <img class="user-img"  :src = "`https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg`">
         <h3>{{event.date}}</h3>
         <h4>{{event.time}}</h4>
         </div> 
-        <!-- <pre>
-          {{event.id}}
-          {{event.date}}
-          {{event.time}}
-          {{event.address}}
-        </pre> -->
   </section>
 </template>
 <script>
@@ -23,6 +17,18 @@ export default {
   props: ['event'],
   
   components: {},
+   created() {
+     var cookId = this.event.cookId
+     console.log('cookId hereeee',cookId)
+     this.$store.dispatch({type: 'getCookById',cookId})
+     
+  },
+  computed:{
+    cook(){
+      console.log('here too',this.$store.getters.getCookById)
+      return this.$store.getters.getCookById
+    }
+  }
   
 };
 </script>

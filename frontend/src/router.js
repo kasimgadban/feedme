@@ -22,6 +22,11 @@ export default new Router({
       component: Cook
     },
     {
+      path: '/event/:id',
+      name: 'event',
+      component: Cook
+    },
+    {
       path: '/hosting/:id',
       name: 'hosting',
       component: Hosting
