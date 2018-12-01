@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang = "scss">
-.search-location{
-      padding: 15px;
+.search-location {
+  padding: 15px;
 }
 </style>

@@ -20,7 +20,7 @@ export default {
                     context.commit({ type: 'setCooks', cooks })
                 })
         },
-        getById(context,{cookId}){
+        getById(context, { cookId }) {
             return cookService.getById(cookId)
         }
     },
@@ -29,7 +29,7 @@ export default {
         getCooks: (state) => { return state.cooks },
         getCookById: (state) => { return state.cookId },
     }
-    
+
 
 }
 

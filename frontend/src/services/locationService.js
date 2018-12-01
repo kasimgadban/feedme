@@ -16,7 +16,7 @@ function getAddressFromLoc(loc) {
   return axios
     .get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc[0]},${
-        loc[1]
+      loc[1]
       }&key=${API_KEY}`,
       {
         withCredentials: false
@@ -37,7 +37,7 @@ function getPosition() {
 function getPositionByName(cityName) {
   var prm = axios.get(
     `https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&key=AIzaSyArwZLwu8qpwO8J1vkedj-qYnK7mdLmhYE`,
-    { 
+    {
       withCredentials: false
     }
   );

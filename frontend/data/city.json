@@ -1,20 +1,142 @@
-[   {"id":1,"city":"Saguenay","country":"Canada","lat":48.3962038,"lon":-71.1116362},
-    {"id":2,"city":"Turus","country":"Indonesia","lat":-7.618249,"lon":110.6630784},
-    {"id":3,"city":"Santa Cecilia","country":"Mexico","lat":20.7257009,"lon":-103.4082453},
-    {"id":4,"city":"Cuenca","country":"Ecuador","lat":-2.9001285,"lon":-79.0058965},
-    {"id":5,"city":"Huangge","country":"China","lat":22.821335,"lon":113.515205},
-    {"id":6,"city":"Daruoyan","country":"China","lat":28.297306,"lon":120.632491},
-    {"id":7,"city":"Jianghu","country":"China","lat":33.1401715,"lon":119.7889248},
-    {"id":8,"city":"Fradelos","country":"Portugal","lat":41.5047902,"lon":-8.4776032},
-    {"id":9,"city":"Pawili","country":"Philippines","lat":13.5260215,"lon":123.2925505},
-    {"id":10,"city":"Nipawin","country":"Canada","lat":"53.36678","lon":"-104.00092"},
-    {"id":11,"city":"Vir","country":"Slovenia","lat":46.2280625,"lon":14.666088},
-    {"id":12,"city":"Maibu","country":"Philippines","lat":14.7040326,"lon":121.0657914},
-    {"id":13,"city":"Balading","country":"Philippines","lat":13.3881323,"lon":123.7090708},
-    {"id":14,"city":"Ponggok","country":"Indonesia","lat":-7.6090348,"lon":110.6422198},
-    {"id":15,"city":"Virginia","country":"South Africa","lat":-29.7724887,"lon":31.0575438},
-    {"id":16,"city":"Liuzuo","country":"China","lat":24.326292,"lon":109.428608},
-    {"id":17,"city":"Alegrete","country":"Brazil","lat":-29.7844393,"lon":-55.7980283},
-    {"id":18,"city":"Kolaka","country":"Indonesia","lat":-4.0447102,"lon":121.6511258},
-    {"id":19,"city":"Maracanã","country":"Brazil","lat":-0.8086425,"lon":-47.4882762},
-    {"id":20,"city":"Péplos","country":"Greece","lat":40.9562697,"lon":26.2680259}]
+[
+    {
+        "id": 1,
+        "city": "Saguenay",
+        "country": "Canada",
+        "lat": 48.3962038,
+        "lon": -71.1116362
+    },
+    {
+        "id": 2,
+        "city": "Turus",
+        "country": "Indonesia",
+        "lat": -7.618249,
+        "lon": 110.6630784
+    },
+    {
+        "id": 3,
+        "city": "Santa Cecilia",
+        "country": "Mexico",
+        "lat": 20.7257009,
+        "lon": -103.4082453
+    },
+    {
+        "id": 4,
+        "city": "Cuenca",
+        "country": "Ecuador",
+        "lat": -2.9001285,
+        "lon": -79.0058965
+    },
+    {
+        "id": 5,
+        "city": "Huangge",
+        "country": "China",
+        "lat": 22.821335,
+        "lon": 113.515205
+    },
+    {
+        "id": 6,
+        "city": "Daruoyan",
+        "country": "China",
+        "lat": 28.297306,
+        "lon": 120.632491
+    },
+    {
+        "id": 7,
+        "city": "Jianghu",
+        "country": "China",
+        "lat": 33.1401715,
+        "lon": 119.7889248
+    },
+    {
+        "id": 8,
+        "city": "Fradelos",
+        "country": "Portugal",
+        "lat": 41.5047902,
+        "lon": -8.4776032
+    },
+    {
+        "id": 9,
+        "city": "Pawili",
+        "country": "Philippines",
+        "lat": 13.5260215,
+        "lon": 123.2925505
+    },
+    {
+        "id": 10,
+        "city": "Nipawin",
+        "country": "Canada",
+        "lat": "53.36678",
+        "lon": "-104.00092"
+    },
+    {
+        "id": 11,
+        "city": "Vir",
+        "country": "Slovenia",
+        "lat": 46.2280625,
+        "lon": 14.666088
+    },
+    {
+        "id": 12,
+        "city": "Maibu",
+        "country": "Philippines",
+        "lat": 14.7040326,
+        "lon": 121.0657914
+    },
+    {
+        "id": 13,
+        "city": "Balading",
+        "country": "Philippines",
+        "lat": 13.3881323,
+        "lon": 123.7090708
+    },
+    {
+        "id": 14,
+        "city": "Ponggok",
+        "country": "Indonesia",
+        "lat": -7.6090348,
+        "lon": 110.6422198
+    },
+    {
+        "id": 15,
+        "city": "Virginia",
+        "country": "South Africa",
+        "lat": -29.7724887,
+        "lon": 31.0575438
+    },
+    {
+        "id": 16,
+        "city": "Liuzuo",
+        "country": "China",
+        "lat": 24.326292,
+        "lon": 109.428608
+    },
+    {
+        "id": 17,
+        "city": "Alegrete",
+        "country": "Brazil",
+        "lat": -29.7844393,
+        "lon": -55.7980283
+    },
+    {
+        "id": 18,
+        "city": "Kolaka",
+        "country": "Indonesia",
+        "lat": -4.0447102,
+        "lon": 121.6511258
+    },
+    {
+        "id": 19,
+        "city": "Maracanã",
+        "country": "Brazil",
+        "lat": -0.8086425,
+        "lon": -47.4882762
+    },
+    {
+        "id": 20,
+        "city": "Péplos",
+        "country": "Greece",
+        "lat": 40.9562697,
+        "lon": 26.2680259
+    }
+]

@@ -1,70 +1,65 @@
 <template>
-    <section class="topCooks">
-        <h2>Most Requested Events</h2>
-        <div class="cmp-container">
-            <li v-for="event in events"
-               :key="event.id">
+  <section class="topCooks">
+    <h2>Most Requested Events</h2>
+    <div class="cmp-container">
+      <li v-for="event in events" :key="event.id">
         <event-preview :event="event"/>
-        </li>
-        <pre>
+      </li>
+      <pre>
         <!-- {{events}} -->
         <!-- {{events[0].cityId}} -->
         </pre>
-      </div>
-    </section>
+    </div>
+  </section>
 </template>
 <script>
-import eventPreview from '@/components/eventPreview.vue'
+import eventPreview from "@/components/eventPreview.vue";
 
 export default {
-   name:'eventList',
-   props: {
-       events:{}
-   },
-   components: {
-     eventPreview
-   },
-   created() {
-        console.log('events from event list file',this.events);
-        // this.events = 
-        
-    },
-//    computed: {
-//        cooks(){
-//             return this.$store.getters.getCooks;
-//         }
-//    }
-}
+  name: "eventList",
+  props: {
+    events: {}
+  },
+  components: {
+    eventPreview
+  },
+  created() {
+    console.log("events from event list file", this.events);
+    // this.events =
+  }
+  //    computed: {
+  //        cooks(){
+  //             return this.$store.getters.getCooks;
+  //         }
+  //    }
+};
 </script>
 
 <style scoped lang="scss">
-.topCooks{
-    background:#80808036;
-    margin-top: 10px;
+.topCooks {
+  background: #80808036;
+  margin-top: 10px;
 }
 
-.cmp-container{
-width: 80%;
-margin: 0 auto;
-// margin-top: 10px;
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: space-between;
-text-decoration: none
-
+.cmp-container {
+  width: 80%;
+  margin: 0 auto;
+  // margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-decoration: none;
 }
 
-li{
-    list-style-type: none;
-    width: 30%;
+li {
+  list-style-type: none;
+  width: 30%;
 }
 
-h2{
-    text-align: center;
-    padding: 5px;
-    margin: 0;
+h2 {
+  text-align: center;
+  padding: 5px;
+  margin: 0;
 }
-
-
 </style>

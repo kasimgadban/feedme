@@ -1,56 +1,43 @@
 <template>
-<!-- template for the modal component -->
-<section type="text/x-template" id="modal-template">
-  <transition name="modal">
-    <div class="modal-mask"  @click="$emit('close')">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-
-          <div class="modal-header">
-            <!-- <slot name="header"> -->
+  <!-- template for the modal component -->
+  <section type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask" @click="$emit('close')">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-header">
+              <!-- <slot name="header"> -->
               {{order.guestName}}
-            <!-- </slot> -->
-          </div>
+              <!-- </slot> -->
+            </div>
 
-          <div class="modal-body">
-            {{order.guestNumber}}
-          </div>
+            <div class="modal-body">{{order.guestNumber}}</div>
 
-           <div class="modal-body">
-            {{order.date}}
-          </div>
+            <div class="modal-body">{{order.date}}</div>
 
-           <div class="modal-body">
-            {{order.guests}}
-          </div>
+            <div class="modal-body">{{order.guests}}</div>
 
-          <div class="modal-footer">
-            <!-- <slot name="footer"> -->
-              <hr />
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-              <button class="modal-default-button" @click="$emit('close')">
-                cancel
-              </button>
-            <!-- </slot> -->
+            <div class="modal-footer">
+              <!-- <slot name="footer"> -->
+              <hr>
+              <button class="modal-default-button" @click="$emit('close')">OK</button>
+              <button class="modal-default-button" @click="$emit('close')">cancel</button>
+              <!-- </slot> -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </transition>
-</section>
+    </transition>
+  </section>
 </template>
 
 <script>
-
 export default {
-  props:['order'],
-    created(){
-      console.log('I am into the requestModal ')
-    },
-    
-}
+  props: ["order"],
+  created() {
+    console.log("I am into the requestModal ");
+  }
+};
 </script>
 <style lang="scss" scoped>
 .modal-mask {
@@ -60,25 +47,25 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal-wrapper {
   display: table-cell;
-  vertical-Align: middle;
+  vertical-align: middle;
 }
 
 .modal-container {
   width: 300px;
-//   height: 200px;
+  //   height: 200px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
 

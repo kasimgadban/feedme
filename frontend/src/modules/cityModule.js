@@ -6,18 +6,18 @@ export default {
         currCity: null
     },
     getters: {
-        getCities: (state) => { 
-            console.log('cities getters',state.cities);
-            
-            return state.cities 
+        getCities: (state) => {
+            console.log('cities getters', state.cities);
+
+            return state.cities
         },
-        getCurrCity: (state) => {return state.currCity },
+        getCurrCity: (state) => { return state.currCity },
     },
     mutations: {
         setCities(state, { cities }) {
             state.cities = cities
         },
-        setCity(state, {city}){
+        setCity(state, { city }) {
             state.currCity = city
         }
 
@@ -29,19 +29,19 @@ export default {
                     context.commit({ type: 'setCities', cities })
                 })
         },
-        getCityById(context,{x}){
-            console.log('getbyid from city service module',x);
+        getCityById(context, { x }) {
+            console.log('getbyid from city service module', x);
             return cityService.getById(x)
-            .then(city => {
-                
-                context.commit({type: 'setCity',city})
-                return city;
-            })
+                .then(city => {
+
+                    context.commit({ type: 'setCity', city })
+                    return city;
+                })
         }
     },
 
-    
-    
+
+
 
 }
 

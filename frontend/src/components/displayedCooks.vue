@@ -1,40 +1,38 @@
 <template>
-    <section class="topCooks">
-        <div class="cmp-container">
+  <section class="topCooks">
+    <div class="cmp-container">
       <displayed-cook></displayed-cook>
       <displayed-cook></displayed-cook>
       <displayed-cook></displayed-cook>
-      <displayed-cook></displayed-cook> 
       <displayed-cook></displayed-cook>
-      </div>
-    </section>
+      <displayed-cook></displayed-cook>
+    </div>
+  </section>
 </template>
 <script>
-import displayedCook from '@/components/displayedCook.vue'
+import displayedCook from "@/components/displayedCook.vue";
 
 export default {
-   name:'displayedCooks',
-   components: {
-     displayedCook
-   }
-}
+  name: "displayedCooks",
+  components: {
+    displayedCook
+  }
+};
 </script>
 
 <style scoped lang="scss">
-.topCooks{
-    background: yellow;
-    margin-top: 10px;
+.topCooks {
+  background: yellow;
+  margin-top: 10px;
 }
 
-.cmp-container{
-width: 80%;
-margin: 0 auto;
-// margin-top: 10px;
-display: flex;
-// flex-direction: row;
-// flex-wrap: wrap;
-justify-content: space-between;
+.cmp-container {
+  width: 80%;
+  margin: 0 auto;
+  // margin-top: 10px;
+  display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  justify-content: space-between;
 }
-
-
 </style>

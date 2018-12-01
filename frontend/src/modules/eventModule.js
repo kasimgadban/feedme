@@ -7,13 +7,13 @@ export default {
         eventsCities: eventService.getEventsCities()
     },
     getters: {
-        getEvents: (state) => { 
-            console.log('events getters',state.events);
-            
-            return state.events 
+        getEvents: (state) => {
+            console.log('events getters', state.events);
+
+            return state.events
         },
         getEventById: (state) => { return state.eventId },
-        getEventsCities: (state) => {return state.eventsCities}
+        getEventsCities: (state) => { return state.eventsCities }
     },
     mutations: {
         setEvents(state, { events }) {
@@ -29,16 +29,16 @@ export default {
                     context.commit({ type: 'setEvents', events })
                 })
         },
-        getById(context,{eventId}){
+        getById(context, { eventId }) {
             return eventService.getById(eventId)
         },
-        getEventsCities(context){
+        getEventsCities(context) {
 
         }
     },
 
-    
-    
+
+
 
 }
 

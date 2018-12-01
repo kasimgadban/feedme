@@ -1,28 +1,21 @@
 <template>
-<section class="footer">
+  <section class="footer">
     <div>I am a footer</div>
-
-</section>
+  </section>
 </template>
 
 <script>
 export default {
-     name:'footer',
-   components: {
-
-   }
-    
-}
-
+  name: "footer",
+  components: {}
+};
 </script>
 
 
 <style scoped lang="scss">
-.footer{
-    width: 100%;
-    height: 200px;
-    background-color: red;
+.footer {
+  width: 100%;
+  height: 200px;
+  background-color: red;
 }
-
-
 </style>

@@ -6,6 +6,8 @@ const session = require('express-session')
 
 
 const addcookRoutes = require('./routes/cookRoute')
+const addcityRoutes = require('./routes/cityRoute')
+
 
 const app = express()  
 
@@ -30,6 +32,7 @@ app.get('/', (req, res) => {
 
 
 addcookRoutes(app)
+addcityRoutes(app)
 
 app.post('/singup', (req, res) => {
   const nickname = req.body.nickname
@@ -50,4 +53,4 @@ app.put('/login', (req, res) => {
 
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`))
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`))
