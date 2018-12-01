@@ -8,13 +8,8 @@
   </section>
 </template>
 <script>
-// import cityService
 export default {
-  // data(){
-  //   return {
-  //     city:null
-  //   }
-  // },
+  
   name: 'cityPreview',
   props: ['city_id'],
   components: {},
