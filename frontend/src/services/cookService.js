@@ -456,12 +456,12 @@ function update(cook) {
 }
 
 
-function getById(cookId) {
-    const cook = cooks.find(cook => {
-        return cook.id === cookId
-    })
-    return Promise.resolve(cook)
-}
+// function getById(cookId) {
+//     const cook = cooks.find(cook => {
+//         return cook.id === cookId
+//     })
+//     return Promise.resolve(cook)
+// }
 
 // function getById(cookId){
 //     const cook = cooks.find(cook => {
@@ -496,7 +496,7 @@ function getById(cookId) {
 function getById(cookId) {
     console.log('get city service id is,',cookId);
     var cook = cooks.find(cook => cook.id === cookId);
-    console.log('test city',cook)
+    // console.log('test city',cook)
     if (cook)  return Promise.resolve(cook);
     else return Promise.reject('Unknown cook');
 }

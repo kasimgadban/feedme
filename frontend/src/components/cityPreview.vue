@@ -1,6 +1,6 @@
 <template>
   <section class="displayed-city">
-    <router-link :to="'city/'+city.id" :city="city">
+    <router-link :to="'city/'+ city.id" :city="city"> 
       <img class="card-img" src="https://www.odysseytraveller.com/app/uploads/2017/11/Barcelona-Spain-iStock-619257048.jpg" alt srcset  >
       <h1>{{city.city}}</h1>
     </router-link>
@@ -10,25 +10,26 @@
 <script>
 
 export default {
-  data(){
-    return{
-      // city:null
-    }
-  },
+  // 
+  // data(){
+  //   return{
+  //     city:null
+  //   }
+  // },
   name: 'cityPreview',
-  props: ['city_id'],
+  props: ['city'],
   components: {},
   created() {
-    var cityId = this.city_id
+    var cityId = this.city
     console.log('cityId city preview created',cityId);
-     this.$store.dispatch({type: 'getCityById',cityId})
-     
+    this.$store.dispatch({type: 'loadCities'})
   },
-  computed:{
-    city(){
-      return this.$store.getters.getCurrCity
-    }
-  },
+  
+  // computed:{
+  //   city(){
+  //     return this.$store.getters.getCurrCity
+  //   }
+  // },
   methods:{
     getCurCity() {
       this.city = this.$store.getters.getCurrCity

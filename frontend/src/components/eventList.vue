@@ -13,9 +13,7 @@ import eventPreview from "@/components/eventPreview.vue";
 
 export default {
    name:'eventList',
-   props: {
-       events:{}
-   },
+   props: ['events'],
    components: {
      eventPreview
    },

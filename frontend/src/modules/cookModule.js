@@ -25,11 +25,7 @@ export default {
                     context.commit({ type: 'setCooks', cooks })
                 })
         },
-<<<<<<< HEAD
-        getById(context, { cookId }) {
-=======
         getCookById(context,{cookId}){
->>>>>>> 5b59c53d1968fe8c0f0c77e4c5dc4abc8aba155d
             return cookService.getById(cookId)
             .then(cook => {                
                 context.commit({type: 'setCook',cook})

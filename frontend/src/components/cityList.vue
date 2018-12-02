@@ -3,9 +3,9 @@
         <h2>Top Cities</h2>
         <div class="cmp-container">
         <!-- <pre>cities array: {{cities}}</pre> -->
-         <city-preview v-for="city_id in cities" 
-         :key="city_id"
-         :city_id = "city_id"
+         <city-preview v-for="city in cities" 
+         :key="city.id"
+         :city = "city" 
          ></city-preview>
 
        
@@ -18,7 +18,7 @@ import cityPreview from "@/components/cityPreview.vue";
 export default {
   name: "cityList",
   props: {
-    cities: {}
+    cities: Array
   },
   components: {
     cityPreview

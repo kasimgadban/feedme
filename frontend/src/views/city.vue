@@ -45,8 +45,8 @@ export default {
   //         }
   //     },
   components: {
-    requestModal,
-    requestBox
+    // requestModal,
+    // requestBox
   }
 };
 </script>

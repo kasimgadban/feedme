@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Cook from './views/cook.vue'
 import Hosting from './views/hosting.vue'
+// import city from './views/city.vue'
 
 
 Vue.use(Router)
@@ -30,6 +31,11 @@ export default new Router({
       path: '/hosting/:id',
       name: 'hosting',
       component: Hosting
-    }
+    },
+    // {
+    //   path: '/city/:id',
+    //   name: 'city',
+    //   component: city
+    // }
   ]
 })

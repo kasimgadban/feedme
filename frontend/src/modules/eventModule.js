@@ -1,26 +1,23 @@
 import eventService from '../services/eventService.js'
+import cityService from '../services/cityService.js';
 
 export default {
     state: {
         events: eventService.query(),
         // eventId: eventService.getById(id),
-        eventsCities: eventService.getEventsCities()
+        eventsCities: eventService.getEventsCities(),
+
+        // cities: cityService.query()
     },
     getters: {
-<<<<<<< HEAD
-        getEvents: (state) => {
-            console.log('events getters', state.events);
-
-            return state.events
-=======
         getEvents: (state) => { 
             // console.log('events getters',state.events);
             
             return state.events 
->>>>>>> 5b59c53d1968fe8c0f0c77e4c5dc4abc8aba155d
         },
         getEventById: (state) => { return state.eventId },
-        getEventsCities: (state) => { return state.eventsCities }
+        getEventsCities: (state) => { return state.eventsCities },
+        // getCities: (state) => {return state.cities}
     },
     mutations: {
         setEvents(state, { events }) {

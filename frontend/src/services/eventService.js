@@ -7,6 +7,7 @@ export default {
 }
 
 var events = _createEvents();
+
 // [{"id":1,"cityId":2,"date":"8/4/2020","time":"8:07 AM","address":"806 Golf Course Circle","cookId":3,"description":"deliver transparent web services","price":3,"image":"https://robohash.org/atquecumqueet.png?size=50x50&set=set1","menu":"'{menu of food}'"},
 // {"id":2,"cityId":3,"date":"1/6/2020","time":"4:28 PM","address":"23 Cordelia Junction","cookId":3,"description":"seize strategic networks","price":5,"image":"https://robohash.org/ullamnecessitatibusmollitia.png?size=50x50&set=set1","menu":" '{menu of food}'"},
 // {"id":3,"cityId":4,"date":"6/1/2019","time":"10:40 AM","address":"96174 Harbort Circle","cookId":3,"description":"implement holistic paradigms","price":4,"image":"https://robohash.org/quasexvel.png?size=50x50&set=set1","menu":"'{menu of food}'"},
@@ -30,8 +31,7 @@ function getById(id) {
 
 function getEventsCities() {
     var cities = []
-
-    const cities = [...(new Set(events.map(({ cityId }) => cityId)))];
+     cities = [...(new Set(events.map(({ cityId }) => cityId)))];
     // console.log('events cities : ',cities);
 
     return cities
