@@ -48,7 +48,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("https://www.shape.com/sites/shape.com/files/u896/wide-middle-eastern-food.jpg");
+  background-image: url("https://foodrevolution.org/wp-content/uploads/2018/10/blog-featured-thanksgiving-20181029-3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
