@@ -11,7 +11,6 @@ function query() {
 }
 
 function getById(cookId) {
-    console.log(cookId)
     cookId = new ObjectId(cookId)
     return mongoService.connectToDb()
         .then(db => {

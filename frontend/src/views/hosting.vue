@@ -88,7 +88,6 @@ export default {
     },
     testlll() {
       this.isShowModal = true;
-      console.log("I was clicked", this.isShowModal);
     },
     created() {
       isShowModal = false;

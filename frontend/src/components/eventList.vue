@@ -2,9 +2,14 @@
   <section class="topCooks">
     <h2>Most Requested Events</h2>
     <div class="cmp-container">
-      <li v-for="event in events" :key="event.id">
-        <event-preview :event="event"/>
-        </li>
+      <!-- <li v-for="event in events" :key="event._id" :event="event">
+      <event-preview/>
+        </li> -->
+         <event-preview v-for="event in events" 
+         :key="event._id"
+         :event = "event" 
+         ></event-preview>
+
       </div>
     </section>
 </template>
@@ -13,20 +18,12 @@ import eventPreview from "@/components/eventPreview.vue";
 
 export default {
    name:'eventList',
-   props: ['events'],
+   props: {
+     events: Array
+   },
    components: {
      eventPreview
    },
-   created() {
-        // console.log('events from event list file',this.events);
-        // this.events = 
-        
-    },
-//    computed: {
-//        cooks(){
-//             return this.$store.getters.getCooks;
-//         }
-//    }
 }
 </script>
 

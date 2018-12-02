@@ -1,6 +1,6 @@
 <template>
   <section class="displayed-cook">
-    <router-link :to="'event/'+ event.id" :event="event">
+    <router-link :to="'event/'+ event._id" >
       <img class="card-img" src="./../images/food1.jpg" alt srcset  >
     </router-link>
     <div class="host-card"> 
@@ -17,17 +17,10 @@ export default {
   props: ['event'],
   components: {},
    created() {
-     var cookId = this.event.cookId
-     console.log('cookId hereeee',cookId)
-     this.$store.dispatch({type: 'getCookById',cookId})
-  },
-  computed:{
-    cook(){
-      console.log('here too',this.$store.getters.getCookById)
-      return this.$store.getters.getCookById
-    }
-  }
-  
+     
+     var eventId = this.event._id
+     this.$store.dispatch({type: 'loadEvents'})
+  }, 
 };
 </script>
 

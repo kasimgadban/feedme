@@ -13,7 +13,6 @@ function addcityRoutes(app) {
     // SINGLE - GET Full details including reviews
     app.get('/city/:id', (req, res) => {
         const cityId = req.params.id;
-        console.log(cityId)
         cityService.getById(cityId)
             .then(city => res.json(city))
     })

@@ -7,6 +7,7 @@ const session = require('express-session')
 
 const addcookRoutes = require('./routes/cookRoute')
 const addcityRoutes = require('./routes/cityRoute')
+const addeventRoutes = require('./routes/eventRoute')
 
 
 const app = express()  
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 
 addcookRoutes(app)
 addcityRoutes(app)
+addeventRoutes(app)
 
 app.post('/singup', (req, res) => {
   const nickname = req.body.nickname

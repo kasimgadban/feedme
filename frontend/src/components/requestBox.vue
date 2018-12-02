@@ -48,9 +48,6 @@ export default {
       isShowModal: false
     };
   },
-  created() {
-    console.log("the isShowModal", isShowModal);
-  },
   methods: {
     // customFormatter(date) {
     //   // return moment(date).format('MMMM Do YYYY, h:mm:ss a');

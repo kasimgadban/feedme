@@ -4,11 +4,9 @@
         <div class="cmp-container">
         <!-- <pre>cities array: {{cities}}</pre> -->
          <city-preview v-for="city in cities" 
-         :key="city.id"
+         :key="city._id"
          :city = "city" 
-         ></city-preview>
-
-       
+         ></city-preview> 
       </div>
     </section>
 </template>
@@ -22,7 +20,7 @@ export default {
   },
   components: {
     cityPreview
-  }
+  },
 };
 </script>
 

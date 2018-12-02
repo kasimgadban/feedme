@@ -11,7 +11,6 @@ function query() {
 }
 
 function getById(cityId) {
-    console.log(cityId)
     cityId = new ObjectId(cityId)
     return mongoService.connectToDb()
         .then(db => {

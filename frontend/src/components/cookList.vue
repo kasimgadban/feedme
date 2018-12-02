@@ -2,7 +2,7 @@
   <section class="topCooks">
     <h2>Top rated hosts</h2>
     <div class="cmp-container">
-      <li v-for="cook in cooks" :key="cook.id">
+      <li v-for="cook in cooks" :key="cook._id">
         <cook-preview :cook="cook"/>
       </li>
     </div>

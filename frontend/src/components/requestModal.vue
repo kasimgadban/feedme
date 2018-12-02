@@ -34,9 +34,6 @@
 <script>
 export default {
   props: ["order"],
-  created() {
-    console.log("I am into the requestModal ");
-  }
 };
 </script>
 <style lang="scss" scoped>

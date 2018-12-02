@@ -2,10 +2,8 @@
   <section>
     <app-header />
     <city-list :cities="cities" />
-    <pre>{{cities}}</pre>
-    <!-- <cook-list :cooks="cooks" /> -->
     <event-list :events="events" ></event-list>
-    <app-footer />
+    <!-- <app-footer /> -->
   </section>
 </template>
 
@@ -40,9 +38,7 @@ export default {
       return this.$store.getters.getCooks;
     },
     events() {
-      var e = this.$store.getters.getEvents;
-      // console.log('e isssss',e)
-      return e;
+      return this.$store.getters.getEvents;
     },
     cities() {
       return this.$store.getters.getCities;

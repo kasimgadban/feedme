@@ -19,9 +19,9 @@ export default {
         this.$refs.autocomplete,
         {
           types: ["geocode"],
-          componentRestrictions: {
-            country: "IL"
-          }
+          // componentRestrictions: {
+          //   country: "IL"
+          // }
         }
       );
     });

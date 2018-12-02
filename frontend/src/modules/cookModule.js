@@ -3,8 +3,8 @@ import cookService from '../services/cookService.js'
 
 export default {
     state: {
-        cooks: cookService.query(),
-        cookId: cookService.getById(),
+        cooks: null,
+        cookId: null,
         currCook: null
     },
     mutations: {
@@ -12,9 +12,7 @@ export default {
             state.cooks = cooks
         },
         setCook(state, {cook}){
-            console.log('set cook ',cook);
             state.currCook = cook
-            console.log('set  state.currCook  ', state.currCook );
         }
 
     },
@@ -37,7 +35,6 @@ export default {
     getters: {
         getCooks: (state) => { return state.cooks },
         getCookById: (state) => {
-            console.log('state.currCook getters ',state.currCook )
              return state.currCook 
             },
     }

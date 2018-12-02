@@ -2,7 +2,7 @@
   <section class="container">
     <div class="images-container"></div>
     <div class="cmp-container">
-      <li v-for="cook in cooks" :key="cook.id">
+      <li v-for="cook in cooks" :key="cook._id">
         <cook-preview :cook="cook"/>
       </li>
     </div>

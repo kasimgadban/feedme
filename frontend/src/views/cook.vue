@@ -61,11 +61,9 @@ export default {
   },
   created() {
     const cookId = this.$route.params.id;
-    console.log("cook id ", cookId);
     if (cookId) {
       this.$store.dispatch({ type: "getById", cookId }).then(cook => {
         this.cook = cook;
-        console.log("cook ", cook);
       });
     }
   },

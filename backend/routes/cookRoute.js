@@ -13,7 +13,6 @@ function addCookRoutes(app){
     // SINGLE - GET Full details including reviews
     app.get('/cook/:id', (req, res) => {
         const cookId = req.params.id;
-        console.log(cookId)
         cookService.getById(cookId)
             .then(cook => res.json(cook))
     })
