@@ -13,14 +13,14 @@
 
             <div class="modal-body">{{order.guestNumber}}</div>
 
-            <div class="modal-body">{{order.date}}</div>
+            <div class="modal-body">{{order.eventDate}}</div>
 
             <div class="modal-body">{{order.guests}}</div>
 
             <div class="modal-footer">
               <!-- <slot name="footer"> -->
               <hr>
-              <button class="modal-default-button" @click="$emit('close')">OK</button>
+              <button class="modal-default-button" @click="bookOrder">OK</button>
               <button class="modal-default-button" @click="$emit('close')">cancel</button>
               <!-- </slot> -->
             </div>
@@ -34,6 +34,16 @@
 <script>
 export default {
   props: ["order"],
+  created() {
+  console.log('order is: ',this.order);
+  },
+  methods:{
+    bookOrder(){
+      // console.log('i am pretty console log',this.order)
+      this.cook.orders.push(this.order)
+      this.$emit('close');
+    }},
+  
 };
 </script>
 <style lang="scss" scoped>

@@ -2,13 +2,16 @@
   <section>
     <div></div>
     <div class="order-form">
-      <h3>
+      <h3 >
         ${{event.price}}
+        {{event.cookId}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>
       <!-- <input type="date" v-model="order.date">  -->
-      <date-picker class="date requestBoxDate" :inline="true"></date-picker>
+      <date-picker class="date requestBoxDate" :inline="true"
+      v-model="order.eventDate"
+      ></date-picker>
 
       <span class="title">Guests</span>
       <select name v-model="order.guests">
@@ -33,6 +36,7 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
+import cookService from "@/services/cookService.js"
 
 export default {
   name: 'requestBox',
@@ -42,11 +46,21 @@ export default {
       order: {
         guestName: '',
         guestNumber: '',
-        date: '',
-        guests: 2
+        eventDate: '',
+        guests: 2,
+      
       },
       isShowModal: false
     };
+  },
+  created() {
+    var cookId = cookService.getById(event.cookId)
+    console.log('event.cookId',event.cookId);
+    
+    this.order.eventId = this.event._id
+    this.order.cookId = this.event.cookId
+    console.log('cookId from request box', this.order)
+    
   },
   methods: {
     // customFormatter(date) {
@@ -54,6 +68,9 @@ export default {
     //   // customFormatter() {
     //   //   return Date.now();
     // }
+  },
+  computed:{
+
   },
   components: {
     requestModal,

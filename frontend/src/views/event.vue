@@ -44,7 +44,7 @@
       </div>
       
       <!-- <request-box :cook="cook"></request-box> -->
-            <request-box :event="event"></request-box>
+      <request-box :event="event"></request-box>
 
     </div>
   </section>
