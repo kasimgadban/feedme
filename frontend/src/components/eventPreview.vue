@@ -1,14 +1,20 @@
 <template>
   <section class="displayed-cook">
-    <router-link :to="'event/'+ event._id" >
+    <router-link class="link" :to="'/event/'+ event._id" >
       <img class="card-img" src="./../images/food1.jpg" alt srcset  >
-    </router-link>
-    <div class="host-card"> 
-        <!-- <div >Hosted by {{cook.fullName}} at {{event.address}}</div> -->
-                <img class="user-img"  :src = "`https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg`">
-        <h3>{{event.date}}</h3>
+      <div class="event-details">
+       <h3>{{event.date}}</h3>
         <h4>{{event.time}}</h4>
+         <h4>${{event.price}}</h4>
+         </div>
+    </router-link>
+    <hr>
+    <router-link class="link" :to="'/cook/'+ event.cookId" >
+    <div class="host-card"> 
+     <img class="user-img"  :src = "`https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg`">
+       <h4 class="host-name"><span class="by">Hosted by:</span> {{event.cookId}}</h4>
         </div> 
+        </router-link>
   </section>
 </template>
 <script>
@@ -47,5 +53,20 @@ export default {
 
 .host-card {
   padding: 2px;
+}
+
+.link{
+ text-decoration: none;
+ color: black;
+}
+.event-details>*{
+  margin:8px;
+}
+
+.host-name{
+  color: green;
+}
+.by{
+  color: black
 }
 </style>

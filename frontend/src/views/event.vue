@@ -5,21 +5,20 @@
     </div>
     <div class="wrapper">
       <div class="details">
-        <section style="display:inline-block;">
-          <h2 style="display:inline-block;">{{cook.firstName}} Kitchen</h2>
-        </section>
-
+        <!-- <section style="display:inline-block;">
+         {{event}}
+        </section> -->
         <div class="top">
-          <div>{{cook.food[0].name}}</div>
-          <div>{{cook.food[0].description}}</div>
-          <div>{{cook.address.city}}</div>
-          <div>rating</div>
+          <div>	&#128197;{{event.date}}</div>
+          <div>🕐{{event.time}}</div>
+          <div class="rating">★★★★<span class="voters">(12)</span></div>
         </div>
+        <hr>
 
-        <div class="top">
+        <!-- <div class="top">
           <div>time</div>
           <div>guest range</div>
-        </div>
+        </div> -->
 
         <div class="desc">
           <h2>Info abou the host</h2>
@@ -43,6 +42,7 @@
 
         <div class="map">map goes here</div>
       </div>
+      
       <request-box :cook="cook"></request-box>
     </div>
   </section>
@@ -56,14 +56,36 @@ export default {
   name: "cookPage",
   data() {
     return {
-      cook: null
+      event: null,
+      cook:{
+    // _id : ObjectId("5c02d70ef46cd1a83b20872d"),
+    fullName : "Katherine Flament",
+    email : "kflament1@sourceforge.net",
+    country : "Indonesia",
+    city : "Tarikolot",
+    address : "7461 Meadow Valley Court",
+    language : "Malayalam",
+    description : "enable impactful partnerships",
+    rating : 3.0,
+    image : "https://robohash.org/errormodiquia.png?size=50x50&set=set1"
+}
+
     };
   },
   created() {
-    const cookId = this.$route.params.id;
-    if (cookId) {
-      this.$store.dispatch({ type: "getById", cookId }).then(cook => {
-        this.cook = cook;
+    // const cookId = this.$route.params.id;
+    // if (cookId) {
+    //   this.$store.dispatch({ type: "getById", cookId }).then(cook => {
+    //     this.cook = cook;
+    //   });
+    // }
+    const eventId = this.$route.params.id;
+    console.log('when event page is created :',eventId);
+    
+    if (eventId) {
+      this.$store.dispatch({ type: "getById", eventId }).then(event => {
+        this.event = event;
+      
       });
     }
   },
@@ -71,12 +93,12 @@ export default {
     openModal() {
       return (this.isSend = true);
     },
-    getCookById() {}
+    // getCookById() {}
   },
   computed: {
-    cooks() {
-      return this.$store.getters.getCooks;
-    }
+    // cook() {
+    //   return this.$store.getters.getCook;
+    // }
   },
   components: {
     requestModal,
@@ -173,5 +195,16 @@ input {
   padding: 5px;
   margin-top: 5px;
   font-size: 14px;
+}
+.rating{
+  color: gold
+}
+.voters{
+  color: rgba(128, 128, 128, 0.584);
+  font-size: 14px;
+}
+.map{
+  background-image: url("https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png");
+  height: 300px;
 }
 </style>
