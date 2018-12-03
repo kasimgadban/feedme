@@ -53,11 +53,18 @@ function update(cook){
         })
 }
 
+function checkLogin({ nickname }) {
+    return mongoService.connect()
+        .then(db => db.collection('user').findOne({ nickname }))
+}
+
+
 
 module.exports = {
     query,
     getById,
     remove,
     add,
-    update
+    update,
+    checkLogin
 }
