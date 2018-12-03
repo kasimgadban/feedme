@@ -12,7 +12,7 @@ function query() {
 
 
 function getById(cityId) {
-    return Axios.get(`${BASE_URL}${cityId}`)
+    return axios.get(`${BASE_URL}${cityId}`)
         .then(res => res.data)
 }
 

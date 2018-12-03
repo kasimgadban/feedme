@@ -1,6 +1,6 @@
 <template>
   <section class="displayed-cook">
-    <router-link :to="'event/'+ event._id" >
+    <router-link :to="'event/' + event._id" >
       <img class="card-img" src="./../images/food1.jpg" alt srcset  >
     </router-link>
     <div class="host-card"> 
@@ -17,7 +17,6 @@ export default {
   props: ['event'],
   components: {},
    created() {
-     
      var eventId = this.event._id
      this.$store.dispatch({type: 'loadEvents'})
   }, 

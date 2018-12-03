@@ -12,7 +12,7 @@ function query() {
 
 
 function getById(eventId) {
-    return Axios.get(`${BASE_URL}${eventId}`)
+    return axios.get(`${BASE_URL}${eventId}`)
         .then(res => res.data)
 }
 
