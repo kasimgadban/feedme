@@ -1,20 +1,20 @@
-import Axios from "axios"
-const BASE_URL = process.env.NODE_ENV !== 'development'
+import axios from "axios"
+const BASE_URL = process.env.NODE_ENV !== 'production'
     ? '/cook/'
     : '//localhost:3000/cook/'
 
 
 
 function query() {
-    return Axios.get(`${BASE_URL}`)
+    return axios.get(`${BASE_URL}`)
         .then(res => res.data)
 }
 function remove(cookId) {
-    return Axios.delete(`${BASE_URL}${cookId}`)
+    return axios.delete(`${BASE_URL}${cookId}`)
         .then(res => res.data)
 }
 function getById(cookId) {
-    return Axios.get(`${BASE_URL}${cookId}`)
+    return axios.get(`${BASE_URL}${cookId}`)
         .then(res => res.data)
 }
 

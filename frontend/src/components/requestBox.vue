@@ -154,12 +154,12 @@ input {
   font-size: 14px;
 }
 
-.date-picker {
+/* .date-picker { */
   /* height: 300px; */
   /* position: relative; */
   /* position: absolute; */
   /* display: block; */
-}
+/* } */
 
 .date:first-child {
   /* border: 1px solid gray !important; */

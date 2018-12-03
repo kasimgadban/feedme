@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = process.env.NODE_ENV !== 'development'
+const BASE_URL = process.env.NODE_ENV !== 'production'
     ? '/event/'
     : '//localhost:3000/event'
 
@@ -26,10 +26,11 @@ function query(filter = {}) {
 
 
 function getById(eventId) {
-    console.log('and I was called as an axios for the event id',eventId);
+    return axios.get(`${BASE_URL}${eventId}`)
+    .then(res => res.data)  
+    // console.log('and I was called as an axios for the event id',eventId);
     
-    return axios.get(`${BASE_URL}/${eventId}`) 
-        .then(res => res.data)
+    // return axios.get(`${BASE_URL}/${eventId}`) 
 }
 
 // function getEventsByCity(cityId){

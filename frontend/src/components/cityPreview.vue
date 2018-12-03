@@ -17,7 +17,6 @@ export default {
     var cityId = this.city
     this.$store.dispatch({type: 'loadCities'})
   },
-  
   // computed:{
   //   city(){
   //     return this.$store.getters.getCurrCity
