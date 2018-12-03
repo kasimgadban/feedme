@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const BASE_URL = process.env.NODE_ENV !== 'development'
+const BASE_URL = process.env.NODE_ENV !== 'production'
     ? '/city/'
     : '//localhost:3000/city/'
 

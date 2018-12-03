@@ -1,5 +1,5 @@
 import axios from "axios"
-const BASE_URL = process.env.NODE_ENV !== 'development'
+const BASE_URL = process.env.NODE_ENV !== 'production'
     ? '/cook/'
     : '//localhost:3000/cook/'
 

@@ -1,10 +1,6 @@
 <template>
   <section class="displayed-cook">
-<<<<<<< HEAD
-    <router-link :to="'event/' + event._id" >
-=======
     <router-link class="link" :to="'/event/'+ event._id" >
->>>>>>> caff4ecb8f87dba9489f258f1ae7d22f7ebc7a09
       <img class="card-img" src="./../images/food1.jpg" alt srcset  >
       <div class="event-details">
        <h3>{{event.date}}</h3>
