@@ -3,12 +3,12 @@
     <div></div>
     <div class="order-form">
       <h3>
-        ${{cook.price}}
+        ${{event.price}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>
       <!-- <input type="date" v-model="order.date">  -->
-      <date-picker class="date" :inline="true"></date-picker>
+      <date-picker class="date requestBoxDate" :inline="true"></date-picker>
 
       <span class="title">Guests</span>
       <select name v-model="order.guests">
@@ -35,14 +35,14 @@ import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
 
 export default {
-  name: "requestBox",
-  props: ["cook"],
+  name: 'requestBox',
+  props: ['event'],
   data() {
     return {
       order: {
-        guestName: "",
-        guestNumber: "",
-        date: "",
+        guestName: '',
+        guestNumber: '',
+        date: '',
         guests: 2
       },
       isShowModal: false
@@ -165,5 +165,6 @@ input {
   /* border: 1px solid gray !important; */
   width: 100% !important;
 }
+
 </style>
 

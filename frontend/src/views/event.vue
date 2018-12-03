@@ -43,7 +43,9 @@
         <div class="map">map goes here</div>
       </div>
       
-      <request-box :cook="cook"></request-box>
+      <!-- <request-box :cook="cook"></request-box> -->
+            <request-box :event="event"></request-box>
+
     </div>
   </section>
 </template>
