@@ -1,6 +1,6 @@
 <template>
   <section class="displayed-city">
-    <router-link :to="'city/'+ city._id" :city="city"> 
+    <router-link :to="'city/'+city._id" :city="city"> 
       <img class="card-img" src="https://www.odysseytraveller.com/app/uploads/2017/11/Barcelona-Spain-iStock-619257048.jpg" alt srcset  >
       <h1>{{city.city}}</h1>
     </router-link>
