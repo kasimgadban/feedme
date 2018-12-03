@@ -36,7 +36,6 @@ export default {
       this.events = events;
       // console.log('events ',events);
       })
-
       this.$store.dispatch({type: "getCityById",cityId}).then(city => this.city = city)
     }
   },
