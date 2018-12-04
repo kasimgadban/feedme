@@ -7,8 +7,7 @@
       onfocus="value = ''"
       type="text"
       v-model="searchAddressInput"
-      v-on:change="searchLocation()"
-    >
+      v-on:change="searchLocation()">
   </section>
 </template>
 

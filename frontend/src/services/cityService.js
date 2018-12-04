@@ -2,8 +2,8 @@ import axios from 'axios'
 
 
 const BASE_URL = process.env.NODE_ENV !== 'development'
-    ? '/city/'
-    : '//localhost:3000/city/'
+    ? '/city'
+    : '//localhost:3000/city'
 
 function query() {
     return axios.get(BASE_URL)
@@ -12,7 +12,7 @@ function query() {
 
 
 function getById(cityId) {
-    return axios.get(`${BASE_URL}${cityId}`)
+    return axios.get(`${BASE_URL}/${cityId}`)
         .then(res => res.data)
 }
 

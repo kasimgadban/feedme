@@ -2,7 +2,6 @@
     <section class="topCities">
         <h2>Top Cities</h2>
         <div class="cmp-container">
-        <!-- <pre>cities array: {{cities}}</pre> -->
          <city-preview v-for="city in cities" 
          :key="city._id"
          :city = "city" 
