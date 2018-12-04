@@ -20,7 +20,7 @@
             <div class="modal-footer">
               <!-- <slot name="footer"> -->
               <hr>
-              <button class="modal-default-button" @click="bookOrder">OK</button>
+              <button class="modal-default-button" @click="bookOrder()">OK</button>
               <button class="modal-default-button" @click="$emit('close')">cancel</button>
               <!-- </slot> -->
             </div>
@@ -32,18 +32,47 @@
 </template>
 
 <script>
+
+import cookService from '@/services/cookService'
+
 export default {
-  props: ["order"],
-  created() {
-  console.log('order is: ',this.order);
+  props: ['order','cookId'],
+  // created() {
+  //   console.log("order is: ", this.order);
+  // },
+  data(){
+    return {
+      cook: null
+    }
   },
-  methods:{
-    bookOrder(){
-      // console.log('i am pretty console log',this.order)
-      this.cook.orders.push(this.order)
-      this.$emit('close');
-    }},
-  
+  methods: {
+    bookOrder() {
+    //  var cook = this.cook
+
+     cookService.update(this.order)
+    
+              // .then(() => console.log('gfryfds',this.cook))
+              
+                  
+      this.$emit("close");
+      // console.log("i am pretty console log",cook);
+    }
+  },
+  created() {
+    console.log(this.cookId);
+    var cookId = this.cookId;
+    this.$store.dispatch({ type: "getCookById", cookId})
+            .then(cook => {
+              this.cook = cook
+            });
+  //   this.$store.dispatch({ type: "loadEvents" });
+  //   this.$store.dispatch({ type: "loadCities" });
+  },
+  // computed: {
+    // created() {
+    //   return this.$store.getters.getCookById(this.event.cookId);
+    // }
+  // }
 };
 </script>
 <style lang="scss" scoped>

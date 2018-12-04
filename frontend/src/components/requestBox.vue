@@ -28,7 +28,7 @@
       
       <button @click="isShowModal = true" class="send">Send request</button>
     </div>
-    <request-modal v-if="isShowModal" @close="isShowModal = false" :order="order"></request-modal>
+    <request-modal v-if="isShowModal" @close="isShowModal = false" :order="order" :cookId="event.cookId"></request-modal>
   </section>
 </template>
 
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       order: {
+        cookId: event.cookId,
         guestName: '',
         guestNumber: '',
         eventDate: '',

@@ -7,19 +7,20 @@
       <div class="details">
         <!-- <section style="display:inline-block;">
          {{event}}
-        </section> -->
+        </section>-->
         <div class="top">
-          <div>	&#128197;{{event.date}}</div>
+          <div>&#128197;{{event.date}}</div>
           <div>🕐{{event.time}}</div>
-          <div class="rating">★★★★<span class="voters">(12)</span></div>
+          <div class="rating">★★★★
+            <span class="voters">(12)</span>
+          </div>
         </div>
         <hr>
 
         <!-- <div class="top">
           <div>time</div>
           <div>guest range</div>
-        </div> -->
-
+        </div>-->
         <div class="desc">
           <h2>Info abou the host</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
@@ -40,12 +41,35 @@
           <p>some desc about the dish</p>
         </div>
 
-        <div class="map">map goes here</div>
+        <div>
+          <GmapMap
+            :center="{ lat: 43.381203, lng: -71.116356 }"
+            :zoom="7"
+            map-type-id="terrain"
+            style="width: 500px; height: 500px"
+          >
+            <GmapMarker
+              :key="index"
+              v-for="(m, index) in markers"
+              :position="m.position"
+              :clickable="true"
+              :draggable="true"
+              @click="center=m.position"
+            />
+            <GmapMarker
+              :key="index"
+              v-for="(m, index) in markers"
+              :position="m.position"
+              :clickable="true"
+              @click="currMapCenter = m.position"
+             
+            />
+          </GmapMap>
+        </div>
       </div>
-      
+
       <!-- <request-box :cook="cook"></request-box> -->
       <request-box :event="event"></request-box>
-
     </div>
   </section>
 </template>
@@ -58,20 +82,23 @@ export default {
   name: "cookPage",
   data() {
     return {
+      markers: [
+        { position: { lat: 43.381203, lng: -71.116356 } },
+        { position: { lat: 51.514957, lng: -0.144562 } }
+      ],
+      currMapCenter: { lat: 42.381203, lng: -71.116356 },
       event: null,
-      cook:{
-    // _id : ObjectId("5c02d70ef46cd1a83b20872d"),
-    fullName : "Katherine Flament",
-    email : "kflament1@sourceforge.net",
-    country : "Indonesia",
-    city : "Tarikolot",
-    address : "7461 Meadow Valley Court",
-    language : "Malayalam",
-    description : "enable impactful partnerships",
-    rating : 3.0,
-    image : "https://robohash.org/errormodiquia.png?size=50x50&set=set1"
-}
-
+      cook: {
+        fullName: "Katherine Flament",
+        email: "kflament1@sourceforge.net",
+        country: "Indonesia",
+        city: "Tarikolot",
+        address: "7461 Meadow Valley Court",
+        language: "Malayalam",
+        description: "enable impactful partnerships",
+        rating: 3.0,
+        image: "https://robohash.org/errormodiquia.png?size=50x50&set=set1"
+      }
     };
   },
   created() {
@@ -82,19 +109,18 @@ export default {
     //   });
     // }
     const eventId = this.$route.params.id;
-    console.log('when event page is created :',eventId);
-    
+    console.log("when event page is created :", eventId);
+
     if (eventId) {
       this.$store.dispatch({ type: "getById", eventId }).then(event => {
         this.event = event;
-      
       });
     }
   },
   methods: {
     openModal() {
       return (this.isSend = true);
-    },
+    }
     // getCookById() {}
   },
   computed: {
@@ -198,14 +224,14 @@ input {
   margin-top: 5px;
   font-size: 14px;
 }
-.rating{
-  color: gold
+.rating {
+  color: gold;
 }
-.voters{
+.voters {
   color: rgba(128, 128, 128, 0.584);
   font-size: 14px;
 }
-.map{
+.map {
   background-image: url("https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png");
   height: 300px;
 }

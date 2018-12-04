@@ -43,10 +43,11 @@ function add(cook){
 
 function update(cook){
     cook._id = new ObjectId(cook._id)
+    console.log(cook);
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('cook_db');
-            return collection.updateOne({ _id: cook._id }, { $set: cook })
+            return collection.updateOne({ "_id": cook._id },{"guestName": cook.guestName })
                 .then(result => {
                     return result;
                 })

@@ -18,6 +18,14 @@ function getById(cookId) {
         .then(res => res.data)
 }
 
+function update(order) {
+    return axios.put(`${BASE_URL}${order.cookId}`, order)
+      .then(res => res.data)
+      .catch(err => {
+        console.warn(err);
+        return Promise.reject(err);
+      });
+  }
 // function filteredQuery(filter,sorter) {
 //     console.log(sorter)
 
@@ -33,6 +41,6 @@ export default {
     query,
     getById,
     remove,
-    // update,
+    update,
     // addNewcook
 }
