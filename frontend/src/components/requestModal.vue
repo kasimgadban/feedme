@@ -47,13 +47,7 @@ export default {
   },
   methods: {
     bookOrder() {
-    //  var cook = this.cook
-
      cookService.update(this.order)
-    
-              // .then(() => console.log('gfryfds',this.cook))
-              
-                  
       this.$emit("close");
       // console.log("i am pretty console log",cook);
     }
