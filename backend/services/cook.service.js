@@ -47,7 +47,7 @@ function update(cook){
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('cook_db');
-            return collection.updateOne({ "_id": cook._id },{"guestName": cook.guestName })
+            return collection.updateOne({ "_id": cook._id },{$set: {"orders": cook }})
                 .then(result => {
                     return result;
                 })
