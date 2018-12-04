@@ -11,6 +11,7 @@
       <!-- <input type="date" v-model="order.date">  -->
       <date-picker class="date requestBoxDate" :inline="true"
       v-model="order.eventDate"
+      :disabledDates="disabledDates"
       ></date-picker>
 
       <span class="title">Guests</span>
@@ -38,9 +39,12 @@ import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
 import cookService from "@/services/cookService.js"
 
+
+
 export default {
   name: 'requestBox',
   props: ['event'],
+
   data() {
     return {
       order: {
@@ -51,12 +55,15 @@ export default {
         guests: 2,
       
       },
+      disabledDates: {
+          days: [6, 0]
+        },
       isShowModal: false
     };
   },
   created() {
-    var cookId = cookService.getById(event.cookId)
-    console.log('event.cookId',event.cookId);
+    // var cookId = cookService.getById(this.event.cookId)
+    console.log('event.cookId',this.event.cookId);
     
     this.order.eventId = this.event._id
     this.order.cookId = this.event.cookId
@@ -70,6 +77,7 @@ export default {
     //   //   return Date.now();
     // }
   },
+  
   computed:{
 
   },
@@ -77,7 +85,8 @@ export default {
     requestModal,
     datePicker
   }
-};
+}
+
 </script>
 
 <style scoped lang = "scss">

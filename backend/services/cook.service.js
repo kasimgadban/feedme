@@ -41,13 +41,14 @@ function add(cook){
         })
 }
 
-function update(cook){
-    cook._id = new ObjectId(cook._id)
-    console.log(cook);
+function update(order){
+    // order._id = new ObjectId(order._id)
+    const cookId = new ObjectId(order.cookId)
+    console.log(order);
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('cook_db');
-            return collection.updateOne({ "_id": cook._id },{$set: {"orders": cook }})
+            return collection.updateOne({ _id: cookId },{$push:{orders: order }})
                 .then(result => {
                     return result;
                 })
