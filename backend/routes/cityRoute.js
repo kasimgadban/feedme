@@ -1,4 +1,4 @@
-const cityService = require('../services/city.Service')
+const cityService = require('../services/city.service')
 
 
 function addcityRoutes(app) {

@@ -1,4 +1,4 @@
-const cookService = require('../services/cook.Service')
+const cookService = require('../services/cook.service')
 
 
 function addCookRoutes(app){
