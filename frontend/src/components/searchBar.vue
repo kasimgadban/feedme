@@ -12,6 +12,7 @@
 </template>
 
 <script>
+/*global google*/ 
 export default {
   name: "searchBar",
     data() {
@@ -26,9 +27,6 @@ export default {
         this.$refs.autocomplete,
         {
           types: ["geocode"]
-          // componentRestrictions: {
-          //   country: "IL"
-          // }
         }
       );
     });

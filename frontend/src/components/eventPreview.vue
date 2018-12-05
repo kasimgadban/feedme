@@ -7,12 +7,12 @@
     
   </div>
   <div class="card__img"></div>
-  <router-link class="link" :to="'/event/'+ event._id">
+  <router-link class="link" :to="'/event/'+ event._id" >
      <div class="card__img--hover"></div>
   </router-link>
   <div class="card__info">
     <h4>${{event.price}}</h4>
-    <h3 class="card__title">Text about the event</h3>
+    <h3 class="card__title">{{event.description}}</h3>
     <span class="card__by">Hosted by <router-link class="link" :to="'/cook/'+ event.cookId"><a href="#" class="card__author" title="author">Tamara</a></router-link></span>
   </div>
 </article>
@@ -29,7 +29,6 @@ export default {
   props: ["event"],
   components: {},
   created() {
-    var eventId = this.event._id;
     this.$store.dispatch({ type: "loadEvents" });
   }
 };

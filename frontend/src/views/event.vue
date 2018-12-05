@@ -5,38 +5,35 @@
       <div class="details">
         <div class="top">
           <div>🕐{{event.time}}</div>
+          <div>{{event.address}}</div>
+          <!-- <div>{{cook.fullName}}</div> -->
         </div>
         <hr>
 
         <div class="desc">
+          <!-- {{event.description}} -->
           <h2>Info abou the host</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
           <h2>Info abou the area</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
         </div>
 
-        <div class="menu">
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-        </div>
-
+       <div  class="menu" v-for="dish in event.menu" :key="dish.id">
+         <h4>{{dish.name}}</h4>
+          <p>{{dish.desc}}</p>
+       </div>
+       
+        <div class="map-container">
           <GmapMap
             ref="mapRef"
-            :center="{lat:currentLocation.lat, lng:currentLocation.lng}"
-            :zoom="17"
+            :center="currentLocation"
+            :zoom="15"
             map-type-id="terrain"
-            style="width: 500px; height: 500px"
+            style="width: 500px; height: 300px"
           >
-            <GmapMarker :position="currentLocation" :clickable="true"/>
+            <GmapMarker :position="currentLocation" />
           </GmapMap>
+        </div>
       </div>
       <request-box :event="event"></request-box>
     </div>
@@ -47,39 +44,28 @@
 import requestBox from "@/components/requestBox.vue";
 import eventService from "@/services/eventService";
 import locationService from "@/services/locationService";
+import cookService from "@/services/cookService";
 
 export default {
   name: "cookPage",
   data() {
     return {
       event: Object,
-      currentLocation: { lat: 0, lng: 0 },
+      currentLocation: Object,
       searchAddressInput: "",
+      cook: {}
     };
   },
   created() {
     const eventId = this.$route.params.id;
     eventService.getById(eventId).then(res => {
       this.event = JSON.parse(JSON.stringify(res));
-      console.log("slkdlkd", res);
+      this.currentLocation = locationService
+        .getPositionByName(this.event.address)
+        .then(res => {
+          this.currentLocation = res;
+        });
     });
-    console.log("sd",(this.currentLocation = locationService.getPositionByName(this.event.address)));
-    this.currentLocation = locationService
-      .getPositionByName(this.event.address)
-      .then(res => {
-        this.currentLocation.lat = res.lat;
-        this.currentLocation.lng = res.lng;
-        console.log("sfdsafdsf", res);
-      });
-  },
-  computed: function() {
-    this.currentLocation = locationService
-      .getPositionByName(this.event.address)
-      .then(res => {
-        this.currentLocation.lat = res.lat;
-        this.currentLocation.lng = res.lng;
-        console.log("sfdsafdsf", res);
-      });
   },
   methods: {
     openModal() {
@@ -191,5 +177,8 @@ input {
   color: rgba(128, 128, 128, 0.584);
   font-size: 14px;
 }
-
+.map-container {
+  width: 500px;
+  height: 300px;
+}
 </style>

@@ -24,7 +24,6 @@ export default {
   props: ["city"],
   components: {},
   created() {
-    var cityId = this.city;
     this.$store.dispatch({ type: "loadCities" });
   },
   

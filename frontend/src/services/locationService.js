@@ -32,16 +32,15 @@ function getPosition() {
 }
 
 function getPositionByName(cityName) {
-  var prm = axios.get(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&key=AIzaSyCs3dFAQQdwpkPsFoTWeHxumSywRJm0YkY`,
-    {
-      withCredentials: false
-    }
-  );
-  return prm.then(res => {
-    var loc = res.data.results[0].geometry.location;
-    loc.address = res.data.results[0].formatted_address;
-    return loc;
+  var params = axios
+      .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&key=AIzaSyCs3dFAQQdwpkPsFoTWeHxumSywRJm0YkY`,
+          { withCredentials: false }
+      );
+  return params.then(res => {
+      var location = res.data.results[0].geometry.location;
+      location.address = res.data.results[0].formatted_address;
+      return location;
+
   });
 }
 

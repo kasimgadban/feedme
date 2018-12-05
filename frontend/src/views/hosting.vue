@@ -1,5 +1,5 @@
+  <!-- <section class="container">
 <template>
-  <section class="container">
     <div class="images-container"></div>
 
     <button style="margin:5px;width:90px;height:30px;font-size:20px">Back</button>
@@ -66,96 +66,96 @@
         </div>
       </section>
     </div>
-  </section>
 </template>
-
+  </section> -->
 <script>
-import requestModal from "@/components/requestModal.vue";
-import StarRating from "vue-star-rating";
 
-export default {
-  name: "cookPage",
-  props: ["hosting"],
-  data: () => ({
-    isShowModal: false,
-    isAdmin: false,
-    rating: 3
-  }),
-  methods: {
-    openModal() {
-      return (this.isSend = true);
-    },
-    testlll() {
-      this.isShowModal = true;
-    },
-    created() {
-      isShowModal = false;
-    }
-  },
-  components: {
-    requestModal,
-    StarRating
-  }
-};
-</script>
+// import requestModal from "@/components/requestModal.vue";
+// import StarRating from "vue-star-rating";
 
-<style scoped lang = "scss">
-.images-container {
-  width: 100%;
-  height: 300px;
-  background-image: url(../images/host_village.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
+// export default {
+//   name: "cookPage",
+//   props: ["hosting"],
+//   data: () => ({
+//     isShowModal: false,
+//     isAdmin: false,
+//     rating: 3
+//   }),
+//   methods: {
+//     openModal() {
+//       return (this.isSend = true);
+//     },
+//     testlll() {
+//       this.isShowModal = true;
+//     },
+//     created() {
+//       isShowModal = false;
+//     }
+//   },
+//   components: {
+//     requestModal,
+//     StarRating
+//   }
+// };
+// </script>
 
-.container {
-  display: grid;
-  grid-template-rows: 250px 1fr;
-}
+// <style scoped lang = "scss">
+// .images-container {
+//   width: 100%;
+//   height: 300px;
+//   background-image: url(../images/host_village.jpg);
+//   background-repeat: no-repeat;
+//   background-size: 100% 100%;
+//   display: flex;
+//   flex-direction: row;
+//   margin-bottom: 10px;
+// }
 
-.cooks {
-  display: flex;
-  flex-direction: column;
-}
+// .container {
+//   display: grid;
+//   grid-template-rows: 250px 1fr;
+// }
 
-.cook_image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
+// .cooks {
+//   display: flex;
+//   flex-direction: column;
+// }
 
-.cooks-images-container {
-  display: flex;
-  margin-top: 10px;
-}
+// .cook_image {
+//   width: 100px;
+//   height: 100px;
+//   border-radius: 50%;
+// }
 
-.user-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-  margin-right: 20px;
-}
+// .cooks-images-container {
+//   display: flex;
+//   margin-top: 10px;
+// }
 
-.user-name {
-  font-size: 15px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+// .user-card {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   height: 120px;
+//   margin-right: 20px;
+// }
 
-.wrapper {
-  display: grid;
-  gap: 20px;
-  margin: 0 auto;
-  grid-template-columns: 1fr 300px;
-  width: 90%;
-  padding: 10px;
-  position: relative;
-  border: 2px solid black;
-}
-</style>
+// .user-name {
+//   font-size: 15px;
+//   font-weight: bold;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// }
+
+// .wrapper {
+//   display: grid;
+//   gap: 20px;
+//   margin: 0 auto;
+//   grid-template-columns: 1fr 300px;
+//   width: 90%;
+//   padding: 10px;
+//   position: relative;
+//   border: 2px solid black;
+// }
+// </style>
