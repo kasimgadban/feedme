@@ -18,19 +18,11 @@
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
         </div>
 
-        <div class="menu">
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-          <h4>Dish name</h4>
-          <p>some desc about the dish</p>
-        </div>
-
+       <div  class="menu" v-for="dish in event.menu" :key="dish.id">
+         <h4>{{dish.name}}</h4>
+          <p>{{dish.desc}}</p>
+       </div>
+       
         <div class="map-container">
           <GmapMap
             ref="mapRef"
@@ -184,10 +176,6 @@ input {
 .voters {
   color: rgba(128, 128, 128, 0.584);
   font-size: 14px;
-}
-.map {
-  background-image: url("https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png");
-  height: 300px;
 }
 .map-container {
   width: 500px;
