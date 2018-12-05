@@ -11,9 +11,9 @@
      <div class="card__img--hover"></div>
   </router-link>
   <div class="card__info">
-    <h4>${{event.price}}</h4>
+    <h4>${{event.price + '$'}}</h4>
     <h3 class="card__title">{{event.description}}</h3>
-    <span class="card__by">Hosted by <router-link class="link" :to="'/cook/'+ event.cookId"><a href="#" class="card__author" title="author">Tamara</a></router-link></span>
+    <span class="card__by">Hosted by <router-link class="link" :to="'/cook/'+ event.cookId"><a href="#" class="card__author" title="author">{{cook.fullName}}</a></router-link></span>
   </div>
 </article>
   
@@ -27,9 +27,23 @@
 export default {
   name: "eventPreview",
   props: ["event"],
+  data(){
+    return{
+      cook:null
+    }
+  },
   components: {},
   created() {
     this.$store.dispatch({ type: "loadEvents" });
+    var cookId = this.event.cookId
+    // console.log('cook id ',cookId);
+    this.$store.dispatch({ type: "getCookById" ,cookId}).then(cook => 
+    {
+       this.cook = cook
+       console.log('cook is from event preview',this.cook);
+    }
+   )
+    
   }
 };
 </script>
