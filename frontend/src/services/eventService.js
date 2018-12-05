@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV !== 'development'
-    ? '/event/'
+    ? '/event'
     : '//localhost:3000/event'
 
 function query(filter = {}) {

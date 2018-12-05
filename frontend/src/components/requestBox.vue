@@ -4,13 +4,14 @@
     <div class="order-form">
       <h3 >
         ${{event.price}}
-        {{event.cookId}}
+        {{order.cookId}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>
       <!-- <input type="date" v-model="order.date">  -->
       <date-picker class="date requestBoxDate" :inline="true"
       v-model="order.eventDate"
+      :disabledDates="disabledDates"
       ></date-picker>
 
       <span class="title">Guests</span>
@@ -28,7 +29,7 @@
       
       <button @click="isShowModal = true" class="send">Send request</button>
     </div>
-    <request-modal v-if="isShowModal" @close="isShowModal = false" :order="order"></request-modal>
+    <request-modal v-if="isShowModal" @close="isShowModal = false" :order="order" :cookId="event.cookId"></request-modal>
   </section>
 </template>
 
@@ -38,24 +39,34 @@ import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
 import cookService from "@/services/cookService.js"
 
+
+
 export default {
   name: 'requestBox',
   props: ['event'],
+
   data() {
     return {
       order: {
+        cookId: event.cookId,
         guestName: '',
         guestNumber: '',
         eventDate: '',
         guests: 2,
       
       },
+      disabledDates: {
+         
+          days: [6, 0],
+        //  from: new Date(2018, 0, 26)
+         
+        },
       isShowModal: false
     };
   },
   created() {
-    var cookId = cookService.getById(event.cookId)
-    console.log('event.cookId',event.cookId);
+    // var cookId = cookService.getById(this.event.cookId)
+    console.log('event.cookId',this.event.cookId);
     
     this.order.eventId = this.event._id
     this.order.cookId = this.event.cookId
@@ -69,6 +80,7 @@ export default {
     //   //   return Date.now();
     // }
   },
+  
   computed:{
 
   },
@@ -76,7 +88,8 @@ export default {
     requestModal,
     datePicker
   }
-};
+}
+
 </script>
 
 <style scoped lang = "scss">

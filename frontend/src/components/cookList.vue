@@ -32,12 +32,11 @@ export default {
 
 <style scoped lang="scss">
 .topCooks {
-  background: #80808036;
   margin-top: 10px;
 }
 
 .cmp-container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   // margin-top: 10px;
   display: flex;

@@ -6,11 +6,13 @@ import './assets/styles/style.css'
 
 
 import * as VueGoogleMaps from 'vue2-google-maps'
+
 // Vue.use(VueGoogleMaps, {load: false})
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyCs3dFAQQdwpkPsFoTWeHxumSywRJm0YkY',
-    libraries: 'places'
+    libraries: 'places',
+    language: 'en'
   },
 })
 

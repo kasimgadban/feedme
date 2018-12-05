@@ -2,10 +2,7 @@
   <section class="topCooks">
     <h2>Most Requested Events</h2>
     <div class="cmp-container">
-      <!-- <li v-for="event in events" :key="event._id" :event="event">
-      <event-preview/>
-        </li> -->
-         <event-preview v-for="event in events" 
+         <event-preview class="card-prev" v-for="event in events" 
          :key="event._id"
          :event = "event" 
          ></event-preview>
@@ -29,29 +26,49 @@ export default {
 
 <style scoped lang="scss">
 .topCooks {
-  background: #80808036;
   margin-top: 10px;
 }
 
+// .cmp-container {
+//   width: 90%;
+//   margin: 0 auto;
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   text-decoration: none;
+//   justify-content: center;
+//   // margin-bottom: 10px;
+// }
 .cmp-container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
-  // margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr;
+  gap: 20px;
   text-decoration: none;
 }
-
+@media only screen and (max-width: 800px) {
+   .cmp-container {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 12fr;
+  gap: 5px;
+}
+}
 li {
   list-style-type: none;
-  width: 30%;
+  // width: 30%;
 }
 
 h2 {
   text-align: center;
-  padding: 5px;
   margin: 0;
 }
+
+.card-prev{
+  margin-bottom:20px;
+}
+
+
 </style>
