@@ -1,32 +1,9 @@
 <template>
-  <!-- <section class="displayed-cook wrapper">
-    <router-link class="link" :to="'/event/'+ event._id">
-      <div class="card">
-        <img class="card-img" src="./../images/food1.jpg" alt srcset>
-        <hr style="margin-left:10px; color:green">
-        <div class="event-details">
-          <h4>${{event.price}}</h4>
-          <router-link class="link" :to="'/cook/'+ event.cookId">
-            <div class="host-card">
-              <h4 class="host-name">
-                <span class="by">Hosted by:</span> Tamara
-              </h4>
-              <img
-                class="user-img"
-                :src="`https://cdn1.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/04/avatar-hf545-h_2016.jpg`"
-              >
-            </div>
-          </router-link>
-        </div>
-      </div>
-    </router-link>
-  </section> -->
+
   <section class="cards">
 <article class="card card--1">
   <div class="card__info-hover">
-    <!-- <svg class="card__like"  viewBox="0 0 24 24"> -->
     <path fill="#000000" d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z" />
-<!-- </svg> -->
     
   </div>
   <div class="card__img"></div>
@@ -59,62 +36,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .card {
-//   display: flex;
-//   // flex-direction: column;
-//   background: rgba(255, 255, 255, 0.329);
-//   padding: 10px;
-//   border: 1px solid rgba(128, 128, 128, 0.13);
-//   border-radius: 5%;
-//   box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
-// }
-// .card:hover {
-//   // box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
-//   margin-top: -5px;
-// }
-
-// .displayed-cook {
-//   padding: 10px;
-// }
-// .user-img {
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 20%;
-// }
-// .card-img {
-//   width: 100%;
-//   border-radius: 5%;
-// }
-// .displayed-cook {
-//   margin-top: 20px;
-// }
-// .event-details {
-//   padding: 10px;
-//   margin: 0 auto;
-//   align-self: center;
-// }
-// .host-card {
-//   padding: 2px;
-// }
 
 .link {
   text-decoration: none;
-  // color: black;
 }
-
-// h4 {
-//   margin: 0 auto;
-// }
-// .card {
-//   // padding: 10px;
-//   // border: 1px solid;
-// }
-// .host-name {
-//   color: green;
-// }
-// .by {
-//   color: black;
-// }
 
 .cards {
     display: flex;
