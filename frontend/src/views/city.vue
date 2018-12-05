@@ -33,9 +33,9 @@ export default {
     });
   },
     computed:{
-          events(){
-              return this.$store.getters.getEventsByCity
-          }
+          // events(){
+          //     return this.$store.getters.getEventsByCity
+          // }
       },
   components: {
     eventPreview,
