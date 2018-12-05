@@ -1,9 +1,6 @@
 <template>
   <section class="container">
     <div class="images-container"></div>
-    <!-- <div class="cmp-container">
-      I am city page {{city}}
-    </div> -->
     <div v-if="events.length">
     <h1 class="title">Enjoy a delecious meal and fun company at {{city.city}}</h1>
     <h3>Fresh meals and drinks, cozy homes and time well spent</h3>

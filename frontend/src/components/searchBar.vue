@@ -66,4 +66,12 @@ input{
 input:focus {
     outline:none;
 }
+
+
+@media only screen and (max-width: 800px) {
+input{
+  margin-bottom: 5px;
+  border:none;
+}
+}
 </style>
