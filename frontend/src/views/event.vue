@@ -28,7 +28,6 @@
           <p>some desc about the dish</p>
         </div>
 
-        <div>
           <GmapMap
             ref="mapRef"
             :center="{lat:currentLocation.lat, lng:currentLocation.lng}"
@@ -38,8 +37,6 @@
           >
             <GmapMarker :position="currentLocation" :clickable="true"/>
           </GmapMap>
-          <div class="search"></div>
-        </div>
       </div>
       <request-box :event="event"></request-box>
     </div>
@@ -194,8 +191,5 @@ input {
   color: rgba(128, 128, 128, 0.584);
   font-size: 14px;
 }
-.map {
-  background-image: url("https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png");
-  height: 300px;
-}
+
 </style>
