@@ -5,6 +5,7 @@
       <city-preview v-for="city in cities" :key="city._id" :city="city"
       class="grid__item"></city-preview>
     </div>
+    <!-- <div>{{cities}}</div> -->
   </section>
 </template>
 <script>

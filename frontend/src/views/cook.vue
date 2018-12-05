@@ -1,7 +1,8 @@
 <template>
   <section class="container">
     <div class="header-nav">
-    <div class="logo"><img class="img-logo" src="../images/logo1.png" /></div>
+    <!-- <div class="logo"><img class="img-logo" src="../images/logo1.png" /></div> -->
+    <router-link to="/" class="logo"><img class="img-logo" src="../images/logo1.png" /></router-link>
     <div class="nav">
       <router-link to="http://localhost:8080">Home</router-link >|
       <router-link to="http://localhost:8080/about">About</router-link>|
@@ -9,12 +10,11 @@
     </div>
     </div>
     <div class="host-images">
-     
       <img class="coverL" src="../images/image1.jpg"/>
       <img class="coverM" src="../images/image3.jpg"/>
       <img class="coverR" src="../images/image2.jpg"/>
     </div>
-    <div class="cook-info" style="display:flex;justify-content:center;">
+    <div class="cook-info">
       <img class="cook-profile-pic" :src="cook.image">
       <div class="location">
         <span>{{cook.city}}</span>
@@ -37,25 +37,27 @@
         </div>
       </div>
     </div>
-   
-    <div class="wrapper">
-      <div class="details">
-        <section style="display:inline-block;">
-          <h2 style="display:inline-block;">
-            {{cook.fullName}}
-            </h2>
-        </section>
-        <div class="desc">
-          <h2>Info abou the host</h2>
-          <p>
-            {{cook.description}}
-          </p>
-        </div>
-        <div class="cook-events" v-for="event in events" :key="event._id">
-          <event-preview :event="event"/>
-        </div>
+    <hr />
+
+    <div>
+      <section style="display:inline-block;">
+        <h2 style="display:inline-block;">{{cook.fullName}}</h2>
+      </section>
+      <div class="desc"><h2>{{cook.name}}</h2>
+        <p>
+          {{cook.description}}
+        </p>
       </div>
+      
+      <div class="cook-events">
+        <event-preview  
+        v-for="event in events" 
+        :key="event._id"
+        :event="event"/>
+      </div>
+
     </div>
+
   </section>
 </template>
 
@@ -102,10 +104,12 @@ export default {
   width:50px;
   height:50px;
 }
+
 .img-logo{
   width:50px;
   height:50px;
 }
+
 .header-nav{
   display: flex;
   flex-direction: row;
@@ -134,13 +138,16 @@ export default {
   width:25%;
   height: 250px;
 }
+
 .coverM{
   width:50%;
 }
+
 .cook-info{
   display: flex;
   align-content: center;
   justify-items: center;
+  justify-content:center;
   height: 100px;
 }
 
@@ -149,6 +156,7 @@ export default {
   height:100px;
   border-radius: 50%;
 }
+
 .cook-rating{
 display: flex;
 flex-direction:column;
@@ -169,9 +177,10 @@ padding-left: 10px;
   border-right: 1px solid gray;
 }
 
-.cook-search-events{
+.cook-events{
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  background-color: pink;
 }
 
 .cook-btn-search-events{
@@ -181,81 +190,16 @@ padding-left: 10px;
   font-size: .75em;
 }
 
-.wrapper {
-  display: grid;
-  gap: 20px;
+.wrapperr {
+  display: flex;
   margin: 0 auto;
-  grid-template-columns: 1fr 300px;
   padding: 10px;
-  position: relative;
   border: 2px solid black;
 }
 
-.event-preview{
-  width: 175px;
-  height: 175px;
-}
-
-.top {
-  display: flex;
-}
-.top > * {
-  padding: 10px;
-}
-.desc,
-.menu,
-.order-form {
+.desc{
   display: flex;
   flex-direction: column;
 }
-.order-form { 
-  padding: 10px;
-  right: 6%;
-  width: 245px;
-  margin-top: 10px;
-  background: #8080801f;
-  -webkit-box-shadow: 5px 7px #453e3e1f;
-  box-shadow: 4px 4px 4px #453e;
-  border-radius: 5px;
-}
-.menu {
-  align-items: center;
-}
-.title-span {
-  font-size: 12px;
-  color: #808080b0;
-  padding: 5px;
-}
-.order-form > * {
-  margin: 0px;
-  padding: 10px;
-  font-size: 1.3em;
-}
 
-input {
-  padding: 5px;
-  margin-bottom: 10px;
-}
-.title {
-  font-size: 1em;
-}
-
-.send {
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 0 0 4px 4px;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  font-size: 1.6rem;
-  line-height: 19px;
-  background-color: #3bd57e;
-  color: #fff;
-  margin-top: 10px !important;
-}
-.buyer {
-  padding: 5px;
-  margin-top: 5px;
-  font-size: 14px;
-}
 </style>

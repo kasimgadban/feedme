@@ -32,15 +32,19 @@ export default {
       console.log(events.length);
     });
   },
+ 
+    computed:{
+          events(){
+              return this.$store.getters.getEventsByCity
+          }
+      },
   components: {
-    eventPreview
+    eventPreview,
   }
 };
 </script>
-
 <style scoped lang = "scss">
 .city-events {
-  /* width: 80%; */
   margin: 0 auto;
   margin-top: 10px;
   display: flex;
@@ -52,8 +56,7 @@ export default {
 }
 @media only screen and (max-width: 800px) {
     .city-event {
-  width: 100%;
-  /* margin: 0 auto; */
+    width: 100%;
     }
 }
 .city-event{
