@@ -1,5 +1,4 @@
 <template>
-  <!-- <section class="header-container"> -->
   <section class="header">
     <div class="nav-container">
       <div class="logo">Logo</div>
@@ -10,23 +9,13 @@
       </div>
     </div>
     <div class="search-bar">
-      <searchBar></searchBar>
-      <input type="date" placeholder="Date">
-      <select name id>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-      </select>
+      <search-bar></search-bar>
+      <input type="date" placeholder="When?" class="date">
       <button>Search</button>
     </div>
     <router-view/>
   </section>
 
-  <!-- </section> -->
 </template>
 <script>
 import searchBar from "@/components/searchBar.vue";
@@ -51,8 +40,16 @@ export default {
   background-image: url("https://foodrevolution.org/wp-content/uploads/2018/10/blog-featured-thanksgiving-20181029-3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
-
+.date{
+  background-color: rgba(204, 193, 193, 0.959);
+    border: none;
+    border-right: 2px solid black;
+    padding: 8px;
+    width: 300px;
+    font-size: 1em;
+}
 .nav-container {
   display: flex;
   flex-direction: row;
@@ -61,9 +58,17 @@ export default {
 
 .search-bar {
   display: flex;
+  // margin: 0 auto;
+  width: 100%;
+  // justify-content: space-between;
   justify-content: center;
   margin-bottom: 70px;
-  // width: 80%;
+  // display: flex;
+    // flex-direction: column;
+}
+
+.search-bar > *{
+  justify-items: center;
 }
 
 .nav-bar {
@@ -82,8 +87,18 @@ export default {
   padding: 10px;
   font-size: 1.2em;
 }
+button{
+      width: 15%;
+      background-color: #88c888;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: black;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
 
-.input {
-  // padding: 17px
+button:focus {
+    outline:none;
 }
 </style>

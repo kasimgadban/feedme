@@ -2,9 +2,9 @@
   <section>
     <div></div>
     <div class="order-form">
-      <h3>
-        {{event.price}}$
-        {{event.cookId}}
+      <h3 >
+        ${{event.price}}
+        {{order.cookId}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>

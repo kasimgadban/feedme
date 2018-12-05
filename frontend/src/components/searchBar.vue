@@ -2,7 +2,7 @@
   <section>
     <input
       ref="autocomplete"
-      placeholder="Search"
+      placeholder="Search for a city"
       class="search-location"
       onfocus="value = ''"
       type="text"
@@ -50,8 +50,20 @@ export default {
 };
 </script>
 
-<style lang = "scss">
+<style scoped lang = "scss">
 .search-location {
   padding: 15px;
+}
+
+input{
+    background-color: rgba(204, 193, 193, 0.959);  
+    border: none;
+    border-right: 2px solid black;
+    padding: 8px;
+    width: 300px;
+    font-size: 1em;
+}
+input:focus {
+    outline:none;
 }
 </style>

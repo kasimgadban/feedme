@@ -20,7 +20,6 @@
         Vestibulum ornare, sapien vel finibus cursus, justo sapien imperdiet mi, eget porttitor neque
         erat eu tortor.
       </p>
-      <p></p>
       <p>
         Suspendisse eu rhoncus erat, quis vestibulum tellus.
         Integer porta nibh quis mauris mattis convallis.

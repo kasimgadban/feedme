@@ -3,21 +3,22 @@ const mongoService = require('./mongo.service')
 const ObjectId = require('mongodb').ObjectId;
 
 function query(filter = {}) {
-    console.log('be filter',filter);
     
     let byCityId = filter.cityId
     let byCookId = filter.cookId
 
     if(byCityId) 
-    {
         byCityId = new ObjectId(byCityId)
-        console.log('I am from event services be my id is as a city:',byCityId);
-    }
-
+    
+    if(byCookId) 
+        byCookId = new ObjectId(byCookId)
+    
     if(byCityId)
         filter = {cityId:byCityId}
+
     if(byCookId)
         filter = {cookId:byCookId}
+
     else    filter = {}
 
     return mongoService.connectToDb()
@@ -25,10 +26,11 @@ function query(filter = {}) {
             const collection = db.collection('event_db');
             if(byCityId)
                 var events = collection.find({cityId:byCityId}).toArray()
+            else if(byCookId)
+                var events = collection.find({cookId:byCookId}).toArray()
             else
                 var events = collection.find({}).toArray()
-                
-            console.log('events from the core of be ',events);
+
             return events
         })
 }
@@ -42,18 +44,6 @@ function getById(eventId) {
         })
 }
 
-// function getEventsByCityId(cityId) {
-//     cityId = new ObjectId(cityId)
-//     return mongoService.connectToDb()
-//         .then(db => {
-//             const collection = db.collection('event_db');
-//             console.log('I am in here 26 cityId',cityId);
-            
-//             return collection.find({cityId:cityId}).toArray()
-//         })
-// }
-
-
 function remove(eventId){
      eventId = new ObjectId(eventId)
     return mongoService.connectToDb()
@@ -62,7 +52,6 @@ function remove(eventId){
             return collection.remove({ _id: eventId })
         })
 }
-
 
 function add(event){
      
@@ -96,5 +85,4 @@ module.exports = {
     remove,
     add,
     update,
-    // getEventsByCityId
 }

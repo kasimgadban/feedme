@@ -5,7 +5,7 @@ function addeventRoutes(app) {
     // LIST
     app.get('/event', (req, res) => {
         const filter = req.query
-        console.log('I am from event rout Be req.query',req.query);
+        // console.log('I am from event rout Be req.query',req.query);
         eventService.query(filter)
             .then(events => res.json(events))
 
@@ -14,7 +14,7 @@ function addeventRoutes(app) {
     // SINGLE - GET Full details including reviews
     app.get('/event/:id', (req, res) => {
         const eventId = req.params.id;
-        console.log('I wass called ',eventId);
+        // console.log('I wass called ',eventId);
         
         eventService.getById(eventId)
             .then(event => res.json(event))

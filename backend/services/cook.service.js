@@ -43,6 +43,7 @@ function add(cook){
 
 function update(order){
     const cookId = new ObjectId(order.cookId)
+    console.log('cookId',cookId)
     console.log(order);
     return mongoService.connectToDb()
         .then(db => {

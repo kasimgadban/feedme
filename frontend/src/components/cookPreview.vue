@@ -38,14 +38,14 @@ export default {
 }
 .displayed-cook {
   text-align: center;
-  background-color: #8080801a;
-  border: 1px solid #80808012;
+  // background-color: #8080801a;
+  // border: 1px solid #80808012;
   margin-top: 20px;
 }
 .displayed-cook:hover {
-  box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
-  position: relative;
-  top: -5px;
+  // box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
+  // position: relative;
+  // top: -5px;
 }
 
 .host-card {
