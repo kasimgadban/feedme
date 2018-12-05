@@ -2,13 +2,17 @@
   <section class="displayed-city">
     <router-link :to="'city/'+city._id" :city="city" class="city-router">
     <!-- <div class="wrapper"> -->
-      <img
+      <div
+      class="test1"
+       v-bind:style="{ 'background-image': 'url(' + getSrc(city.city) + ')' }">
+       </div>
+      <!-- <img
         class="card-img"
-        src="https://www.odysseytraveller.com/app/uploads/2017/11/Barcelona-Spain-iStock-619257048.jpg"
+        :src="getSrc(city.city)"
         alt
         srcset
-      >
-      <span>{{city.city}}</span>
+      > -->
+      <div class="name">{{city.city}}</div>
       <!-- </div> -->
     </router-link>
   </section>
@@ -27,6 +31,13 @@ export default {
   methods: {
     getCurCity() {
       this.city = this.$store.getters.getCurrCity;
+    },
+    getSrc(name) {
+      var nameSplitted = name.split(' ');
+      if(nameSplitted.length > 1) name = nameSplitted[0]+nameSplitted[1];
+      // console.log('name',name)
+      var images = require.context('../images', false, /\.png$/);
+      return images('./' + name + ".png")
     }
   }
 };
@@ -38,14 +49,11 @@ export default {
   margin-top: 20px;
   // height: 350px;
 }
-.displayed-city:hover {
-  // position: relative;
-  // top: -5px;
-}
-span{
+.name{
   position: relative;
-  top: -135px;
-  background:#f5f5f5ad;
+  top: -170px;
+    background: #e4d3d3;
+  // background:#f5f5f5ad;
   color: black;
   width: 50%;
   text-align: center;
@@ -60,10 +68,20 @@ span{
   width: 100%;
   height: 85%;
   border-radius:20%;
+  object-fit:cover;
 }
 .card-img:hover{
   box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
 }
 
+.test1{
+  width: 100%;
+  height: 300px;
+  border-radius:20%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // object-fit: cover;
+}
 
 </style>
