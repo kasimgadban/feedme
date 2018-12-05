@@ -2,18 +2,20 @@
   <section>
     <div></div>
     <div class="order-form">
-      <h3 >
-        ${{event.price}}
+      <h3>
+        {{event.price}}$
         {{event.cookId}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>
       <!-- <input type="date" v-model="order.date">  -->
-      <date-picker class="date requestBoxDate" :inline="true"
-      v-model="order.eventDate"
-      :disabledDates="disabledDates"
+      <date-picker
+        class="date requestBoxDate"
+        :inline="true"
+        v-model="order.eventDate"
+        :disabledDates="disabledDates"
       ></date-picker>
-
+      <!-- <date-picker :option="option" :date="date"></date-picker> -->
       <span class="title">Guests</span>
       <select name v-model="order.guests">
         <option>2</option>
@@ -29,7 +31,12 @@
       
       <button @click="isShowModal = true" class="send">Send request</button>
     </div>
-    <request-modal v-if="isShowModal" @close="isShowModal = false" :order="order" :cookId="event.cookId"></request-modal>
+    <request-modal
+      v-if="isShowModal"
+      @close="isShowModal = false"
+      :order="order"
+      :cookId="event.cookId"
+    ></request-modal>
   </section>
 </template>
 
@@ -37,38 +44,35 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
-import cookService from "@/services/cookService.js"
-
-
+import moment from "moment";
 
 export default {
-  name: 'requestBox',
-  props: ['event'],
-
+  name: "requestBox",
+  props: ["event"],
   data() {
     return {
       order: {
-        cookId: event.cookId,
+        cookId: '',
         guestName: '',
         guestNumber: '',
         eventDate: '',
-        guests: 2,
-      
+        guests: 2
       },
+      isShowModal: false,
       disabledDates: {
-          days: [6, 0]
-        },
-      isShowModal: false
+        days: [2, 3],
+        highlighted: {
+          days: [0, 6]
+        }
+      }
     };
   },
   created() {
-    // var cookId = cookService.getById(this.event.cookId)
-    console.log('event.cookId',this.event.cookId);
-    
-    this.order.eventId = this.event._id
+    console.log("event.cookId", this.event.cookId);
     this.order.cookId = this.event.cookId
-    console.log('cookId from request box', this.order)
-    
+    this.order.eventId = this.event._id;
+    this.order.cookId = this.event.cookId;
+    console.log("cookId from request box", this.order);
   },
   methods: {
     // customFormatter(date) {
@@ -77,16 +81,13 @@ export default {
     //   //   return Date.now();
     // }
   },
-  
-  computed:{
 
-  },
+  computed: {},
   components: {
     requestModal,
     datePicker
   }
-}
-
+};
 </script>
 
 <style scoped lang = "scss">
@@ -182,16 +183,15 @@ input {
 }
 
 /* .date-picker { */
-  /* height: 300px; */
-  /* position: relative; */
-  /* position: absolute; */
-  /* display: block; */
+/* height: 300px; */
+/* position: relative; */
+/* position: absolute; */
+/* display: block; */
 /* } */
 
 .date:first-child {
   /* border: 1px solid gray !important; */
   width: 100% !important;
 }
-
 </style>
 

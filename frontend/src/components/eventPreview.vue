@@ -23,7 +23,7 @@ export default {
   props: ['event'],
   components: {},
    created() {
-     var eventId = this.event._id
+    //  var eventId = this.event._id
      this.$store.dispatch({type: 'loadEvents'})
   }, 
 };
