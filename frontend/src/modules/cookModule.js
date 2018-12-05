@@ -28,9 +28,13 @@ export default {
                 })
         },
         getCookById(context,{cookId}){
+            console.log('I I was called',cookId);
+            
             return cookService.getById(cookId)
             .then(cook => {                
                 context.commit({type: 'setCook',cook})
+                console.log('cooookkkk',cook);
+                
                 return cook;
             })
         },

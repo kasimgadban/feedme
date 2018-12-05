@@ -1,7 +1,7 @@
 <template>
   <section class="header">
     <div class="nav-container">
-      <div class="logo">Logo</div>
+     <router-link to="/" class="logo"></router-link>
       <div class="nav-bar">
         <router-link to="/">Home</router-link>
         <router-link to="/">About</router-link>
@@ -33,6 +33,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.logo{
+  width:50px;
+  height:50px;
+}
+
+.img-logo{
+  width:50px;
+  height:50px;
+}
+
 .header {
   background: blue;
   width: 100%;

@@ -32,7 +32,6 @@ export default {
       console.log(events.length);
     });
   },
- 
     computed:{
           events(){
               return this.$store.getters.getEventsByCity
