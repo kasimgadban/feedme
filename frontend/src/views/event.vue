@@ -5,7 +5,7 @@
       <div class="details">
         <div class="top">
           <div>🕐{{event.time}}</div>
-          <div>{{event.address}}</div>
+          <div class="address">&#x1F4CD;{{event.address}}</div>
           <!-- <div>{{cook.fullName}}</div> -->
         </div>
         <hr>
@@ -17,12 +17,16 @@
           <h2>Info abou the area</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
         </div>
+        <hr>
+        <h2 style="text-align:center;">Menu</h2>
 
-       <div  class="menu" v-for="dish in event.menu" :key="dish.id">
-         <h4>{{dish.name}}</h4>
+       <div class="menu" v-for="dish in event.menu" :key="dish.id">
+         <h3>{{dish.name}}</h3>
           <p>{{dish.desc}}</p>
+          
        </div>
        
+
         <div class="map-container">
           <GmapMap
             ref="mapRef"
@@ -180,5 +184,8 @@ input {
 .map-container {
   width: 500px;
   height: 300px;
+}
+.menu>*{
+  margin:13px
 }
 </style>

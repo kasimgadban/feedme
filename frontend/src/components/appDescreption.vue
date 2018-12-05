@@ -28,12 +28,12 @@ export default {
 
 <style scoped lang="scss">
 .desc-container {
-  background: rgba(0, 128, 0, 0.158);
+  background:rgba(17, 107, 17, 0.219);
   display: flex;
   margin: 0 auto;
   justify-content: space-evenly;
   // align-items: center;
-  margin-top: 10px;
+  // margin-top: 10px;
   width: 100%;
 }
 
@@ -60,11 +60,9 @@ img{
    white-space: wrap; 
     width: 50%; 
     line-height: 1.6;
-    // line-height: px;
-    // padding: 10px;
     overflow: hidden;
     text-overflow: clip; 
     font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif 
-    // border: 1px solid #000000;
 }
+
 </style>
