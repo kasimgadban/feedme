@@ -11,9 +11,11 @@
       <!-- <input type="date" v-model="order.date">  -->
       <date-picker
         class="date requestBoxDate"
-        :inline="true"
+        :inline="false"
         v-model="order.eventDate"
         :disabledDates="disabledDates"
+        :bootstrapStyling="true"
+        :minimumView="'day'" :maximumView="'month'" :initialView="'day'"
       ></date-picker>
       <!-- <date-picker :option="option" :date="date"></date-picker> -->
       <span class="title">Guests</span>
@@ -44,7 +46,7 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
-import moment from "moment";
+// import moment from "moment";
 
 export default {
   name: "requestBox",
@@ -64,15 +66,13 @@ export default {
         highlighted: {
           days: [0, 6]
         }
-      }
+      },
     };
   },
   created() {
-    console.log("event.cookId", this.event.cookId);
     this.order.cookId = this.event.cookId
     this.order.eventId = this.event._id;
     this.order.cookId = this.event.cookId;
-    console.log("cookId from request box", this.order);
   },
   methods: {
     // customFormatter(date) {
@@ -91,6 +91,9 @@ export default {
 </script>
 
 <style scoped lang = "scss">
+
+/* @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'); */
+
 .images-container {
   width: 100%;
   background-image: url(https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k);
@@ -151,7 +154,6 @@ export default {
 }
 .order-form > * {
   margin: 0px;
-  padding: 10px;
   font-size: 1.3em;
 }
 
@@ -190,8 +192,54 @@ input {
 /* } */
 
 .date:first-child {
-  /* border: 1px solid gray !important; */
+  border: 1px solid gray !important; 
   width: 100% !important;
 }
+
+/*******************************************************************/
+/* body {
+    font-family: 'Helvetica Neue Light', Helvetica, sans-serif;
+    padding: 1em 2em 2em;
+}
+input, select {
+    padding: .75em .5em;
+    font-size: 100%;
+    border: 1px solid #ccc;
+    width: 100%
+}
+select {
+    height: 2.5em;
+}
+.example {
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 0em 1em 1em;
+    margin-bottom: 2em;
+}
+code,
+pre {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #bbb;
+    display: block;
+    background: #ddd;
+    border-radius: 3px;
+}
+.settings {
+    margin: 2em 0;
+    border-top : 1px solid #bbb;
+    background: #eee;
+}
+h5 {
+    font-size:100%;
+    padding: 0;
+}
+.form-group {
+    margin-bottom: 1em;
+}
+.form-group label {
+    font-size: 80%;
+    display: block;
+} */
 </style>
 

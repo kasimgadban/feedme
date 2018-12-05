@@ -30,7 +30,7 @@
     
   </div>
   <div class="card__img"></div>
-  <router-link class="link" :to="'/event/'+ event._id">
+  <router-link class="link" :to="'/event/'+ event._id" >
      <div class="card__img--hover"></div>
   </router-link>
   <div class="card__info">
@@ -52,7 +52,6 @@ export default {
   props: ["event"],
   components: {},
   created() {
-    var eventId = this.event._id;
     this.$store.dispatch({ type: "loadEvents" });
   }
 };
