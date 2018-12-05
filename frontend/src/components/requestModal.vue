@@ -2,9 +2,11 @@
   <!-- template for the modal component -->
   <section type="text/x-template" id="modal-template">
     <transition name="modal">
+
       <div class="modal-mask" @click="$emit('close')">
         <div class="modal-wrapper">
           <div class="modal-container">
+
             <div class="modal-header">
               <!-- <slot name="header"> -->
               {{order.guestName}}
@@ -27,6 +29,7 @@
           </div>
         </div>
       </div>
+      
     </transition>
   </section>
 </template>
@@ -47,13 +50,7 @@ export default {
   },
   methods: {
     bookOrder() {
-    //  var cook = this.cook
-
      cookService.update(this.order)
-    
-              // .then(() => console.log('gfryfds',this.cook))
-              
-                  
       this.$emit("close");
       // console.log("i am pretty console log",cook);
     }

@@ -1,11 +1,12 @@
 import cookService from '../services/cookService.js'
-
+import eventService from '../services/eventService.js'
 
 export default {
     state: {
         cooks: null,
         cookId: null,
-        currCook: null
+        currCook: null,
+        events:null,
     },
     mutations: {
         setCooks(state, { cooks }) {
@@ -13,6 +14,9 @@ export default {
         },
         setCook(state, {cook}){
             state.currCook = cook
+        },
+        setEvents(state, {events}){
+            state.events = events
         }
 
     },
@@ -29,6 +33,13 @@ export default {
                 context.commit({type: 'setCook',cook})
                 return cook;
             })
+        },
+        getEventsByCook(context,{cookId}){
+            return eventService.query({byCookId:cookId})
+            .then(events => {
+                context.commit({type: 'setEvents',events})
+                return events;
+            })
         }
     },
 
@@ -37,6 +48,7 @@ export default {
         getCookById: (state) => {
              return state.currCook 
             },
+        
     }
 
 
