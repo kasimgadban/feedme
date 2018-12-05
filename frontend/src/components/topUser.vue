@@ -27,6 +27,6 @@ export default {
   justify-content: space-around;
 }
 .cmp-container {
-  width: 80%;
+  width: 90%;
 }
 </style>

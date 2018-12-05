@@ -4,7 +4,7 @@
     <div class="order-form">
       <h3 >
         ${{event.price}}
-        {{event.cookId}}
+        {{order.cookId}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>
@@ -56,7 +56,10 @@ export default {
       
       },
       disabledDates: {
-          days: [6, 0]
+         
+          days: [6, 0],
+        //  from: new Date(2018, 0, 26)
+         
         },
       isShowModal: false
     };

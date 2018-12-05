@@ -28,6 +28,6 @@ export default {
   display: flex;
   margin: 0 auto;
   margin-top: 10px;
-  width: 80%;
+  width: 90%;
 }
 </style>

@@ -68,7 +68,7 @@ flex-wrap: wrap; */
 
 
 .city-events {
-  width: 80%;
+  /* width: 80%; */
   margin: 0 auto;
   margin-top: 10px;
   display: flex;
@@ -78,6 +78,12 @@ flex-wrap: wrap; */
   justify-content: center;
   text-decoration: none;
 /* } */
+}
+@media only screen and (max-width: 800px) {
+    .city-event {
+  width: 100%;
+  /* margin: 0 auto; */
+    }
 }
 .city-event{
   padding: 10px
