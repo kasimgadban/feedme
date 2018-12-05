@@ -2,8 +2,11 @@
   <section>
     <app-header />
     <city-list :cities="cities" />
+    <h2>How it works</h2>
+    <app-desc class="test"/>
+
     <event-list :events="events" ></event-list>
-    <!-- <app-footer /> -->
+    <app-footer />
   </section>
 </template>
 
@@ -13,7 +16,7 @@ import appDesc from "@/components/appDescreption.vue";
 import topRated from "@/components/topRated.vue";
 import cookList from "@/components/cookList.vue";
 import eventList from "@/components/eventList.vue";
-import appFooter from "@/components/footer.vue";
+import appFooter from "@/components/appFooter.vue";
 import searchBar from "@/components/searchBar.vue";
 import cityList from "@/components/cityList.vue";
 
@@ -51,6 +54,20 @@ export default {
 .cmp-container {
   width: 90%;
 }
+h2{
+  text-align: center;
+  /* background: yellow; */
+}
+.test{
+  justify-content: center;
+  /* background: yellow; */
+  /* margin: 0 auto */
+}
 
 
+@media only screen and (max-width: 800px) {
+   .test{
+     display: none;
+   }
+}
 </style>

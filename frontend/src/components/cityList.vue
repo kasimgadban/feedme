@@ -1,9 +1,11 @@
 <template>
   <section class="topCities">
     <h2>Enjoy a delicious experience at our popular destinations</h2>
-    <div class="cmp-container">
-      <city-preview v-for="city in cities" :key="city._id" :city="city"></city-preview>
+    <div class="cmp-container grid">
+      <city-preview v-for="city in cities" :key="city._id" :city="city"
+      class="grid__item"></city-preview>
     </div>
+    <!-- <div>{{cities}}</div> -->
   </section>
 </template>
 <script>

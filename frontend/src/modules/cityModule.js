@@ -5,7 +5,7 @@ export default {
     state: {
         cities: null,
         currCity: null,
-        eventsByCity:null
+        eventsByCity: null
     },
     mutations: {
         setCities(state, { cities }) {
@@ -42,9 +42,9 @@ export default {
 
             return eventService.query({byCityId:cityId})
                 .then(events => {
-                    console.log('events from resolve are:',events);
-                    
                     context.commit({ type: 'setEventsByCity', events })
+                    console.log('events from resolve are:',events);
+                    return events;
                 })
         },
     },

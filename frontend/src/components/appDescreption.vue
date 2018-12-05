@@ -1,14 +1,17 @@
 <template>
   <div class="desc-container">
+    
     <div class="desc">
-      <img src="https://static.eatwith.com/28042793f45c99d2ae5316211fa25e30.svg" alt srcset>
+      <img src="../images/calendar.png" alt srcset>
       <h4>Book</h4>
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis consectetur repellat, esse facilis ex tenetur, ratione numquam recusandae odio dolorem magni expedita obcaecati magnam nobis fuga rem. Eum, esse. Eveniet!</div>
+        <div class="txt">Book an unforgetable experience at your desired destination.
+        Choose your favorite event and get ready to meet new people</div>
     </div>
     <div class="desc">
-      <img src="https://static.eatwith.com/ef48c55a447d7cc2b050cc54acb74b2c.svg" alt srcset>
-      <h4>Enjoy</h4>
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis consectetur repellat, esse facilis ex tenetur, ratione numquam recusandae odio dolorem magni expedita obcaecati magnam nobis fuga rem. Eum, esse. Eveniet!</div>
+      <img src="../images/eat.png" alt srcset>
+      <h4>Join us</h4>
+        <div class="txt">Craete your own events and become a member of our talented team
+        Add your best meals and amaze your guests with your cooking talents</div>
     </div>
   </div>
 </template>
@@ -25,9 +28,43 @@ export default {
 
 <style scoped lang="scss">
 .desc-container {
+  background: rgba(0, 128, 0, 0.158);
   display: flex;
   margin: 0 auto;
+  justify-content: space-evenly;
+  // align-items: center;
   margin-top: 10px;
-  width: 90%;
+  width: 100%;
+}
+
+.desc-container>*{
+  // margin: 0 auto;
+  text-align: center;
+  text-align: -webkit-center;
+  padding: 10px;
+}
+h4{
+  margin: 10px;
+}
+
+img{
+  width: 50px;
+  height: 50px;
+  margin: 0 auto
+}
+.desc{
+  display: flex;
+  flex-direction: column;
+}
+.txt{
+   white-space: wrap; 
+    width: 50%; 
+    line-height: 1.6;
+    // line-height: px;
+    // padding: 10px;
+    overflow: hidden;
+    text-overflow: clip; 
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif 
+    // border: 1px solid #000000;
 }
 </style>

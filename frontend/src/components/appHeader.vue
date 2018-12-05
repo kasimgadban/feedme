@@ -8,10 +8,13 @@
         <router-link to="/">Login</router-link>
       </div>
     </div>
+    <div>
+      <h1>Unforgettable Food Experience</h1>
     <div class="search-bar">
       <search-bar></search-bar>
       <input type="date" placeholder="When?" class="date">
       <button>Search</button>
+    </div>
     </div>
     <router-view/>
   </section>
@@ -100,5 +103,33 @@ button{
 
 button:focus {
     outline:none;
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 90px;
+  font-size: 45px;
+  color: white;
+  background: #80808070;
+}
+
+@media only screen and (max-width: 800px) {
+    
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+  flex-direction: column;
+}
+button{
+  width: 30%;
+}
+
+.search-bar>*{
+  margin-bottom: 5px;
+  border:none;
+  padding: 15px;
+}
 }
 </style>
