@@ -5,8 +5,13 @@
       <div class='details'>
         <div class='top'>
           <div>🕐{{event.time}}</div>
+<<<<<<< HEAD
           <div>{{event.address}}</div>
           <div>{{cook.fullName}}</div>
+=======
+          <div class="address">&#x1F4CD;{{event.address}}</div>
+          <!-- <div>{{cook.fullName}}</div> -->
+>>>>>>> db24b4593b6fd9220280109288ad6a552f233335
         </div>
         <hr>
 
@@ -17,7 +22,10 @@
           <h2>Info abou the area</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
         </div>
+        <hr>
+        <h2 style="text-align:center;">Menu</h2>
 
+<<<<<<< HEAD
         <div class='menu'>
           <h4>Dish name</h4>
           <p>some desc about the dish</p>
@@ -30,6 +38,14 @@
           <h4>Dish name</h4>
           <p>some desc about the dish</p>
         </div>
+=======
+       <div class="menu" v-for="dish in event.menu" :key="dish.id">
+         <h3>{{dish.name}}</h3>
+          <p>{{dish.desc}}</p>
+          
+       </div>
+       
+>>>>>>> db24b4593b6fd9220280109288ad6a552f233335
 
         <div class='map-container'>
           <GmapMap
@@ -190,12 +206,18 @@ input {
   color: rgba(128, 128, 128, 0.584);
   font-size: 14px;
 }
+<<<<<<< HEAD
 .map {
   background-image: url('https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png');
   height: 300px;
 }
+=======
+>>>>>>> db24b4593b6fd9220280109288ad6a552f233335
 .map-container {
   width: 500px;
   height: 300px;
+}
+.menu>*{
+  margin:13px
 }
 </style>

@@ -32,11 +32,19 @@ export default {
       console.log(events.length);
     });
   },
+<<<<<<< HEAD
   computed: {
     // events() {
     //   return this.$store.getters.getEventsByCity;
     // }
   },
+=======
+    computed:{
+          // events(){
+          //     return this.$store.getters.getEventsByCity
+          // }
+      },
+>>>>>>> db24b4593b6fd9220280109288ad6a552f233335
   components: {
     eventPreview
   }
@@ -46,12 +54,18 @@ export default {
 .city-events {
   margin: 0 auto;
   margin-top: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
+  gap: 20px;
+  text-decoration: none;
+  width: 80%;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  text-decoration: none; */
 }
 @media only screen and (max-width: 800px) {
   .city-event {

@@ -15,7 +15,7 @@ export default {
 <style scoped lang="scss">
 .app-footer {
   width: 100%;
-  height: 200px;
-  background-color: red;
+  height: 30px;
+  background-color:#2b3b58a8;
 }
 </style>

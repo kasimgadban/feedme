@@ -173,7 +173,7 @@ input {
   cursor: pointer;
   font-size: 1.6rem;
   line-height: 19px;
-  background-color: #3bd57e;
+  background-color:#88c888;
   color: #fff;
   margin-top: 10px !important;
 }

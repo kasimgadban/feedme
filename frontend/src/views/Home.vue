@@ -55,7 +55,11 @@ export default {
 }
 h2{
   text-align: center;
-  /* background: yellow; */
+  margin: 0px;
+  padding: 0px;
+  background-color: rgba(17, 107, 17, 0.219);
+  padding-top: 15px;
+
 }
 .test{
   justify-content: center;
