@@ -37,12 +37,10 @@
 <script>
 
 import cookService from '@/services/cookService'
+import eventService from '@/services/eventService'
 
 export default {
   props: ['order','cookId'],
-  // created() {
-  //   console.log("order is: ", this.order);
-  // },
   data(){
     return {
       cook: null
@@ -50,20 +48,19 @@ export default {
   },
   methods: {
     bookOrder() {
+      console.log("order",this.order);
      cookService.update(this.order)
+    // eventService.addOrder(this.order)
       this.$emit("close");
-      // console.log("i am pretty console log",cook);
+      console.log("i am pretty console log",cook);
     }
   },
   created() {
-    console.log(this.cookId);
     var cookId = this.cookId;
     this.$store.dispatch({ type: "getCookById", cookId})
             .then(cook => {
               this.cook = cook
             });
-  //   this.$store.dispatch({ type: "loadEvents" });
-  //   this.$store.dispatch({ type: "loadCities" });
   },
   // computed: {
     // created() {

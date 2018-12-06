@@ -54,7 +54,6 @@ function remove(eventId){
 }
 
 function add(event){
-     
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
@@ -67,17 +66,43 @@ function add(event){
 }
 
 function update(event){
+    console.log('event test',event);
+    
     event._id = new ObjectId(event._id)
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
-            return collection.updateOne({ _id: event._id }, { $set: event })
+            return collection.updateOne({ _id: event._id }, { $push: event })
                 .then(result => {
                     return result;
                 })
         })
 }
 
+// function addOrder(order){
+//     order._id = new Object(order._id)
+//     return mongoService.connectToDb()
+//         .then(db=>{
+//             const collection = db.collection('event_db'); 
+//             return collection.insertOne({ _id: order.eventId._id }, { $push: order })
+//             .then(result => {
+//                 return result;
+//             })
+//         })
+// }
+
+// function update(order){
+//     const cookId = new ObjectId(order.cookId)
+//     console.log(order);
+//     return mongoService.connectToDb()
+//         .then(db => {
+//             const collection = db.collection('cook_db');
+//             return collection.updateOne({ _id: cookId },{$push:{orders: order }})
+//                 .then(result => {
+//                     return result;
+//                 })
+//         })
+// }
 
 module.exports = {
     query,
@@ -85,4 +110,5 @@ module.exports = {
     remove,
     add,
     update,
+    // addOrder
 }

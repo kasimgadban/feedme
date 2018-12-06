@@ -12,7 +12,7 @@
   </router-link>
   <div class="card__info">
     <h4>${{event.price}}</h4>
-    <h3 class="card__title">Text about the event</h3>
+    <h3 class="card__title">{{event.descrption}}</h3>
     <span class="card__by">Hosted by <router-link class="link" :to="'/cook/'+ event.cookId"><a href="#" class="card__author" title="author">Tamara</a></router-link></span>
   </div>
 </article>

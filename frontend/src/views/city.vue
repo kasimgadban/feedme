@@ -32,14 +32,13 @@ export default {
       console.log(events.length);
     });
   },
- 
-    computed:{
-          events(){
-              return this.$store.getters.getEventsByCity
-          }
-      },
+  computed: {
+    // events() {
+    //   return this.$store.getters.getEventsByCity;
+    // }
+  },
   components: {
-    eventPreview,
+    eventPreview
   }
 };
 </script>
@@ -55,12 +54,12 @@ export default {
   text-decoration: none;
 }
 @media only screen and (max-width: 800px) {
-    .city-event {
+  .city-event {
     width: 100%;
-    }
+  }
 }
-.city-event{
-  padding: 10px
+.city-event {
+  padding: 10px;
 }
 .images-container {
   background-image: url("https://sunshinecoastdietetics.com.au/wp-content/uploads/2018/02/ThinkstockPhotos-607887056_2.jpg");

@@ -11,6 +11,7 @@ function query() {
 }
 
 function getById(cookId) {
+    console.log('cookId from service', cookId)
     cookId = new ObjectId(cookId)
     return mongoService.connectToDb()
         .then(db => {
@@ -43,7 +44,6 @@ function add(cook){
 
 function update(order){
     const cookId = new ObjectId(order.cookId)
-    console.log('cookId',cookId)
     console.log(order);
     return mongoService.connectToDb()
         .then(db => {

@@ -28,6 +28,8 @@ export default {
                 })
         },
         getCookById(context,{cookId}){
+            console.log(cookId);
+            
             return cookService.getById(cookId)
             .then(cook => {                
                 context.commit({type: 'setCook',cook})

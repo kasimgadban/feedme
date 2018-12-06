@@ -1,16 +1,16 @@
 <template>
-  <section class="container">
-    <div class="images-container"></div>
-    <div class="wrapper">
-      <div class="details">
-        <div class="top">
+  <section class='container'>
+    <div class='images-container'></div>
+    <div class='wrapper'>
+      <div class='details'>
+        <div class='top'>
           <div>🕐{{event.time}}</div>
           <div>{{event.address}}</div>
-          <!-- <div>{{cook.fullName}}</div> -->
+          <div>{{cook.fullName}}</div>
         </div>
         <hr>
 
-        <div class="desc">
+        <div class='desc'>
           <!-- {{event.description}} -->
           <h2>Info abou the host</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
@@ -18,7 +18,7 @@
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
         </div>
 
-        <div class="menu">
+        <div class='menu'>
           <h4>Dish name</h4>
           <p>some desc about the dish</p>
           <h4>Dish name</h4>
@@ -31,48 +31,53 @@
           <p>some desc about the dish</p>
         </div>
 
-        <div class="map-container">
+        <div class='map-container'>
           <GmapMap
-            ref="mapRef"
-            :center="currentLocation"
-            :zoom="15"
-            map-type-id="terrain"
-            style="width: 500px; height: 300px"
+            ref='mapRef'
+            :center='currentLocation'
+            :zoom='15'
+            map-type-id='terrain'
+            style='width: 500px; height: 300px'
           >
-            <GmapMarker :position="currentLocation" />
+            <GmapMarker :position='currentLocation'/>
           </GmapMap>
         </div>
       </div>
-      <request-box :event="event"></request-box>
+      <request-box :event = "event" ></request-box>
     </div>
   </section>
 </template>
 
 <script>
-import requestBox from "@/components/requestBox.vue";
-import eventService from "@/services/eventService";
-import locationService from "@/services/locationService";
-import cookService from "@/services/cookService";
+import requestBox from '@/components/requestBox.vue';
+import eventService from '@/services/eventService';
+import locationService from '@/services/locationService';
+import cookService from '@/services/cookService';
 
 export default {
-  name: "cookPage",
+  name: 'cookPage',
   data() {
     return {
       event: Object,
-      currentLocation: Object,
-      searchAddressInput: "",
-      cook: {}
+      cook: Object,
+      currentLocation: {
+        lat: 0,
+        lng: 0
+      },
+      searchAddressInput: ''
     };
   },
   created() {
     const eventId = this.$route.params.id;
     eventService.getById(eventId).then(res => {
       this.event = JSON.parse(JSON.stringify(res));
-      this.currentLocation = locationService
-        .getPositionByName(this.event.address)
-        .then(res => {
-          this.currentLocation = res;
-        });
+      var cookId = this.event.cookId;
+      this.$store.dispatch({ type: 'getCookById', cookId }).then(res => {
+        this.cook = res;
+      });
+      locationService.getPositionByName(this.event.address).then(res => {
+        this.currentLocation = res;
+      });
     });
   },
   methods: {
@@ -89,10 +94,10 @@ export default {
 };
 </script>
 
-<style scoped lang = "scss">
+<style scoped lang = 'scss'>
 .images-container {
   width: 100%;
-  background-image: url("https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k");
+  background-image: url('https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -186,7 +191,7 @@ input {
   font-size: 14px;
 }
 .map {
-  background-image: url("https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png");
+  background-image: url('https://nyoobserver.files.wordpress.com/2015/02/screen-shot-2015-02-06-at-3-27-06-pm.png');
   height: 300px;
 }
 .map-container {

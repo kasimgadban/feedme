@@ -14,6 +14,7 @@ function remove(cookId) {
         .then(res => res.data)
 }
 function getById(cookId) {
+    console.log('cookid from axios line 17',cookId)
     return axios.get(`${BASE_URL}${cookId}`)
         .then(res => res.data)
 }
