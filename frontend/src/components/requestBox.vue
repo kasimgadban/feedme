@@ -1,25 +1,23 @@
 <template>
   <section>
-    <div></div>
     <div class="order-form">
-      <h3 >
+      <h3 class="josefin-font">
         ${{event.price}}
         {{order.cookId}}
-        <span class="title-span">Price per person</span>
+        <span class="title-span josefin-font">Price per person</span>
       </h3>
-      <span class="title">Date</span>
-      <!-- <input type="date" v-model="order.date">  -->
+      <span class="title josefin-font">Date</span>
       <date-picker
         class="date requestBoxDate"
-        :inline="false"
+        :inline="true"
         v-model="order.eventDate"
         :disabledDates="disabledDates"
         :bootstrapStyling="true"
         :minimumView="'day'" :maximumView="'month'" :initialView="'day'"
       ></date-picker>
-      <!-- <date-picker :option="option" :date="date"></date-picker> -->
-      <span class="title">Guests</span>
-      <select name v-model="order.guests">
+      <select name v-model="order.guests" class="select">
+         <option value="" disabled selected>Guests</option>
+        <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
@@ -31,13 +29,14 @@
       <input type="text" class="buyer" v-model="order.guestName" placeholder="Enter your name">
       <input type="text" class="buyer" v-model="order.guestNumber" placeholder="Enter your number">
       
-      <button @click="isShowModal = true" class="send">Send request</button>
+      <button @click="isShowModal = true" class="send josefin-font ">Book</button>
     </div>
     <request-modal
       v-if="isShowModal"
       @close="isShowModal = false"
       :order="order"
       :cookId="event.cookId"
+      :event="event"
     ></request-modal>
   </section>
 </template>
@@ -46,7 +45,6 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
-// import moment from "moment";
 
 export default {
   name: "requestBox",
@@ -58,7 +56,7 @@ export default {
         guestName: '',
         guestNumber: '',
         eventDate: '',
-        guests: 2
+        guests: ''
       },
       isShowModal: false,
       disabledDates: {
@@ -92,7 +90,6 @@ export default {
 
 <style scoped lang = "scss">
 
-/* @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'); */
 
 .images-container {
   width: 100%;
@@ -132,17 +129,11 @@ export default {
   flex-direction: column;
 }
 .order-form {
-  /* position: fixed; */
-  /* display: block; */
   padding: 10px;
-  right: 6%;
-  width: 245px;
-  /* height: 100vh; */
   margin-top: 10px;
-  background: #8080801f;
+  background: #b0aaaa1f;
   -webkit-box-shadow: 5px 7px #453e3e1f;
   box-shadow: 4px 4px 4px #453e;
-  border-radius: 5px;
 }
 .menu {
   align-items: center;
@@ -154,12 +145,17 @@ export default {
 }
 .order-form > * {
   margin: 0px;
-  font-size: 1.3em;
+      font-size: 1.3em;
+      margin-top: 10px;
 }
 
 input {
-  padding: 5px;
+  padding: 7px;
   margin-bottom: 10px;
+}
+select>*{
+  font-size: 16px;
+  margin: 20px;
 }
 .title {
   font-size: 1em;
@@ -172,74 +168,42 @@ input {
   width: 100%;
   border: none;
   cursor: pointer;
-  font-size: 1.6rem;
+  /* font-size: 1.6rem; */
   line-height: 19px;
   background-color:#88c888;
   color: #fff;
+  padding: 15px;
   margin-top: 10px !important;
 }
 .buyer {
-  padding: 5px;
+  padding: 7px;
   margin-top: 5px;
   font-size: 14px;
+  border-radius: 5px;
+  border: none;
 }
 
-/* .date-picker { */
-/* height: 300px; */
-/* position: relative; */
-/* position: absolute; */
-/* display: block; */
-/* } */
 
 .date:first-child {
   border: 1px solid gray !important; 
   width: 100% !important;
 }
 
-/*******************************************************************/
-/* body {
-    font-family: 'Helvetica Neue Light', Helvetica, sans-serif;
-    padding: 1em 2em 2em;
+h3,span{
+  padding: 5px;
+  margin-bottom: 5px;
 }
-input, select {
-    padding: .75em .5em;
-    font-size: 100%;
-    border: 1px solid #ccc;
-    width: 100%
+
+.select{
+  padding: 20px;
+  font-size: 16px;
+  height: 30px;
+  border-color: gainsboro;
 }
-select {
-    height: 2.5em;
+
+.josefin-font{
+  font-family: 'Josefin Sans', sans-serif;
 }
-.example {
-    background: #f2f2f2;
-    border: 1px solid #ddd;
-    padding: 0em 1em 1em;
-    margin-bottom: 2em;
-}
-code,
-pre {
-    margin: 1em 0;
-    padding: 1em;
-    border: 1px solid #bbb;
-    display: block;
-    background: #ddd;
-    border-radius: 3px;
-}
-.settings {
-    margin: 2em 0;
-    border-top : 1px solid #bbb;
-    background: #eee;
-}
-h5 {
-    font-size:100%;
-    padding: 0;
-}
-.form-group {
-    margin-bottom: 1em;
-}
-.form-group label {
-    font-size: 80%;
-    display: block;
-} */
+
 </style>
 

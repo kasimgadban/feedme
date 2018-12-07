@@ -1,19 +1,22 @@
 <template>
   <section class="header">
-    <div class="nav-container">
-     <router-link to="/" class="logo"></router-link>
+    <!-- <div class="nav-container">
+     <router-link to="/" class="logo">
+     <img class="img-logo" src="../images/logo1.png">
+     </router-link>
       <div class="nav-bar">
         <router-link to="/">Home</router-link>
         <router-link to="/">About</router-link>
         <router-link to="/">Login</router-link>
       </div>
-    </div>
+    </div> -->
+    <!-- <nav-bar></nav-bar> -->
     <div>
-      <h1>Unforgettable Food Experience</h1>
+      <h1>Unforgettable Tastes</h1>
     <div class="search-bar">
       <search-bar></search-bar>
       <input type="date" placeholder="When?" class="date">
-      <button>Search</button>
+      <button class="search-btn">Search</button>
     </div>
     </div>
     <router-view/>
@@ -22,12 +25,15 @@
 </template>
 <script>
 import searchBar from "@/components/searchBar.vue";
+import navBar from "@/components/navBar.vue"
 
 export default {
   name: "appHeader",
   components: {
     //  appHeader,
-    searchBar
+    searchBar,
+    navBar
+
   }
 };
 </script>
@@ -42,7 +48,9 @@ export default {
   width:50px;
   height:50px;
 }
-
+.search-btn{
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 .header {
   background: blue;
   width: 100%;
@@ -50,7 +58,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("https://foodrevolution.org/wp-content/uploads/2018/10/blog-featured-thanksgiving-20181029-3.jpg");
+  background-image: url("https://cdn.shopify.com/s/files/1/2206/4495/articles/main-image_0e2e0e40-2fd0-4c18-a0eb-343072fa341f_2048x.jpg?v=1510690904");
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -67,17 +75,14 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: white;
 }
 
 .search-bar {
   display: flex;
-  // margin: 0 auto;
   width: 100%;
-  // justify-content: space-between;
   justify-content: center;
   margin-bottom: 70px;
-  // display: flex;
-    // flex-direction: column;
 }
 
 .search-bar > *{
@@ -86,13 +91,15 @@ export default {
 
 .nav-bar {
   display: flex;
+  align-items: center;
 }
 
 .nav-bar > * {
-  color: white;
+  color: #878b8f;
   padding: 10px;
   font-size: 1.2em;
   right: 0px;
+  text-decoration: none;
 }
 .logo {
   color: white;
@@ -117,14 +124,17 @@ button:focus {
 
 h1{
   text-align: center;
-  margin-bottom: 90px;
-  font-size: 45px;
-  color: white;
-  background: #80808070;
+    margin-bottom: 90px;
+    margin-top: 140px;
+    font-size: 45px;
+    color: white;
+    font-family: 'Ultra', serif;
 }
-
 @media only screen and (max-width: 800px) {
-    
+    h1{
+  // text-align: center;
+  margin-bottom: 0px;
+    }
 .search-bar {
   display: flex;
   align-items: center;

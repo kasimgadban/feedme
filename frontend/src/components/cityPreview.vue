@@ -1,19 +1,11 @@
 <template>
   <section class="displayed-city">
     <router-link :to="'city/'+city._id" :city="city" class="city-router">
-    <!-- <div class="wrapper"> -->
       <div
-      class="test1"
+      class="city-link container-style"
        v-bind:style="{ 'background-image': 'url(' + getSrc(city.city) + ')' }">
+          <div class="name">{{city.city}}</div>
        </div>
-      <!-- <img
-        class="card-img"
-        :src="getSrc(city.city)"
-        alt
-        srcset
-      > -->
-      <div class="name">{{city.city}}</div>
-      <!-- </div> -->
     </router-link>
   </section>
 </template>
@@ -34,7 +26,6 @@ export default {
     getSrc(name) {
       var nameSplitted = name.split(' ');
       if(nameSplitted.length > 1) name = nameSplitted[0]+nameSplitted[1];
-      // console.log('name',name)
       var images = require.context('../images', false, /\.png$/);
       return images('./' + name + ".png")
     }
@@ -46,13 +37,9 @@ export default {
 .displayed-city {
   text-align: center;
   margin-top: 20px;
-  // height: 350px;
 }
 .name{
-  position: relative;
-  top: -170px;
-    background: #e4d3d3;
-  // background:#f5f5f5ad;
+  background: #e4d3d3;
   color: black;
   width: 50%;
   text-align: center;
@@ -68,19 +55,28 @@ export default {
   height: 85%;
   border-radius:20%;
   object-fit:cover;
+
 }
 .card-img:hover{
   box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
 }
 
-.test1{
-  width: 100%;
-  height: 300px;
-  border-radius:20%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-size: cover;
-  // object-fit: cover;
+.city-link{
+    height: 230px;
+    border-radius: 9px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .name{
+    width: 100%;
+  }
 }
 
 </style>

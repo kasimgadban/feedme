@@ -1,31 +1,27 @@
 <template>
   <section class="container">
-    <div class="images-container"></div>
+    <!-- <nav-bar></nav-bar> -->
+    <div class="try">
+    <div class="images-container" :style="bgImage">
+      <div class="name">{{event.description}}</div>
+    </div>
     <div class="wrapper">
       <div class="details">
         <div class="top">
-          <div>🕐{{event.time}}</div>
-          <div class="address">&#x1F4CD;{{event.address}}</div>
-          <!-- <div>{{cook.fullName}}</div> -->
+          <div class="josefin-font">🕐{{event.time}}</div>
+          <div class="address josefin-font">&#x1F4CD;{{event.address}}</div>
         </div>
         <hr>
-
-        <div class="desc">
-          <!-- {{event.description}} -->
-          <h2>Info abou the host</h2>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
-          <h2>Info abou the area</h2>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsum amet modi ipsa laboriosam aut laborum ab, cumque asperiores sed natus delectus exercitationem accusantium eligendi totam, optio obcaecati non quaerat!</p>
-        </div>
-        <hr>
-        <h2 style="text-align:center;">Menu</h2>
+        <div class="menu-container">
+        <h2 style="text-align:center; margin:15px;" class="josefin-font menu-title">To Be Served</h2>
 
        <div class="menu" v-for="dish in event.menu" :key="dish.id">
          <h3>{{dish.name}}</h3>
           <p>{{dish.desc}}</p>
+          <span class="star">***</span>
           
        </div>
-       
+       </div>
 
         <div class="map-container">
           <GmapMap
@@ -33,13 +29,14 @@
             :center="currentLocation"
             :zoom="15"
             map-type-id="terrain"
-            style="width: 500px; height: 300px"
+            style="height: 300px"
           >
             <GmapMarker :position="currentLocation" />
           </GmapMap>
         </div>
       </div>
       <request-box :event="event"></request-box>
+    </div>
     </div>
   </section>
 </template>
@@ -49,6 +46,8 @@ import requestBox from "@/components/requestBox.vue";
 import eventService from "@/services/eventService";
 import locationService from "@/services/locationService";
 import cookService from "@/services/cookService";
+import navBar from "@/components/navBar.vue"
+
 
 export default {
   name: "cookPage",
@@ -57,7 +56,7 @@ export default {
       event: Object,
       currentLocation: Object,
       searchAddressInput: "",
-      cook: {}
+      cook: Object
     };
   },
   created() {
@@ -76,40 +75,77 @@ export default {
       return (this.isSend = true);
     }
   },
-  // mounted: function() {
-  //   this.geolocation();
-  // },
+  computed:{
+    bgImage() {
+      return (
+        "background-image: url(" +
+        this.event.image +
+        "); background-size: contain; background-size: cover; background-position: center center;"
+      );
+    }
+  },
+
   components: {
-    requestBox
+    requestBox,
+    navBar
   }
 };
 </script>
 
 <style scoped lang = "scss">
-.images-container {
+/* .images-container {
   width: 100%;
-  background-image: url("https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k");
+  height: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+} */
+
+.images-container{
+  margin: 0 auto;
+  /* margin-bottom: 20px; */
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container {
-  display: grid;
-  grid-template-rows: 250px 1fr;
+.name{
+  color: black;
+  background-color: #ffffffb0;
+  /* width: 50%; */
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2.5em;
+  padding: 10px;
+  font-family: 'Ultra', serif;
+}
+
+
+/* .container {
+  display: grid; 
+  grid-template-rows: 300px 1fr;
+} */
+
+.try{
+  display: grid; 
+  grid-template-rows: 300px 1fr;
+
 }
 
 .wrapper {
   display: grid;
   gap: 20px;
+  grid-template-columns: 65% 35%;
+  max-width: 980px;
   margin: 0 auto;
-  grid-template-columns: 1fr 300px;
-  width: 90%;
   padding: 10px;
   position: relative;
-  border: 2px solid black;
 }
 .top {
   display: flex;
@@ -124,10 +160,8 @@ export default {
   flex-direction: column;
 }
 .order-form {
-  /* position: fixed; */
   padding: 10px;
   right: 6%;
-  width: 245px;
   margin-top: 10px;
   background: #8080801f;
   -webkit-box-shadow: 5px 7px #453e3e1f;
@@ -136,6 +170,7 @@ export default {
 }
 .menu {
   align-items: center;
+  margin-bottom: 15px;
 }
 .title-span {
   font-size: 12px;
@@ -182,10 +217,55 @@ input {
   font-size: 14px;
 }
 .map-container {
-  width: 500px;
   height: 300px;
+  margin: 0 auto;
 }
-.menu>*{
-  margin:13px
+
+h2{
+  color: #4d46468c;
+  padding: 3px;
+  margin: 0px;
 }
+h3{
+  font-family: fantasy;
+  font-weight: bolder;
+  margin: 3px;
+
+}
+.host-details{
+  font-family: none;
+  text-align: justify;
+}
+
+p{
+  font-size: 1.1em;
+      font-family: fantasy;
+      text-align: center;
+}
+.star{
+  color: gray;
+}
+
+.menu-container{
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.josefin-font{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.1em;
+}
+
+.menu-title{
+  font-size: 2em
+}
+
+
+@media only screen and (max-width: 800px) {
+  .name{
+    font-size: 1.7em;
+
+  }
+}
+
 </style>

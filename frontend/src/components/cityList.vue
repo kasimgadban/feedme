@@ -1,7 +1,7 @@
 <template>
   <section class="topCities">
-    <h2>Enjoy a delicious experience at our popular destinations</h2>
-    <div class="cmp-container grid">
+    <h2>ENJOY A DELICIous experience at our popular destinations</h2>
+    <div class="cmp-container grid container-style">
       <city-preview 
       v-for="city in cities" 
       :key="city._id" 
@@ -9,7 +9,6 @@
       class="grid__item">
       </city-preview>
     </div>
-    <!-- <div>{{cities}}</div> -->
   </section>
 </template>
 <script>
@@ -27,36 +26,62 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// .cmp-container {
+//   display: grid;
+//   grid-template-columns: 2fr 4fr 2fr;
+//   gap: 15px;
+//   grid-row-gap: 0;
+//   text-decoration: none;
+// }
+
 .cmp-container {
-  width: 70%;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   grid-row-gap: 0;
-  // display: flex;
   text-decoration: none;
 }
+.grid__item:nth-child(9n+0) {
+  grid-column: span 2;
+}
+.grid__item:nth-child(9n+1) {
+  grid-column: span 2  ;
+}
+.grid__item:nth-child(9n+5) {
+  grid-column: span 2;
+}
 @media only screen and (max-width: 800px) {
-   .cmp-container {
-  width: 90%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 12fr;
-  gap: 5px;
+  .cmp-container {
+    // width: 90%;
+    display: grid;
+    grid-template-columns: 12fr;
+    gap: 5px;
+    //  grid-row-gap: 0;
+
+}
+.grid__item:nth-child(9n+0) {
+  grid-column: span 1;
+}
+.grid__item:nth-child(9n+1) {
+  grid-column: span 1 ;
+}
+.grid__item:nth-child(9n+5) {
+  grid-column: span 2;
 }
 }
 h2{
   text-align: center;
   color: rgba(56, 53, 53, 0.822);
+   font-family: 'Josefin Sans', sans-serif;
+   text-transform: uppercase;
+   font-size: 1.5em;
+
 }
 
 .topCities{
   padding-top: 20px;
   padding-bottom: 20px;
-    /* margin-top: 23px; */
-    /* padding: 20px; */
-    background: #80808017;
+  background: #80808017;
 }
 
 </style>

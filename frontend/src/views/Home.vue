@@ -1,9 +1,9 @@
 <template>
   <section>
-    <app-header />
+    <app-header /> 
     <city-list :cities="cities" />
-    <h2>How it works</h2>
-    <app-desc class="test"/>
+    <!-- <h2>How it works</h2> -->
+    <!-- <app-desc class="test"/> -->
     <event-list :events="events" ></event-list>
     <app-footer />
   </section>
@@ -12,11 +12,8 @@
 <script>
 import appHeader from "@/components/appHeader.vue";
 import appDesc from "@/components/appDescreption.vue";
-// import topRated from "@/components/topRated.vue";
-// import cookList from "@/components/cookList.vue";
 import eventList from "@/components/eventList.vue";
 import appFooter from "@/components/appFooter.vue";
-// import searchBar from "@/components/searchBar.vue";
 import cityList from "@/components/cityList.vue";
 
 export default {
