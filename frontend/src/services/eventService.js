@@ -25,7 +25,19 @@ function getById(eventId) {
     .then(res => res.data)  
 }
 
+function addOrder(order) {
+    console.log('order from front',order);
+    
+    return axios.put(`${BASE_URL}/${order.eventId}`, order)
+      .then(res => res.data)
+      .catch(err => {
+        console.warn(err);
+        return Promise.reject(err);
+      });
+  }
+
 export default {
     query,
     getById,
+    addOrder
 }

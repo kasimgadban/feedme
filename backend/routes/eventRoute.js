@@ -15,7 +15,6 @@ function addeventRoutes(app) {
     app.get('/event/:id', (req, res) => {
         const eventId = req.params.id;
         // console.log('I wass called ',eventId);
-        
         eventService.getById(eventId)
             .then(event => res.json(event))
     })

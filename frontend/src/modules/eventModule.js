@@ -24,6 +24,10 @@ export default {
         context.commit({ type: "setEvents", events });
       });
     },
+    // loadEvent(context){
+    //   return eventService.query().then(events => {
+    //     context.commit({ type: "setEvents", events });
+    // },
     getById(context, { eventId }) {
       console.log("I was called as an event module");
 

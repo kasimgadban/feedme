@@ -53,6 +53,7 @@ export default {
     return {
       order: {
         cookId: '',
+        eventId: '',
         guestName: '',
         guestNumber: '',
         eventDate: '',
@@ -68,9 +69,7 @@ export default {
     };
   },
   created() {
-    this.order.cookId = this.event.cookId
-    this.order.eventId = this.event._id;
-    this.order.cookId = this.event.cookId;
+    this.eventId = this.$route.params.id
   },
   methods: {
     // customFormatter(date) {
