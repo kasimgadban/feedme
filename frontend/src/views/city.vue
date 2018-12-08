@@ -28,23 +28,8 @@ export default {
     const cityId = this.$route.params.cityId;
     this.$store.dispatch({ type: "loadEventsByCity", cityId }).then(events => {
       this.events = events;
-      console.log("events 37", events);
-      console.log(events.length);
     });
   },
-<<<<<<< HEAD
-  computed: {
-    // events() {
-    //   return this.$store.getters.getEventsByCity;
-    // }
-  },
-=======
-    computed:{
-          // events(){
-          //     return this.$store.getters.getEventsByCity
-          // }
-      },
->>>>>>> db24b4593b6fd9220280109288ad6a552f233335
   components: {
     eventPreview
   }

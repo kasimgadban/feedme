@@ -1,33 +1,58 @@
-const mongoService = require('./mongo.service') 
+const mongoService = require('./mongo.service')
 
 const ObjectId = require('mongodb').ObjectId;
 
 function query(filter = {}) {
-    
-    let byCityId = filter.cityId
-    let byCookId = filter.cookId
+    console.log('lllll', filter);
 
-    if(byCityId) 
+    let byCityId = filter.cityId;
+    let byCookId = filter.cookId;
+    let date = filter.date;
+    if (byCityId) {
         byCityId = new ObjectId(byCityId)
-    
-    if(byCookId) 
+        filter = { cityId: byCityId }
+    }
+    if (byCookId) {
         byCookId = new ObjectId(byCookId)
-    
-    if(byCityId)
-        filter = {cityId:byCityId}
-
-    if(byCookId)
-        filter = {cookId:byCookId}
-
-    else    filter = {}
-
+        filter = { cookId: byCookId }
+    }
+    if (date) {
+        // date = new ObjectId(date)
+        filter = { date: date }
+        console.log('cooooooooooooooooooooooool');
+    }
+    else filter = {}
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
-            if(byCityId)
-                var events = collection.find({cityId:byCityId}).toArray()
-            else if(byCookId)
-                var events = collection.find({cookId:byCookId}).toArray()
+            if (byCityId)
+                var events = collection.find({ cityId: byCityId }).toArray()
+            else if (byCookId)
+                var events = collection.find({ cookId: byCookId }).toArray()
+            else if (date) {
+                console.log('test Filter By event date', date);
+                var events = collection.aggregate(
+                    [
+
+                        {
+                            "$unwind": {
+                                "path": "$dates"
+                            }
+                        },
+                        {
+                            "$match": {
+                                "dates.eventDate": date
+                            }
+                        },
+                        {
+                            "$group": {
+                                "_id": "$dates.guests"
+                            },
+                        }
+
+                    ],
+                ).toArray()
+            }
             else
                 var events = collection.find({}).toArray()
 
@@ -44,8 +69,8 @@ function getById(eventId) {
         })
 }
 
-function remove(eventId){
-     eventId = new ObjectId(eventId)
+function remove(eventId) {
+    eventId = new ObjectId(eventId)
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
@@ -53,7 +78,7 @@ function remove(eventId){
         })
 }
 
-function add(event){
+function add(event) {
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
@@ -65,31 +90,46 @@ function add(event){
         })
 }
 
-function update(event){
-    console.log('event test',event);
-    
+// function update(event){
+//     console.log('event test',event);
+//     event._id = new ObjectId(event._id)
+//     return mongoService.connectToDb()
+//         .then(db => {
+//             const collection = db.collection('event_db');
+//             return collection.updateOne({ _id: event._id }, { $push: event })
+//                 .then(result => {
+//                     return result;
+//                 })
+//         })
+// }
+
+// function addBook(book){
+//     console.log('event test 82=> ',book);
+//     const eventId = new ObjectId(book.eventId)
+//     delete book.eventId;
+//     return mongoService.connectToDb()
+//         .then(db => {
+//             const collection = db.collection('event_db');
+//             return collection.updateOne({ _id: eventId},{ $push :{dates: book}})
+//                 .then(result => {
+//                     return result;
+//                 })
+//         })
+// }
+
+function update(event) {
+    // console.log('=>', event.dates);
     event._id = new ObjectId(event._id)
+    delete event.dates.eventId
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
-            return collection.updateOne({ _id: event._id }, { $push: event })
+            return collection.updateOne({ _id: event._id }, { $set: event })
                 .then(result => {
                     return result;
                 })
         })
 }
-
-// function addOrder(order){
-//     order._id = new Object(order._id)
-//     return mongoService.connectToDb()
-//         .then(db=>{
-//             const collection = db.collection('event_db'); 
-//             return collection.insertOne({ _id: order.eventId._id }, { $push: order })
-//             .then(result => {
-//                 return result;
-//             })
-//         })
-// }
 
 // function update(order){
 //     const cookId = new ObjectId(order.cookId)
@@ -110,5 +150,5 @@ module.exports = {
     remove,
     add,
     update,
-    // addOrder
+    // addBook
 }

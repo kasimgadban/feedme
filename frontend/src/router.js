@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Cook from './views/cook.vue'
 import event from './views/event.vue'
 import Hosting from './views/hosting.vue'
+// import requestModal from './components/requestModal.vue'
 import city from './views/city.vue'
 
 
@@ -37,6 +38,11 @@ export default new Router({
       path: '/city/:cityId',
       name: 'city',
       component: city
-    }
+    },
+    // {
+    //   path: '/event/:order',
+    //   name: 'requestModal',
+    //   component: requestModal
+    // }
   ]
 })

@@ -5,13 +5,14 @@ const BASE_URL = process.env.NODE_ENV !== 'development'
     : '//localhost:3000/event'
 
 function query(filter = {}) {
+    console.log(filter);
 
     var queryParams = new URLSearchParams()
-    if(filter.byCityId) queryParams.append('cityId',filter.byCityId)
-    if(filter.byCookId) queryParams.append('cookId',filter.byCookId)
-    
-    if(filter.byCityId || filter.byCookId){
-      
+    if (filter.byCityId) queryParams.append('cityId', filter.byCityId)
+    if (filter.byCookId) queryParams.append('cookId', filter.byCookId)
+    if (filter.date) queryParams.append('date', filter.date)
+
+    if (filter.byCityId || filter.byCookId || filter.date ) {
         return axios.get(`${BASE_URL}?${queryParams}`)
             .then(res => res.data)
     }
@@ -22,22 +23,22 @@ function query(filter = {}) {
 
 function getById(eventId) {
     return axios.get(`${BASE_URL}/${eventId}`)
-    .then(res => res.data)  
+        .then(res => res.data)
 }
 
-function addOrder(order) {
-    console.log('order from front',order);
-    
-    return axios.put(`${BASE_URL}/${order.eventId}`, order)
-      .then(res => res.data)
-      .catch(err => {
-        console.warn(err);
-        return Promise.reject(err);
-      });
-  }
+function update(event) {
+    console.log('event from front', event);
+    return axios.put(`${BASE_URL}/${event._id}`, event)
+        .then(res => res.data)
+        .catch(err => {
+            console.warn(err);
+            return Promise.reject(err);
+        });
+}
+
 
 export default {
     query,
     getById,
-    addOrder
+    update,
 }

@@ -28,17 +28,9 @@ export default {
                 })
         },
         getCookById(context,{cookId}){
-<<<<<<< HEAD
-            console.log(cookId);
-=======
-            console.log('I I was called',cookId);
->>>>>>> db24b4593b6fd9220280109288ad6a552f233335
-            
             return cookService.getById(cookId)
             .then(cook => {                
                 context.commit({type: 'setCook',cook})
-                console.log('cooookkkk',cook);
-                
                 return cook;
             })
         },

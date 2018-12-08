@@ -1,72 +1,54 @@
 <template>
   <!-- template for the modal component -->
-  <section type="text/x-template" id="modal-template">
+  <section type="text/x-template" id="modal-template" v-if="book">
     <transition name="modal">
-
       <div class="modal-mask" @click="$emit('close')">
         <div class="modal-wrapper">
           <div class="modal-container">
-
             <div class="modal-header">
               <!-- <slot name="header"> -->
-              {{order.guestName}}
+              {{dataGuests.guestName}}
               <!-- </slot> -->
             </div>
 
-            <div class="modal-body">{{order.guestNumber}}</div>
+            <div class="modal-body">{{dataGuests.guestPhone}}</div>
 
-            <div class="modal-body">{{order.eventDate}}</div>
+            <div class="modal-body">{{getFormattedDate}}</div>
 
-            <div class="modal-body">{{order.guests}}</div>
+            <div class="modal-body">{{book.guestsBooking}}</div>
 
             <div class="modal-footer">
               <!-- <slot name="footer"> -->
               <hr>
-              <button class="modal-default-button" @click="bookOrder()">OK</button>
+              <button class="modal-default-button" @click="$emit('bookOrder')">OK</button>
               <button class="modal-default-button" @click="$emit('close')">cancel</button>
               <!-- </slot> -->
             </div>
           </div>
         </div>
       </div>
-      
     </transition>
   </section>
 </template>
 
 <script>
-
-import cookService from '@/services/cookService'
-import eventService from '@/services/eventService'
+import eventService from "@/services/eventService";
+import moment from "moment";
 
 export default {
-  props: ['order','cookId'],
-  data(){
-    return {
-      cook: null
-    }
-  },
+  name: "requestModal",
+  props: ['book','event', 'dataGuests'],
   methods: {
-    bookOrder() {
-      console.log("order",this.order);
-     cookService.update(this.order)
-    // eventService.addOrder(this.order)
-      this.$emit("close");
-      console.log("i am pretty console log",cook);
+  },
+  created(){
+  
+  },
+  computed: {
+    getFormattedDate() {
+      return moment(this.book.eventDate).format('DD/MM/YYYY');
+      // return this.book.guests.eventDate
     }
-  },
-  created() {
-    var cookId = this.cookId;
-    this.$store.dispatch({ type: "getCookById", cookId})
-            .then(cook => {
-              this.cook = cook
-            });
-  },
-  // computed: {
-    // created() {
-    //   return this.$store.getters.getCookById(this.event.cookId);
-    // }
-  // }
+  }
 };
 </script>
 <style lang="scss" scoped>

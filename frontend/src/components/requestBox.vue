@@ -1,25 +1,23 @@
 <template>
   <section>
-    <div></div>
-    <div class="order-form">
-      <h3 >
+    <div class="book-form" v-if="event">
+      <h3>
         ${{event.price}}
-        {{order.cookId}}
         <span class="title-span">Price per person</span>
       </h3>
       <span class="title">Date</span>
-      <!-- <input type="date" v-model="order.date">  -->
-      <date-picker
+      <date-picker 
         class="date requestBoxDate"
         :inline="false"
-        v-model="order.eventDate"
+        v-model="book.eventDate"
+        @input="selected"
         :disabledDates="disabledDates"
+        :highlighted="highlighted"
         :bootstrapStyling="true"
-        :minimumView="'day'" :maximumView="'month'" :initialView="'day'"
-      ></date-picker>
-      <!-- <date-picker :option="option" :date="date"></date-picker> -->
-      <span class="title">Guests</span>
-      <select name v-model="order.guests">
+        :minimumView="'day'" :maximumView="'month'" :initialView="'day'" :format="'dd/MM/yyyy'"
+        ></date-picker>
+        <!-- <input type = "date" v-model="book.eventDate" > -->
+      <select name v-model="book.guestsBooking">
         <option>2</option>
         <option>3</option>
         <option>4</option>
@@ -28,16 +26,27 @@
         <option>7</option>
         <option>8</option>
       </select>
-      <input type="text" class="buyer" v-model="order.guestName" placeholder="Enter your name">
-      <input type="text" class="buyer" v-model="order.guestNumber" placeholder="Enter your number">
+      <input type="text" class="buyer" v-model="dataGuests.guestName" placeholder="Enter your name">
+      <input
+        type="text"
+        class="buyer"
+        v-model="dataGuests.guestPhone"
+        placeholder="Enter your phone number"
+      >
       
-      <button @click="isShowModal = true" class="send">Send request</button>
+      <button
+        @click="isShowModal = true"
+        class="send"
+      >Send request</button>
     </div>
     <request-modal
       v-if="isShowModal"
       @close="isShowModal = false"
-      :order="order"
-      :cookId="event.cookId"
+      @bookOrder="bookOrder"
+      :book="book"
+      :event="event"
+      :dataGuests=" dataGuests"
+
     ></request-modal>
   </section>
 </template>
@@ -46,42 +55,98 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
-// import moment from "moment";
+import eventService from "@/services/eventService";
+import moment from "moment";
 
 export default {
   name: "requestBox",
   props: ["event"],
   data() {
     return {
-      order: {
-        cookId: '',
-        eventId: '',
-        guestName: '',
-        guestNumber: '',
-        eventDate: '',
-        guests: 2
+      book: {
+        eventId: "",
+        eventDate: "",
+        guests: [],
+        guestsBooking: 0
+      },
+      dataGuests: {
+        guestName: "",
+        guestPhone: ""
       },
       isShowModal: false,
       disabledDates: {
-        days: [2, 3],
-        highlighted: {
-          days: [0, 6]
-        }
+        days:[]
       },
+      highlighted: {
+        days: []
+      },
+      // guestsCount
+      FilterdEvent: {}
     };
   },
   created() {
-    this.eventId = this.$route.params.id
+    this.book.eventId = this.$route.params.id;
+    // this.book = this.event.dates
+    // console.log(this.book);
+    
+    /******************CHANGE********************/     
+    var a = [], diff = [];
+    var test = [0,1,2,3,4,5,6]
+    for (let i = 0; i < test.length; i++) {
+        a[test[i]] = true;
+    }
+    for (var i = 0; i < this.event.days.length; i++) {
+        if (a[this.event.days[i]]) {
+            delete a[this.event.days[i]];
+        } else {
+            a[this.event.days[i]] = true;
+        }
+    }
+    for (var k in a) 
+        diff.push(+k);
+  this.disabledDates.days = diff
+   /**************************************/    
+  ////   var a  = 0;
+  ////  for (var i = 0; i < this.event.dates.length; i++) {
+  ////   a  +=  +(this.event.dates[i].guests.length);
+  ////  }  
   },
   methods: {
-    // customFormatter(date) {
-    //   // return moment(date).format('MMMM Do YYYY, h:mm:ss a');
-    //   // customFormatter() {
-    //   //   return Date.now();
-    // }
+    bookOrder() {
+      this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
+      for (var i = 0; i < this.book.guestsBooking; i++) {
+        this.book.guests.push(this.dataGuests);
+      }
+      this.event.dates.push(this.book);
+      eventService.update(this.event);
+    },
+    selected(){
+      this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
+      console.log('lala',this.book.eventDate);
+      const date = this.book.eventDate
+          this.$store
+        .dispatch({ type: "FilterByEventDate", date })
+        .then(FilterdEvent => {
+          this.FilterdEvent = FilterdEvent;
+          console.log('FilterdEvent',this.FilterdEvent);
+          // for (let i = 0; i < this.FilterdEvent.length; i++) {
+          //   console.log('a');
+          // }
+        });
+    }
   },
-
-  computed: {},
+  computed: {
+    guestsCount() {
+      return 
+      // {const date = this.book.eventDate
+      //     this.$store
+      //   .dispatch({ type: "FilterByEventDate", date })
+      //   .then(FilterdEvent => {
+      //     this.FilterdEvent = FilterdEvent;
+      //     console.log('FilterdEvent',this.FilterdEvent);
+      //   });}
+  }
+  },
   components: {
     requestModal,
     datePicker
@@ -90,9 +155,6 @@ export default {
 </script>
 
 <style scoped lang = "scss">
-
-/* @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'); */
-
 .images-container {
   width: 100%;
   background-image: url(https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k);
@@ -126,11 +188,11 @@ export default {
 }
 .desc,
 .menu,
-.order-form {
+.book-form {
   display: flex;
   flex-direction: column;
 }
-.order-form {
+.book-form {
   /* position: fixed; */
   /* display: block; */
   padding: 10px;
@@ -151,7 +213,7 @@ export default {
   color: #808080b0;
   padding: 5px;
 }
-.order-form > * {
+.book-form > * {
   margin: 0px;
   font-size: 1.3em;
 }
@@ -173,7 +235,7 @@ input {
   cursor: pointer;
   font-size: 1.6rem;
   line-height: 19px;
-  background-color:#88c888;
+  background-color: #88c888;
   color: #fff;
   margin-top: 10px !important;
 }
@@ -191,7 +253,7 @@ input {
 /* } */
 
 .date:first-child {
-  border: 1px solid gray !important; 
+  border: 1px solid gray !important;
   width: 100% !important;
 }
 
@@ -203,7 +265,7 @@ input {
 input, select {
     padding: .75em .5em;
     font-size: 100%;
-    border: 1px solid #ccc;
+    bbook: 1px solid #ccc;
     width: 100%
 }
 select {
@@ -211,7 +273,7 @@ select {
 }
 .example {
     background: #f2f2f2;
-    border: 1px solid #ddd;
+    bbook: 1px solid #ddd;
     padding: 0em 1em 1em;
     margin-bottom: 2em;
 }
@@ -219,14 +281,14 @@ code,
 pre {
     margin: 1em 0;
     padding: 1em;
-    border: 1px solid #bbb;
+    bbook: 1px solid #bbb;
     display: block;
     background: #ddd;
-    border-radius: 3px;
+    bbook-radius: 3px;
 }
 .settings {
     margin: 2em 0;
-    border-top : 1px solid #bbb;
+    bbook-top : 1px solid #bbb;
     background: #eee;
 }
 h5 {
