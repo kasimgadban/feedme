@@ -1,23 +1,24 @@
 <template>
   <section>
-    <div class="book-form" v-if="event">
-      <h3>
+    <div class="book-form">
+      <h3 class="josefin-font">
         ${{event.price}}
-        <span class="title-span">Price per person</span>
+        {{order.cookId}}
+        <span class="title-span josefin-font">Price per person</span>
       </h3>
-      <span class="title">Date</span>
-      <date-picker 
+      <span class="title josefin-font">Date</span>
+      <date-picker
         class="date requestBoxDate"
-        :inline="false"
-        v-model="book.eventDate"
-        @input="selected"
+        :inline="true"
+        v-model="order.eventDate"
         :disabledDates="disabledDates"
         :highlighted="highlighted"
         :bootstrapStyling="true"
-        :minimumView="'day'" :maximumView="'month'" :initialView="'day'" :format="'dd/MM/yyyy'"
-        ></date-picker>
-        <!-- <input type = "date" v-model="book.eventDate" > -->
-      <select name v-model="book.guestsBooking">
+        :minimumView="'day'" :maximumView="'month'" :initialView="'day'"
+      ></date-picker>
+      <select name v-model="order.guests" class="select">
+         <option value="" disabled selected>Guests</option>
+        <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
@@ -34,10 +35,7 @@
         placeholder="Enter your phone number"
       >
       
-      <button
-        @click="isShowModal = true"
-        class="send"
-      >Send request</button>
+      <button @click="isShowModal = true" class="send josefin-font ">Book</button>
     </div>
     <request-modal
       v-if="isShowModal"
@@ -155,6 +153,8 @@ export default {
 </script>
 
 <style scoped lang = "scss">
+
+
 .images-container {
   width: 100%;
   background-image: url(https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k);
@@ -193,17 +193,11 @@ export default {
   flex-direction: column;
 }
 .book-form {
-  /* position: fixed; */
-  /* display: block; */
   padding: 10px;
-  right: 6%;
-  width: 245px;
-  /* height: 100vh; */
   margin-top: 10px;
-  background: #8080801f;
+  background: #b0aaaa1f;
   -webkit-box-shadow: 5px 7px #453e3e1f;
   box-shadow: 4px 4px 4px #453e;
-  border-radius: 5px;
 }
 .menu {
   align-items: center;
@@ -215,12 +209,17 @@ export default {
 }
 .book-form > * {
   margin: 0px;
-  font-size: 1.3em;
+      font-size: 1.3em;
+      margin-top: 10px;
 }
 
 input {
-  padding: 5px;
+  padding: 7px;
   margin-bottom: 10px;
+}
+select>*{
+  font-size: 16px;
+  margin: 20px;
 }
 .title {
   font-size: 1em;
@@ -233,74 +232,42 @@ input {
   width: 100%;
   border: none;
   cursor: pointer;
-  font-size: 1.6rem;
+  /* font-size: 1.6rem; */
   line-height: 19px;
   background-color: #88c888;
   color: #fff;
+  padding: 15px;
   margin-top: 10px !important;
 }
 .buyer {
-  padding: 5px;
+  padding: 7px;
   margin-top: 5px;
   font-size: 14px;
+  border-radius: 5px;
+  border: none;
 }
 
-/* .date-picker { */
-/* height: 300px; */
-/* position: relative; */
-/* position: absolute; */
-/* display: block; */
-/* } */
 
 .date:first-child {
   border: 1px solid gray !important;
   width: 100% !important;
 }
 
-/*******************************************************************/
-/* body {
-    font-family: 'Helvetica Neue Light', Helvetica, sans-serif;
-    padding: 1em 2em 2em;
+h3,span{
+  padding: 5px;
+  margin-bottom: 5px;
 }
-input, select {
-    padding: .75em .5em;
-    font-size: 100%;
-    bbook: 1px solid #ccc;
-    width: 100%
+
+.select{
+  padding: 20px;
+  font-size: 16px;
+  height: 30px;
+  border-color: gainsboro;
 }
-select {
-    height: 2.5em;
+
+.josefin-font{
+  font-family: 'Josefin Sans', sans-serif;
 }
-.example {
-    background: #f2f2f2;
-    bbook: 1px solid #ddd;
-    padding: 0em 1em 1em;
-    margin-bottom: 2em;
-}
-code,
-pre {
-    margin: 1em 0;
-    padding: 1em;
-    bbook: 1px solid #bbb;
-    display: block;
-    background: #ddd;
-    bbook-radius: 3px;
-}
-.settings {
-    margin: 2em 0;
-    bbook-top : 1px solid #bbb;
-    background: #eee;
-}
-h5 {
-    font-size:100%;
-    padding: 0;
-}
-.form-group {
-    margin-bottom: 1em;
-}
-.form-group label {
-    font-size: 80%;
-    display: block;
-} */
+
 </style>
 

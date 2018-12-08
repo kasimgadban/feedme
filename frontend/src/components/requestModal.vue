@@ -1,33 +1,25 @@
 <template>
-  <!-- template for the modal component -->
-  <section type="text/x-template" id="modal-template" v-if="book">
-    <transition name="modal">
-      <div class="modal-mask" @click="$emit('close')">
+  <section>
+      <div class="modal-mask " @click="$emit('close')">
         <div class="modal-wrapper">
-          <div class="modal-container">
-            <div class="modal-header">
-              <!-- <slot name="header"> -->
-              {{dataGuests.guestName}}
-              <!-- </slot> -->
+          <div class="modal-container ">
+            <div class="test">
+              <h1>{{event.description}}</h1>
+              <span>Price:</span>
+              <span>Date: {{getFormattedDate}}</span>
+              <span>Guests: {{book.guestsBooking}}</span>
+              <span>Location: {{event.address}}</span>
+              <span>Name: {{book.guestName}}</span>
+              <span>Phone#: {{book.guestPhone}}</span>
             </div>
-
-            <div class="modal-body">{{dataGuests.guestPhone}}</div>
-
-            <div class="modal-body">{{getFormattedDate}}</div>
-
-            <div class="modal-body">{{book.guestsBooking}}</div>
-
             <div class="modal-footer">
-              <!-- <slot name="footer"> -->
-              <hr>
-              <button class="modal-default-button" @click="$emit('bookOrder')">OK</button>
-              <button class="modal-default-button" @click="$emit('close')">cancel</button>
-              <!-- </slot> -->
+            <button class="modal-btn cancel" @click="$emit('close')">✖</button>
+            <button class="modal-btn send" @click="$emit('bookOrder')">✔</button>
             </div>
           </div>
         </div>
       </div>
-    </transition>
+      
   </section>
 </template>
 
@@ -35,87 +27,104 @@
 import eventService from "@/services/eventService";
 import moment from "moment";
 
+
 export default {
-  name: "requestModal",
+ name: "requestModal",
   props: ['book','event', 'dataGuests'],
-  methods: {
-  },
-  created(){
-  
-  },
-  computed: {
+ computed: {
     getFormattedDate() {
       return moment(this.book.eventDate).format('DD/MM/YYYY');
       // return this.book.guests.eventDate
     }
-  }
+ }
 };
 </script>
 <style lang="scss" scoped>
 .modal-mask {
   position: fixed;
-  z-index: 9998;
   top: 0;
+  z-index: 1;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: table;
   transition: opacity 0.3s ease;
 }
 
+.test>*{
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 15px
+}
+
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  height: 100%;
+  margin-top: 110px;
+  
+}
+h1{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  border-bottom: 2px solid;
+  color: #30353091;
+
+}
+.test{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
 }
 
 .modal-container {
-  width: 300px;
-  //   height: 200px;
+  
+  width: 50%;
+  height: 70%;
   margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+.modal-footer{
+    height: 50px;
+    background-color:#0080007a;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
-.modal-body {
-  margin: 20px 0;
+span{
+  font-size: 1.1em;
 }
 
-.modal-default-button {
-  float: right;
+.modal-btn{
+  width: 50%;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
-.modal-enter {
-  opacity: 0;
+.send{
+  background-color: #88c888;
+  
+&:hover {
+    background-color: #008000b8;
+    font-size: 2em;
+}
 }
 
-.modal-leave-active {
-  opacity: 0;
+.cancel{
+  background-color: #e63030b5;
+  &:hover{
+    background-color: #cb0a0ac2;
+    font-size: 2em;
+  }
+
 }
 
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
 </style>
 
 

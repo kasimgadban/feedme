@@ -1,4 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Ultra');
+@import url('https://fonts.googleapis.com/css?family=Damion|Muli|Noto+Sans+KR');
+
+
 
 .requestBoxDate .vdp-datepicker__calendar {
     width: 100%;
+}
+
+.container-style{
+max-width: 980px;
+margin: 0 auto;
+padding: 0 20px;
 }

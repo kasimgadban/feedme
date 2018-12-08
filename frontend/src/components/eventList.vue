@@ -1,7 +1,7 @@
 <template>
   <section class="topCooks">
-    <h2>Most Requested Events</h2>
-    <div class="cmp-container">
+    <h2>Top Events</h2>
+    <div class="cmp-container container-style">
          <event-preview class="card-prev" v-for="event in events" 
          :key="event._id"
          :event = "event" 
@@ -29,19 +29,7 @@ export default {
   margin-top: 10px;
 }
 
-// .cmp-container {
-//   width: 90%;
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   text-decoration: none;
-//   justify-content: center;
-//   // margin-bottom: 10px;
-// }
 .cmp-container {
-  width: 90%;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
   gap: 20px;
@@ -49,8 +37,8 @@ export default {
 }
 @media only screen and (max-width: 800px) {
    .cmp-container {
-  width: 90%;
-  margin: 0 auto;
+  // width: 90%;
+  // margin: 0 auto;
   display: grid;
   grid-template-columns: 12fr;
   gap: 5px;
@@ -58,13 +46,16 @@ export default {
 }
 li {
   list-style-type: none;
-  // width: 30%;
 }
 
 h2 {
   text-align: center;
-  margin: 0;
-  padding: 15px;
+  color: rgba(56, 53, 53, 0.822);
+   font-family: 'Josefin Sans', sans-serif;
+   text-transform: uppercase;
+   font-size: 1.5em;
+   padding: 15px;
+
 }
 
 .card-prev{

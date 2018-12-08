@@ -1,7 +1,7 @@
 <template>
   <section class="topCooks">
     <h2>Top rated hosts</h2>
-    <div class="cmp-container">
+    <div class="cmp-container container-style">
       <li v-for="cook in cooks" :key="cook._id">
         <cook-preview :cook="cook"/>
       </li>
@@ -19,14 +19,6 @@ export default {
   components: {
     cookPreview
   }
-  //    created() {
-  //         this.$store.dispatch({type: 'loadCooks'})
-  //     },
-  //    computed: {
-  //        cooks(){
-  //             return this.$store.getters.getCooks;
-  //         }
-  //    }
 };
 </script>
 
@@ -36,9 +28,6 @@ export default {
 }
 
 .cmp-container {
-  width: 90%;
-  margin: 0 auto;
-  // margin-top: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
