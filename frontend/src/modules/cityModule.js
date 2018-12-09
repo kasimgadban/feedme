@@ -15,9 +15,7 @@ export default {
             state.currCity = city
         },
         setEventsByCity(state, { events }) {
-            console.log('I am from mutation and my events',events);
             state.eventsByCity = events
-            console.log('I am from mutation and my state.eventsByCity',state.eventsByCity);
         },
 
 
@@ -38,12 +36,9 @@ export default {
                 })
         },
         loadEventsByCity(context,{cityId}) {  
-            console.log('actions of events filter object',cityId);
-
             return eventService.query({byCityId:cityId})
                 .then(events => {
                     context.commit({ type: 'setEventsByCity', events })
-                    console.log('events from resolve are:',events);
                     return events;
                 })
         },

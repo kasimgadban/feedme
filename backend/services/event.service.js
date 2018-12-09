@@ -3,11 +3,12 @@ const mongoService = require('./mongo.service')
 const ObjectId = require('mongodb').ObjectId;
 
 function query(filter = {}) {
-    console.log('lllll', filter);
-
     let byCityId = filter.cityId;
     let byCookId = filter.cookId;
-    let date = filter.date;
+    // let splitArray = filter.dateAddress
+    // let date = splitArray.split(',')[0]
+    // let address = splitArray.split(',')[1]+splitArray.split(',')[2]
+    let date = filter.date
     if (byCityId) {
         byCityId = new ObjectId(byCityId)
         filter = { cityId: byCityId }
@@ -17,9 +18,9 @@ function query(filter = {}) {
         filter = { cookId: byCookId }
     }
     if (date) {
-        // date = new ObjectId(date)
-        filter = { date: date }
-        console.log('cooooooooooooooooooooooool');
+        filter = { 
+            date: date,
+        }
     }
     else filter = {}
     return mongoService.connectToDb()
@@ -30,23 +31,24 @@ function query(filter = {}) {
             else if (byCookId)
                 var events = collection.find({ cookId: byCookId }).toArray()
             else if (date) {
-                console.log('test Filter By event date', date);
-                var events = collection.aggregate(
+                // var events = collection.find({"address":{$regex: filter.address}})
+                events = collection.aggregate(
                     [
 
                         {
-                            "$unwind": {
-                                "path": "$dates"
+                            $unwind: {
+                                path: '$dates'
                             }
                         },
-                        {
-                            "$match": {
-                                "dates.eventDate": date
+                        { 
+                            $match : { 
+                                // 'address' : {$regex: filter.address},
+                                'dates.eventDate': filter.date
                             }
-                        },
+                        },  
                         {
-                            "$group": {
-                                "_id": "$dates.guests"
+                            $group: {
+                                "_id": '$dates'
                             },
                         }
 
@@ -59,7 +61,6 @@ function query(filter = {}) {
             return events
         })
 }
-
 function getById(eventId) {
     eventId = new ObjectId(eventId)
     return mongoService.connectToDb()
@@ -91,7 +92,6 @@ function add(event) {
 }
 
 // function update(event){
-//     console.log('event test',event);
 //     event._id = new ObjectId(event._id)
 //     return mongoService.connectToDb()
 //         .then(db => {
@@ -104,7 +104,6 @@ function add(event) {
 // }
 
 // function addBook(book){
-//     console.log('event test 82=> ',book);
 //     const eventId = new ObjectId(book.eventId)
 //     delete book.eventId;
 //     return mongoService.connectToDb()
@@ -118,9 +117,8 @@ function add(event) {
 // }
 
 function update(event) {
-    // console.log('=>', event.dates);
     event._id = new ObjectId(event._id)
-    delete event.dates.eventId
+    // delete event.dates.eventId
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
@@ -133,7 +131,6 @@ function update(event) {
 
 // function update(order){
 //     const cookId = new ObjectId(order.cookId)
-//     console.log(order);
 //     return mongoService.connectToDb()
 //         .then(db => {
 //             const collection = db.collection('cook_db');

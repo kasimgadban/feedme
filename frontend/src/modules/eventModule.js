@@ -2,7 +2,7 @@ import eventService from '../services/eventService.js';
 
 export default {
   state: {
-    // event: ,
+    event: null ,
     events: null,
     currEvent: loadEvent(),
     FilterdEvent: null
@@ -23,7 +23,6 @@ export default {
     loadEvents(context) {
       // if(filter['cityId'] !== '') filter.cityId = filter['cityId'];
       // if(filter['cookId'] !== '') filter.cookId = filter['cookId']
-      // console.log('actions of events filter object',filter);
       return eventService.query().then(events => {
         context.commit({ type: 'setEvents', events });
       });
@@ -39,10 +38,14 @@ export default {
         return event;
       });
     },
-    FilterByEventDate(context,{date}){
-      console.log(typeof(date));
+    // [date,address]
+    // {date,address}
+    FilterByEventDate(context,[date,eventId]){
+      console.log(eventId);
       return eventService.query({date}).then(FilterdEvent =>{
         context.commit({type:'setFilterByEventDate',FilterdEvent});
+        console.log(FilterdEvent);
+        
         return FilterdEvent;
       })
     }

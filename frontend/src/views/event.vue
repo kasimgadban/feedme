@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container" v-if="event">
     <div class="try">
     <div class="images-container" :style="bgImage">
       <div class="name">{{event.description}}</div>
@@ -61,7 +61,8 @@ export default {
   created() {
     const eventId = this.$route.params.id;
     eventService.getById(eventId).then(event => {
-      this.event = event;
+      // this.event = JSON.parse(JSON.stringify(event));
+      this.event = event
       locationService.getPositionByName(this.event.address).then(res => {
         this.currentLocation = res;
       });
@@ -84,7 +85,6 @@ export default {
 
   components: {
     requestBox,
-    navBar
   }
 };
 </script>

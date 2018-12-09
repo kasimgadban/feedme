@@ -30,9 +30,6 @@ import cookService from '@/services/cookService'
 
 export default {
   props: ['order','cookId'],
-  // created() {
-  //   console.log("order is: ", this.order);
-  // },
   data(){
     return {
       cook: null
@@ -42,19 +39,15 @@ export default {
     bookOrder() {
      cookService.update(this.order)
       this.$emit("close");
-      // console.log("i am pretty console log",cook);
     }
   },
   created() {
-    console.log(this.cookId);
     var cookId = this.cookId;
     this.$store.dispatch({ type: "getCookById", cookId})
             .then(cook => {
               this.cook = cook
             });
-            var x = this.order.eventDate;
             // var y = x.split(' ');
-            console.log('date',x)
   //   this.$store.dispatch({ type: "loadEvents" });
   //   this.$store.dispatch({ type: "loadCities" });
   },

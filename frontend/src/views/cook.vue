@@ -84,7 +84,6 @@ export default {
         this.$store
           .dispatch({ type: "getEventsByCook", cookId })
           .then(events => {
-            console.log("events cook page", events);
             this.events = events;
           });
       });

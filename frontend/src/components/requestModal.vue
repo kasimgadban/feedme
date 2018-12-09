@@ -5,12 +5,12 @@
           <div class="modal-container ">
             <div class="test">
               <h1>{{event.description}}</h1>
-              <span>Price:</span>
+              <span>Price:{{event.price}}</span>
               <span>Date: {{getFormattedDate}}</span>
               <span>Guests: {{book.guestsBooking}}</span>
               <span>Location: {{event.address}}</span>
-              <span>Name: {{book.guestName}}</span>
-              <span>Phone#: {{book.guestPhone}}</span>
+              <span>Name: {{dataGuests.guestName}}</span>
+              <span>Phone#: {{dataGuests.guestPhone}}</span>
             </div>
             <div class="modal-footer">
             <button class="modal-btn cancel" @click="$emit('close')">✖</button>

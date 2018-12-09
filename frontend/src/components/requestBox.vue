@@ -1,23 +1,24 @@
 <template>
-  <section>
-    <div class="book-form">
+  <section >
+    <div class="book-form" v-if="event">
       <h3 class="josefin-font">
         ${{event.price}}
-        {{order.cookId}}
+        {{book.cookId}}
         <span class="title-span josefin-font">Price per person</span>
       </h3>
       <span class="title josefin-font">Date</span>
       <date-picker
         class="date requestBoxDate"
         :inline="true"
-        v-model="order.eventDate"
+        @input="selected"
+        v-model="book.eventDate"
         :disabledDates="disabledDates"
         :highlighted="highlighted"
         :bootstrapStyling="true"
         :minimumView="'day'" :maximumView="'month'" :initialView="'day'"
       ></date-picker>
-      <select name v-model="order.guests" class="select">
-         <option value="" disabled selected>Guests</option>
+      <select name v-model="book.guestsBooking" class="select">
+         <!-- <option value="" selected>Guests</option> -->
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -43,8 +44,7 @@
       @bookOrder="bookOrder"
       :book="book"
       :event="event"
-      :dataGuests=" dataGuests"
-
+      :dataGuests="dataGuests"
     ></request-modal>
   </section>
 </template>
@@ -78,14 +78,13 @@ export default {
       highlighted: {
         days: []
       },
-      // guestsCount
+      guestsCount: 0,
       FilterdEvent: {}
     };
   },
   created() {
     this.book.eventId = this.$route.params.id;
     // this.book = this.event.dates
-    // console.log(this.book);
     
     /******************CHANGE********************/     
     var a = [], diff = [];
@@ -104,10 +103,6 @@ export default {
         diff.push(+k);
   this.disabledDates.days = diff
    /**************************************/    
-  ////   var a  = 0;
-  ////  for (var i = 0; i < this.event.dates.length; i++) {
-  ////   a  +=  +(this.event.dates[i].guests.length);
-  ////  }  
   },
   methods: {
     bookOrder() {
@@ -119,31 +114,21 @@ export default {
       eventService.update(this.event);
     },
     selected(){
-      this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
-      console.log('lala',this.book.eventDate);
-      const date = this.book.eventDate
-          this.$store
-        .dispatch({ type: "FilterByEventDate", date })
-        .then(FilterdEvent => {
-          this.FilterdEvent = FilterdEvent;
-          console.log('FilterdEvent',this.FilterdEvent);
-          // for (let i = 0; i < this.FilterdEvent.length; i++) {
-          //   console.log('a');
-          // }
+      const date= moment(this.book.eventDate).format("DD/MM/YYYY")
+      const filter = [date,this.book.eventId]
+      console.log(date);
+      
+          this.$store.dispatch( 'FilterByEventDate',[filter[0],filter[1]]).then(FilterdEvent => {
+            for (let i = 0; i < FilterdEvent.length; i++) {
+              console.log(FilterdEvent[i]._id.eventId);
+              if(FilterdEvent[i]._id.eventId === this.book.eventId)
+             this.guestsCount = FilterdEvent[i]._id.guests.length;   
+            }
+          console.log('FilterdEvent',this.guestsCount);
         });
     }
   },
   computed: {
-    guestsCount() {
-      return 
-      // {const date = this.book.eventDate
-      //     this.$store
-      //   .dispatch({ type: "FilterByEventDate", date })
-      //   .then(FilterdEvent => {
-      //     this.FilterdEvent = FilterdEvent;
-      //     console.log('FilterdEvent',this.FilterdEvent);
-      //   });}
-  }
   },
   components: {
     requestModal,
