@@ -12,14 +12,21 @@
         <router-link to="/">Login</router-link>
       </div>
     </div>
+
+  <!-- <responsive-nav class="hamburger">    
+  </responsive-nav> -->
+
+
   </section>
 
 </template>
 <script>
+import responsiveNav from "@/components/responsiveNav.vue";
 
 export default {
   name: "navBar",
   components: {
+    responsiveNav
     // searchBar
   }
 };
@@ -55,7 +62,7 @@ export default {
   height: 50px;
 }
 
-.nav-bar {
+.nav-bar,.hamburger {
   display: flex;
   align-items: flex-end;
   margin-right: 20px;
@@ -90,6 +97,14 @@ export default {
 }
 
 @media only screen and (max-width: 800px) {
+  .nav-bar{
+    // display: none;
+        // margin-right: 207px;
+  }
+
+  // .hamburger{
+  //   display: block;
+  // }
     
 }
 </style>

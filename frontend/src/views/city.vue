@@ -115,11 +115,12 @@ event-preview .city-event {
 @media only screen and (max-width: 800px) {
   .city-event {
     width: 100%;
+    padding: 0px;
   }
   .city-events {
     display: grid;
     grid-template-columns: 12fr;
-    gap: 5px;
+    gap: 17px;
   }
   .name {
     font-size: 2.5em;

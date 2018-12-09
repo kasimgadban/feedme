@@ -1,23 +1,12 @@
 <template>
   <section class="header">
-    <!-- <div class="nav-container">
-     <router-link to="/" class="logo">
-     <img class="img-logo" src="../images/logo1.png">
-     </router-link>
-      <div class="nav-bar">
-        <router-link to="/">Home</router-link>
-        <router-link to="/">About</router-link>
-        <router-link to="/">Login</router-link>
-      </div>
-    </div> -->
-    <!-- <nav-bar></nav-bar> -->
-    <div>
+    <!-- <div> -->
       <h1>Unforgettable Tastes</h1>
     <div class="search-bar">
       <search-bar></search-bar>
       <input type="date" placeholder="When?" class="date">
       <button class="search-btn">Search</button>
-    </div>
+    <!-- </div> -->
     </div>
     <router-view/>
   </section>
@@ -67,9 +56,10 @@ export default {
   background-color: rgba(204, 193, 193, 0.959);
     border: none;
     border-right: 2px solid black;
-    padding: 8px;
     width: 300px;
     font-size: 1em;
+    height: 48px;
+    padding-left: 5px;
 }
 .nav-container {
   display: flex;
@@ -108,14 +98,15 @@ export default {
   font-size: 1.2em;
 }
 button{
-      width: 15%;
-      background-color: #88c888;
+    width: 15%;
+    background-color: #88c888;
     border: none;
     cursor: pointer;
     font-size: 1.1em;
     color: black;
     font-weight: bolder;
     letter-spacing: 2px;
+    height: 48px;
 }
 
 button:focus {
@@ -133,8 +124,16 @@ h1{
 @media only screen and (max-width: 800px) {
     h1{
   // text-align: center;
-  margin-bottom: 0px;
+  // margin-bottom: 0px;
+
+    // text-align: center;
+    margin-bottom: 70px;
+    margin-top: 80px;
+    font-size: 1.5em;
+    // color: white;
+    // font-family: 'Ultra', serif;
     }
+
 .search-bar {
   display: flex;
   align-items: center;
@@ -143,13 +142,21 @@ h1{
   flex-direction: column;
 }
 button{
-  width: 30%;
+  width: 25%;
+  font-size: 1em;
+  padding: 10px 1px 28px 3px;
 }
 
 .search-bar>*{
-  margin-bottom: 5px;
   border:none;
-  padding: 15px;
+}
+.date{
+  padding: 10px;
+    padding-bottom: 22px;
+    margin-bottom: 3px;
+}
+.header{
+  height: 250px;
 }
 }
 </style>

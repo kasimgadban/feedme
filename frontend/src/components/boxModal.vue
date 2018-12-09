@@ -1,6 +1,8 @@
 <template>
   <section>
-    <div class="order-form">
+      <div class="modal-mask " @click="$emit('close')">
+        <div class="modal-wrapper">
+          <div class="order-form">
       <h3 class="josefin-font">
         ${{event.price}}
         {{order.cookId}}
@@ -38,9 +40,11 @@
       :cookId="event.cookId"
       :event="event"
     ></request-modal>
+        </div>
+      </div>
+      
   </section>
 </template>
-
 
 <script>
 import requestModal from "@/components/requestModal.vue";
@@ -82,141 +86,92 @@ export default {
 };
 </script>
 
-<style scoped lang = "scss">
-
-
-.images-container {
+<style lang="scss" scoped>
+.modal-mask {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  left: 0;
   width: 100%;
-  background-image: url(https://www.shortlistdubai.com/sites/default/files/styles/article_small_picture/public/images/2017/07/31/main-shutterstock_518750773.jpg?itok=ZupB_n6k);
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
 }
 
-.container {
-  display: grid;
-  grid-template-rows: 250px 1fr;
+.test>*{
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 15px
 }
 
-.wrapper {
-  display: grid;
-  gap: 20px;
-  margin: 0 auto;
-  grid-template-columns: 1fr 300px;
-  width: 90%;
-  padding: 10px;
-  position: relative;
-  border: 2px solid black;
+.modal-wrapper {
+  height: 100%;
+  margin-top: 110px;
+  
 }
-.top {
-  display: flex;
+h1{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  border-bottom: 2px solid;
+  color: #30353091;
+
 }
-.top > * {
-  padding: 10px;
-}
-.desc,
-.menu,
-.order-form {
+.test{
   display: flex;
   flex-direction: column;
-}
-.order-form {
-  padding: 10px;
-  margin-top: 10px;
-  background: #b0aaaa1f;
-  -webkit-box-shadow: 5px 7px #453e3e1f;
-  box-shadow: 4px 4px 4px #453e;
-}
-.menu {
-  align-items: center;
-}
-.title-span {
-  font-size: 12px;
-  color: #808080b0;
-  padding: 5px;
-}
-.order-form > * {
-  margin: 0px;
-      font-size: 1.3em;
-      margin-top: 10px;
-}
-
-input {
-  padding: 7px;
-  margin-bottom: 10px;
-}
-select>*{
-  font-size: 16px;
-  margin: 20px;
-}
-.title {
-  font-size: 1em;
-}
-
-.send {
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 0 0 4px 4px;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  /* font-size: 1.6rem; */
-  line-height: 19px;
-  background-color:#88c888;
-  color: #fff;
-  padding: 15px;
-  margin-top: 10px !important;
-}
-.buyer {
-  padding: 7px;
-  margin-top: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: none;
-}
-
-
-.date:first-child {
-  border: 1px solid gray !important; 
-  width: 100% !important;
-}
-
-h3,span{
-  padding: 5px;
-  margin-bottom: 5px;
-}
-
-.select{
+  flex: 1;
   padding: 20px;
-  font-size: 16px;
-  height: 30px;
-  border-color: gainsboro;
 }
 
-.josefin-font{
-  font-family: 'Josefin Sans', sans-serif;
+.modal-container {
+  
+  width: 50%;
+  height: 70%;
+  margin: 0px auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  
 }
 
+.modal-footer{
+    height: 50px;
+    background-color:#0080007a;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
 
+span{
+  font-size: 1.1em;
+}
+.modal-btn{
+  width: 50%;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
 
-@media only screen and (max-width: 800px) {
-  .order-form > *{
-    margin: 0px;
-    font-size: 1em;
-}
-.buyer{
-  margin: 3px;
-}
-.select{
-  padding: 0px;
-  margin-top: 3px;
-}
 .send{
-      line-height: 10px;
+  background-color: #88c888;
+  
+&:hover {
+    background-color: #008000b8;
+    font-size: 2em;
+}
 }
 
+
+.cancel{
+  background-color: #e63030b5;
+  &:hover{
+    background-color: #cb0a0ac2;
+    font-size: 2em;
+  }
+
 }
+
 </style>
+
 
