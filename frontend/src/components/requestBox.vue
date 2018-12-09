@@ -22,7 +22,7 @@
         <option>1</option>
         <option>2</option>
         <option>3</option>
-        <option>4</option>
+        <option disabled>4</option>
         <option>5</option>
         <option>6</option>
         <option>7</option>
@@ -254,5 +254,24 @@ h3,span{
   font-family: 'Josefin Sans', sans-serif;
 }
 
+
+
+@media only screen and (max-width: 800px) {
+  .order-form > *{
+    margin: 0px;
+    font-size: 1em;
+}
+.buyer{
+  margin: 3px;
+}
+.select{
+  padding: 0px;
+  margin-top: 3px;
+}
+.send{
+      line-height: 10px;
+}
+
+}
 </style>
 

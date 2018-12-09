@@ -49,17 +49,14 @@ export default {
 </script>
 
 <style scoped lang = "scss">
-.search-location {
-  padding: 15px;
-}
 
 input{
     background-color: rgba(204, 193, 193, 0.959);  
     border: none;
     border-right: 2px solid black;
-    padding: 8px;
     width: 300px;
     font-size: 1em;
+    padding: 15px;
 }
 input:focus {
     outline:none;
@@ -68,7 +65,8 @@ input:focus {
 
 @media only screen and (max-width: 800px) {
 input{
-  margin-bottom: 5px;
+  padding: 10px;
+  margin-bottom: 3px;
   border:none;
 }
 }

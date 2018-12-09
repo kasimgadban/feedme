@@ -1,16 +1,5 @@
 <template>
   <section class="container">
-    <!-- <nav-bar></nav-bar> -->
-    <!-- <div class="header-nav">
-      <router-link to="/" class="logo">
-        <img class="img-logo" src="../images/logo1.png">
-      </router-link>
-      <div class="nav">
-        <router-link to="http://localhost:8080">Home</router-link>|
-        <router-link to="http://localhost:8080/about">About</router-link>|
-        <router-link to="http://localhost:8080/">Log In</router-link>
-      </div>
-    </div> -->
     <div class="host-images">
       <img class="coverL" src="../images/image1.jpg">
       <img class="coverM" src="../images/image3.jpg">
@@ -41,15 +30,11 @@
                       ?view=cm&fs=1&to=sawsan.elhade@gmail.com&su=new mail from feedMe
                       &body=Write your message here"
           target="_blank"
-        >{{cook.email}}</a> -->
-        <a class="mail"
-          id="mail"
-          :href="`mailto:${cook.email}`"
-          target="_blank"
-        >Contant the host</a>
+        >{{cook.email}}</a>-->
+        <a class="mail" id="mail" :href="`mailto:${cook.email}`" target="_blank">Contant the host</a>
       </div>
     </div>
-<div class="cook-events-wrapper">
+    <div class="cook-events-wrapper">
       <div class="cook-events container-style">
         <event-preview
           v-for="event in events"
@@ -58,15 +43,25 @@
           class="cook-events-list"
         />
       </div>
-      </div>
+
+      <!-- *****COMPONENT FOR EDITING EVENTS IN USER PAGE****** -->
+      <!-- <div class="events-to-edit container-style">
+        <event-edit
+          v-for="event in events"
+          :key="event._id"
+          :event="event"
+        />
+      </div>-->
+      <!-- *****COMPONENT FOR EDITING EVENTS IN USER PAGE****** -->
+    </div>
   </section>
 </template>
 
 <script>
 import StarRating from "vue-star-rating";
 import eventPreview from "@/components/eventPreview.vue";
-import navBar from "@/components/navBar.vue"
-
+import navBar from "@/components/navBar.vue";
+import eventEdit from "@/components/eventEdit.vue";
 
 export default {
   name: "cookPage",
@@ -102,7 +97,8 @@ export default {
   components: {
     StarRating,
     eventPreview,
-    navBar
+    navBar,
+    eventEdit
   }
 };
 </script>
@@ -119,16 +115,15 @@ export default {
   padding: 3px;
   font-size: 1em;
   color: #595959;
-  font-family: 'Noto Sans KR', sans-serif;
-
+  font-family: "Noto Sans KR", sans-serif;
 }
 .logo {
   width: 50px;
   height: 50px;
 }
 
-.mail{
-  color:#0e0ec3b8;
+.mail {
+  color: #0e0ec3b8;
 }
 
 .pic-name {
@@ -141,8 +136,7 @@ export default {
   margin-top: 10px;
   color: #595959;
   font-size: 1.2em;
-  font-family: 'Noto Sans KR', sans-serif;
-
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .cook-events {
@@ -152,16 +146,20 @@ export default {
   text-decoration: none;
   margin-bottom: 30px;
   padding-top: 20px;
-  
 }
 .cook-events-list {
   margin: 0;
   padding: 0;
 }
 
-.cook-events-wrapper{
-  background-color:#afceb32b;
+.cook-events-wrapper {
+  background-color: #afceb32b;
   height: 100%;
+}
+.events-to-edit {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .img-logo {
@@ -234,11 +232,9 @@ export default {
   padding-right: 5px;
 }
 
-.location>*{
+.location > * {
   color: #595959;
-  font-family: 'Noto Sans KR', sans-serif;
-
-
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .cook-btn-search-events {
@@ -259,7 +255,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-a{
+a {
   text-decoration: none;
 }
 
@@ -269,5 +265,15 @@ a{
     grid-template-columns: 12fr;
     gap: 20px;
   }
+  .location{
+    margin-left: 0px
+  }
+  .cook-name{
+    font-size: 1em
+  }
+  .pic-name{
+    align-items: center;
+  }
+  
 }
 </style>

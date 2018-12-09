@@ -1,9 +1,7 @@
 <template>
   <section>
-    <app-header /> 
+    <app-header class="app-header"></app-header>
     <city-list :cities="cities" />
-    <!-- <h2>How it works</h2> -->
-    <!-- <app-desc class="test"/> -->
     <event-list :events="events" ></event-list>
     <app-footer />
   </section>
@@ -56,7 +54,6 @@ h2{
   padding: 0px;
   background-color: rgba(17, 107, 17, 0.219);
   padding-top: 15px;
-
 }
 .test{
   justify-content: center;

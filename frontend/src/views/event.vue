@@ -1,6 +1,6 @@
 <template>
   <section class="container" v-if="event">
-    <div class="try">
+    <div class="event-page-container">
     <div class="images-container" :style="bgImage">
       <div class="name">{{event.description}}</div>
     </div>
@@ -28,12 +28,18 @@
             :center="currentLocation"
             :zoom="15"
             map-type-id="terrain"
-            style="height: 300px">
-            <GmapMarker :position="currentLocation" />
+
+          >
+            <GmapMarker :position="currentLocation"
+            :icon="{ url: require('../images/marker2.png')}"
+             />
           </GmapMap>
         </div>
       </div>
-      <request-box :event="event"></request-box>
+      <request-box :event="event" class="request-box"></request-box>
+      <!-- <box-modal :event="event" class="box-modal"></box-modal> -->
+      <!-- <button class="mobile-book" @click="displayBox()">Book Now</button> -->
+
     </div>
     </div>
   </section>
@@ -71,6 +77,11 @@ export default {
   methods: {
     openModal() {
       return (this.isSend = true);
+    },
+    displayBox(){
+      // document.querySelector('.box-modal').style.display = 'block'
+      console.log('i am request button')
+
     }
   },
   computed:{
@@ -85,12 +96,13 @@ export default {
 
   components: {
     requestBox,
+    navBar,
+    // boxModal
   }
 };
 </script>
 
 <style scoped lang = "scss">
-
 .images-container{
   margin: 0 auto;
   width: 100%;
@@ -102,6 +114,13 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.vue-map-container{
+  height: 300px;
+}
+
+.mobile-book,.box-modal{
+  display: none;
+}
 
 .name{
   color: black;
@@ -112,8 +131,7 @@ export default {
   padding: 10px;
   font-family: 'Ultra', serif;
 }
-
-.try{
+.event-page-container{
   display: grid; 
   grid-template-rows: 300px 1fr;
 
@@ -121,9 +139,9 @@ export default {
 
 .wrapper {
   display: grid;
-  gap: 20px;
+  /* gap: 20px; */
   grid-template-columns: 65% 35%;
-  max-width: 980px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 10px;
   position: relative;
@@ -172,6 +190,7 @@ input {
   font-size: 1em;
 }
 
+
 .send {
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -211,11 +230,18 @@ h3{
   font-family: fantasy;
   font-weight: bolder;
   margin: 3px;
-
+  text-align: center;
 }
 .host-details{
   font-family: none;
   text-align: justify;
+}
+.details{
+  margin-right: 20px;
+   /* background-color: #5f9ea012; */
+}
+hr{
+  margin: 0px;
 }
 
 p{
@@ -230,6 +256,7 @@ p{
 .menu-container{
   margin-bottom: 10px;
   padding: 10px;
+  background-color: #0096880d;
 }
 
 .josefin-font{
@@ -244,9 +271,53 @@ p{
 
 @media only screen and (max-width: 800px) {
   .name{
-    font-size: 1.7em;
-
+    font-size: 1em;
   }
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  /* padding: 3px; */
+}
+
+.mobile-book{
+  display: block;
+  background-color: red;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.request-box{
+  /* display: none; */
+}
+.menu-container{
+    margin-bottom: 10px;
+}
+.menu{
+  margin-bottom: 0px
+}
+p{
+      margin: 5px;
+}
+.menu-title{
+  font-size: 1.5em;
+}
+.top{
+      justify-content: center;
+}
+.details{
+      margin-right: 0px;
+     
+}
+.event-page-container{
+  display: grid; 
+  grid-template-rows: 200px 1fr;
+
+}
+.vue-map-container,.map-container{
+      height: 230px;
+}
+
 }
 
 </style>
