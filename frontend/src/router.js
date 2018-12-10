@@ -6,7 +6,9 @@ import event from './views/event.vue'
 import Hosting from './views/hosting.vue'
 // import requestModal from './components/requestModal.vue'
 import city from './views/city.vue'
-
+import signup from './views/signup.vue'
+import myprofile from './views/myprofile.vue'
+import eventEdit from './views/eventEdit.vue'
 
 Vue.use(Router)
 
@@ -39,10 +41,15 @@ export default new Router({
       name: 'city',
       component: city
     },
-    // {
-    //   path: '/event/:order',
-    //   name: 'requestModal',
-    //   component: requestModal
-    // }
+    {
+      path: '/signup',
+      name: 'signup',
+      component: signup
+    },
+    {
+      path: '/myprofile/:id',
+      name: 'myprofile',
+      component: myprofile
+    }
   ]
 })

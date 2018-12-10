@@ -48,7 +48,26 @@ export default {
         
         return FilterdEvent;
       })
-    }
+    },
+    editEvent(context,{event}){
+      // console.log('cook module {} ',{cook})
+      console.log('event module event edit ',event)
+
+      return eventService.saveEvent(event)
+          .then(event => {
+              context.commit({type: 'setEvent', event})
+              console.log('the new event isssss edit:',event)
+              return event
+      })
+  },
+  removeEvent(context,{event}){
+    console.log('event module event edit ',event)
+
+    return eventService.deleteEvent(event)
+        // .then( events => {
+        //   commit({type: 'setEvents', events})
+        // })
+   },
   },
   getters: {
     getEvents: state => {

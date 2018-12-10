@@ -112,6 +112,7 @@ export default {
       }
       this.event.dates.push(this.book);
       eventService.update(this.event);
+      // this.isShowModal= false
     },
     selected(){
       const date= moment(this.book.eventDate).format("DD/MM/YYYY")

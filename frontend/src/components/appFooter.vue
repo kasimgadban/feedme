@@ -1,6 +1,6 @@
 <template>
   <section class="app-footer">
-    <div>I am a footer</div>
+    <div>TeaRight</div>
   </section>
 </template>
 
@@ -16,6 +16,10 @@ export default {
 .app-footer {
   width: 100%;
   height: 30px;
-  background-color:#2b3b58a8;
+  background-color:#bbbcbd8c;
+  padding: 5px;
+}
+div{
+  padding-top: 5px;
 }
 </style>

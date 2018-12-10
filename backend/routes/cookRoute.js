@@ -36,7 +36,12 @@ function addCookRoutes(app){
     // UPDATE
     app.put('/cook/:id', (req, res) => {
         const cook = req.body;
-        cookService.update(cook)
+        if(cook._id){
+            cookService.update(cook)
+            .then(cook => res.json(cook))
+        }
+        else
+        cookService.add(cook)
             .then(cook => res.json(cook))
     })
 

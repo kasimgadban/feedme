@@ -50,6 +50,7 @@ import requestBox from "@/components/requestBox.vue";
 import eventService from "@/services/eventService";
 import locationService from "@/services/locationService";
 import cookService from "@/services/cookService";
+import navBar from "@/components/navBar.vue";
 
 export default {
   name: "eventPage",
@@ -73,6 +74,7 @@ export default {
         this.currentLocation = res;
       });
     });
+
   },
   methods: {
     openModal() {
@@ -82,7 +84,12 @@ export default {
       // document.querySelector('.box-modal').style.display = 'block'
       console.log('i am request button')
 
-    }
+    },
+    // time(){
+    //   let time = this.event.time.split('T');
+    //   let timee = time[0];
+    // }
+
   },
   computed:{
     bgImage() {

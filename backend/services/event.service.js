@@ -79,10 +79,15 @@ function remove(eventId) {
         })
 }
 
-function add(event) {
+function add(event){
+     
     return mongoService.connectToDb()
         .then(db => {
-            const collection = db.collection('event_db');
+            const collection = db.collection('event_db')
+            event.cityId = new ObjectId(event.cityId)
+            event.cookId = new ObjectId(event.cookId)
+            event.image =  "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
+            event.bgImage = "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
             return collection.insertOne(event)
                 .then(result => {
                     event._id = result.insertedId;
@@ -122,6 +127,8 @@ function update(event) {
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
+            event.cityId = new ObjectId(event.cityId)
+            event.cookId = new ObjectId(event.cookId)
             return collection.updateOne({ _id: event._id }, { $set: event })
                 .then(result => {
                     return result;
