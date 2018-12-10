@@ -20,7 +20,7 @@
         <option>1</option>
         <option>2</option>
         <option>3</option>
-        <option disabled>4</option>
+        <option>4</option>
         <option>5</option>
         <option>6</option>
         <option>7</option>
@@ -73,8 +73,13 @@ export default {
   },
   methods: {
   },
+  computed: {
+    // toggleModal(){
+    //   if(this.isShowModal) return 'open'
+    //   else return 'closed'
 
-  computed: {},
+    // }
+  },
   components: {
     requestModal,
     datePicker
@@ -116,6 +121,13 @@ export default {
 .top > * {
   padding: 10px;
 }
+/* .open{
+  bottom: 0;
+  -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+} */
 .desc,
 .menu,
 .order-form {

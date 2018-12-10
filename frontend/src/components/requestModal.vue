@@ -2,7 +2,7 @@
   <section>
       <div class="modal-mask " @click="$emit('close')">
         <div class="modal-wrapper">
-          <div class="modal-container ">
+          <div class="modal-container " @click.stop>
             <div class="test">
               <h1>{{event.description}}</h1>
               <span>Price:</span>

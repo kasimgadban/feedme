@@ -81,7 +81,6 @@ export default {
       return (this.isSend = true);
     },
     displayBox(){
-      // document.querySelector('.box-modal').style.display = 'block'
       console.log('i am request button')
 
     }
