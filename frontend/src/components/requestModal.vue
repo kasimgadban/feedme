@@ -2,19 +2,19 @@
   <section>
       <div class="modal-mask " @click="$emit('close')">
         <div class="modal-wrapper">
-          <div class="modal-container " @click.stop>
+          <div class="modal-container" @click.stop>
             <div class="test">
               <h1>{{event.description}}</h1>
-              <span>Price:</span>
-              <span>Date: {{order.eventDate}}</span>
-              <span>Guests: {{order.guests}}</span>
+              <span>Price:{{event.price}}</span>
+              <span>Date: {{getFormattedDate}}</span>
+              <span>Guests: {{book.guestsBooking}}</span>
               <span>Location: {{event.address}}</span>
-              <span>Name: {{order.guestName}}</span>
-              <span>Phone#: {{order.guestNumber}}</span>
+              <span>Name: {{dataGuests.guestName}}</span>
+              <span>Phone#: {{dataGuests.guestPhone}}</span>
             </div>
             <div class="modal-footer">
             <button class="modal-btn cancel" @click="$emit('close')">✖</button>
-            <button class="modal-btn send" @click="bookOrder()">✔</button>
+            <button class="modal-btn send" @click="$emit('close')">✔</button>
             </div>
           </div>
         </div>
@@ -24,33 +24,19 @@
 </template>
 
 <script>
-
-import cookService from '@/services/cookService'
+import eventService from "@/services/eventService";
+import moment from "moment";
 
 
 export default {
-  props: ['order','cookId','event'],
-  data(){
-    return {
-      cook: null
+ name: "requestModal",
+  props: ['book','event', 'dataGuests'],
+ computed: {
+    getFormattedDate() {
+      return moment(this.book.eventDate).format('DD/MM/YYYY');
+      // return this.book.guests.eventDate
     }
-  },
-  methods: {
-    bookOrder() {
-     cookService.update(this.order)
-      this.$emit("close");
-    },
-  },
-  created() {
-    console.log(this.cookId);
-    var cookId = this.cookId;
-    this.$store.dispatch({ type: "getCookById", cookId})
-            .then(cook => {
-              this.cook = cook
-            });
-            var x = this.order.eventDate;
-            console.log('date',x)
-  },
+ }
 };
 </script>
 <style lang="scss" scoped>
@@ -67,7 +53,7 @@ export default {
 
 .test>*{
     font-family: 'Josefin Sans', sans-serif;
-    margin: 15px
+    margin: 7px
 }
 
 .modal-wrapper {
@@ -114,25 +100,6 @@ span{
   font-size: 1.1em;
 }
 
-// .modal-btn {
-//     width: 45px;
-//     height: 45px;
-//     margin: 3px;
-//     border-radius: 50%;
-//     color: #f5f5f5;
-//     text-align: center;
-//     text-decoration: none;
-//     background: #464646;
-//     -webkit-box-shadow: 0 0 3px grey;
-//     box-shadow: 0 0 3px grey;
-//     font-size: 15px;
-//     font-weight: bold;
-//     border: 2px solid;
-// }
-// .modal-btn:hover {
-//     background: #262626;
-// }
-
 .modal-btn{
   width: 50%;
   border: none;
@@ -148,7 +115,6 @@ span{
     font-size: 2em;
 }
 }
-
 
 .cancel{
   background-color: #e63030b5;

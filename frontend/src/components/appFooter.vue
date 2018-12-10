@@ -1,7 +1,6 @@
 <template>
   <section class="app-footer">
-    <div>Coffeeright</div>
-    
+    <div>TeaRight</div>
   </section>
 </template>
 
@@ -21,6 +20,6 @@ export default {
   padding: 5px;
 }
 div{
-  padding-top: 5px
+  padding-top: 5px;
 }
 </style>

@@ -4,8 +4,11 @@ import Home from './views/Home.vue'
 import Cook from './views/cook.vue'
 import event from './views/event.vue'
 import Hosting from './views/hosting.vue'
+// import requestModal from './components/requestModal.vue'
 import city from './views/city.vue'
-
+import signup from './views/signup.vue'
+import myprofile from './views/myprofile.vue'
+import eventEdit from './views/eventEdit.vue'
 
 Vue.use(Router)
 
@@ -37,6 +40,16 @@ export default new Router({
       path: '/city/:cityId',
       name: 'city',
       component: city
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: signup
+    },
+    {
+      path: '/myprofile/:id',
+      name: 'myprofile',
+      component: myprofile
     }
   ]
 })

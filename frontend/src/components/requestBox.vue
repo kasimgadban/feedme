@@ -1,22 +1,24 @@
 <template>
-  <section>
-    <div class="order-form">
+  <section >
+    <div class="book-form" v-if="event">
       <h3 class="josefin-font">
         ${{event.price}}
-        {{order.cookId}}
+        {{book.cookId}}
         <span class="title-span josefin-font">Price per person</span>
       </h3>
       <span class="title josefin-font">Date</span>
       <date-picker
         class="date requestBoxDate"
         :inline="true"
-        v-model="order.eventDate"
+        @input="selected"
+        v-model="book.eventDate"
         :disabledDates="disabledDates"
+        :highlighted="highlighted"
         :bootstrapStyling="true"
         :minimumView="'day'" :maximumView="'month'" :initialView="'day'"
       ></date-picker>
-      <select name v-model="order.guests" class="select">
-         <option value="" disabled selected>Guests</option>
+      <select name v-model="book.guestsBooking" class="select">
+         <!-- <option value="" selected>Guests</option> -->
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -26,17 +28,23 @@
         <option>7</option>
         <option>8</option>
       </select>
-      <input type="text" class="buyer" v-model="order.guestName" placeholder="Enter your name">
-      <input type="text" class="buyer" v-model="order.guestNumber" placeholder="Enter your number">
+      <input type="text" class="buyer" v-model="dataGuests.guestName" placeholder="Enter your name">
+      <input
+        type="text"
+        class="buyer"
+        v-model="dataGuests.guestPhone"
+        placeholder="Enter your phone number"
+      >
       
       <button @click="isShowModal = true" class="send josefin-font ">Book</button>
     </div>
     <request-modal
       v-if="isShowModal"
       @close="isShowModal = false"
-      :order="order"
-      :cookId="event.cookId"
+      @bookOrder="bookOrder"
+      :book="book"
       :event="event"
+      :dataGuests="dataGuests"
     ></request-modal>
   </section>
 </template>
@@ -45,40 +53,83 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
+import eventService from "@/services/eventService";
+import moment from "moment";
 
 export default {
   name: "requestBox",
   props: ["event"],
   data() {
     return {
-      order: {
-        cookId: '',
-        eventId: '',
-        guestName: '',
-        guestNumber: '',
-        eventDate: '',
-        guests: ''
+      book: {
+        eventId: "",
+        eventDate: "",
+        guests: [],
+        guestsBooking: 0
+      },
+      dataGuests: {
+        guestName: "",
+        guestPhone: ""
       },
       isShowModal: false,
       disabledDates: {
-        days: [2, 3],
-        highlighted: {
-          days: [0, 6]
-        }
+        days:[]
       },
+      highlighted: {
+        days: []
+      },
+      guestsCount: 0,
+      FilterdEvent: {}
     };
   },
   created() {
-    this.eventId = this.$route.params.id
+    this.book.eventId = this.$route.params.id;
+    // this.book = this.event.dates
+    
+    /******************CHANGE********************/     
+    var a = [], diff = [];
+    var test = [0,1,2,3,4,5,6]
+    for (let i = 0; i < test.length; i++) {
+        a[test[i]] = true;
+    }
+    for (var i = 0; i < this.event.days.length; i++) {
+        if (a[this.event.days[i]]) {
+            delete a[this.event.days[i]];
+        } else {
+            a[this.event.days[i]] = true;
+        }
+    }
+    for (var k in a) 
+        diff.push(+k);
+  this.disabledDates.days = diff
+   /**************************************/    
   },
   methods: {
+    bookOrder() {
+      this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
+      for (var i = 0; i < this.book.guestsBooking; i++) {
+        this.book.guests.push(this.dataGuests);
+      }
+      this.event.dates.push(this.book);
+      eventService.update(this.event);
+      // this.isShowModal= false
+    },
+    selected(){
+      const date= moment(this.book.eventDate).format("DD/MM/YYYY")
+      const filter = [date,this.book.eventId]
+      console.log(date);
+      
+          this.$store.dispatch( 'FilterByEventDate',[filter[0],filter[1]]).then(FilterdEvent => {
+            for (let i = 0; i < FilterdEvent.length; i++) {
+              console.log(FilterdEvent[i]._id.eventId);
+              if(FilterdEvent[i]._id.eventId === this.book.eventId)
+             this.guestsCount = FilterdEvent[i]._id.guests.length;   
+            }
+          console.log('FilterdEvent',this.guestsCount);
+        });
+    }
   },
   computed: {
-    // toggleModal(){
-    //   if(this.isShowModal) return 'open'
-    //   else return 'closed'
-
-    // }
   },
   components: {
     requestModal,
@@ -130,11 +181,11 @@ export default {
 } */
 .desc,
 .menu,
-.order-form {
+.book-form {
   display: flex;
   flex-direction: column;
 }
-.order-form {
+.book-form {
   padding: 10px;
   margin-top: 10px;
   background: #b0aaaa1f;
@@ -149,7 +200,7 @@ export default {
   color: #808080b0;
   padding: 5px;
 }
-.order-form > * {
+.book-form > * {
   margin: 0px;
       font-size: 1.3em;
       margin-top: 10px;
@@ -176,7 +227,7 @@ select>*{
   cursor: pointer;
   /* font-size: 1.6rem; */
   line-height: 19px;
-  background-color:#88c888;
+  background-color: #88c888;
   color: #fff;
   padding: 15px;
   margin-top: 10px !important;
@@ -191,7 +242,7 @@ select>*{
 
 
 .date:first-child {
-  border: 1px solid gray !important; 
+  border: 1px solid gray !important;
   width: 100% !important;
 }
 

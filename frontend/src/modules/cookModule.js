@@ -6,6 +6,7 @@ export default {
         cooks: null,
         cookId: null,
         currCook: null,
+        newCook:null,
         events:null,
     },
     mutations: {
@@ -31,8 +32,6 @@ export default {
             return cookService.getById(cookId)
             .then(cook => {                
                 context.commit({type: 'setCook',cook})
-                console.log('cooookkkk',cook);
-                
                 return cook;
             })
         },
@@ -42,7 +41,29 @@ export default {
                 context.commit({type: 'setEvents',events})
                 return events;
             })
-        }
+        },
+        addCook(context,{cook}){
+            // console.log('cook module {} ',{cook})
+            console.log('cook module',cook)
+
+            return cookService.saveCook(cook)
+                .then(cook => {
+                    context.commit({type: 'setCook', cook})
+                    console.log('the new cook isssss:',cook)
+                    return cook
+            })
+        },
+        editCook(context,{cook}){
+            // console.log('cook module {} ',{cook})
+            console.log('cook module cook module',cook)
+
+            return cookService.saveCook(cook)
+                .then(cook => {
+                    context.commit({type: 'setCook', cook})
+                    console.log('the new cook isssss edit:',cook)
+                    return cook
+            })
+        },
     },
 
     getters: {

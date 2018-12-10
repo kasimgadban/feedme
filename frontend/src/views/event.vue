@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container" v-if="event">
     <div class="event-page-container">
     <div class="images-container" :style="bgImage">
       <div class="name">{{event.description}}</div>
@@ -50,31 +50,31 @@ import requestBox from "@/components/requestBox.vue";
 import eventService from "@/services/eventService";
 import locationService from "@/services/locationService";
 import cookService from "@/services/cookService";
-import navBar from "@/components/navBar.vue"
-import boxModal from "@/components/boxModal.vue";
-
-
+import navBar from "@/components/navBar.vue";
 
 export default {
-  name: "cookPage",
+  name: "eventPage",
   data() {
     return {
-      event: Object,
-      currentLocation: Object,
-      searchAddressInput: "",
-      cook: Object
+      event: null,
+      cook: null,
+      currentLocation: {
+        lat: 0,
+        lng: 0
+      },
+      searchAddressInput: ""
     };
   },
   created() {
     const eventId = this.$route.params.id;
-    eventService.getById(eventId).then(res => {
-      this.event = JSON.parse(JSON.stringify(res));
-      this.currentLocation = locationService
-        .getPositionByName(this.event.address)
-        .then(res => {
-          this.currentLocation = res;
-        });
+    eventService.getById(eventId).then(event => {
+      // this.event = JSON.parse(JSON.stringify(event));
+      this.event = event
+      locationService.getPositionByName(this.event.address).then(res => {
+        this.currentLocation = res;
+      });
     });
+
   },
   methods: {
     openModal() {
@@ -83,7 +83,12 @@ export default {
     displayBox(){
       console.log('i am request button')
 
-    }
+    },
+    // time(){
+    //   let time = this.event.time.split('T');
+    //   let timee = time[0];
+    // }
+
   },
   computed:{
     bgImage() {

@@ -1,40 +1,66 @@
-const mongoService = require('./mongo.service') 
+const mongoService = require('./mongo.service')
 
 const ObjectId = require('mongodb').ObjectId;
 
 function query(filter = {}) {
-    
-    let byCityId = filter.cityId
-    let byCookId = filter.cookId
-
-    if(byCityId) 
+    let byCityId = filter.cityId;
+    let byCookId = filter.cookId;
+    // let splitArray = filter.dateAddress
+    // let date = splitArray.split(',')[0]
+    // let address = splitArray.split(',')[1]+splitArray.split(',')[2]
+    let date = filter.date
+    if (byCityId) {
         byCityId = new ObjectId(byCityId)
-    
-    if(byCookId) 
+        filter = { cityId: byCityId }
+    }
+    if (byCookId) {
         byCookId = new ObjectId(byCookId)
-    
-    if(byCityId)
-        filter = {cityId:byCityId}
-
-    if(byCookId)
-        filter = {cookId:byCookId}
-
-    else    filter = {}
-
+        filter = { cookId: byCookId }
+    }
+    if (date) {
+        filter = { 
+            date: date,
+        }
+    }
+    else filter = {}
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
-            if(byCityId)
-                var events = collection.find({cityId:byCityId}).toArray()
-            else if(byCookId)
-                var events = collection.find({cookId:byCookId}).toArray()
+            if (byCityId)
+                var events = collection.find({ cityId: byCityId }).toArray()
+            else if (byCookId)
+                var events = collection.find({ cookId: byCookId }).toArray()
+            else if (date) {
+                // var events = collection.find({"address":{$regex: filter.address}})
+                events = collection.aggregate(
+                    [
+
+                        {
+                            $unwind: {
+                                path: '$dates'
+                            }
+                        },
+                        { 
+                            $match : { 
+                                // 'address' : {$regex: filter.address},
+                                'dates.eventDate': filter.date
+                            }
+                        },  
+                        {
+                            $group: {
+                                "_id": '$dates'
+                            },
+                        }
+
+                    ],
+                ).toArray()
+            }
             else
                 var events = collection.find({}).toArray()
 
             return events
         })
 }
-
 function getById(eventId) {
     eventId = new ObjectId(eventId)
     return mongoService.connectToDb()
@@ -44,8 +70,8 @@ function getById(eventId) {
         })
 }
 
-function remove(eventId){
-     eventId = new ObjectId(eventId)
+function remove(eventId) {
+    eventId = new ObjectId(eventId)
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
@@ -54,9 +80,14 @@ function remove(eventId){
 }
 
 function add(event){
+     
     return mongoService.connectToDb()
         .then(db => {
-            const collection = db.collection('event_db');
+            const collection = db.collection('event_db')
+            event.cityId = new ObjectId(event.cityId)
+            event.cookId = new ObjectId(event.cookId)
+            event.image =  "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
+            event.bgImage = "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
             return collection.insertOne(event)
                 .then(result => {
                     event._id = result.insertedId;
@@ -65,35 +96,48 @@ function add(event){
         })
 }
 
-function update(event){
-    console.log('event test',event);
-    
+// function update(event){
+//     event._id = new ObjectId(event._id)
+//     return mongoService.connectToDb()
+//         .then(db => {
+//             const collection = db.collection('event_db');
+//             return collection.updateOne({ _id: event._id }, { $push: event })
+//                 .then(result => {
+//                     return result;
+//                 })
+//         })
+// }
+
+// function addBook(book){
+//     const eventId = new ObjectId(book.eventId)
+//     delete book.eventId;
+//     return mongoService.connectToDb()
+//         .then(db => {
+//             const collection = db.collection('event_db');
+//             return collection.updateOne({ _id: eventId},{ $push :{dates: book}})
+//                 .then(result => {
+//                     return result;
+//                 })
+//         })
+// }
+
+function update(event) {
     event._id = new ObjectId(event._id)
+    // delete event.dates.eventId
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db');
-            return collection.updateOne({ _id: event._id }, { $push: event })
+            event.cityId = new ObjectId(event.cityId)
+            event.cookId = new ObjectId(event.cookId)
+            return collection.updateOne({ _id: event._id }, { $set: event })
                 .then(result => {
                     return result;
                 })
         })
 }
 
-// function addOrder(order){
-//     order._id = new Object(order._id)
-//     return mongoService.connectToDb()
-//         .then(db=>{
-//             const collection = db.collection('event_db'); 
-//             return collection.insertOne({ _id: order.eventId._id }, { $push: order })
-//             .then(result => {
-//                 return result;
-//             })
-//         })
-// }
-
 // function update(order){
 //     const cookId = new ObjectId(order.cookId)
-//     console.log(order);
 //     return mongoService.connectToDb()
 //         .then(db => {
 //             const collection = db.collection('cook_db');
@@ -110,5 +154,5 @@ module.exports = {
     remove,
     add,
     update,
-    // addOrder
+    // addBook
 }

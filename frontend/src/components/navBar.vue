@@ -7,9 +7,10 @@
      </div>
      </router-link>
       <div class="nav-bar">
-        <router-link to="/">Home</router-link>
-        <router-link to="/">About</router-link>
-        <router-link to="/">Login</router-link>
+        <!-- <router-link to="/">Home</router-link>
+        <router-link to="/">About</router-link> -->
+        <router-link to="/signup">Sign Up</router-link>
+        <router-link to="/myprofile/5c02d70ef46cd1a83b208732">My Profile</router-link>
       </div>
     </div>
 

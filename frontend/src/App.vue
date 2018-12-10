@@ -35,6 +35,6 @@ var currentScrollPos = window.pageYOffset;
    transition: top 0.3s;
 }
 .ro{
-  z-index: -1;
+  // z-index: -1;
 }
 </style>
