@@ -14,7 +14,6 @@
         <router-link :to="'/myprofile/' + user._id">My Profile</router-link>
         <span @click="logout">Log Out</span>        </div>
         <router-link to="/login" v-else>Sign In</router-link>
-        {{msg}}
       </div>
     </div>
   <!-- <responsive-nav class="hamburger">    
@@ -35,28 +34,21 @@ export default {
   data(){
     return {
       fullName:'',
-      msg: ''
+      msg1: ''
     }
   },
   created() {
-    EventBusService.$on('set_user', user=>{
-      this.user = user
-      console.log('user from nav bar 30 is:',this.user);
-
-        })
-    console.log('user from nav bar 30 is:',this.user);
+    // this.$socket.emit('getRoomCounts')
   },
   computed:{
     msg(){
-      return this.msg
+      return this.msg1
     }
   },
    sockets: {
         chatmsg:()=>{
-            // this.msg = 12
-            console.log(21);
-            
-            
+            this.msg1 = chatmsg
+            console.log('1233',this.msg1);    
         }
         },
 methods:{

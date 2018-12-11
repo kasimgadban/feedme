@@ -13,10 +13,12 @@ connectSocket()
 function connectSocket() {
     socket = ioClient(BASE_URL);
     socket.on('notification', function (msg) {
-        console.log(msg); 
+        // console.log(msg); 
     });
 }
 const send = (msg) => {
+    console.log('socket',msg);
+    
     socket.emit('chatmsg', msg);
     // eventBus.$on(GET_NOTIFICATION)
 }

@@ -9,10 +9,16 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
 import VueSocketIO from 'vue-socket.io'
+
+
+const BASE_URL = process.env.NODE_ENV !== 'development'
+    ? ''
+    : '//localhost:3000'
+
  
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'http://localhost:3000',
+    connection: BASE_URL,
     vuex: {
         store,
         actionPrefix: 'SOCKET_',

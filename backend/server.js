@@ -1,17 +1,17 @@
 const express = require('express')
+const app = express()  
+const http = require('http').Server(app)
 const cors = require('cors')
+const io = require('socket.io')(http)
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const addcookRoutes = require('./routes/cookRoute')
 const addeventRoutes = require('./routes/eventRoute')
 const addcityRoutes = require('./routes/cityRoute')
+// const connectSocket = require('./services/socket.service')
 
 
-const app = express()  
-
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
 
 app.use(express.static('public'));
 
@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
 addcookRoutes(app)
 addeventRoutes(app)
 addcityRoutes(app)
+// connectSocket(io)
 
 // app.use(session({
 //   secret: 'sxjbijxixszaixsax76x87a6sxbash',

@@ -10,7 +10,7 @@
         <span v-if="!flag">{{currMaxGuests}} left</span>
       </h3>
       <span class="title josefin-font">Date</span>
-      <!-- <date-picker
+      <date-picker
         class="date requestBoxDate"
         :inline="true"
         @input="dateSelected"
@@ -20,7 +20,7 @@
         :minimumView="'day'"
         :maximumView="'month'"
         :initialView="'day'"
-      ></date-picker> -->
+      ></date-picker>
 
       <!-- <AirbnbStyleDatepicker
         :trigger-element-id="'datepicker-trigger'"
@@ -28,13 +28,13 @@
         :fullscreen-mobile="true"
       /> -->
 
-      <v-date-picker
+      <!-- <v-date-picker
         :is-inline='true'
         v-model="book.eventDate"
         :animated='true'
         @input="dateSelected"
         :disabledDates="disabledDates"
-      ></v-date-picker>
+      ></v-date-picker> -->
 
 
       <select v-model="book.guestsBooking" class="select" v-if="currMaxGuests > 0">
@@ -89,7 +89,7 @@ export default {
       flag: true,
       isShowModal: false,
       disabledDates: {
-        weekdays: []
+        days: []
       },
       highlighted: {
         days: []
@@ -101,9 +101,8 @@ export default {
     console.log("requestBox created");
 
     /******************CHANGE********************/
-    var a = [],
-      diff = [];
-    var test = [1, 2, 3, 4, 5, 6, 7];
+    var a = [],diff = [];
+    var test = [0, 1, 2, 3, 4, 5, 6];
     for (let i = 0; i < test.length; i++) {
       a[test[i]] = true;
     }
@@ -115,7 +114,7 @@ export default {
       }
     }
     for (var k in a) diff.push(+k);
-    this.disabledDates.weekdays = diff;
+    this.disabledDates.days = diff;
     /**************************************/
   },
   methods: {
