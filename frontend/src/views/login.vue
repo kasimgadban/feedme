@@ -20,6 +20,7 @@
     <button type="button" class="cancelbtn">Cancel</button>
     <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
   </div>
+
 </form>
 </template>
 <script>
@@ -46,7 +47,7 @@ methods:{
     .then(user =>{
         console.log('I was checkd at the action and set as a user ',user)
         var n = -1
-        EventBusService.$emit('set_user', user)
+        //EventBusService.$emit('set_user', user)
         this.$router.go(n)
       })
     .catch(err => {console.log('err',err);

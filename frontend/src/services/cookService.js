@@ -2,8 +2,8 @@ import axios from "axios"
 import storageService, { LOGGEDIN_USER_KEY } from './storageService'
 
 const BASE_URL = process.env.NODE_ENV !== 'development'
-    ? '/cook/'
-    : '//localhost:3000/cook/'
+    ? '/api/cook/'
+    : '//localhost:3000/api/cook/'
 
 function query() {
     return axios.get(`${BASE_URL}`)
@@ -43,7 +43,12 @@ function update(order) {
           console.log('the url sen is',BASE_URL);
           console.log('the cook sent to the url above is',cook);
           
-          return axios.post(`${BASE_URL}`, cook)
+          return axios.post(`${BASE_URL}signup`, cook)
+          .then(res=>{
+             storageService.saveToStorage(LOGGEDIN_USER_KEY, res.data)
+              return res.data
+          })
+          
       }
   }
 
@@ -59,7 +64,7 @@ function update(order) {
         return Promise.resolve(loggedUserLS)
     }
 
-    return axios.post(`${BASE_URL}`,user)
+    return axios.post(`${BASE_URL}login`,user)
           .then(res => {
             console.log('res from axios line: 55',res.data);
             storageService.saveToStorage(LOGGEDIN_USER_KEY, res.data) 
@@ -69,7 +74,9 @@ function update(order) {
   }
   
 function logout(){
-    return axios.post(`${BASE_URL}/logout`)
+    return axios.post(`${BASE_URL}logout`).then(() => {
+        storageService.clearStorage()
+    })
   }
   function updateUser(user){
     storageService.saveToStorage(LOGGEDIN_USER_KEY,user)

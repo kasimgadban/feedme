@@ -5,7 +5,7 @@ const BASE_URL = process.env.NODE_ENV !== 'development'
     : '//localhost:3000/event'
 
 function query(filter = {}) {
-    console.log('filter BE',filter);
+    // console.log('filter BE',filter);
     
     var queryParams = new URLSearchParams()
     if(filter.byCityId) queryParams.append('cityId',filter.byCityId)

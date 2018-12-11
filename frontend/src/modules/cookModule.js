@@ -1,6 +1,7 @@
 import cookService from '../services/cookService.js'
 import eventService from '../services/eventService.js'
 import storageService, { LOGGEDIN_USER_KEY } from '../services/storageService'
+import { stat } from 'fs';
 
 
 export default {
@@ -10,6 +11,7 @@ export default {
         currCook: null,
         newCook:null,
         events:null,
+        loggedUser:null
     },
     mutations: {
         setCooks(state, { cooks }) {
@@ -18,13 +20,20 @@ export default {
         setCook(state, {user}){
             state.currCook = user
         },
-      
+      setLoggedUser(state, {user}){
+        state.loggedUser = user
+      },
         setEvents(state, {events}){
             state.events = events
         }
 
     },
     actions: {
+        logout(context){
+            return cookService.logout().then(() =>{
+                context.commit({ type: 'setLoggedUser',user:null  })
+            })
+        },
         loadCooks(context) {
             return cookService.query()
                 .then(cooks => {
@@ -41,13 +50,14 @@ export default {
         checkLoggedUser(context,{loggedInUser}){
             return cookService.checkUser(loggedInUser)
             .then(user => {   
-                console.log('I am user in cook module',user);
+                console.log('I am user in cook module 48',user);
                         
-                context.commit({type: 'setCook',user})
+                context.commit({type: 'setLoggedUser',user})
                 return user;
             })
             .catch(err => console.log(err))
         },
+
         getEventsByCook(context,{cookId}){
             return eventService.query({byCookId:cookId})
             .then(events => {
@@ -60,10 +70,10 @@ export default {
             console.log('cook module',cook)
 
             return cookService.saveCook(cook)
-                .then(cook => {
-                    context.commit({type: 'setCook', cook})
-                    console.log('the new cook isssss:',cook)
-                    return cook
+                .then(user => {
+                    context.commit({type: 'setLoggedUser', user})
+                    console.log('the new cook isssss:',user)
+                    return user
             })
         },
         editCook(context,{cook}){
@@ -85,7 +95,7 @@ export default {
         getLoggedCook:(state) => { 
                 console.log('state is',state);
                 
-            return state.currCook}   
+            return state.loggedUser}   
     }
 }
 
