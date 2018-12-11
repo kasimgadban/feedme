@@ -1,9 +1,5 @@
 <template>
   <section>
-    <header>
-        <router-link to="/" class="logo"><img class="img-logo" src="../images/logo1.png" /></router-link>
-        <h1>Hello</h1>
-    </header>
 <div class="container">
   <form @submit.prevent="editCook">
   <div class="row">
@@ -85,7 +81,6 @@
         :event="event"
         />
     </div>
-
 </div>
 </section>
 </template>
@@ -221,6 +216,7 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
   margin-bottom: 25px;
+  margin-top: 50px;
 }
 
 .col-25 {

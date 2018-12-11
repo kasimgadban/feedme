@@ -41,7 +41,7 @@ export default {
 .name{
   background: #e4d3d3;
   color: black;
-  width: 50%;
+  // width: 50%;
   text-align: center;
   margin: 0 auto;
   font-size: 1.3em;

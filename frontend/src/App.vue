@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar id = "nav"></nav-bar>
-    <router-view class = "ro"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -34,7 +34,12 @@ var currentScrollPos = window.pageYOffset;
   z-index: 1;
    transition: top 0.3s;
 }
-.ro{
-  // z-index: -1;
+
+@media screen and (min-width: 1088px){
+.container {
+    max-width: 100%;
+    width: 100%;
 }
+}
+
 </style>

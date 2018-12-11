@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-    <!-- <nav-bar></nav-bar> -->
     <div
       class="images-container"
       v-bind:style="{ 'background-image': 'url(' + getSrc(city.city) + ')' }"

@@ -1,7 +1,6 @@
 <template>
   <section>
     <header>
-        <router-link to="/" class="logo"><img class="img-logo" src="../images/logo1.png" /></router-link>
         <h1>{{(isEdit)?'Edit':'Add'}} Event</h1>
     </header>
 <div class="container">
