@@ -14,7 +14,7 @@ import cookPreview from "@/components/cookPreview.vue";
 export default {
   name: "cookList",
   props: {
-    cooks: {}
+    cooks: Object
   },
   components: {
     cookPreview

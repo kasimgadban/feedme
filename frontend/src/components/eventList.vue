@@ -37,8 +37,6 @@ export default {
 }
 @media only screen and (max-width: 800px) {
    .cmp-container {
-  // width: 90%;
-  // margin: 0 auto;
   display: grid;
   grid-template-columns: 12fr;
   gap: 5px;

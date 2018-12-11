@@ -59,7 +59,6 @@ methods:{
 
   components: {
     responsiveNav
-    // searchBar
   }
 };
 </script>

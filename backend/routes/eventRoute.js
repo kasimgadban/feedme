@@ -5,6 +5,9 @@ function addeventRoutes(app) {
     // LIST
     app.get('/event', (req, res) => {
         const filter = req.query
+
+        console.log('backend eventRoutes filter',filter);
+        
         eventService.query(filter)
             .then(events => {
                 res.json(events)})

@@ -1,12 +1,10 @@
 <template>
   <section class="header">
-    <!-- <div> -->
       <h1>Unforgettable Tastes</h1>
     <div class="search-bar">
-      <search-bar></search-bar>
-      <input type="date" placeholder="When?" class="date">
-      <button class="search-btn">Search</button>
-    <!-- </div> -->
+      <search-bar @setFilter="setFilter"></search-bar>
+      <!-- <input type="date" placeholder="When?" class="date"> -->
+      
     </div>
     <router-view/>
   </section>
@@ -18,8 +16,13 @@ import navBar from "@/components/navBar.vue"
 
 export default {
   name: "appHeader",
+  methods:{
+    setFilter(filter){
+      this.$emit('setFilter',filter)
+      // this.filter.byAddress = ''
+    }
+  },  
   components: {
-    //  appHeader,
     searchBar,
     navBar
 
@@ -37,9 +40,9 @@ export default {
   width:50px;
   height:50px;
 }
-.search-btn{
-  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
-}
+// .search-btn{
+//   font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+// }
 .header {
   background: blue;
   width: 100%;
@@ -97,21 +100,21 @@ export default {
   padding: 10px;
   font-size: 1.2em;
 }
-button{
-    width: 15%;
-    background-color: #88c888;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: black;
-    font-weight: bolder;
-    letter-spacing: 2px;
-    height: 48px;
-}
+// button{
+//     width: 15%;
+//     background-color: #88c888;
+//     border: none;
+//     cursor: pointer;
+//     font-size: 1.1em;
+//     color: black;
+//     font-weight: bolder;
+//     letter-spacing: 2px;
+//     height: 48px;
+// }
 
-button:focus {
-    outline:none;
-}
+// button:focus {
+//     outline:none;
+// }
 
 h1{
   text-align: center;
@@ -135,11 +138,11 @@ h1{
   margin-bottom: 70px;
   flex-direction: column;
 }
-button{
-  width: 25%;
-  font-size: 1em;
-  padding: 10px 1px 28px 3px;
-}
+// button{
+//   width: 25%;
+//   font-size: 1em;
+//   padding: 10px 1px 28px 3px;
+// }
 
 .search-bar>*{
   border:none;
