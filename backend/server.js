@@ -37,6 +37,13 @@ addcookRoutes(app)
 addeventRoutes(app)
 addcityRoutes(app)
 
+// app.use(session({
+//   secret: 'sxjbijxixszaixsax76x87a6sxbash',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: false }
+// }))
+
 app.post('/singup', (req, res) => {
   const nickname = req.body.nickname
   userService.addUser({ nickname })

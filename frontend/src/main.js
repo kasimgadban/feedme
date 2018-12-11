@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import './assets/styles/style.css'
 import Buefy from 'buefy'
-// import 'buefy/dist/buefy.css'
+import 'buefy/dist/buefy.css'
+
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
@@ -32,13 +33,14 @@ Vue.use(VueGoogleMaps, {
     language: 'en'
   },
 })
-
+Vue.use(Buefy)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
+  Buefy,
   render: h => h(App)
 }).$mount('#app')
 

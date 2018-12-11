@@ -32,6 +32,8 @@ export default {
             return cityService.getById(cityId)
                 .then(city => {
                     context.commit({ type: 'setCity', city })
+                    console.log('city returned is',city);
+                    
                     return city;
                 })
         },

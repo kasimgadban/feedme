@@ -2,8 +2,8 @@
   <section>
       <div class="modal-mask " @click="$emit('close')">
         <div class="modal-wrapper">
-          <div class="modal-container ">
-            <div class="test" @click.stop>
+          <div class="modal-container" @click.stop>
+            <div class="test">
               <h1>{{event.description}}</h1>
               <span>Price:{{event.price}}</span>
               <span>Date: {{getFormattedDate}}</span>
@@ -14,7 +14,7 @@
             </div>
             <div class="modal-footer">
             <button class="modal-btn cancel" @click="$emit('close')">✖</button>
-            <button class="modal-btn send" @click="$emit('bookOrder')">✔</button>
+            <button class="modal-btn send" @click="$emit('close')">✔</button>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default {
 
 .test>*{
     font-family: 'Josefin Sans', sans-serif;
-    margin: 15px
+    margin: 7px
 }
 
 .modal-wrapper {

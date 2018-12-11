@@ -12,7 +12,8 @@
         <div v-if="user">
         <span>{{user.fullName}}</span>
         <router-link :to="'/myprofile/' + user._id">My Profile</router-link>
-        <span @click="logout">Log Out</span>        </div>
+        <span @click="logout">Log Out</span>
+        </div>
         <router-link to="/login" v-else>Sign In</router-link>
       </div>
     </div>
@@ -59,6 +60,7 @@ methods:{
 
   components: {
     responsiveNav
+    // searchBar
   }
 };
 </script>

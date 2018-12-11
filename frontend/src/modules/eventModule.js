@@ -38,23 +38,31 @@ export default {
         return event;
       });
     },
-    loadByFilter(context,{filter}){
-      console.log('event moudle filter ',filter);
-      return eventService.query({byAddress: filter.byAddress}).then(events =>{
-        context.commit({type: 'setEvents',events});
-      });
-    }
-    // // [date,address]
-    // // {date,address}
-    // FilterByEventDate(context,{date}){
-    //   console.log(date);
-      
-    //   return eventService.query({date}).then(FilterdEvent =>{
-    //     context.commit({type:'setFilterByEventDate',FilterdEvent});
-    //     console.log('back from server',FilterdEvent);
-    //     return FilterdEvent;
-    //   })
-    // }
+loadByFilter(context,{filter}){
+  console.log('event moudle filter ',filter);
+  return eventService.query({byAddress: filter.byAddress}).then(events =>{
+    context.commit({type: 'setEvents',events});
+  });
+},
+    editEvent(context,{event}){
+      // console.log('cook module {} ',{cook})
+      console.log('event module event edit ',event)
+
+      return eventService.saveEvent(event)
+          .then(event => {
+              context.commit({type: 'setEvent', event})
+              console.log('the new event isssss edit:',event)
+              return event
+      })
+  },
+  removeEvent(context,{event}){
+    console.log('event module event edit ',event)
+
+    return eventService.deleteEvent(event)
+        // .then( events => {
+        //   commit({type: 'setEvents', events})
+        // })
+   },
   },
   getters: {
     getEvents: state => {

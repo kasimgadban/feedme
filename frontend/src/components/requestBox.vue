@@ -125,6 +125,7 @@ export default {
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
       eventService.update(this.event);
+      // this.isShowModal= false
     },
     dateSelected() {
       this.flag = false;
@@ -190,6 +191,13 @@ export default {
 .top > * {
   padding: 10px;
 }
+/* .open{
+  bottom: 0;
+  -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+} */
 .desc,
 .menu,
 .book-form {
