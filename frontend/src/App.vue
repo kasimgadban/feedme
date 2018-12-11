@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar id = "nav"></nav-bar>
+    <nav-bar id = "nav" :user="user"></nav-bar>
     <router-view class = "ro"></router-view>
   </div>
 </template>
@@ -8,22 +8,52 @@
 <script>
 
 import navBar from "@/components/navBar.vue"
+import storageService, {LOGGEDIN_USER_KEY} from "./services/storageService";
+import eventBus, {GET_MSG} from "./services/eventBus.js";
+
 export default {
+  data(){
+    return{
+      // user:null
+    }
+  },
   components: {
     navBar
   },
   mounted(){
     var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("nav").style.top = "0";
-  } else {
-    document.getElementById("nav").style.top = "-100px";
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          document.getElementById("nav").style.top = "0";
+        } else {
+          document.getElementById("nav").style.top = "-100px";
+        }
+        prevScrollpos = currentScrollPos;
+      }
+  },
+  created() {
+    const credentials = storageService.loadFromStorage(LOGGEDIN_USER_KEY);
+    if (credentials) {
+      console.log('I am from app vue and my user is',credentials);
+      
+      this.$store.dispatch({ type: "checkLoggedUser", loggedInUser: credentials }).then(user => {
+          // this.$store.commit({type: "connectSocket",userId: this.$store.getters.getLoggedUser._id});
+          this.user = user
+          console.log('I was return 42 ',user);
+          console.log('I was return 43 ',this.user);
+        });
+    }
+},
+computed:{
+  user(){
+    var x= this.$store.getters.getLoggedCook
+    console.log('x yarden',x)
+    return x
+    
   }
-  prevScrollpos = currentScrollPos;
 }
-  }
+
 }
 </script>
 
@@ -34,7 +64,5 @@ var currentScrollPos = window.pageYOffset;
   z-index: 1;
    transition: top 0.3s;
 }
-.ro{
-  // z-index: -1;
-}
+
 </style>

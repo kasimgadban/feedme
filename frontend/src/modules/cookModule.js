@@ -1,5 +1,7 @@
 import cookService from '../services/cookService.js'
 import eventService from '../services/eventService.js'
+import storageService, { LOGGEDIN_USER_KEY } from '../services/storageService'
+
 
 export default {
     state: {
@@ -13,9 +15,10 @@ export default {
         setCooks(state, { cooks }) {
             state.cooks = cooks
         },
-        setCook(state, {cook}){
-            state.currCook = cook
+        setCook(state, {user}){
+            state.currCook = user
         },
+      
         setEvents(state, {events}){
             state.events = events
         }
@@ -34,6 +37,16 @@ export default {
                 context.commit({type: 'setCook',cook})
                 return cook;
             })
+        },
+        checkLoggedUser(context,{loggedInUser}){
+            return cookService.checkUser(loggedInUser)
+            .then(user => {   
+                console.log('I am user in cook module',user);
+                        
+                context.commit({type: 'setCook',user})
+                return user;
+            })
+            .catch(err => console.log(err))
         },
         getEventsByCook(context,{cookId}){
             return eventService.query({byCookId:cookId})
@@ -67,13 +80,12 @@ export default {
     },
 
     getters: {
-        getCooks: (state) => { return state.cooks },
-        getCookById: (state) => {
-             return state.currCook 
-            },
-        
+        getCooks: (state) => { return state.cooks},
+        getCookById: (state) => { return state.currCook},
+        getLoggedCook:(state) => { 
+                console.log('state is',state);
+                
+            return state.currCook}   
     }
-
-
 }
 

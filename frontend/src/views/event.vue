@@ -293,9 +293,6 @@ p{
   padding: 20px;
   margin-bottom: 20px;
 }
-.request-box{
-  /* display: none; */
-}
 .menu-container{
     margin-bottom: 10px;
 }

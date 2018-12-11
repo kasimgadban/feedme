@@ -9,6 +9,7 @@ import city from './views/city.vue'
 import signup from './views/signup.vue'
 import myprofile from './views/myprofile.vue'
 import eventEdit from './views/eventEdit.vue'
+import login from './views/login.vue'
 
 Vue.use(Router)
 
@@ -20,6 +21,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     },
     {
       path: '/cook/:id',

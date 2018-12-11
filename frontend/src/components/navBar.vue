@@ -9,23 +9,47 @@
       <div class="nav-bar">
         <!-- <router-link to="/">Home</router-link>
         <router-link to="/">About</router-link> -->
-        <router-link to="/signup">Sign Up</router-link>
+        <span v-if="user" >{{user.fullName}}</span>
+        <router-link to="/login" v-else>Sign In</router-link>
         <router-link to="/myprofile/5c02d70ef46cd1a83b208732">My Profile</router-link>
       </div>
     </div>
-
   <!-- <responsive-nav class="hamburger">    
   </responsive-nav> -->
-
 
   </section>
 
 </template>
 <script>
 import responsiveNav from "@/components/responsiveNav.vue";
+import EventBusService  from '../services/eventBus.js'
 
 export default {
   name: "navBar",
+  props: {
+    user:Object
+  }, 
+  data(){
+    return {
+      fullName:''
+    }
+  },
+  created() {
+    EventBusService.$on('set_user', user=>{
+      this.user = user
+      console.log('user from nav bar 30 is:',this.user);
+
+        })
+    console.log('user from nav bar 30 is:',this.user);
+  },
+  computed:{
+
+  },
+methods:{
+  
+
+},
+
   components: {
     responsiveNav
     // searchBar
