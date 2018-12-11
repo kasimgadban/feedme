@@ -113,21 +113,28 @@ export default {
       swal
   },
   created() {
-    // console.log('Sign Up Was Created!');
-    const cookId = this.$route.params.id;
-    // console.log('the id of the cook is:',cookId);
-
-    if (cookId) {
-      this.$store.dispatch({ type: "getCookById", cookId }).then(cook => {
-        // console.log('the cook returned to the profile is:',cook);
-        this.cook = cook;
-
-        this.$store.dispatch({type: "getEventsByCook", cookId}).then(events => {
-          // console.log('events cook page',events)
+    this.cook = this.$store.getters.getLoggedCook
+    this.$store.dispatch({type: "getEventsByCook", cookId:this.cook._id}).then(events => {
+          console.log('events cook page',events)
           this.events = events
         })
-      });
-    }
+
+
+    // console.log('Sign Up Was Created!');
+    // const cookId = this.$route.params.id;
+    // console.log('the id of the cook is:',cookId);
+
+    // if (cookId) {
+    //   this.$store.dispatch({ type: "getCookById", cookId }).then(cook => {
+    //     // console.log('the cook returned to the profile is:',cook);
+    //     this.cook = cook;
+
+    //     this.$store.dispatch({type: "getEventsByCook", cookId}).then(events => {
+    //       // console.log('events cook page',events)
+    //       this.events = events
+    //     })
+    //   });
+    // }
   },
   methods: {
     editCook() {

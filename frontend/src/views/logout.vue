@@ -12,7 +12,8 @@
         <div v-if="user">
         <span>{{user.fullName}}</span>
         <router-link :to="'/myprofile/' + user._id">My Profile</router-link>
-        <span @click="logout" class="log-out">Log Out</span>        </div>
+        <span @click="logout" class="log-out">Log Out</span>
+        </div>
         <router-link to="/login" v-else>Sign In</router-link>
       </div>
     </div>
@@ -82,11 +83,6 @@ methods:{
     top: 5px;
 }
 
-
-.log-out{
-  cursor: pointer;
-}
-
 .nav-container {
   display: flex;
   flex-direction: row;
@@ -131,6 +127,9 @@ methods:{
     top: 17px;
     left: 65px;
     color: black;
+}
+.log-out{
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {

@@ -19,6 +19,22 @@ function getById(cookId) {
         })
 }
 
+function checkUser(user){
+    console.log('user from BE 23',user);
+    return mongoService.connectToDb()
+    .then(db => {
+        const collection = db.collection('cook_db');
+        return collection.findOne(
+            { $and:[
+                { 'fullName': user.username},
+                {'password':user.password}]
+            }).then(user => {
+            console.log('user from BE',user);
+            return user;
+        })
+    })
+}
+
 function remove(cookId){
      cookId = new ObjectId(cookId)
     return mongoService.connectToDb()
@@ -70,5 +86,6 @@ module.exports = {
     remove,
     add,
     update,
-    checkLogin
+    checkLogin,
+    checkUser
 }

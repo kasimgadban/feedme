@@ -269,13 +269,13 @@ p {
     margin: 0;
   }
 
-  .mobile-book {
-    display: block;
-    background-color: red;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .menu-container {
+.mobile-book{
+  display: block;
+  background-color: red;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.menu-container{
     margin-bottom: 10px;
   }
   .menu {
