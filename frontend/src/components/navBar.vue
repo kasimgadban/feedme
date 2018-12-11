@@ -14,6 +14,7 @@
         <router-link :to="'/myprofile/' + user._id">My Profile</router-link>
         <span @click="logout">Log Out</span>        </div>
         <router-link to="/login" v-else>Sign In</router-link>
+        {{msg}}
       </div>
     </div>
   <!-- <responsive-nav class="hamburger">    
@@ -24,7 +25,7 @@
 </template>
 <script>
 import responsiveNav from "@/components/responsiveNav.vue";
-import EventBusService  from '../services/eventBus.js'
+// import EventBusService  from '../services/eventBus.js'
 
 export default {
   name: "navBar",
@@ -33,7 +34,8 @@ export default {
   }, 
   data(){
     return {
-      fullName:''
+      fullName:'',
+      msg: ''
     }
   },
   created() {
@@ -45,8 +47,18 @@ export default {
     console.log('user from nav bar 30 is:',this.user);
   },
   computed:{
-
+    msg(){
+      return this.msg
+    }
   },
+   sockets: {
+        chatmsg:()=>{
+            // this.msg = 12
+            console.log(21);
+            
+            
+        }
+        },
 methods:{
   logout(){
       this.$store.dispatch({type:'logout'})
@@ -56,6 +68,8 @@ methods:{
   }
 
 },
+
+
 
   components: {
     responsiveNav

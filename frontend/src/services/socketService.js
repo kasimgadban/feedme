@@ -12,12 +12,13 @@ connectSocket()
 
 function connectSocket() {
     socket = ioClient(BASE_URL);
-    socket.on('chat newMsg', function (msg) {
+    socket.on('notification', function (msg) {
         console.log(msg); 
     });
 }
 const send = (msg) => {
-    socket.emit('chat msg', msg);
+    socket.emit('chatmsg', msg);
+    // eventBus.$on(GET_NOTIFICATION)
 }
 
   
@@ -25,3 +26,4 @@ export default {
     send
    
 }
+

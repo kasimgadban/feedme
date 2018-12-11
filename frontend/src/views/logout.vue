@@ -25,7 +25,7 @@
 </template>
 <script>
 import responsiveNav from "@/components/responsiveNav.vue";
-import EventBusService  from '../services/eventBus.js'
+// import EventBusService  from '../services/eventBus.js'
 
 export default {
   name: "navBar",

@@ -54,7 +54,6 @@
       <button class="send josefin-font" v-else disabled>full</button>
     </div>
     <request-modal
-    
       v-if="isShowModal"
       @close="isShowModal = false"
       @bookOrder="bookOrder"
@@ -124,8 +123,8 @@ export default {
       this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
-      eventService.update(this.event);
-      // this.isShowModal= false
+      eventService.saveEvent(this.event);
+      this.isShowModal= false;
     },
     dateSelected() {
       this.flag = false;
@@ -143,7 +142,7 @@ export default {
     },
     k() {
       this.isShowModal = true;
-      socketService.send(12)
+      socketService.send(21)
     }
   },
   computed: {

@@ -14,7 +14,7 @@
             </div>
             <div class="modal-footer">
             <button class="modal-btn cancel" @click="$emit('close')">✖</button>
-            <button class="modal-btn send" @click="$emit('close')">✔</button>
+            <button class="modal-btn send" @click="$emit('bookOrder')">✔</button>
             </div>
           </div>
         </div>

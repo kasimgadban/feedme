@@ -9,7 +9,7 @@
 
 import navBar from "@/components/navBar.vue"
 import storageService, {LOGGEDIN_USER_KEY} from "./services/storageService";
-import eventBus, {GET_MSG} from "./services/eventBus.js";
+// import eventBus, {GET_MSG} from "./services/eventBus.js";
 
 export default {
   data(){

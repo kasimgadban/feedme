@@ -67,16 +67,14 @@ app.put('/login', (req, res) => {
 io.on('connection', function(socket){
   console.log('a user connected');
 
-  
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
 
-  socket.on('chat msg', function(msg){
+  socket.on('chatmsg', function(msg){
     // historyMsgs.push(msg);
-
     console.log('message: ' , msg);
-    io.emit('chat newMsg', msg);
+    io.emit('notification', msg);
     // setInterval(()=>{
     //   socket.emit('chat newMsg', {msg: 'THANKS I am a BOT', nickname: 'BOT'});
     // }, 1000)
