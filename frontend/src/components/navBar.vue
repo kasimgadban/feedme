@@ -27,7 +27,6 @@ export default {
   name: "navBar",
   components: {
     responsiveNav
-    // searchBar
   }
 };
 </script>

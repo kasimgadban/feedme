@@ -3,14 +3,15 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-
-
 const addcookRoutes = require('./routes/cookRoute')
 const addeventRoutes = require('./routes/eventRoute')
 const addcityRoutes = require('./routes/cityRoute')
 
 
 const app = express()  
+
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 
 app.use(express.static('public'));
 
@@ -54,5 +55,26 @@ app.put('/login', (req, res) => {
 
 
 
+
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+
+  
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+  socket.on('chat msg', function(msg){
+    // historyMsgs.push(msg);
+
+    console.log('message: ' , msg);
+    io.emit('chat newMsg', msg);
+    // setInterval(()=>{
+    //   socket.emit('chat newMsg', {msg: 'THANKS I am a BOT', nickname: 'BOT'});
+    // }, 1000)
+  });
+});
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`))
+http.listen(PORT, () => console.log(`App listening on port ${PORT}`))

@@ -37,9 +37,6 @@
         </div>
       </div>
       <request-box :event="event" class="request-box"></request-box>
-      <!-- <box-modal :event="event" class="box-modal"></box-modal> -->
-      <!-- <button class="mobile-book" @click="displayBox()">Book Now</button> -->
-
     </div>
     </div>
   </section>
@@ -96,7 +93,7 @@ export default {
 
   components: {
     requestBox,
-    navBar,
+    // navBar,
     // boxModal
   }
 };

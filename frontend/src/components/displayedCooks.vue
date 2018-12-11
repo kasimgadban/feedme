@@ -29,10 +29,7 @@ export default {
 .cmp-container {
   width: 90%;
   margin: 0 auto;
-  // margin-top: 10px;
   display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
   justify-content: space-between;
 }
 </style>

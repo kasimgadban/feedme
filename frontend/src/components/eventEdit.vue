@@ -20,7 +20,6 @@ export default {
       cook: Object
     };
   },
-  components: {},
   created() {
     this.$store.dispatch({ type: "loadEvents" });
     var cookId = this.event.cookId;

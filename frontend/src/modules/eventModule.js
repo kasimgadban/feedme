@@ -38,17 +38,23 @@ export default {
         return event;
       });
     },
-    // [date,address]
-    // {date,address}
-    FilterByEventDate(context,[date,eventId]){
-      console.log(eventId);
-      return eventService.query({date}).then(FilterdEvent =>{
-        context.commit({type:'setFilterByEventDate',FilterdEvent});
-        console.log(FilterdEvent);
-        
-        return FilterdEvent;
-      })
+    loadByFilter(context,{filter}){
+      console.log('event moudle filter ',filter);
+      return eventService.query({byAddress: filter.byAddress}).then(events =>{
+        context.commit({type: 'setEvents',events});
+      });
     }
+    // // [date,address]
+    // // {date,address}
+    // FilterByEventDate(context,{date}){
+    //   console.log(date);
+      
+    //   return eventService.query({date}).then(FilterdEvent =>{
+    //     context.commit({type:'setFilterByEventDate',FilterdEvent});
+    //     console.log('back from server',FilterdEvent);
+    //     return FilterdEvent;
+    //   })
+    // }
   },
   getters: {
     getEvents: state => {

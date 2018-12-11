@@ -19,9 +19,6 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  }
 };
 </script>
 
@@ -32,13 +29,10 @@ export default {
   display: flex;
   margin: 0 auto;
   justify-content: space-evenly;
-  // align-items: center;
-  // margin-top: 10px;
   width: 100%;
 }
 
 .desc-container>*{
-  // margin: 0 auto;
   text-align: center;
   text-align: -webkit-center;
   padding: 10px;

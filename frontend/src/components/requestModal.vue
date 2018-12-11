@@ -3,14 +3,14 @@
       <div class="modal-mask " @click="$emit('close')">
         <div class="modal-wrapper">
           <div class="modal-container ">
-            <div class="test">
+            <div class="test" @click.stop>
               <h1>{{event.description}}</h1>
               <span>Price:{{event.price}}</span>
               <span>Date: {{getFormattedDate}}</span>
               <span>Guests: {{book.guestsBooking}}</span>
               <span>Location: {{event.address}}</span>
-              <span>Name: {{dataGuests.guestName}}</span>
-              <span>Phone#: {{dataGuests.guestPhone}}</span>
+              <span>Name: {{book.guestName}}</span>
+              <span>Phone#: {{book.guestPhone}}</span>
             </div>
             <div class="modal-footer">
             <button class="modal-btn cancel" @click="$emit('close')">✖</button>
@@ -26,7 +26,7 @@
 <script>
 import eventService from "@/services/eventService";
 import moment from "moment";
-
+import swal from "sweetalert"
 
 export default {
  name: "requestModal",
@@ -34,8 +34,8 @@ export default {
  computed: {
     getFormattedDate() {
       return moment(this.book.eventDate).format('DD/MM/YYYY');
-      // return this.book.guests.eventDate
-    }
+      // return this.book.eventDate;
+    },
  }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <app-header class="app-header"></app-header>
+    <app-header class="app-header" @setFilter="setFilter"></app-header>
     <city-list :cities="cities" />
     <event-list :events="events" ></event-list>
     <app-footer />
@@ -19,16 +19,24 @@ export default {
   components: {
     appHeader,
     appDesc,
-    // topRated,
-    // cookList,
     appFooter,
     cityList,
     eventList
   },
   created() {
-    this.$store.dispatch({ type: "loadCooks" });
-    this.$store.dispatch({ type: "loadEvents" });
+    // this.$store.dispatch({ type: "loadCooks" }); 
     this.$store.dispatch({ type: "loadCities" });
+    // this.$store.dispatch({ type: "loadEvents" });
+    this.$store.dispatch({type: "loadByFilter"})
+    // setFilter(filter){
+    // this.$store.dispatch({type: "loadByFilter",filter})
+    // },
+  },
+  methods:{
+    setFilter(filter){
+      console.log('filter sets');
+      this.$store.dispatch({type: "loadByFilter",filter})
+    }
   },
   computed: {
     cooks() {
@@ -66,5 +74,6 @@ h2{
    .test{
      display: none;
    }
+   
 }
 </style>

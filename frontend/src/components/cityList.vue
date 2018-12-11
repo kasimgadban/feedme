@@ -26,13 +26,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .cmp-container {
-//   display: grid;
-//   grid-template-columns: 2fr 4fr 2fr;
-//   gap: 15px;
-//   grid-row-gap: 0;
-//   text-decoration: none;
-// }
 
 .cmp-container {
   display: grid;
