@@ -47,13 +47,8 @@
         placeholder="Enter your phone number"
       >
       
-<<<<<<< HEAD
-      <button @click="k" class="send josefin-font" v-if="currMaxGuests>0">Book</button>
-      <button class="send josefin-font full" v-else disabled >full</button>
-=======
       <button @click="isShowModal = true" class="send josefin-font" v-if="currMaxGuests>0">Book</button>
       <button class="send josefin-font" v-else disabled>full</button>
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
     </div>
     <request-modal
       v-if="isShowModal"
@@ -146,11 +141,7 @@ export default {
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
       eventService.saveEvent(this.event);
-<<<<<<< HEAD
-      this.isShowModal= false
-=======
       this.isShowModal = false;
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
     },
     dateSelected() {
       this.flag = false;

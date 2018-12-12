@@ -7,7 +7,6 @@
       <div class="desc">Title: {{event.description}}</div>
     </div>
     <router-link tag="button" :to="'/event/edit/'+event.cookId+'_'+event._id" class="add-event">
-   
       <button class="edit-icon">&#x270E;</button>
     </router-link>
      <!-- <pre>{{event.dates}}</pre> -->

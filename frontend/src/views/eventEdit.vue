@@ -110,8 +110,6 @@
     </div>
     <div class="col-75">
       <!--:v-bind="timeEvent" value="timeEvent"-->
-       <b-timepicker  v-model="event.time" :value="event.time" :time-parser="timeEvent()" 
-       inline></b-timepicker>
     </div>
   </div>
   <div class="row">
@@ -124,11 +122,11 @@
      <h3>Orders Details</h3>
      <div class="orders" style="display:flex; flex-direction:column;">
        <ul>
-         <!-- <li v-for="day in event" :key="day"> -->
-           <!-- <span>{{event.dates[day].eventDate}}</span> -->
+         <li v-for="{days,day} in event" :key="day">
+           <span>{{event.dates[day].eventDate}}</span>
            <!-- <span>{{day.guestName}}</span> -->
       <!-- <span>{{day.guestsBooking}}</span> -->
-         <!-- </li> -->
+         </li>
        </ul>
      <!-- <span>{{event.dates[0].eventDate}}</span>
      <span>{{event.dates[0].guestName}}</span>

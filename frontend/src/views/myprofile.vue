@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <section>
 <div class="container">
   <form @submit.prevent="editCook">
@@ -74,127 +73,13 @@
    <i class='material-icons' style="font-size: 50px;">add</i>
    </router-link>
    <!-- <button @click="addEvent">
-=======
-  <section v-if="cook">
-    <div class="container" >
-      <form @submit.prevent="editCook">
-        <div class="row">
-          <div class="col-25">
-            <label for="fullName">Full Name</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              placeholder="Enter Your Name"
-              v-model="cook.fullName"
-            >
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="password">Password</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="password"
-              name="password"
-              placeholder="Enter Your password"
-              v-model="cook.password"
-            >
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="email">email</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="Enter Your email"
-              v-model="cook.email"
-            >
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="country">country</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="country"
-              name="country"
-              placeholder="Enter Your email"
-              v-model="cook.country"
-            >
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="city">City</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="city" name="city" placeholder="Enter city" v-model="cook.city">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="address">Address</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="address"
-              name="address"
-              placeholder="Enter address"
-              v-model="cook.address"
-            >
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-25">
-            <label for="description">Description</label>
-          </div>
-          <div class="col-75">
-            <textarea
-              id="description"
-              name="description"
-              placeholder="Let everyone to get to know you a little better.."
-              v-model="cook.description"
-              style="height:200px"
-            ></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <input type="submit" value="Save">
-        </div>
-      </form>
-    </div>
-    <h3>Events</h3>
-    <div class="container events">
-      <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
-        <i class="material-icons" style="font-size: 50px;">add</i>
-      </router-link>
-      <!-- <button @click="addEvent">
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
      <i class='material-icons' style="font-size: 50px;">add</i>
       </button>-->
       <div class="cook-events">
         <preview-edit v-for="event in events" :key="event._id" :event="event"/>
       </div>
     </div>
-<<<<<<< HEAD
-</div>
-</section>
-=======
   </section>
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
 </template>
 
 <script>
@@ -346,14 +231,11 @@ input[type="submit"]:hover {
   background-color: #f2f2f2;
   padding: 20px;
   margin-bottom: 25px;
-<<<<<<< HEAD
   margin-top: 58px;
 }
 .events{
-  margin-top: 0px
-=======
+  margin-top: 0px;
   top: 50px;
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
 }
 
 .col-25 {

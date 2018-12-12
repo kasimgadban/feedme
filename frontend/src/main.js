@@ -27,10 +27,6 @@ Vue.use(new VueSocketIO({
 
 
 
-<<<<<<< HEAD
-Vue.use(VCalendar)
-=======
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
 
 
 Vue.use(VCalendar)
