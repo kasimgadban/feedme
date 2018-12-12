@@ -69,7 +69,7 @@
         >
       </div>
 
-      <input type="submit" value="Sign Up!" @click="addNewCook" class="submit-btn">
+      <input type="submit" value="Sign Up!" class="submit-btn">
     </form>
   </section>
 </template>

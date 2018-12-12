@@ -36,6 +36,12 @@ function addeventRoutes(app) {
                 res.json(event)
             })
     })
+    app.post('/event/saveImage', (req,res) =>{
+        // console.log('in routes,',req.body);
+        
+        const image = req.body
+        eventService.saveImage(image).then(url => res.json(url))
+    })
 
     // UPDATE
     app.put('/event/:id', (req, res) => {

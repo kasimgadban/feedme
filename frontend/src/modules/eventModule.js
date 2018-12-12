@@ -38,6 +38,11 @@ export default {
         return event;
       });
     },
+    saveImage(context, imageToSave){
+      console.log('imageToSave',imageToSave);
+      return eventService.saveImage(imageToSave)
+      // .then(url=>url)
+    },
   loadByFilter(context,{filter}){
   console.log('event moudle filter ',filter);
   return eventService.query({byAddress: filter.byAddress}).then(events =>{

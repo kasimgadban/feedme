@@ -36,19 +36,16 @@ function update(order) {
   
   function saveCook(cook) {
       if (cook._id) {
-          console.log('I should take care of editing the cook',cook);
+          console.log('inside edit cook',cook);
           
           return axios.put(`${BASE_URL}${cook._id}`, cook)
       } else {
-          console.log('the url sen is',BASE_URL);
-          console.log('the cook sent to the url above is',cook);
-          
+          console.log('inside add new cook',cook);
           return axios.post(`${BASE_URL}signup`, cook)
-          .then(res=>{
+          .then(res => {
              storageService.saveToStorage(LOGGEDIN_USER_KEY, res.data)
               return res.data
           })
-          
       }
   }
 

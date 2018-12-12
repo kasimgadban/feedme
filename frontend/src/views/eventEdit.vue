@@ -40,6 +40,14 @@
       placeholder="Enter Event Maximum Guests quatity"  
       v-model="event.maxGuests" > 
     </div>
+    <div class="col-75">
+      <input type="file" id="EventImage" 
+      name="EventImage"
+      @change="displayImage" accept="image/*"> 
+      <div v-if="(event.image !== '')?event.image:imageData" class="imageHolder" style="width:400px;background-color:pink;">
+      <img class="display" :src="(event.image !== '')?event.image:imageData" />
+    </div>
+    </div>
   </div>
    <div class="row">
     <div class="col-25">
@@ -124,19 +132,11 @@
      <h3>Orders Details</h3>
      <div class="orders" style="display:flex; flex-direction:column;">
        <ul>
-         <!-- <li v-for="day in event" :key="day"> -->
-           <!-- <span>{{event.dates[day].eventDate}}</span> -->
-           <!-- <span>{{day.guestName}}</span> -->
-      <!-- <span>{{day.guestsBooking}}</span> -->
-         <!-- </li> -->
+   
        </ul>
-     <!-- <span>{{event.dates[0].eventDate}}</span>
-     <span>{{event.dates[0].guestName}}</span>
-      <span>{{event.dates[0].guestsBooking}}</span> -->
+    
       </div>
 
-
-    <!-- <span>Under Construction</span> -->
 </div>
 </div>
 </section>
@@ -155,13 +155,15 @@ export default {
                 price:'',
                 days:[],
                 menu:[],
-                maxGuests:''
+                maxGuests:'',
+                image:''
             },
         cook:{},
         orders:[],
         // meals:[{name:'',desc:''},{name:'',desc:''},{name:'',desc:''},{name:'',desc:''}],
         meals:[],
-      numberOfMeals:0
+      numberOfMeals:0,
+      imageData:''
 
       }
   },
@@ -209,6 +211,25 @@ export default {
         // },
         },
   methods: {
+    displayImage(event){
+      var input = event.target
+     if(input.files && input.files[0]){
+       var reader = new FileReader()
+       reader.onload = e => {
+         this.imageData = e.target.result
+         this.saveImage()
+       }
+       reader.readAsDataURL(input.files[0])
+     }
+    },
+    saveImage(){
+      var imageToSave = this.imageData
+      this.$store.dispatch({type: "saveImage", imageToSave})
+      .then( res => {
+        console.log('the image was saved',res);
+        this.event.image = res
+      })
+    },
     timeEvent(){
       return this.event.time;
     },
