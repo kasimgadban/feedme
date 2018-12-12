@@ -49,11 +49,10 @@ export default {
   },
   computed:{
     user(){
-    return this.$store.getters.getLoggedCook 
+    return this.$store.getters.getLoggedCook
   },
-  userName(){
+   userName(){
       var name = this.user.fullName;
-      // console.log('name',name)
       var firstName = name.split(' ')[0];
       return firstName;
 

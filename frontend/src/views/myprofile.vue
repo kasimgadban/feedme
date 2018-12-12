@@ -231,10 +231,6 @@ input[type="submit"]:hover {
   background-color: #f2f2f2;
   padding: 20px;
   margin-bottom: 25px;
-  margin-top: 58px;
-}
-.events{
-  margin-top: 0px;
   top: 50px;
 }
 

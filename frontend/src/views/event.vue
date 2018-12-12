@@ -90,6 +90,7 @@ export default {
 
   components: {
     requestBox,
+    navBar
   }
 };
 </script>
