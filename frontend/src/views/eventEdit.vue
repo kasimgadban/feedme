@@ -122,18 +122,19 @@
 <div class="container">
    <div class="row">
      <h3>Orders Details</h3>
-     <div class="orders" style="display:flex; flex-direction:column;">
+     <!-- <div class="orders" style="display:flex; flex-direction:column;"> -->
+       <!-- <li  v-for="(meal,index) in event.menu" :key="index"> -->
        <ul>
-         <!-- <li v-for="day in event" :key="day"> -->
-           <!-- <span>{{event.dates[day].eventDate}}</span> -->
-           <!-- <span>{{day.guestName}}</span> -->
-      <!-- <span>{{day.guestsBooking}}</span> -->
-         <!-- </li> -->
+         <li v-for="(day,index) in event.dates" :key="index">
+           <span> Date: {{day.eventDate}}</span>
+           <span> Name: {{day.guestName}}</span>
+      <span> Guests count: {{day.guestsBooking}}</span>
+         </li>
        </ul>
      <!-- <span>{{event.dates[0].eventDate}}</span>
      <span>{{event.dates[0].guestName}}</span>
       <span>{{event.dates[0].guestsBooking}}</span> -->
-      </div>
+      <!-- </div> -->
 
 
     <!-- <span>Under Construction</span> -->
