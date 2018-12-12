@@ -33,7 +33,6 @@ function query(filter = {}) {
                 var events = collection.find({ cookId: byCookId }).toArray()
             else if (byAddress){
                 var events = collection.aggregate([
-
                     {$match : { 
                         'address' : {$regex: filter.address},
                         // 'dates.book.eventDate': filter.date
@@ -131,7 +130,7 @@ function add(event){
 //         })
 // }
 
-function update(event) {
+function update(event,msg) {
     event._id = new ObjectId(event._id)
     event.cookId = new ObjectId(event.cookId)
     event.cityId = new ObjectId(event.cityId)
@@ -141,7 +140,7 @@ function update(event) {
             const collection = db.collection('event_db');
             event.cityId = new ObjectId(event.cityId)
             event.cookId = new ObjectId(event.cookId)
-            return collection.updateOne({ _id: event._id }, { $set: event })
+            return collection.updateOne({ _id: event._id }, { $set: event }, {$set: msg})
                 .then(result => {
                     return result;
                 })

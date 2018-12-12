@@ -7,9 +7,9 @@
       value =""
       type="text"
       v-model="filter.byAddress"
-      @input="setFilter()"
+     
     >
-    <button class="search-btn" >Search</button>
+    <button class="search-btn"  @click="setFilter()" >Search</button>
   </section>
 </template>
 

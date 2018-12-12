@@ -5,23 +5,36 @@ import store from './store'
 import './assets/styles/style.css'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
-
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
-// import component and stylesheet
-// import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
-// import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
+import VueSocketIO from 'vue-socket.io'
 
-// see docs for available options
-// const datepickerOptions = {}
 
-// make sure we can use it in our components
-// Vue.use(AirbnbStyleDatepicker, datepickerOptions)
+const BASE_URL = process.env.NODE_ENV !== 'development'
+    ? ''
+    : '//localhost:3000'
+   
+Vue.use(new VueSocketIO({
+    debug: true,
+    connection: BASE_URL,
+    vuex: {
+        store,
+        actionPrefix: 'SOCKET_',
+        mutationPrefix: 'SOCKET_'
+    }
+}))
+
+
+
+<<<<<<< HEAD
+Vue.use(VCalendar)
+=======
+>>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
+
 
 Vue.use(VCalendar)
-
-
+// Vue.use(EventBus)
 Vue.use(Buefy)
 
 // Vue.use(VueGoogleMaps, {load: false})
@@ -41,6 +54,7 @@ new Vue({
   router,
   store,
   Buefy,
+  // EventBus,
   render: h => h(App)
 }).$mount('#app')
 

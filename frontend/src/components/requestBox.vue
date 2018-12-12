@@ -10,7 +10,7 @@
         <span v-if="!flag">{{currMaxGuests}} left</span>
       </h3>
       <span class="title josefin-font">Date</span>
-      <!-- <date-picker
+      <date-picker
         class="date requestBoxDate"
         :inline="true"
         @input="dateSelected"
@@ -20,23 +20,20 @@
         :minimumView="'day'"
         :maximumView="'month'"
         :initialView="'day'"
-      ></date-picker> -->
+      ></date-picker>
 
       <!-- <AirbnbStyleDatepicker
         :trigger-element-id="'datepicker-trigger'"
         :mode="'range'"
         :fullscreen-mobile="true"
-      /> -->
-
-      <v-date-picker
+      />-->
+      <!-- <v-date-picker
         :is-inline='true'
         v-model="book.eventDate"
         :animated='true'
         @input="dateSelected"
         :disabledDates="disabledDates"
-      ></v-date-picker>
-
-
+      ></v-date-picker>-->
       <select v-model="book.guestsBooking" class="select" v-if="currMaxGuests > 0">
         <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
@@ -50,17 +47,38 @@
         placeholder="Enter your phone number"
       >
       
+<<<<<<< HEAD
       <button @click="k" class="send josefin-font" v-if="currMaxGuests>0">Book</button>
       <button class="send josefin-font full" v-else disabled >full</button>
+=======
+      <button @click="isShowModal = true" class="send josefin-font" v-if="currMaxGuests>0">Book</button>
+      <button class="send josefin-font" v-else disabled>full</button>
+>>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
     </div>
     <request-modal
-    
       v-if="isShowModal"
       @close="isShowModal = false"
       @bookOrder="bookOrder"
       :book="book"
       :event="event"
     ></request-modal>
+
+
+     <section >
+                    <section >
+                        <!-- <ul >
+                            <li  v-for="msg in msgs" :key="msg.at">
+                                {{msg.from}}: {{msg.txt}}
+                            </li>
+                        </ul> -->
+                        {{msg}}
+                    </section>
+                        <form @submit.prevent="sendMsg" ref="chat" >
+                            <input ref="newMsgInput" type="text" v-model="msgInput">
+                            <button>send</button>
+                        </form>
+                </section>
+
   </section>
 </template>
 
@@ -90,21 +108,24 @@ export default {
       flag: true,
       isShowModal: false,
       disabledDates: {
-        weekdays: []
+        days: []
       },
       highlighted: {
         days: []
       },
+      // msg: '',
+      msgInput: ''
     };
   },
   created() {
+    // var self = this;
     this.book.eventId = this.$route.params.id;
-    console.log("requestBox created");
+    this.$socket.emit("joinRoom", this.$route.params.id);
 
     /******************CHANGE********************/
     var a = [],
       diff = [];
-    var test = [1, 2, 3, 4, 5, 6, 7];
+    var test = [0, 1, 2, 3, 4, 5, 6];
     for (let i = 0; i < test.length; i++) {
       a[test[i]] = true;
     }
@@ -116,7 +137,7 @@ export default {
       }
     }
     for (var k in a) diff.push(+k);
-    this.disabledDates.weekdays = diff;
+    this.disabledDates.days = diff;
     /**************************************/
   },
   methods: {
@@ -125,7 +146,11 @@ export default {
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
       eventService.saveEvent(this.event);
+<<<<<<< HEAD
       this.isShowModal= false
+=======
+      this.isShowModal = false;
+>>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
     },
     dateSelected() {
       this.flag = false;
@@ -141,15 +166,45 @@ export default {
       this.event.currMaxGuests = this.event.maxGuests - this.currGuestsCount;
       // console.log(this.event.currMaxGuests);
     },
-    k() {
-      this.isShowModal = true;
-      socketService.send(12)
+    sendMsg() {
+      // this.isShowModal = true;
+      // GET MSG
+      // const msgInput = this.$refs.newMsgInput;
+      // console.log(msgInput.value);
+      // this.msg = msgInput.value
+      // const txt = msgInput.value;
+      // if (!txt.trim()) return;
+      // DECLARATIONcd f  cd
+      // const eventId = this.$route.params.id;
+      // const currUserId = this.$store.getters.getUser;
+      // const from = this.event.time
+      // const userId = currUser ? currUser._id : "";
+      // const msg = {
+        // userId,
+        // txt,
+        // at: Date.now(),
+        // from
+      // };
+      // LET THE WORLD KNOW
+      const ms = this.msgInput
+      this.$socket.emit("newChatMsg", ms);
+      // ms = "";
     }
+  },
+  sockets: {
+    gotNewChatMsg(msg) {
+      // if (!this.event.msgs) this.event.msgs = [msg];
+      // else this.event.msgs.push(msg);
+      return this.msgInput = msg
+    },
   },
   computed: {
     currMaxGuests() {
       return this.event.maxGuests - this.currGuestsCount;
-    }
+    },
+    msg() {
+            return this.msgInput;
+        },
   },
   components: {
     requestModal,

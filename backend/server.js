@@ -1,17 +1,17 @@
 const express = require('express')
+const app = express()  
 const cors = require('cors')
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const addcookRoutes = require('./routes/cookRoute')
 const addeventRoutes = require('./routes/eventRoute')
 const addcityRoutes = require('./routes/cityRoute')
+// const connectSocket = require('./services/socket.service')
 
 
-const app = express()  
-
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
 
 app.use(express.static('public'));
 
@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
 addcookRoutes(app)
 addeventRoutes(app)
 addcityRoutes(app)
+// connectSocket(io)
 
 // app.use(session({
 //   secret: 'sxjbijxixszaixsax76x87a6sxbash',
@@ -60,28 +61,24 @@ app.put('/login', (req, res) => {
 })
 
 
+const socketService = require('./services/socket.service')
+socketService(io)
 
 
+// io.on('connection', (socket) => {
+  // console.log('a user connected');
 
+  // socket.on('message', (msg) =>console.log(msg))
+// })
+//   socket.on('disconnect', function(){
+//     console.log('user disconnected');
+//   });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-
-  
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-
-  socket.on('chat msg', function(msg){
-    // historyMsgs.push(msg);
-
-    console.log('message: ' , msg);
-    io.emit('chat newMsg', msg);
-    // setInterval(()=>{
-    //   socket.emit('chat newMsg', {msg: 'THANKS I am a BOT', nickname: 'BOT'});
-    // }, 1000)
-  });
-});
+//   socket.on('chatmsg', function(msg){
+//     console.log('message: ' , msg);
+//     io.emit('notification', msg);
+//   });
+// });
 
 const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => console.log(`App listening on port ${PORT}`))

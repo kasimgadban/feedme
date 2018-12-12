@@ -24,7 +24,7 @@
 </form>
 </template>
 <script>
-import EventBusService  from '../services/eventBus.js'
+// import EventBusService  from '../services/eventBus.js'
 
 export default { 
   name:'login',

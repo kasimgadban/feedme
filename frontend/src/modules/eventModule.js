@@ -38,7 +38,7 @@ export default {
         return event;
       });
     },
-loadByFilter(context,{filter}){
+  loadByFilter(context,{filter}){
   console.log('event moudle filter ',filter);
   return eventService.query({byAddress: filter.byAddress}).then(events =>{
     context.commit({type: 'setEvents',events});

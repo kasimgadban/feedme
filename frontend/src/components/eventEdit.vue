@@ -17,7 +17,7 @@ export default {
   props: ["event"],
   data() {
     return {
-      cook: Object
+      cook: {}
     };
   },
   created() {
