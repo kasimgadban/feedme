@@ -38,6 +38,11 @@ export default new Router({
       component: event
     },
     {
+      path: '/event/edit/:id',
+      name: 'eventEdit',
+      component: eventEdit
+    },
+    {
       path: '/hosting/:id',
       name: 'hosting',
       component: Hosting

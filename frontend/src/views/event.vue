@@ -137,6 +137,7 @@ export default {
   margin: 0 auto;
   padding: 10px;
   position: relative;
+      width: 100%;
 }
 .top {
   display: flex;

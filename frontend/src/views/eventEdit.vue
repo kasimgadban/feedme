@@ -122,7 +122,21 @@
 <div class="container">
    <div class="row">
      <h3>Orders Details</h3>
-    <span>Under Construction</span>
+     <div class="orders" style="display:flex; flex-direction:column;">
+       <ul>
+         <!-- <li v-for="day in event" :key="day"> -->
+           <!-- <span>{{event.dates[day].eventDate}}</span> -->
+           <!-- <span>{{day.guestName}}</span> -->
+      <!-- <span>{{day.guestsBooking}}</span> -->
+         <!-- </li> -->
+       </ul>
+     <!-- <span>{{event.dates[0].eventDate}}</span>
+     <span>{{event.dates[0].guestName}}</span>
+      <span>{{event.dates[0].guestsBooking}}</span> -->
+      </div>
+
+
+    <!-- <span>Under Construction</span> -->
 </div>
 </div>
 </section>
@@ -257,12 +271,14 @@ export default {
   box-sizing: border-box;
 }
 .add-event{
-  width: 70px;
-  height: 70px;
+  /* width: 70px; */
+  /* height: 70px; */
   color: #ffffff;
   background-color: #4CAF50;
 }
-
+h3{
+  text-align: center;
+}
 .cook-events{
   display:flex;
   flex-direction: row;

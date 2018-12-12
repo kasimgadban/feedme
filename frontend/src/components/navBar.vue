@@ -10,9 +10,11 @@
         <!-- <router-link to="/">Home</router-link>
         <router-link to="/">About</router-link> -->
         <div v-if="user">
-        <span>{{user.fullName}}</span>
-        <router-link :to="'/myprofile/' + user._id">My Profile</router-link>
-        <span @click="logout" class="log-out">Log Out</span>        </div>
+        <!-- <span>Hi,{{userName}}</span> -->
+        <router-link :to="'/myprofile/' + user._id" class="hi-user"><span>Hi,{{userName}}</span></router-link>
+        <span @click="logout" class="log-out">Log Out</span>
+        <button class="chat-icon">💬</button>
+        </div>
         <router-link to="/login" v-else>Sign In</router-link>
       </div>
     </div>
@@ -45,6 +47,13 @@ export default {
     console.log('user from nav bar 30 is:',this.user);
   },
   computed:{
+    userName(){
+      var name = this.user.fullName;
+      var firstName = name.split(' ')[0];
+      return firstName;
+
+      
+    }
 
   },
 methods:{
@@ -72,6 +81,12 @@ methods:{
   text-decoration: none;
 }
 
+.chat-icon{
+  background: none;
+  border: none;
+  font-size: 1.2em;
+}
+
 .img-logo{
   // width:50px;
   // height:50px;
@@ -84,6 +99,7 @@ methods:{
 
 .log-out{
   cursor: pointer;
+  margin-left: 15px;
 }
 
 .nav-container {
@@ -133,14 +149,9 @@ methods:{
 }
 
 @media only screen and (max-width: 800px) {
-  .nav-bar{
-    // display: none;
-        // margin-right: 207px;
+  .nav-bar>*{
+    font-size: 1em;
   }
 
-  // .hamburger{
-  //   display: block;
-  // }
-    
 }
 </style>

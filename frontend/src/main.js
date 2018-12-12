@@ -19,7 +19,7 @@ import 'v-calendar/lib/v-calendar.min.css'
 // make sure we can use it in our components
 // Vue.use(AirbnbStyleDatepicker, datepickerOptions)
 
-// Vue.use(VCalendar)
+Vue.use(VCalendar)
 
 
 Vue.use(Buefy)

@@ -14,7 +14,7 @@
             </div>
             <div class="modal-footer">
             <button class="modal-btn cancel" @click="$emit('close')">✖</button>
-            <button class="modal-btn send" @click="$emit('close')">✔</button>
+            <button class="modal-btn send" @click="$emit('bookOrder')">✔</button>
             </div>
           </div>
         </div>
@@ -49,6 +49,7 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease;
+  
 }
 
 .test>*{
@@ -59,6 +60,9 @@ export default {
 .modal-wrapper {
   height: 100%;
   margin-top: 110px;
+  // animation: fade-in-pulse-08 .3s forwards cubic-bezier(.8,.02,.45,.91);
+
+  
   
 }
 h1{
@@ -84,6 +88,7 @@ h1{
   background-color: white;
   display: flex;
   flex-direction: column;
+  
   
 }
 

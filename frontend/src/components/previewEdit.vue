@@ -8,7 +8,7 @@
     </div>
     <router-link tag="button" :to="'/event/edit/'+event.cookId+'_'+event._id" class="add-event">
    
-      <button>Edit</button>
+      <button class="edit-icon">&#x270E;</button>
     </router-link>
      <!-- <pre>{{event.dates}}</pre> -->
   </section>
@@ -68,14 +68,26 @@ export default {
   margin-left: 10px;
 }
 
-button {
+
+// button {
+//   border: none;
+//   background: none;
+//   color: blue;
+//   margin-top: 5px;
+//   cursor: pointer;
+//   height: 20px;
+//   font-size: 1em;
+// }
+
+.edit-icon{
   border: none;
+    float: right;
+    background: none;
+    cursor: pointer;
+    // height: 30px;
+    font-size: 2.3em;
+    border: none;
   background: none;
-  color: blue;
-  margin-top: 5px;
-  cursor: pointer;
-  height: 20px;
-  font-size: 1em;
 }
 .desc {
   text-align: center;

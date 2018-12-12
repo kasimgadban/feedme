@@ -38,10 +38,10 @@
 
 
       <select v-model="book.guestsBooking" class="select" v-if="currMaxGuests > 0">
-        <option disabled value selected>{{currMaxGuests}} left</option>
+        <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
       </select>
-      <div v-else>FULL</div>
+      <!-- <div v-else class="full">FULL</div> -->
       <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name">
       <input
         type="text"
@@ -51,7 +51,7 @@
       >
       
       <button @click="k" class="send josefin-font" v-if="currMaxGuests>0">Book</button>
-      <button class="send josefin-font" v-else disabled>full</button>
+      <button class="send josefin-font full" v-else disabled >full</button>
     </div>
     <request-modal
     
@@ -124,8 +124,8 @@ export default {
       this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
-      eventService.update(this.event);
-      // this.isShowModal= false
+      eventService.saveEvent(this.event);
+      this.isShowModal= false
     },
     dateSelected() {
       this.flag = false;
@@ -173,6 +173,11 @@ export default {
 .container {
   display: grid;
   grid-template-rows: 250px 1fr;
+}
+
+button.full{
+  background-color: gray;
+  cursor:unset;
 }
 
 .wrapper {

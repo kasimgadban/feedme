@@ -66,8 +66,9 @@
   </div>
   </form>
 </div>
-<h3>Events</h3>
+
 <div class="container events">
+  <h3>Events</h3>
    <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
    <i class='material-icons' style="font-size: 50px;">add</i>
    </router-link>
@@ -223,7 +224,10 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
   margin-bottom: 25px;
-  margin-top: 50px;
+  margin-top: 58px;
+}
+.events{
+  margin-top: 0px
 }
 
 .col-25 {
