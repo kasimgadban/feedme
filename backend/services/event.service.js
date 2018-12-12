@@ -39,31 +39,6 @@ function query(filter = {}) {
                     }
 }
 ]).toArray()
-            // else if (date) {
-            //     // var events = collection.find({"address":{$regex: filter.address}})
-            //     events = collection.aggregate(
-            //         [
-
-            //             {
-            //                 $unwind: {
-            //                     path: '$dates'
-            //                 }
-            //             },
-            //             { 
-            //                 $match : { 
-            //                     // 'address' : {$regex: filter.address},
-            //                     'dates.book.eventDate': filter.date
-            //                 }
-            //             },  
-            //             {
-            //                 $group: {
-            //                     "_id": '$dates'
-            //                 },
-            //             }
-
-            //         ],
-            //     ).toArray()
-            // }
 }else
                 var events = collection.find({}).toArray()
 
@@ -105,30 +80,6 @@ function add(event){
         })
 }
 
-// function update(event){
-//     event._id = new ObjectId(event._id)
-//     return mongoService.connectToDb()
-//         .then(db => {
-//             const collection = db.collection('event_db');
-//             return collection.updateOne({ _id: event._id }, { $push: event })
-//                 .then(result => {
-//                     return result;
-//                 })
-//         })
-// }
-
-// function addBook(book){
-//     const eventId = new ObjectId(book.eventId)
-//     delete book.eventId;
-//     return mongoService.connectToDb()
-//         .then(db => {
-//             const collection = db.collection('event_db');
-//             return collection.updateOne({ _id: eventId},{ $push :{dates: book}})
-//                 .then(result => {
-//                     return result;
-//                 })
-//         })
-// }
 
 function update(event,msg) {
     event._id = new ObjectId(event._id)
@@ -147,17 +98,6 @@ function update(event,msg) {
         })
 }
 
-// function update(order){
-//     const cookId = new ObjectId(order.cookId)
-//     return mongoService.connectToDb()
-//         .then(db => {
-//             const collection = db.collection('cook_db');
-//             return collection.updateOne({ _id: cookId },{$push:{orders: order }})
-//                 .then(result => {
-//                     return result;
-//                 })
-//         })
-// }
 
 module.exports = {
     query,
@@ -165,5 +105,4 @@ module.exports = {
     remove,
     add,
     update,
-    // addBook
 }

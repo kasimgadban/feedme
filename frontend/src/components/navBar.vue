@@ -11,10 +11,12 @@
         <!-- <router-link to="/">Home</router-link>
         <router-link to="/">About</router-link>-->
         <div v-if="user">
-        <!-- <span>Hi,{{userName}}</span> -->
-        <router-link :to="'/myprofile/' + user._id" class="hi-user"><span>Hi,{{userName}}</span></router-link>
-        <span @click="logout" class="log-out">Log Out</span>
-        <button class="chat-icon">💬</button>
+          <!-- <span>Hi,{{userName}}</span> -->
+          <router-link :to="'/myprofile/' + user._id" class="hi-user">
+            <span>Hi,{{userName}}</span>
+          </router-link>
+          <span @click="logout" class="log-out">Log Out</span>
+          <router-link class="chat-icon" to="/chat">💬</router-link>
         </div>
         <router-link to="/login" v-else>Sign In</router-link>
       </div>
@@ -26,6 +28,7 @@
 <script>
 import responsiveNav from "@/components/responsiveNav.vue";
 // import EventBusService  from '../services/eventBus.js'
+import storageService from '@/services/storageService.js'
 
 export default {
   name: "navBar",
@@ -43,21 +46,36 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch({ type: "logout" }).then(() => {
+        // storageService.clearStorage('loggedInUser')
         this.$router.push("/");
       });
-    }
+    },
+   
   },
-  computed:{
-    user(){
-    return this.$store.getters.getLoggedCook
-  },
-   userName(){
+  computed: {
+    user() {
+      return this.$store.getters.getLoggedCook;
+    },
+    userName() {
       var name = this.user.fullName;
-      var firstName = name.split(' ')[0];
+      var firstName = name.split(" ")[0];
       return firstName;
-
-      
     }
+  },
+  sockets: {
+    gotNewChatMsg(msg) {
+      // if (!this.event.msgs) this.event.msgs = [msg];
+      // else this.event.msgs.push(msg);
+      // console.log('fafa');
+      console.log(msg);
+      
+      this.$notify({
+        group: "foo",
+        title: "You've got new message",
+        text: this.msgInput = msg,
+      })
+      // return this.msgInput = msg
+    },
   },
   components: {
     responsiveNav
@@ -74,13 +92,13 @@ export default {
   text-decoration: none;
 }
 
-.chat-icon{
+.chat-icon {
   background: none;
   border: none;
   font-size: 1.2em;
 }
 
-.img-logo{
+.img-logo {
   // width:50px;
   // height:50px;
   border: 1px solid;
@@ -89,8 +107,7 @@ export default {
   top: 5px;
 }
 
-
-.log-out{
+.log-out {
   cursor: pointer;
   margin-left: 15px;
 }
@@ -143,9 +160,8 @@ export default {
 }
 
 @media only screen and (max-width: 800px) {
-  .nav-bar>*{
+  .nav-bar > * {
     font-size: 1em;
   }
-
 }
 </style>

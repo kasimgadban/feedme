@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container" >
     <div
       class="images-container"
       v-bind:style="{ 'background-image': 'url(' + getSrc(city.city) + ')' }"
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       events: [],
-      city: Object
+      city: {}
     };
   },
   created() {

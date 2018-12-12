@@ -21,7 +21,6 @@
         :maximumView="'month'"
         :initialView="'day'"
       ></date-picker>
-
       <!-- <AirbnbStyleDatepicker
         :trigger-element-id="'datepicker-trigger'"
         :mode="'range'"
@@ -38,7 +37,6 @@
         <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
       </select>
-      <!-- <div v-else class="full">FULL</div> -->
       <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name">
       <input
         type="text"
@@ -58,22 +56,12 @@
       :event="event"
     ></request-modal>
 
-
-     <section >
-                    <section >
-                        <!-- <ul >
-                            <li  v-for="msg in msgs" :key="msg.at">
-                                {{msg.from}}: {{msg.txt}}
-                            </li>
-                        </ul> -->
-                        {{msg}}
-                    </section>
-                        <form @submit.prevent="sendMsg" ref="chat" >
-                            <input ref="newMsgInput" type="text" v-model="msgInput">
-                            <button>send</button>
-                        </form>
-                </section>
-
+    <section>
+      <form @submit.prevent="sendMsg" ref="chat">
+        <input ref="newMsgInput" type="text" v-model="msgInput">
+        <button>send</button>
+      </form>
+    </section>
   </section>
 </template>
 
@@ -81,7 +69,6 @@
 <script>
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
-// import DatePicker from 'vue2-datepicker'
 import eventService from "@/services/eventService";
 import moment from "moment";
 import socketService from "@/services/socketService";
@@ -108,12 +95,10 @@ export default {
       highlighted: {
         days: []
       },
-      // msg: '',
-      msgInput: ''
+      msgInput: ""
     };
   },
   created() {
-    // var self = this;
     this.book.eventId = this.$route.params.id;
     this.$socket.emit("joinRoom", this.$route.params.id);
 
@@ -149,58 +134,25 @@ export default {
       this.currBookDate = this.event.dates.filter(
         dato => dato.eventDate === date
       );
-      // console.log(this.currBookDate);
       this.currGuestsCount = this.currBookDate.reduce(
         (acc, date) => acc + +date.guestsBooking,
         0
       );
       this.event.currMaxGuests = this.event.maxGuests - this.currGuestsCount;
-      // console.log(this.event.currMaxGuests);
     },
     sendMsg() {
-      // this.isShowModal = true;
-      // GET MSG
-      // const msgInput = this.$refs.newMsgInput;
-      // console.log(msgInput.value);
-      // this.msg = msgInput.value
-      // const txt = msgInput.value;
-      // if (!txt.trim()) return;
-      // DECLARATIONcd f  cd
-      // const eventId = this.$route.params.id;
-      // const currUserId = this.$store.getters.getUser;
-      // const from = this.event.time
-      // const userId = currUser ? currUser._id : "";
-      // const msg = {
-        // userId,
-        // txt,
-        // at: Date.now(),
-        // from
-      // };
-      // LET THE WORLD KNOW
-      const ms = this.msgInput
+      const ms = this.msgInput;
       this.$socket.emit("newChatMsg", ms);
-      // ms = "";
     }
-  },
-  sockets: {
-    gotNewChatMsg(msg) {
-      // if (!this.event.msgs) this.event.msgs = [msg];
-      // else this.event.msgs.push(msg);
-      return this.msgInput = msg
-    },
   },
   computed: {
     currMaxGuests() {
       return this.event.maxGuests - this.currGuestsCount;
-    },
-    msg() {
-            return this.msgInput;
-        },
+    }
   },
   components: {
     requestModal,
     datePicker
-    // DatePicker
   }
 };
 </script>
@@ -221,9 +173,9 @@ export default {
   grid-template-rows: 250px 1fr;
 }
 
-button.full{
+button.full {
   background-color: gray;
-  cursor:unset;
+  cursor: unset;
 }
 
 .wrapper {

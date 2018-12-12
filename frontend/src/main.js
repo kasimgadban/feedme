@@ -9,7 +9,10 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
 import VueSocketIO from 'vue-socket.io'
-
+import Notifications from 'vue-notification'
+// import velocity from 'velocity-animate'
+ 
+Vue.use(Notifications)
 
 const BASE_URL = process.env.NODE_ENV !== 'development'
     ? ''
