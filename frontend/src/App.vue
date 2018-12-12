@@ -74,7 +74,6 @@ export default {
   z-index: 1;
   transition: top 0.3s;
 }
-<<<<<<< HEAD
 
 @media screen and (min-width: 1088px){
 .container {
@@ -83,6 +82,4 @@ export default {
 }
 }
 
-=======
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
 </style>

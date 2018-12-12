@@ -38,11 +38,7 @@ export default new Router({
       component: event
     },
     {
-<<<<<<< HEAD
       path: '/event/edit/:id',
-=======
-      path: 'event/edit/:id',
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
       name: 'eventEdit',
       component: eventEdit
     },

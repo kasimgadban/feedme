@@ -40,15 +40,6 @@ export default {
   created() {
     // this.$socket.emit('getRoomCounts')
   },
-  computed:{
-    userName(){
-      var name = this.user.fullName;
-      var firstName = name.split(' ')[0];
-      return firstName;
-
-      
-    }
-},
   methods: {
     logout() {
       this.$store.dispatch({ type: "logout" }).then(() => {
@@ -59,8 +50,14 @@ export default {
   computed:{
     user(){
     return this.$store.getters.getLoggedCook
-    
-  }
+  },
+   userName(){
+      var name = this.user.fullName;
+      var firstName = name.split(' ')[0];
+      return firstName;
+
+      
+    }
   },
   components: {
     responsiveNav
@@ -77,7 +74,6 @@ export default {
   text-decoration: none;
 }
 
-<<<<<<< HEAD
 .chat-icon{
   background: none;
   border: none;
@@ -85,9 +81,6 @@ export default {
 }
 
 .img-logo{
-=======
-.img-logo {
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
   // width:50px;
   // height:50px;
   border: 1px solid;
@@ -150,20 +143,9 @@ export default {
 }
 
 @media only screen and (max-width: 800px) {
-<<<<<<< HEAD
   .nav-bar>*{
     font-size: 1em;
   }
 
-=======
-  .nav-bar {
-    // display: none;
-    // margin-right: 207px;
-  }
-
-  // .hamburger{
-  //   display: block;
-  // }
->>>>>>> bc91b92b1a67d6fb26090c8e4b44d3931c3d0a0b
 }
 </style>

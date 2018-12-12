@@ -47,7 +47,7 @@
     </div>
     <div class="col-75">
       <ul v-if="isEdit">
-      <li  v-for="meal in event.menu" :key="meal">
+      <li  v-for="(meal,index) in event.menu" :key="index">
       <input type="text" 
       name='EventMealTitle' placeholder="Enter Meal Title "  
       v-model="meal.name" >
@@ -110,8 +110,8 @@
     </div>
     <div class="col-75">
       <!--:v-bind="timeEvent" value="timeEvent"-->
-       <b-timepicker  v-model="event.time" :value="event.time" :time-parser="timeEvent()" 
-       inline></b-timepicker>
+       <!-- <b-timepicker  v-model="event.time" :value="event.time" :time-parser="timeEvent()" 
+       inline></b-timepicker> -->
     </div>
   </div>
   <div class="row">
