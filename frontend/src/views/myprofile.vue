@@ -111,6 +111,7 @@ export default {
     var cookId = this.$route.params.id
     this.$store.dispatch({type: 'getCookById',cookId}).then(cook => this.cook = cook)
     // this.cook = this.$store.getters.getLoggedCook
+    
     this.$store
       .dispatch({ type: "getEventsByCook", cookId})
       .then(events => {

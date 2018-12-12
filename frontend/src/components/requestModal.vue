@@ -5,7 +5,7 @@
           <div class="modal-container" @click.stop>
             <div class="test">
               <h1>{{event.description}}</h1>
-              <span>Price:{{event.price}}</span>
+              <span>Price:{{total}}</span>
               <span>Date: {{getFormattedDate}}</span>
               <span>Guests: {{book.guestsBooking}}</span>
               <span>Location: {{event.address}}</span>
@@ -31,6 +31,17 @@ import swal from "sweetalert"
 export default {
  name: "requestModal",
   props: ['book','event', 'dataGuests'],
+  data(){
+    return{
+      total : 0
+    }
+  },
+  created(){
+    var price = this.event.price;
+    var guests = this.book.guestsBooking
+    var totalprice = +price * +guests
+    this.total = totalprice
+  },
  computed: {
     getFormattedDate() {
       return moment(this.book.eventDate).format('DD/MM/YYYY');

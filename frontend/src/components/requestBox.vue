@@ -1,5 +1,6 @@
 <template>
   <section>
+     <form @submit.prevent="isShowModal = true" >
     <div class="book-form" v-if="event">
       <h3 class="josefin-font">
         ${{event.price}}
@@ -22,34 +23,24 @@
         :initialView="'day'"
       ></date-picker>
 
-      <!-- <AirbnbStyleDatepicker
-        :trigger-element-id="'datepicker-trigger'"
-        :mode="'range'"
-        :fullscreen-mobile="true"
-      />-->
-      <!-- <v-date-picker
-        :is-inline='true'
-        v-model="book.eventDate"
-        :animated='true'
-        @input="dateSelected"
-        :disabledDates="disabledDates"
-      ></v-date-picker>-->
+       
       <select v-model="book.guestsBooking" class="select" v-if="currMaxGuests > 0">
         <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
       </select>
-      <!-- <div v-else class="full">FULL</div> -->
-      <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name">
+      <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name" required>
       <input
         type="text"
         class="buyer"
         v-model="book.guestPhone"
         placeholder="Enter your phone number"
+        required
       >
-      
-      <button @click="isShowModal = true" class="send josefin-font" v-if="currMaxGuests>0">Book</button>
-      <button class="send josefin-font" v-else disabled>full</button>
+      <input type="submit" class="send josefin-font" v-if="currMaxGuests>0" value="Book">
+      <button class="send josefin-font" v-else disabled>full</button> 
+     
     </div>
+    </form>
     <request-modal
       v-if="isShowModal"
       @close="isShowModal = false"
@@ -57,6 +48,7 @@
       :book="book"
       :event="event"
     ></request-modal>
+    
 
 
      <section >
@@ -85,6 +77,8 @@ import datePicker from "vuejs-datepicker";
 import eventService from "@/services/eventService";
 import moment from "moment";
 import socketService from "@/services/socketService";
+import swal from "sweetalert"
+
 
 export default {
   name: "requestBox",
@@ -142,6 +136,16 @@ export default {
       this.event.guestsCount += +this.book.guestsBooking;
       eventService.saveEvent(this.event);
       this.isShowModal = false;
+
+      swal({
+            title: "Successfully booked",
+            text: "See you soon!!",
+            icon: "success",
+             timer:2000,
+          buttons:{
+            cancel: false,
+          confirm: false}
+        })
     },
     dateSelected() {
       this.flag = false;
