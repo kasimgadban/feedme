@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()  
-const http = require('http').Server(app)
 const cors = require('cors')
+const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -61,26 +61,24 @@ app.put('/login', (req, res) => {
 })
 
 
+const socketService = require('./services/socket.service')
+socketService(io)
 
 
+// io.on('connection', (socket) => {
+  // console.log('a user connected');
 
+  // socket.on('message', (msg) =>console.log(msg))
+// })
+//   socket.on('disconnect', function(){
+//     console.log('user disconnected');
+//   });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-
-  socket.on('chatmsg', function(msg){
-    // historyMsgs.push(msg);
-    console.log('message: ' , msg);
-    io.emit('notification', msg);
-    // setInterval(()=>{
-    //   socket.emit('chat newMsg', {msg: 'THANKS I am a BOT', nickname: 'BOT'});
-    // }, 1000)
-  });
-});
+//   socket.on('chatmsg', function(msg){
+//     console.log('message: ' , msg);
+//     io.emit('notification', msg);
+//   });
+// });
 
 const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => console.log(`App listening on port ${PORT}`))

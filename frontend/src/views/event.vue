@@ -99,8 +99,6 @@ export default {
 
   components: {
     requestBox,
-    // navBar,
-    // boxModal
   }
 };
 </script>

@@ -1,9 +1,9 @@
 <template>
   <section>
     <app-header class="app-header" @setFilter="setFilter"></app-header>
-    <city-list :cities="cities" />
-    <event-list :events="events" ></event-list>
-    <app-footer />
+    <city-list :cities="cities"/>
+    <event-list :events="events"></event-list>
+    <app-footer/>
   </section>
 </template>
 
@@ -16,26 +16,28 @@ import cityList from "@/components/cityList.vue";
 
 export default {
   name: "home",
-  components: {
-    appHeader,
-    appDesc,
-    appFooter,
-    cityList,
-    eventList
+  data() {
+    return {
+      filter: {
+        byAddress: ""
+      }
+    };
   },
+
   created() {
-    // this.$store.dispatch({ type: "loadCooks" }); 
+    // this.$store.dispatch({ type: "loadCooks" });
     this.$store.dispatch({ type: "loadCities" });
     // this.$store.dispatch({ type: "loadEvents" });
-    this.$store.dispatch({type: "loadByFilter"})
+    var filter = this.filter
+    this.$store.dispatch({ type: "loadByFilter" ,filter});
     // setFilter(filter){
     // this.$store.dispatch({type: "loadByFilter",filter})
     // },
   },
-  methods:{
-    setFilter(filter){
-      console.log('filter sets');
-      this.$store.dispatch({type: "loadByFilter",filter})
+  methods: {
+    setFilter(filter) {
+      console.log("filter sets");
+      this.$store.dispatch({ type: "loadByFilter", filter });
     }
   },
   computed: {
@@ -48,6 +50,13 @@ export default {
     cities() {
       return this.$store.getters.getCities;
     }
+  },
+  components: {
+    appHeader,
+    appDesc,
+    appFooter,
+    cityList,
+    eventList
   }
 };
 </script>
@@ -56,24 +65,22 @@ export default {
 .cmp-container {
   width: 90%;
 }
-h2{
+h2 {
   text-align: center;
   margin: 0px;
   padding: 0px;
   background-color: rgba(17, 107, 17, 0.219);
   padding-top: 15px;
 }
-.test{
+.test {
   justify-content: center;
   /* background: yellow; */
   /* margin: 0 auto */
 }
 
-
 @media only screen and (max-width: 800px) {
-   .test{
-     display: none;
-   }
-   
+  .test {
+    display: none;
+  }
 }
 </style>

@@ -14,8 +14,7 @@ import VueSocketIO from 'vue-socket.io'
 const BASE_URL = process.env.NODE_ENV !== 'development'
     ? ''
     : '//localhost:3000'
-
- 
+   
 Vue.use(new VueSocketIO({
     debug: true,
     connection: BASE_URL,
