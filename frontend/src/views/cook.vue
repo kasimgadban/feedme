@@ -262,7 +262,8 @@ a {
 @media only screen and (max-width: 800px) {
   .cook-events {
     display: grid;
-    grid-template-columns: 12fr;
+    grid-template-columns: 6fr 6fr;
+    /* grid-template-columns: 12fr; */
     gap: 20px;
   }
   .location{
@@ -276,4 +277,6 @@ a {
   }
   
 }
+
+
 </style>

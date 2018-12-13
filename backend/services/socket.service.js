@@ -15,12 +15,12 @@ module.exports = io => {
         })
 
 
-        socket.on('newChatMsg', msg => {
-            console.log('babamamadada',msg);
-            io.emit('gotNewChatMsg', msg);
+        socket.on('newBookMsg', obj =>{
+            console.log('babamamadada',obj.msg,obj.currCookId);
+            io.emit('gotBookNoti', obj);
             // eventService.update(event,{$push: {msgs: msg}})
             //     .then(() => {
-            //         io.to(event._id).emit('gotNewChatMsg', msg);
+            //         io.to(event._id).emit('gotBookNoti', msg);
             //     });
 
         });

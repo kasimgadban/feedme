@@ -26,15 +26,10 @@
   </section>
 </template>
 <script>
-import responsiveNav from "@/components/responsiveNav.vue";
-// import EventBusService  from '../services/eventBus.js'
-import storageService from '@/services/storageService.js'
+// import responsiveNav from "@/components/responsiveNav.vue";
 
 export default {
   name: "navBar",
-  // props: {
-  //   user: Object
-  // },
   data() {
     return {
       fullName: ""
@@ -46,7 +41,6 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch({ type: "logout" }).then(() => {
-        // storageService.clearStorage('loggedInUser')
         this.$router.push("/");
       });
     },
@@ -63,22 +57,18 @@ export default {
     }
   },
   sockets: {
-    gotNewChatMsg(msg) {
-      // if (!this.event.msgs) this.event.msgs = [msg];
-      // else this.event.msgs.push(msg);
-      // console.log('fafa');
-      console.log(msg);
-      
+    gotBookNoti(obj) {
+      if(this.user._id === obj.currCookId){
       this.$notify({
         group: "foo",
         title: "You've got new message",
-        text: this.msgInput = msg,
+        text: this.msgInput = obj.msg,
       })
-      // return this.msgInput = msg
+      }
     },
   },
   components: {
-    responsiveNav
+    // responsiveNav
   }
 };
 </script>

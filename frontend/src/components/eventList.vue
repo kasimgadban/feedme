@@ -38,8 +38,9 @@ export default {
 @media only screen and (max-width: 800px) {
    .cmp-container {
   display: grid;
-  grid-template-columns: 12fr;
-  gap: 5px;
+    grid-template-columns: 6fr 6fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 5px;
 }
 }
 li {
