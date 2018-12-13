@@ -11,9 +11,9 @@
     {{username}}
     {{password}}
     <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
+    <span>Not a user yet?
+      <router-link to="/signup"> Create an account</router-link>
+    </span>
   </div>
 
   <div class="container" style="background-color:#f1f1f1">

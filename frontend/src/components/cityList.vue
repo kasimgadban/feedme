@@ -45,11 +45,10 @@ export default {
 }
 @media only screen and (max-width: 800px) {
   .cmp-container {
-    // width: 90%;
     display: grid;
-    grid-template-columns: 12fr;
-    gap: 5px;
-    //  grid-row-gap: 0;
+    grid-template-columns: 6fr 6fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 5px;
 
 }
 .grid__item:nth-child(9n+0) {
