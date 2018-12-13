@@ -118,11 +118,13 @@ event-preview .city-event {
   }
   .city-events {
     display: grid;
-    grid-template-columns: 12fr;
+    grid-template-columns: 6fr 6fr;
+    /* grid-template-columns: 12fr; */
     gap: 17px;
   }
   .name {
     font-size: 2.5em;
   }
 }
+
 </style>

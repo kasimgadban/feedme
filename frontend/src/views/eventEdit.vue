@@ -1,9 +1,9 @@
 <template>
   <section>
-    <header>
-        <h1>{{(isEdit)?'Edit':'Add'}} Event</h1>
-    </header>
+  
 <div class="container">
+  <h1>{{(isEdit)?'Edit':'Add'}} Event</h1>
+  <!-- <router-link :to="'/event/edit/'+event._id+'_'+event.cityId">Back</router-link> -->
   <form @submit.prevent="editEvent">
     <div v-if="isEdit" class="row">
      <div class="del" @click="deleteEvent">Delete</div>
@@ -106,7 +106,13 @@
  
    <div class="row">
     <div class="col-25">
-      <label for="EventPrice">Time</label>
+      <label for="EventPrice">Time
+        <div style="display:flex;">
+        <input required v-model="hours" value="" style="width:35px;height:35px">:
+        <span>{{hours}}</span>
+        <input required v-model="mins" value="" style="width:35px;height:35px">
+        </div>
+      </label>
     </div>
     <div class="col-75">
       <!--:v-bind="timeEvent" value="timeEvent"-->
@@ -160,6 +166,8 @@ export default {
             },
         cook:{},
         orders:[],
+        hours:'',
+        mins:'',
         // meals:[{name:'',desc:''},{name:'',desc:''},{name:'',desc:''},{name:'',desc:''}],
         meals:[],
       numberOfMeals:0
@@ -176,8 +184,13 @@ export default {
        .then(event => {
         this.event = event
         console.log('event edit ',event);
-        
         this.orders = this.event.dates
+        var time = this.event.time.split(':');
+          this.hours = time[0];
+          console.log('this.hours',this.hours)
+          this.mins = time[1];
+          // this.event.time = this.hours +':'+ this.mins
+          console.log('this.event.time',this.event.time)
        })
     }
     else{
@@ -192,22 +205,7 @@ export default {
       isEdit(){
         return this.$route.params.id.split('_')[1]?true:false
       },
-       
-  // timeEvent(){
-          // if(this.isEdit)  var y = '2018-12-10 ' + this.event.time;
-          // else var y = new Date();
-
-          // console.log('y is:',y);
-          
-          // var x = new Date(y)
-          // // x = x.getTime()
-          // console.log('x time is',x);
-          // this.event.time = x
-        //   this.event.time = "10:40:12";
-        //   console.log('moment(this.event.time).format(HHMM)',moment(this.event.time).format('HH:MM'));
-          
-        //  return (this.event.time)
-        // },
+      
         },
   methods: {
     timeEvent(){
@@ -263,10 +261,12 @@ export default {
 <style scoped lang = "scss" >
   @import url(https://fonts.googleapis.com/css?family=Sniglet|Raleway:900);
   @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-
 .img-logo{
   width: 50px;
   height: 50px;
+}
+section{
+  margin-top: 75px;
 }
 * {
   box-sizing: border-box;

@@ -9,6 +9,7 @@
           <div class="top">
             <div class="josefin-font">🕐{{event.time}}</div>
             <div class="address josefin-font">&#x1F4CD;{{event.address}}</div>
+            <router-link :to="'/cook/'+event.cookId" class="cook josefin-font">Cook: {{cook.fullName}}</router-link>
           </div>
           <hr>
           <div class="menu-container">
@@ -58,13 +59,25 @@ export default {
   },
   created() {
     const eventId = this.$route.params.id;
-    eventService.getById(eventId).then(event => {
-      // this.event = JSON.parse(JSON.stringify(event));
-      this.event = event;
+    this.$store.dispatch({ type: "getById", eventId }).then(event => {
+      this.event = event
+      this.$store.dispatch({ type: "getCookById", cookId:this.event.cookId }).then(cook => {
+      this.cook = cook});
       locationService.getPositionByName(this.event.address).then(res => {
         this.currentLocation = res;
       });
     });
+    
+    // eventService.getById(eventId).then(event => {
+    //   // this.event = JSON.parse(JSON.stringify(event));
+    //   this.event = event;
+    //   // this.cook = this.event.cookId
+    //   locationService.getPositionByName(this.event.address).then(res => {
+    //     this.currentLocation = res;
+    //   });
+    // });
+
+    
   },
   methods: {
     openModal() {
@@ -72,11 +85,14 @@ export default {
     },
     displayBox() {
       console.log("i am request button");
+    },
+    getCook(){
+      var cookId = this.event.cookId
+      this.$store.dispatch({ type: "getCookById", cookId }).then(cook => {
+        this.cook = cook;
+
+      });
     }
-    // time(){
-    //   let time = this.event.time.split('T');
-    //   let timee = time[0];
-    // }
   },
   computed: {
     bgImage() {
