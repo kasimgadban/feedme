@@ -16,7 +16,7 @@
       <input type="text" id="EventDescriptiont" 
       name="EventDescriptiont"  required
       placeholder="Enter Event description"  
-      v-model="event.description" >
+      v-model="event.description">
     </div>
   </div>
   <div class="row">
@@ -39,6 +39,14 @@
       name="EventMaxGuest"  required
       placeholder="Enter Event Maximum Guests quatity"  
       v-model="event.maxGuests" > 
+    </div>
+    <div class="col-75">
+      <input type="file" id="EventImage" 
+      name="EventImage"
+      @change="displayImage" accept="image/*"> 
+      <div v-if="(event.image !== '')?event.image:imageData" class="imageHolder" style="width:400px;background-color:pink;">
+      <img class="display" :src="(event.image !== '')?event.image:imageData" />
+    </div>
     </div>
   </div>
    <div class="row">
@@ -142,8 +150,6 @@
       <span>{{event.dates[0].guestsBooking}}</span> -->
       <!-- </div> -->
 
-
-    <!-- <span>Under Construction</span> -->
 </div>
 </div>
 </section>
@@ -162,7 +168,8 @@ export default {
                 price: 0,
                 days:[],
                 menu:[],
-                maxGuests: 0,
+                maxGuests:'',
+                image:'',
                 dates:[]
             },
         cook:{},
@@ -171,7 +178,8 @@ export default {
         mins:'',
         // meals:[{name:'',desc:''},{name:'',desc:''},{name:'',desc:''},{name:'',desc:''}],
         meals:[],
-      numberOfMeals:0
+      numberOfMeals:0,
+      imageData:''
 
       }
   },
@@ -182,9 +190,10 @@ export default {
     var urlParams = this.$route.params.id.split('_')
     if(urlParams[1] !== ""){
        this.$store.dispatch({ type: "getById", eventId:urlParams[1] })
-       .then(event => {
-        this.event = event
-        console.log('event edit ',event);
+       .then(resEvent => {
+        this.event = resEvent
+        console.log('event edit ',resEvent);
+        
         this.orders = this.event.dates
         var time = this.event.time.split(':');
           this.hours = time[0];
@@ -209,12 +218,36 @@ export default {
       
         },
   methods: {
+    displayImage(event){
+      var input = event.target
+     if(input.files && input.files[0]){
+       var reader = new FileReader()
+       reader.onload = e => {
+         this.imageData = e.target.result
+         this.saveImage()
+       }
+       reader.readAsDataURL(input.files[0])
+     }
+    },
+    saveImage(){
+      var imageToSave = this.imageData
+      this.$store.dispatch({type: "saveImage", imageToSave})
+      .then( res => {
+        console.log('the image was saved',res);
+        this.event.image = res
+      })
+    },
     timeEvent(){
       return this.event.time;
     },
     editEvent() {
       if(!this.isEdit) {
+        console.log('245 => cityId',this.cook.cityId);
+        console.log('245 => cityId',this.cook._id);
+        
         this.event.cityId = this.cook.cityId
+        console.log('this.event.cityId',this.event.cityId);
+        
         this.event.cookId = this.cook._id
         this.event.address = this.cook.address
         
@@ -252,9 +285,9 @@ export default {
     })
        
      },
-   updateInputs(){
-     console.log('number of meals is:',this.numberOfMeals) 
-   },
+  //  updateInputs(){
+  //    console.log('number of meals is:',this.numberOfMeals) 
+  //  },
  
   }
 };

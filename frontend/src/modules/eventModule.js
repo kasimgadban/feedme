@@ -1,6 +1,7 @@
 import eventService from '../services/eventService.js';
 
 export default {
+  strict: false,
   state: {
     event: null ,
     events: null,
@@ -37,6 +38,11 @@ export default {
         context.commit({ type: 'setEvent', event });
         return event;
       });
+    },
+    saveImage(context, imageToSave){
+      console.log('imageToSave',imageToSave);
+      return eventService.saveImage(imageToSave)
+      // .then(url=>url)
     },
   loadByFilter(context,{filter}){
   console.log('event moudle filter ',filter);

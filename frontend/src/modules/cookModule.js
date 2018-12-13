@@ -30,8 +30,10 @@ export default {
     },
     actions: {
         logout(context) {
+            
             return cookService.logout().then(() => {
                 context.commit({ type: 'setLoggedUser', user: null })
+                
             })
         },
         loadCooks(context) {
@@ -66,13 +68,9 @@ export default {
                 })
         },
         addCook(context, { cook }) {
-            // console.log('cook module {} ',{cook})
-            // console.log('cook module', cook)
-
-            return cookService.saveCook(cook)
+           return cookService.saveCook(cook)
                 .then(user => {
                     context.commit({ type: 'setLoggedUser', user })
-                    // console.log('the new cook isssss:', user)
                     return user
                 })
         },
