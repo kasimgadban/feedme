@@ -1,7 +1,13 @@
 const mongoService = require('./mongo.service')
-
+const cityService = require('./city.service')
+const cloudinary = require('cloudinary')
 const ObjectId = require('mongodb').ObjectId;
 
+cloudinary.config({
+    cloud_name: 'ddi3pg6wq',
+    api_key : '142982186366763',
+    api_secret: 'RQeNDgU1kV54S-jjviuvFkbCsVs'
+})
 function query(filter = {}) {
     console.log('backend Service ',filter);
     
@@ -34,6 +40,7 @@ function query(filter = {}) {
             else if (byAddress){
                 var events = collection.aggregate([
                     {$match : { 
+                        // 'address' : {$regex: filter.address},
                         'address' : {$regex: filter.address},
                         // 'dates.book.eventDate': filter.date
                     }
@@ -45,6 +52,7 @@ function query(filter = {}) {
             return events
         })
 }
+
 function getById(eventId) {
     eventId = new ObjectId(eventId)
     return mongoService.connectToDb()
@@ -70,16 +78,26 @@ function add(event){
             const collection = db.collection('event_db')
             event.cityId = new ObjectId(event.cityId)
             event.cookId = new ObjectId(event.cookId)
-            event.image =  "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
-            event.bgImage = "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
-            return collection.insertOne(event)
+
+        console.log('event 82 be',event);
+        
+        // return cityService.getCityByName(event.city).then(city =>{
+                event.cityId = new ObjectId(event.cityId)
+                return collection.insertOne(event)
                 .then(result => {
                     event._id = result.insertedId;
                     return event;
                 })
+            // })
+            // event.image =  "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
+            // event.bgImage = "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
+            // return collection.insertOne(event)
+            //     .then(result => {
+            //         event._id = result.insertedId;
+            //         return event;
+            //     })
         })
 }
-
 
 function update(event,msg) {
     event._id = new ObjectId(event._id)
@@ -98,6 +116,22 @@ function update(event,msg) {
         })
 }
 
+function saveImage({imageToSave}){
+    // console.log('imageToSave',imageToSave);
+    
+    return cloudinary.v2.uploader.upload(imageToSave).then(data => data.secure_url)}
+
+// function update(order){
+//     const cookId = new ObjectId(order.cookId)
+//     return mongoService.connectToDb()
+//         .then(db => {
+//             const collection = db.collection('cook_db');
+//             return collection.updateOne({ _id: cookId },{$push:{orders: order }})
+//                 .then(result => {
+//                     return result;
+//                 })
+//         })
+// }
 
 module.exports = {
     query,
@@ -105,4 +139,6 @@ module.exports = {
     remove,
     add,
     update,
+    saveImage
+    // addBook
 }

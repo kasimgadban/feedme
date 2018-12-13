@@ -34,6 +34,11 @@ function getById(eventId) {
     })
 }
 
+function saveImage(imageToSave){
+    return axios.post(`${BASE_URL}/saveImage`,imageToSave)
+    .then(res => res.data)
+}
+
 function saveEvent(event) {
 
     if (event._id) {
@@ -56,5 +61,6 @@ export default {
     query,
     getById,
     saveEvent,
-    deleteEvent
+    deleteEvent,
+    saveImage
 }

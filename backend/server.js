@@ -19,8 +19,15 @@ app.use(express.static('public'));
 app.use(cors({
   origin: ['http://localhost:8080'],
   credentials: true // enable set cookie
-}));                        
-app.use(bodyParser.json())
+}));  
+app.use(bodyParser.urlencoded({
+  limit: '5mb',
+  parameterLimit: 100000,
+  extended: false
+}))                      
+app.use(bodyParser.json({
+  limit: '5mb'
+}))
 app.use(cookieParser());
 app.use(session({
   secret: 'puki muki',
