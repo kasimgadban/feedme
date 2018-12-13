@@ -1,6 +1,6 @@
 <template>
 <section>
-    this is Chat !!!!!!!!!!!!!!!!!!!!111
+        
     <!-- {{msg}} -->
 </section>
 
