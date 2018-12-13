@@ -30,8 +30,10 @@ export default {
     },
     actions: {
         logout(context) {
+            
             return cookService.logout().then(() => {
                 context.commit({ type: 'setLoggedUser', user: null })
+                
             })
         },
         loadCooks(context) {

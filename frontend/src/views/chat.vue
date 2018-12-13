@@ -1,6 +1,7 @@
 <template>
 <section>
-    {{msg}}
+    this is Chat !!!!!!!!!!!!!!!!!!!!111
+    <!-- {{msg}} -->
 </section>
 
 
@@ -15,19 +16,19 @@ export default {
         }
     },
 sockets: {
-    gotNewChatMsg(msg) {
-      // if (!this.event.msgs) this.event.msgs = [msg];
-      // else this.event.msgs.push(msg);
-      // console.log('fafa');
-      console.log(msg);
+    // gotBookNoti(msg) {
+    //   // if (!this.event.msgs) this.event.msgs = [msg];
+    //   // else this.event.msgs.push(msg);
+    //   // console.log('fafa');
+    //   console.log(msg);
       
-      this.$notify({
-        group: "foo",
-        title: "You've got new message",
-        text: "Hello user! This is a notification!",
-      })
-      return this.msgInput = msg
-    },
+    //   this.$notify({
+    //     group: "foo",
+    //     title: "You've got new message",
+    //     text: "Hello user! This is a notification!",
+    //   })
+    //   return this.msgInput = msg
+    // },
   },
 computed:{
     msg() {

@@ -74,6 +74,7 @@ function update(order) {
   }
   
 function logout(){
+    console.log('sdas');
     return axios.post(`${BASE_URL}logout`).then(() => {
         storageService.clearStorage()
     })

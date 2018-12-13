@@ -61,10 +61,10 @@
     
 
     <section>
-      <form @submit.prevent="sendMsg" ref="chat">
+      <!-- <form @submit.prevent="sendMsg" ref="chat">
         <input ref="newMsgInput" type="text" v-model="msgInput">
         <button>send</button>
-      </form>
+      </form> -->
     </section>
   </section>
 </template>
@@ -75,7 +75,6 @@ import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
 import eventService from "@/services/eventService";
 import moment from "moment";
-import socketService from "@/services/socketService";
 import swal from "sweetalert"
 
 
@@ -101,13 +100,12 @@ export default {
       highlighted: {
         days: []
       },
-      msgInput: ""
+      msgInput: 'New event has been booked!'
     };
   },
   created() {
     this.book.eventId = this.$route.params.id;
     this.$socket.emit("joinRoom", this.$route.params.id);
-
     /******************CHANGE********************/
     var a = [],
       diff = [];
@@ -143,6 +141,7 @@ export default {
             cancel: false,
           confirm: false}
         })
+        this.sendBookMsg()
     },
     dateSelected() {
       this.flag = false;
@@ -156,9 +155,10 @@ export default {
       );
       this.event.currMaxGuests = this.event.maxGuests - this.currGuestsCount;
     },
-    sendMsg() {
-      const ms = this.msgInput;
-      this.$socket.emit("newChatMsg", ms);
+    sendBookMsg() {
+      const msg = this.msgInput;
+      const currCookId = this.event.cookId
+      this.$socket.emit("newBookMsg", {msg,currCookId});
     }
   },
   computed: {
