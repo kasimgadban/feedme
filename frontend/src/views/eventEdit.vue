@@ -159,10 +159,11 @@ export default {
       event:{
                 time: '',
                 description:'',
-                price:'',
+                price: 0,
                 days:[],
                 menu:[],
-                maxGuests:''
+                maxGuests: 0,
+                dates:[]
             },
         cook:{},
         orders:[],
@@ -230,7 +231,7 @@ export default {
             cancel: false,
           confirm: false}
       }).then(
-        res => this.$router.push("/myprofile"+this.cook._id),
+        res => this.$router.push("/myprofile/"+this.cook._id),
         )
     })
     },

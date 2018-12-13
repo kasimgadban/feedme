@@ -108,6 +108,7 @@ export default {
     this.book.eventId = this.$route.params.id;
     this.$socket.emit("joinRoom", this.$route.params.id);
 
+
     /******************CHANGE********************/
     var a = [],
       diff = [];
@@ -129,10 +130,17 @@ export default {
   methods: {
     bookOrder() {
       this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
+      console.log(this.book);
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
       eventService.saveEvent(this.event);
       this.isShowModal = false;
+
+
+
+      this.book.guestName = ''
+      this.book.guestPhone = ''
+      this.book.guestsBooking = 0;
 
       swal({
             title: "Successfully booked",
