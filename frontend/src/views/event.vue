@@ -9,7 +9,7 @@
           <div class="top">
             <div class="josefin-font">🕐{{event.time}}</div>
             <div class="address josefin-font">&#x1F4CD;{{event.address}}</div>
-            <router-link :to="'/cook/'+event.cookId" class="cook josefin-font">Cook: {{cook.fullName}}</router-link>
+            <router-link :to="'/cook/'+event.cookId" class="cook josefin-font">Host: {{cook.fullName}}</router-link>
           </div>
           <hr>
           <div class="menu-container">

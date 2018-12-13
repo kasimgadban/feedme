@@ -108,9 +108,9 @@
     <div class="col-25">
       <label for="EventPrice">Time
         <div style="display:flex;">
-        <input required v-model="hours" value="" style="width:35px;height:35px">:
-        <span>{{hours}}</span>
-        <input required v-model="mins" value="" style="width:35px;height:35px">
+        <input required v-model="hours" value="" class="time-input">
+        <span style="padding:5px; font-size:1.1em;">:</span>
+        <input required v-model="mins" value="" class="time-input">
         </div>
       </label>
     </div>
@@ -189,8 +189,8 @@ export default {
           this.hours = time[0];
           console.log('this.hours',this.hours)
           this.mins = time[1];
-          // this.event.time = this.hours +':'+ this.mins
-          console.log('this.event.time',this.event.time)
+          this.event.time = this.hours +':'+ this.mins
+          console.log('this.event.time',typeof this.event.time)
        })
     }
     else{
@@ -216,9 +216,10 @@ export default {
         this.event.cityId = this.cook.cityId
         this.event.cookId = this.cook._id
         this.event.address = this.cook.address
+        
         console.log('event to be added ',this.event);
       } 
-      
+      this.event.time = this.hours +':'+ this.mins
       this.$store.dispatch({ type: "editEvent" ,event: this.event}).then(res =>{
         swal({
           title: "Edit",
@@ -270,6 +271,14 @@ section{
 }
 * {
   box-sizing: border-box;
+}
+
+.time-input{
+  text-align: center;
+  width:35px;
+  height:35px;
+  border: none;
+
 }
 .add-event{
   /* width: 70px; */
