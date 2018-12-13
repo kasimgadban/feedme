@@ -9,8 +9,8 @@ function saveToStorage(key, val) {
   localStorage[key] = JSON.stringify(val);
 }
 
-function clearStorage(key) {
-  localStorage.removeItem(key);
+function clearStorage() {
+  localStorage.removeItem(LOGGEDIN_USER_KEY);
 }
 
 export default {

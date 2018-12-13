@@ -11,6 +11,14 @@
           placeholder="Enter You Full Name"
           required
         >
+        <div class="col-75">
+        <input type="file" id="avatarImage" 
+          name="avatarImage"
+          @change="displayImage" accept="image/*"> 
+          <div v-if="(user.image !== '')?user.image:imageData" class="imageHolder" style="width:400px;background-color:pink;">
+          <img class="display" :src="(user.image !== '')?user.image:imageData" />
+          </div>
+          </div>
         
         <input
           type="password"
@@ -47,10 +55,14 @@
           name="country"
           required
         >
-        
-        <input type="city" id="city" v-model="user.city" placeholder="City" name="city" required>
-        
-        <textarea id="lang" v-model="user.lang" placeholder="lang" name="lang" required></textarea>
+        <input type="city" list="city" v-model="user.city" placeholder="City" name="city" required>
+        <!-- <select type="city" v-model="user.city" required>
+          <option value="5c02e1bef46cd1a83b208921">London</option>
+          <option value="5c02e1bef46cd1a83b208923">Rome</option>
+          
+        </select>
+         -->
+        <textarea id="lang" v-model="user.language" placeholder="lang" name="lang" required></textarea>
         
         <textarea
           id="description"
@@ -91,8 +103,11 @@ export default {
         country: "",
         description: "",
         language: "",
-        image: ""
-      }
+        cityId:'',
+        image: "",
+      },
+      imageData:''
+
     };
   },
   components: {
@@ -103,7 +118,6 @@ export default {
   },
   methods: {
     addNewCook() {
-      console.log("I was clicked, to add a new cook", this.user);
       this.$store.dispatch({ type: "addCook", cook: this.user }).then(res => {
         swal({
           title: "Sign Up",
@@ -114,6 +128,25 @@ export default {
           if (value) this.$router.push("/");
         });
       });
+    },
+     displayImage(event){
+      var input = event.target
+     if(input.files && input.files[0]){
+       var reader = new FileReader()
+       reader.onload = e => {
+         this.imageData = e.target.result
+         this.saveImage()
+       }
+       reader.readAsDataURL(input.files[0])
+     }
+    },
+    saveImage(){
+      var imageToSave = this.imageData
+      this.$store.dispatch({type: "saveImage", imageToSave})
+      .then( res => {
+        console.log('the image was saved',res);
+        this.user.image = res
+      })
     }
   }
 };

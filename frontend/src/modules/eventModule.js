@@ -1,6 +1,7 @@
 import eventService from '../services/eventService.js';
 
 export default {
+  strict: false,
   state: {
     event: null ,
     events: null,

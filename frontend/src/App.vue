@@ -1,8 +1,11 @@
 <template>
+<section>
   <div id="app">
     <nav-bar id="nav" :user="user"></nav-bar>
     <router-view class="ro"></router-view>
   </div>
+  <notifications  group="foo" />
+  </section>
 </template>
 
 <script>
@@ -15,7 +18,7 @@ export default {
     return {
       user: {},
       msgToShow: null,
-    };
+}
   },
   sockets: {
     connect() {
@@ -59,10 +62,9 @@ export default {
         });
     }
   },
-  computed: {
-    // user(){
-    //   return this.$store.getters.getLoggedCook
-    // }
+
+  methods: {
+  
   }
 };
 </script>
@@ -75,6 +77,33 @@ export default {
   transition: top 0.3s;
 }
 
+
+// .my-style {
+//   // Style of the notification itself 
+ 
+//   .notification-title {
+//     // Style for title line 
+//     color:red;
+//   }
+ 
+//   // .notification-content {
+//   //   // Style for content 
+//   // }
+ 
+//   &.my-type {
+//     padding: 10px;
+//   margin: 0 5px 5px;
+ 
+//   font-size: 12px;
+  
+//   color: #b62020;
+//   background: rgb(17, 179, 30);
+//   border-left: 5px solid #187FE7;
+ 
+//   }
+// }
+
+
 @media screen and (min-width: 1088px){
 .container {
     max-width: 100%;
@@ -83,3 +112,4 @@ export default {
 }
 
 </style>
+

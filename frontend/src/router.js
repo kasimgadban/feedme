@@ -10,6 +10,7 @@ import signup from './views/signup.vue'
 import myprofile from './views/myprofile.vue'
 import eventEdit from './views/eventEdit.vue'
 import login from './views/login.vue'
+import chat from './views/chat.vue'
 
 Vue.use(Router)
 
@@ -61,6 +62,11 @@ export default new Router({
       path: '/myprofile/:id',
       name: 'myprofile',
       component: myprofile
-    }
+    },
+    {
+      path: '/chat',
+    name: 'chat',
+    component: chat
+  }
   ]
 })

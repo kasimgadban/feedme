@@ -41,6 +41,14 @@ function add(city){
         })
 }
 
+function getCityByName(name){
+    return mongoService.connectToDb()
+        .then(db => {
+            const collection = db.collection('city_db');
+            return collection.findOne({ city: `${name}` })
+        })
+}
+
 function update(city){
     city._id = new ObjectId(city._id)
     return mongoService.connectToDb()
@@ -59,5 +67,6 @@ module.exports = {
     getById,
     remove,
     add,
-    update
+    update,
+    getCityByName
 }

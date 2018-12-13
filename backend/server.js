@@ -9,6 +9,7 @@ const session = require('express-session')
 const addcookRoutes = require('./routes/cookRoute')
 const addeventRoutes = require('./routes/eventRoute')
 const addcityRoutes = require('./routes/cityRoute')
+const addchatRoutes = require('./routes/chatRoute')
 // const connectSocket = require('./services/socket.service')
 
 
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
 addcookRoutes(app)
 addeventRoutes(app)
 addcityRoutes(app)
+addchatRoutes(app)
 // connectSocket(io)
 
 // app.use(session({

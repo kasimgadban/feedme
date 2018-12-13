@@ -16,7 +16,7 @@
       <input type="text" id="EventDescriptiont" 
       name="EventDescriptiont"  required
       placeholder="Enter Event description"  
-      v-model="event.description" >
+      v-model="event.description">
     </div>
   </div>
   <div class="row">
@@ -130,12 +130,19 @@
 <div class="container">
    <div class="row">
      <h3>Orders Details</h3>
-     <div class="orders" style="display:flex; flex-direction:column;">
+     <!-- <div class="orders" style="display:flex; flex-direction:column;"> -->
+       <!-- <li  v-for="(meal,index) in event.menu" :key="index"> -->
        <ul>
-   
+         <li v-for="(day,index) in event.dates" :key="index">
+           <span> Date: {{day.eventDate}}</span>
+           <span> Name: {{day.guestName}}</span>
+      <span> Guests count: {{day.guestsBooking}}</span>
+         </li>
        </ul>
-    
-      </div>
+     <!-- <span>{{event.dates[0].eventDate}}</span>
+     <span>{{event.dates[0].guestName}}</span>
+      <span>{{event.dates[0].guestsBooking}}</span> -->
+      <!-- </div> -->
 
 </div>
 </div>
@@ -156,7 +163,8 @@ export default {
                 days:[],
                 menu:[],
                 maxGuests:'',
-                image:''
+                image:'',
+                dates:[]
             },
         cook:{},
         orders:[],
@@ -174,9 +182,9 @@ export default {
     var urlParams = this.$route.params.id.split('_')
     if(urlParams[1] !== ""){
        this.$store.dispatch({ type: "getById", eventId:urlParams[1] })
-       .then(event => {
-        this.event = event
-        console.log('event edit ',event);
+       .then(resEvent => {
+        this.event = resEvent
+        console.log('event edit ',resEvent);
         
         this.orders = this.event.dates
        })
@@ -235,7 +243,12 @@ export default {
     },
     editEvent() {
       if(!this.isEdit) {
+        console.log('245 => cityId',this.cook.cityId);
+        console.log('245 => cityId',this.cook._id);
+        
         this.event.cityId = this.cook.cityId
+        console.log('this.event.cityId',this.event.cityId);
+        
         this.event.cookId = this.cook._id
         this.event.address = this.cook.address
         console.log('event to be added ',this.event);
@@ -251,7 +264,7 @@ export default {
             cancel: false,
           confirm: false}
       }).then(
-        res => this.$router.push("/myprofile"+this.cook._id),
+        res => this.$router.push("/myprofile/"+this.cook._id),
         )
     })
     },
@@ -272,9 +285,9 @@ export default {
     })
        
      },
-   updateInputs(){
-     console.log('number of meals is:',this.numberOfMeals) 
-   },
+  //  updateInputs(){
+  //    console.log('number of meals is:',this.numberOfMeals) 
+  //  },
  
   }
 };
