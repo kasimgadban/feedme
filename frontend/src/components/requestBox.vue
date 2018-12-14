@@ -34,7 +34,7 @@
         @input="dateSelected"
         :disabledDates="disabledDates"
       ></v-date-picker>-->
-      <select v-model="book.guestsBooking" class="select" v-if="currMaxGuests > 0">
+      <select v-model="book.guestsBooking" required class="select" v-if="currMaxGuests > 0">
         <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
       </select>
@@ -47,7 +47,7 @@
         required
       >
       <input type="submit" class="send josefin-font" v-if="currMaxGuests>0" value="Book">
-      <button class="send josefin-font" v-else disabled>full</button> 
+      <button class="send josefin-font full " v-else disabled>full</button> 
      
     </div>
     </form>
