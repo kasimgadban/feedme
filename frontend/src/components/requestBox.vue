@@ -47,7 +47,7 @@
         required
       >
       <input type="submit" class="send josefin-font" v-if="currMaxGuests>0" value="Book">
-      <button class="send josefin-font" v-else disabled>full</button> 
+      <button class="send josefin-font full" v-else disabled>full</button> 
      
     </div>
     </form>

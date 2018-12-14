@@ -1,5 +1,5 @@
 <template>
-  <section class="header">
+  <section class="header" :style="bgImage">
       <h1>Unforgettable Tastes</h1>
     <div class="search-bar">
       <search-bar @setFilter="setFilter"></search-bar>
@@ -22,6 +22,14 @@ export default {
       // this.filter.byAddress = ''
     }
   },  
+  computed:{
+     bgImage() {
+      return (
+        "background-image: url('https://images.pexels.com/photos/1268558/pexels-photo-1268558.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-size: cover; display:block; opacity:0.9; background-position: 50%;"
+      );
+    },
+
+  },
   components: {
     searchBar,
     navBar
@@ -50,10 +58,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("https://cdn.shopify.com/s/files/1/2206/4495/articles/main-image_0e2e0e40-2fd0-4c18-a0eb-343072fa341f_2048x.jpg?v=1510690904");
+  // background-image: url("https://cdn.shopify.com/s/files/1/2206/4495/articles/main-image_0e2e0e40-2fd0-4c18-a0eb-343072fa341f_2048x.jpg?v=1510690904");
   background-repeat: no-repeat;
   background-size: cover;
-  
+
 }
 .date{
   background-color: rgba(204, 193, 193, 0.959);
@@ -76,6 +84,7 @@ export default {
   width: 100%;
   justify-content: center;
   margin-bottom: 70px;
+  opacity: 1;
 }
 
 .search-bar > *{
@@ -117,11 +126,12 @@ export default {
 // }
 
 h1{
-  text-align: center;
+      text-align: center;
+    padding-top: 115px;
+    /* margin-top: 75px; */
     margin-bottom: 90px;
-    margin-top: 140px;
     font-size: 45px;
-    color: white;
+    color: black;
     font-family: 'Ultra', serif;
 }
 @media only screen and (max-width: 800px) {
