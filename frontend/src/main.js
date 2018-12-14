@@ -6,14 +6,18 @@ import './assets/styles/style.css'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
-import VCalendar from 'v-calendar'
-import 'v-calendar/lib/v-calendar.min.css'
+// import VCalendar from 'v-calendar'
+// import 'v-calendar/lib/v-calendar.min.css'
 import VueSocketIO from 'vue-socket.io'
 import Notifications from 'vue-notification'
 // import velocity from 'velocity-animate'
- 
-Vue.use(Notifications)
+import NotificationBell from 'vue-notification-bell'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.use(ElementUI)
+Vue.use(NotificationBell)
+Vue.use(Notifications)
 const BASE_URL = process.env.NODE_ENV !== 'development'
     ? ''
     : '//localhost:3000'
@@ -31,8 +35,10 @@ Vue.use(new VueSocketIO({
 
 
 
-
-Vue.use(VCalendar)
+// new vue({
+//   aside
+// }),
+// Vue.use(VCalendar)
 // Vue.use(EventBus)
 Vue.use(Buefy)
 
@@ -58,3 +64,6 @@ new Vue({
 }).$mount('#app')
 
 
+// new Vue({
+  
+// })
