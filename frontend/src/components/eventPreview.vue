@@ -1,5 +1,5 @@
 <template>
-  <section class="cards">
+  <section class="cards" v-if='cook'>
     <article class="card card--1">
       <router-link class="link" :to="'/event/'+ event._id">
       <div class="card__img">
@@ -24,7 +24,7 @@ export default {
   props: ["event"],
   data() {
     return {
-      cook: Object
+      cook: {}
     };
   },
   components: {},

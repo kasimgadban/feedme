@@ -99,7 +99,7 @@ function add(event){
         })
 }
 
-function update(event,msg) {
+function update(event) {
     event._id = new ObjectId(event._id)
     event.cookId = new ObjectId(event.cookId)
     event.cityId = new ObjectId(event.cityId)
@@ -109,7 +109,7 @@ function update(event,msg) {
             const collection = db.collection('event_db');
             event.cityId = new ObjectId(event.cityId)
             event.cookId = new ObjectId(event.cookId)
-            return collection.updateOne({ _id: event._id }, { $set: event }, {$set: msg})
+            return collection.updateOne({ _id: event._id }, { $set: event })
                 .then(result => {
                     return result;
                 })
