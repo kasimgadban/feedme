@@ -11,7 +11,8 @@ export default {
         currCook: null,
         newCook: null,
         events: null,
-        loggedUser: null
+        loggedUser: null,
+        value: null
     },
     mutations: {
         setCooks(state, { cooks }) {
@@ -25,7 +26,10 @@ export default {
         },
         setEvents(state, { events }) {
             state.events = events
-        }
+        },
+        updateNotiCount (state, {value}) {
+            state.value = value
+          },
 
     },
     actions: {
