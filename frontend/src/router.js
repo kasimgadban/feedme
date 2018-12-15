@@ -21,9 +21,10 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,children:[
-        {path: 'chat',component: chat}
-      ]
+      component: Home
+      // component: Home,children:[
+      //   {path: 'chat',component: chat}
+      // ]
     },
     {
       path: '/login',
@@ -65,10 +66,10 @@ export default new Router({
       name: 'myprofile',
       component: myprofile
     },
-  //   {
-  //     path: '/chat',
-  //   name: 'chat',
-  //   component: chat
-  // }
+    {
+    path: '/chat',
+    name: 'chat',
+    component: chat
+  }
   ]
 })

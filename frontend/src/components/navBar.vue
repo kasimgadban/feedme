@@ -8,31 +8,35 @@
         </div>
       </router-link>
       <div class="nav-bar">
-        <!-- <router-link to="/">Home</router-link>
-        <router-link to="/">About</router-link>-->
-        <div v-if="user">
-          <!-- <span>Hi,{{userName}}</span> -->
-          <router-link :to="'/myprofile/' + user._id" class="hi-user">
-            <span>Hi,{{userName}}</span>
-          </router-link>
-          <span @click="logout" class="log-out">Log Out</span>
-          <router-link class="chat-icon" to="/chat">💬</router-link>
+        <div class="nav-btns" v-if="user">
+          <div class="dad" style="position:relative;">
+            <span >Hi,{{userName}}<span @click="toggleDropDown"
+            class="drop"><i class="fas fa-caret-down"></i></span>
+             <div class="dropDown" v-show="isDropDownOpen">
+          <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">profile</span></router-link>
+          <span><button @click="logout" class="log-out">Log Out</button></span>
+            </div>
+            </span>
+            </div>
+          <!-- <button @click="toggleDropDown">drop</button> -->
+          <book-noti class="chat-icon" :user="user"></book-noti>
         </div>
         <router-link to="/login" v-else>Sign In</router-link>
       </div>
     </div>
-    <!-- <responsive-nav class="hamburger">    
-    </responsive-nav>-->
+   
   </section>
 </template>
 <script>
 // import responsiveNav from "@/components/responsiveNav.vue";
+import bookNoti from "@/components/bookNoti.vue";
 
 export default {
   name: "navBar",
   data() {
     return {
-      fullName: ""
+      fullName: "",
+      isDropDownOpen: false
     };
   },
   created() {
@@ -42,9 +46,12 @@ export default {
     logout() {
       this.$store.dispatch({ type: "logout" }).then(() => {
         this.$router.push("/");
+       this.isDropDownOpen = false
       });
     },
-   
+    toggleDropDown(){
+      this.isDropDownOpen = !this.isDropDownOpen
+    }
   },
   computed: {
     user() {
@@ -54,21 +61,23 @@ export default {
       var name = this.user.fullName;
       var firstName = name.split(" ")[0];
       return firstName;
-    }
+    },
+     
   },
   sockets: {
-    gotBookNoti(obj) {
-      if(this.user._id === obj.currCookId){
-      this.$notify({
-        group: "foo",
-        title: "You've got new message",
-        text: this.msgInput = obj.msg,
-      })
-      }
-    },
+    // gotBookNoti(obj) {
+    //   if (this.user._id === obj.currCookId) {
+    //     this.$notify({
+    //       group: "foo",
+    //       title: "You've got new message",
+    //       text: (this.msgInput = obj.txt)
+    //     });
+    //   }
+    // }
   },
   components: {
     // responsiveNav
+    bookNoti
   }
 };
 </script>
@@ -82,11 +91,11 @@ export default {
   text-decoration: none;
 }
 
-.chat-icon {
-  background: none;
-  border: none;
-  font-size: 1.2em;
-}
+// .chat-icon {
+//   background: none;
+//   border: none;
+//   font-size: 1.2em;
+// }
 
 .img-logo {
   // width:50px;
@@ -97,10 +106,32 @@ export default {
   top: 5px;
 }
 
+.dropDown{
+  display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 80px; 
+    background: aquamarine;
+    // width: 100%;
+    width: 115px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.drop{
+  cursor: pointer;
+}
+
 .log-out {
   cursor: pointer;
-  margin-left: 15px;
+  background:none;
+  border: none;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  // border-bottom: 1px solid gray;
+  // margin-left: 15px;
 }
+
 
 .nav-container {
   display: flex;
@@ -108,10 +139,18 @@ export default {
   justify-content: space-between;
   padding-left: 16px;
   padding-right: 16px;
-  overflow: hidden;
+  // overflow: hidden;
   background-color: #ffffff9c;
   top: 0;
   height: 50px;
+}
+
+.nav-btns {
+  display: grid;
+  padding: 3px;
+  grid-template-columns: 1fr 1fr 0fr;
+  gap: 2px;
+  align-items: center;
 }
 
 .nav-bar,

@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css?family=Damion|Muli|Noto+Sans+KR');
 @import url('../../../node_modules/buefy/dist/buefy.css');
 
-
 .requestBoxDate .vdp-datepicker__calendar {
     width: 100%;
 }

@@ -59,13 +59,8 @@
       :event="event"
     ></request-modal>
     
-
-    <section>
-      <!-- <form @submit.prevent="sendMsg" ref="chat">
-        <input ref="newMsgInput" type="text" v-model="msgInput">
-        <button>send</button>
-      </form> -->
-    </section>
+    <button @click="sendBookMsg">TEST</button>
+   
   </section>
 </template>
 
@@ -74,13 +69,14 @@
 import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
 import eventService from "@/services/eventService";
+import cookService from "@/services/cookService";
 import moment from "moment";
 import swal from "sweetalert"
 
 
 export default {
   name: "requestBox",
-  props: ["event"],
+  props: ["event",'cook'],
   data() {
     return {
       book: {
@@ -88,7 +84,8 @@ export default {
         eventDate: "",
         guestName: "",
         guestPhone: "",
-        guestsBooking: 0
+        guestsBooking: 0,
+        showNoti: 1,
       },
       currGuestsCount: 0,
       currBookDate: [],
@@ -100,7 +97,12 @@ export default {
       highlighted: {
         days: []
       },
-      msgInput: 'New event has been booked!'
+      msgInput:{
+        txt: 'New event has been booked!',
+        name: '',
+        guests: 0,
+        at: '',
+      } 
     };
   },
   created() {
@@ -165,7 +167,11 @@ export default {
       this.event.currMaxGuests = this.event.maxGuests - this.currGuestsCount;
     },
     sendBookMsg() {
+      this.msgInput.name = this.book.guestName;
+      this.msgInput.guests = this.book.guestsBooking;
+      this.msgInput.at = this.book.eventDate;
       const msg = this.msgInput;
+      console.log(msg);
       const currCookId = this.event.cookId
       this.$socket.emit("newBookMsg", {msg,currCookId});
     }
@@ -173,7 +179,7 @@ export default {
   computed: {
     currMaxGuests() {
       return this.event.maxGuests - this.currGuestsCount;
-    }
+    },
   },
   components: {
     requestModal,

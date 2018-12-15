@@ -31,7 +31,7 @@
             </GmapMap>
           </div>
         </div>
-        <request-box :event="event" class="request-box"></request-box>
+        <request-box :event="event" :cook="cook" class="request-box"></request-box>
       </div>
     </div>
   </section>

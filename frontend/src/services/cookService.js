@@ -20,8 +20,8 @@ function getById(cookId) {
         .then(res => res.data)
 }
 
-function update(order) {
-    return axios.put(`${BASE_URL}${order.cookId}`, order)
+function update(cook) {
+    return axios.put(`${BASE_URL}${cook.cookId}`, cook)
       .then(res => res.data)
       .catch(err => {
         console.warn(err);

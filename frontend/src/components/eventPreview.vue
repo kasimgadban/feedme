@@ -30,7 +30,7 @@ export default {
   props: ["event"],
   data() {
     return {
-      cook: Object
+      cook: {}
     };
   },
   components: {},
@@ -82,7 +82,7 @@ export default {
     position: absolute;
     /* top: 200px; */
     /* left: 130px; */
-    top: 50%;
+    top: 45%;
     left: 40%;
 }
 

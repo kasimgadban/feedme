@@ -2,7 +2,7 @@
 <section>
   <div id="app">
     <nav-bar id="nav" :user="user"></nav-bar>
-    <router-view class="ro"></router-view>
+    <router-view ></router-view>
   </div>
   <notifications  group="foo" />
   </section>

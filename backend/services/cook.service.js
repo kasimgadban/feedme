@@ -80,7 +80,7 @@ function update(cook) {
             let tempCook = { ...cook
             }
             delete tempCook._id
-
+            
             const collection = db.collection('cook_db');
             return collection.update({
                     _id: cookId
