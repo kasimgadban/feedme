@@ -13,8 +13,8 @@
               <span>Phone#: {{book.guestPhone}}</span>
             </div>
             <div class="modal-footer">
-            <button class="modal-btn cancel" @click="$emit('close')">✖</button>
-            <button class="modal-btn send" @click="$emit('bookOrder')">✔</button>
+            <button class="modal-btn cancel" @click="$emit('close')">Cancel</button>
+            <button class="modal-btn send" @click="$emit('bookOrder')">Confirm</button>
             </div>
           </div>
         </div>

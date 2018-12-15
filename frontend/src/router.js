@@ -8,6 +8,7 @@ import Hosting from './views/hosting.vue'
 import city from './views/city.vue'
 import signup from './views/signup.vue'
 import myprofile from './views/myprofile.vue'
+import myEvents from './views/myEvents.vue'
 import eventEdit from './views/eventEdit.vue'
 import login from './views/login.vue'
 import chat from './views/chat.vue'
@@ -65,6 +66,11 @@ export default new Router({
       path: '/myprofile/:id',
       name: 'myprofile',
       component: myprofile
+    },
+    {
+      path: '/myEvents/:id',
+      name: 'myEvents',
+      component: myEvents
     },
     {
     path: '/chat',

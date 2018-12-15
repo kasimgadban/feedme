@@ -10,10 +10,11 @@
       <div class="nav-bar">
         <div class="nav-btns" v-if="user">
           <div class="dad" style="position:relative;">
-            <span >Hi,{{userName}}<span @click="toggleDropDown"
+            <span >Hi,{{userName}} &nbsp;<span @click="toggleDropDown"
             class="drop"><i class="fas fa-caret-down"></i></span>
              <div class="dropDown" v-show="isDropDownOpen">
-          <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">profile</span></router-link>
+          <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Profile</span></router-link>
+          <router-link :to="'/myEvents/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Events</span></router-link>
           <span><button @click="logout" class="log-out">Log Out</button></span>
             </div>
             </span>
@@ -84,22 +85,11 @@ export default {
 
 <style scoped lang="scss">
 .logo {
-  // width:50px;
-  // height:50px;
-  // border: 1px solid;
-  // border-radius: 50%;
   text-decoration: none;
 }
 
-// .chat-icon {
-//   background: none;
-//   border: none;
-//   font-size: 1.2em;
-// }
 
 .img-logo {
-  // width:50px;
-  // height:50px;
   border: 1px solid;
   border-radius: 50%;
   position: absolute;
@@ -108,14 +98,16 @@ export default {
 
 .dropDown{
   display: flex;
-    flex-direction: column;
-    position: absolute;
-    height: 80px; 
-    background: aquamarine;
-    // width: 100%;
-    width: 115px;
-    align-items: center;
-    margin: 0 auto;
+  flex-direction: column;
+  position: absolute;
+  height: 200px; 
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 17px;
+  width: 200px;
+  background: #ffffffeb;
+  border: 1px solid gainsboro;
+ 
 }
 
 .drop{
@@ -128,8 +120,12 @@ export default {
   border: none;
   padding-bottom: 5px;
   padding-top: 10px;
-  // border-bottom: 1px solid gray;
-  // margin-left: 15px;
+  width: 185px;
+    border-bottom: 1px solid;
+    text-align: center;
+    color: black;
+    font-size: 0.8em;
+     border-color: #80808087;
 }
 
 
@@ -148,7 +144,7 @@ export default {
 .nav-btns {
   display: grid;
   padding: 3px;
-  grid-template-columns: 1fr 1fr 0fr;
+  grid-template-columns: 1fr 0.5fr 0fr;
   gap: 2px;
   align-items: center;
 }

@@ -85,7 +85,7 @@ export default {
         guestName: "",
         guestPhone: "",
         guestsBooking: 0,
-        showNoti: 1,
+        showNoti: true,
       },
       currGuestsCount: 0,
       currBookDate: [],
@@ -102,6 +102,7 @@ export default {
         name: '',
         guests: 0,
         at: '',
+        isRead: false
       } 
     };
   },
