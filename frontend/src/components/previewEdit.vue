@@ -1,16 +1,34 @@
 <template>
   <section class="edit-cards">
-    <div class="card">
+    <div class="card" @click="$emit('showO',event.dates)">
       <div class="card-img">
         <div class="card-img-holder" :style="bgImage"></div>
       </div>
       <div class="desc">Title: {{event.description}}</div>
+      <div class="edit-sec">
+        <router-link
+          tag="button"
+          :to="'/event/edit/'+event.cookId+'_'+event._id"
+          class="edit-event"
+        >
+          <button class="edit-icon">
+            <i class="far fa-edit"></i>
+          </button>
+        </router-link>
+      </div>
     </div>
-    <router-link tag="button" :to="'/event/edit/'+event.cookId+'_'+event._id" class="add-event">
-      <button class="edit-icon">&#x270E;</button>
-    </router-link>
-     <!-- <pre>{{event.dates}}</pre> -->
+    
+    <!-- <div v-show="isShowOrders" class="orders-container">
+      <h3>Orders Details</h3>
+        <div v-for="(day,index) in event.dates" :key="index">
+          <span>Date: {{day.eventDate}}</span>
+          <span>Name: {{day.guestName}}</span>
+          <span>Guests count: {{day.guestsBooking}}</span>
+        </div>
+    </div> -->
+
   </section>
+  
 </template>
 <script>
 export default {
@@ -18,7 +36,7 @@ export default {
   props: ["event"],
   data() {
     return {
-      cook: Object
+      cook: Object,
     };
   },
   components: {},
@@ -29,7 +47,9 @@ export default {
       this.cook = cook;
     });
   },
-  methods: {},
+  methods: {
+  
+  },
   computed: {
     bgImage() {
       return (
@@ -49,13 +69,11 @@ export default {
 .edit-cards {
   display: flex;
   flex-direction: column;
-  border: 1px solid #80808038;
-  margin: 5px;
-  width: 200px;
+  height: 100%;
 }
 
 .card {
-  flex: 1;
+  cursor: pointer;
 }
 .card-img {
   height: 100px;
@@ -67,30 +85,43 @@ export default {
   margin-left: 10px;
 }
 
-
-// button {
-//   border: none;
-//   background: none;
-//   color: blue;
-//   margin-top: 5px;
-//   cursor: pointer;
-//   height: 20px;
-//   font-size: 1em;
-// }
-
-.edit-icon{
+.edit-icon {
   border: none;
-    float: right;
-    background: none;
-    cursor: pointer;
-    // height: 30px;
-    font-size: 2.3em;
-    border: none;
+  float: right;
+  background: none;
+  cursor: pointer;
+  // height: 30px;
+  font-size: 2.3em;
+  border: none;
+  background: none;
+  padding-bottom: 5px;
+}
+
+.edit-event {
+  float: right;
+  padding: 0px;
+  margin: 0px;
+  border: none;
   background: none;
 }
+
 .desc {
   text-align: center;
   padding: 3px;
   color: black;
+}
+
+.edit-sec {
+  padding: 2px;
+}
+
+.orders-container{
+  height: 300px;
+  background-color: pink;
+  margin-top: 30px;
+}
+
+.card:active{
+  border: 5px solid;
 }
 </style>

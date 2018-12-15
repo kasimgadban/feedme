@@ -50,6 +50,12 @@ export default {
       return this.unReadNoti;
     }
   },
+  methods:{
+    lhitsa(){
+      console.log('i am datos', this.datos)
+    }
+
+  },
   sockets: {
     gotBookNoti(obj) {
       if (this.user._id === obj.currCookId) {
@@ -65,6 +71,7 @@ export default {
       this.showNotifDrop = !this.showNotifDrop;
       // this.unReadNoti = 0
     },
+<<<<<<< HEAD
     notiRead(key,value,ev) {
       this.unReadNoti--;
       value.isRead = true;
@@ -72,6 +79,13 @@ export default {
       console.log(ev);
       // console.log(this.dates[key].showNoti);
       this.dates[key].showNoti = false;
+=======
+    notiRead(key) {
+      this.bookNoti[key].isRead = true;
+      this.unReadNoti--;
+      this.dates[key].showNoti = false;
+      
+>>>>>>> 9bd67f6399dba47757dec308e693c3c66fb964e1
     }
   }
 };
@@ -92,7 +106,7 @@ export default {
   border-radius: 3px;
   padding: 3px;
   height: 2.2em;
-  width: 2.2em;
+  // width: 2.2em;
 }
 
 .notifs-dropdown {

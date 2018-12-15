@@ -67,18 +67,18 @@
   </form>
 </div>
 
-<div class="container events">
+
+<!-- <div class="container events">
   <h3>Events</h3>
    <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
    <i class='material-icons' style="font-size: 50px;">add</i>
    </router-link>
-   <!-- <button @click="addEvent">
-     <i class='material-icons' style="font-size: 50px;">add</i>
-      </button>-->
       <div class="cook-events">
         <preview-edit v-for="event in events" :key="event._id" :event="event"/>
       </div>
-    </div>
+    </div> -->
+
+
   </section>
 </template>
 

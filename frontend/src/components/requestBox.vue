@@ -47,7 +47,7 @@
         required
       >
       <input type="submit" class="send josefin-font" v-if="currMaxGuests>0" value="Book">
-      <button class="send josefin-font" v-else disabled>full</button> 
+      <button class="send josefin-font full" v-else disabled>full</button> 
      
     </div>
     </form>
@@ -132,20 +132,27 @@ export default {
   methods: {
     bookOrder() {
       this.book.eventDate = moment(this.book.eventDate).format("DD/MM/YYYY");
+      console.log(this.book);
       this.event.dates.push(this.book);
       this.event.guestsCount += +this.book.guestsBooking;
       eventService.saveEvent(this.event);
       this.isShowModal = false;
 
-      // swal({
-      //       title: "Successfully booked",
-      //       text: "See you soon!!",
-      //       icon: "success",
-      //        timer:2000,
-      //     buttons:{
-      //       cancel: false,
-      //     confirm: false}
-      //   })
+
+
+      this.book.guestName = ''
+      this.book.guestPhone = ''
+      this.book.guestsBooking = 0;
+
+      swal({
+            title: "Successfully booked",
+            text: "See you soon!!",
+            icon: "success",
+             timer:2000,
+          buttons:{
+            cancel: false,
+          confirm: false}
+        })
         this.sendBookMsg()
     },
     dateSelected() {

@@ -59,6 +59,8 @@ export default {
   },
   created() {
     const eventId = this.$route.params.id;
+    console.log(eventId);
+    
     this.$store.dispatch({ type: "getById", eventId }).then(event => {
       this.event = event
       this.$store.dispatch({ type: "getCookById", cookId:this.event.cookId }).then(cook => {

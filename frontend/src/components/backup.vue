@@ -1,136 +1,169 @@
 <template>
-  <!-- template for the modal component -->
-  <section type="text/x-template" id="modal-template">
-    <transition name="modal">
-
-      <div class="modal-mask" @click="$emit('close')">
-        <div class="modal-wrapper">
-          <div class="modal-container">
-            <div class="test">
-              <h1>Description</h1>
-              <span>Date: {{order.date}}</span>
-              <span>Location: hard coded</span>
-              <span>Location: hard coded</span>
-            </div>
-            <div class="modal-footer">
-              <button class="modal-default-button" @click="bookOrder()">OK</button>
-              <button class="modal-default-button" @click="$emit('close')">cancel</button>
-            </div>
-          </div>
-        </div>
+  <section class="cards">
+    <article class="card card--1">
+      <router-link class="link" :to="'/event/'+ event._id">
+      <div class="card__img">
+        <div class="card__img_holder" :style="bgImage"></div>
       </div>
-      
-    </transition>
+      <div class="card__info">
+        <h4 class="price">${{event.price}}</h4>
+        <h3 class="card__title">{{event.description}}</h3>
+        <span class="card__by">Hosted by
+          <router-link class="link" :to="'/cook/'+ event.cookId">
+            <a href="#" class="card__author" title="author">{{cook.fullName}}</a>
+             <div class="host-img" :style="hostImage"></div>
+          </router-link>
+        </span>
+      </div>
+      </router-link>
+    </article>
   </section>
 </template>
-
 <script>
-
-import cookService from '@/services/cookService'
-
 export default {
-  props: ['order','cookId'],
-  data(){
+  name: "eventPreview",
+  props: ["event"],
+  data() {
     return {
-      cook: null
-    }
+      cook: Object
+    };
   },
-  methods: {
-    bookOrder() {
-     cookService.update(this.order)
-      this.$emit("close");
-    }
-  },
+  components: {},
   created() {
-    var cookId = this.cookId;
-    this.$store.dispatch({ type: "getCookById", cookId})
-            .then(cook => {
-              this.cook = cook
-            });
-            // var y = x.split(' ');
-  //   this.$store.dispatch({ type: "loadEvents" });
-  //   this.$store.dispatch({ type: "loadCities" });
+    this.$store.dispatch({ type: "loadEvents" });
+    var cookId = this.event.cookId;
+    this.$store.dispatch({ type: "getCookById", cookId }).then(cook => {
+      this.cook = cook;
+    });
   },
-  // computed: {
-    // created() {
-    //   return this.$store.getters.getCookById(this.event.cookId);
-    // }
-  // }
+  methods: {},
+  computed: {
+    bgImage() {
+      return (
+        "background-image: url(" +
+        this.event.image +
+        "); background-size: cover; display:block;"
+      );
+    },
+    hostImage(){
+      return (
+        "background-image: url(" +
+        this.cook.image +
+        "); background-size: cover; display:block;"
+      );
+    }
+  }
 };
 </script>
-<style lang="scss" scoped>
-.modal-mask {
-  position: fixed;
-  // position:relative;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
+
+<style scoped lang="scss">
+.link {
+  text-decoration: none;
 }
 
-.test{
+.cards {
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  max-width: 820px;
 }
 
-.modal-wrapper {
-  // display: table-cell;
-  display: flex;
-  flex-direction: column;
+.host-img{
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
+    border-radius: 50%;
+    position: absolute;
+    /* top: 200px; */
+    /* left: 130px; */
+    top: 50%;
+    left: 40%;
+}
+
+.card__img {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 100%;
-  // vertical-align: middle;
+  height: 235px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+
+
 }
 
-.modal-container {
-  width: 50%;
-  height: 70%;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: rgba(223, 214, 214, 0.99);
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.modal-footer{
+.card {
+  margin: 0 auto;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  background-color: #fff;
   position: relative;
-    top: 75%;
-    height: 50px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  .card__img_holder {
+    height: 100%;
+    transition: transform .3s;
+  }
+  &:hover {
+    box-shadow: 0px 20px 18px -8px rgba(0, 0, 0, 0.1);
+    .card__img {
+      background-size: 105%;
+    }
+    .card__img_holder {
+      transform: scale(1.1);
+    }
+  }
 }
+
+.card__info {
+  z-index: 2;
+  background-color: #fff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 16px 24px 24px 24px;
+}
+
+.card__category {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: #868686;
+}
+
+.card__title {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: "Roboto Slab", serif;
+}
+
+.card__by {
+  font-size: 12px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+
+.card__author {
+  font-weight: 600;
+  text-decoration: none;
+  color: #ad7d52;
+}
+
+
+article.card {
+  width: 100%;
+  border: 1px solid #80808029;
+}
+
+.price,.card__title,.card__by{
+  color: #00000085;
+}
+.price{
+    margin: 0;
+    font-size: 1.3em;
+}
+
 </style>
-
-

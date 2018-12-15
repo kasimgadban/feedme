@@ -63,7 +63,7 @@ export default {
 
 .city-link{
     height: 230px;
-    border-radius: 9px;
+    border-radius: 2px;
     background-size: contain;
     background-repeat: no-repeat;
     background-size: cover;
