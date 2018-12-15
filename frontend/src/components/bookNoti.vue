@@ -11,7 +11,7 @@
         v-if="showNotifDrop && unReadNoti > 0 && !bookNoti[key].isRead"
       >
         <div class="notif-item">
-          <span @click="notiRead(key)">X</span>
+          <span @click="notiRead(key,value,$event)">X</span>
           <h1>New event has been booked!</h1>
           {{bookNoti[key].name}} booked for {{bookNoti[key].guests}} guests at {{bookNoti[key].at}}
         </div>
@@ -65,10 +65,13 @@ export default {
       this.showNotifDrop = !this.showNotifDrop;
       // this.unReadNoti = 0
     },
-    notiRead(key) {
-      this.bookNoti[key].isRead = true;
-      this.dates[key].showNoti = false;
+    notiRead(key,value,ev) {
       this.unReadNoti--;
+      value.isRead = true;
+      // this.bookNoti[key].isRead = true;
+      console.log(ev);
+      // console.log(this.dates[key].showNoti);
+      this.dates[key].showNoti = false;
     }
   }
 };
