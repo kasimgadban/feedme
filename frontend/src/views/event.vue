@@ -7,8 +7,8 @@
       <div class="wrapper">
         <div class="details">
           <div class="top">
-            <div class="josefin-font">🕐{{event.time}}</div>
-            <div class="address josefin-font">&#x1F4CD;{{event.address}}</div>
+            <div class="josefin-font"><i class="far fa-clock"></i> {{event.time}}</div>
+            <div class="address josefin-font"><i class="fas fa-map-marker-alt"></i> {{event.address}}</div>
             <router-link :to="'/cook/'+event.cookId" class="cook josefin-font">Host: {{cook.fullName}}</router-link>
           </div>
           <hr>
@@ -18,7 +18,7 @@
             <div class="menu" v-for="dish in event.menu" :key="dish.id">
               <h3>{{dish.name}}</h3>
               <p>{{dish.desc}}</p>
-              <span class="star">***</span>
+              <!-- <span class="star">***</span> -->
             </div>
           </div>
 
@@ -59,6 +59,8 @@ export default {
   },
   created() {
     const eventId = this.$route.params.id;
+    console.log(eventId);
+    
     this.$store.dispatch({ type: "getById", eventId }).then(event => {
       this.event = event
       this.$store.dispatch({ type: "getCookById", cookId:this.event.cookId }).then(cook => {

@@ -8,8 +8,8 @@
     <label for="password"><b>Password</b></label>
     <input type="password" 
     placeholder="Enter Password" v-model="password" name="password" required>
-    {{username}}
-    {{password}}
+    <!-- {{username}} -->
+    <!-- {{password}} -->
     <button type="submit">Login</button>
     <span>Not a user yet?
       <router-link to="/signup"> Create an account</router-link>

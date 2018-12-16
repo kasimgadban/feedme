@@ -1,21 +1,31 @@
 <template>
-  <section class="cards" v-if='cook'>
-    <article class="card card--1">
+  <section class="cards">
+    <div class="card" style="display:flex; flex-direction:column;">
+      <div class="details-wrapper" style="display:flex; flex:1;">
       <router-link class="link" :to="'/event/'+ event._id">
       <div class="card__img">
         <div class="card__img_holder" :style="bgImage"></div>
       </div>
       <div class="card__info">
+        <div class="test1">
         <h4 class="price">${{event.price}}</h4>
         <h3 class="card__title">{{event.description}}</h3>
+        <div class="host-img" :style="hostImage"></div>
+        </div>
+      </div>
+         </router-link>
+         </div>
+        <div class="host-wrapper" style="display:flex; height:50px; padding:15px;">
         <span class="card__by">Hosted by
           <router-link class="link" :to="'/cook/'+ event.cookId">
-            <a href="#" class="card__author" title="author">{{cook.fullName}}</a>
+            <a href="#" class="card__author" title="author">{{cook.fullName}} </a>
+             <!-- <div class="host-img" :style="hostImage"></div> -->
           </router-link>
+          <span>in {{cook.city}}</span>
         </span>
+        </div>
       </div>
-      </router-link>
-    </article>
+    
   </section>
 </template>
 <script>
@@ -43,6 +53,13 @@ export default {
         this.event.image +
         "); background-size: cover; display:block;"
       );
+    },
+    hostImage(){
+      return (
+        "background-image: url(" +
+        this.cook.image +
+        "); background-size: cover; display:block;"
+      );
     }
   }
 };
@@ -61,14 +78,27 @@ export default {
   max-width: 820px;
 }
 
+.host-img{
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
+    border-radius: 50%;
+    position: absolute;
+    /* top: 200px; */
+    /* left: 130px; */
+    top: 45%;
+    left: 40%;
+    border:3px solid white;
+}
+
 .card__img {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
   height: 235px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   overflow: hidden;
 
 
@@ -79,15 +109,15 @@ export default {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
   background-color: #fff;
   position: relative;
-  border-radius: 12px;
+  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
   .card__img_holder {
     height: 100%;
     transition: transform .3s;
   }
   &:hover {
-    box-shadow: 0px 20px 18px -8px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0px 20px 18px -8px rgba(0, 0, 0, 0.1);
     .card__img {
       background-size: 105%;
     }
@@ -145,5 +175,6 @@ article.card {
     margin: 0;
     font-size: 1.3em;
 }
+
 
 </style>

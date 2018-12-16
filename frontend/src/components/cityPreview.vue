@@ -58,12 +58,12 @@ export default {
 
 }
 .card-img:hover{
-  box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
+  // box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
 }
 
 .city-link{
     height: 230px;
-    border-radius: 9px;
+    border-radius: 2px;
     background-size: contain;
     background-repeat: no-repeat;
     background-size: cover;

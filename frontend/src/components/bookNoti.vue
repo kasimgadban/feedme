@@ -1,29 +1,26 @@
 <template>
-    <section class="notification-menu" >
-      <div class="item notifs-btn" @click="showNotifDrop = !showNotifDrop">
-      <!-- <div class="notifs-btn" @click="showNotifDrop = !showNotifDrop">
-        <i ></i>
-      </div> -->
-      <el-badge :value="5" >
-            <i size="small" class="fas fa-bell" ></i>
-          </el-badge>
-          </div>
-      <div class="notifs-dropdown">
-       <div class="cmnt-ntfs" 
-        v-for="(value, key) in user.bookNoti" 
-        :key="key" 
-        v-if="showNotifDrop && user.bookNoti">
-              <div class="notif-item">
-                  <h1>New event has been booked!</h1>
-                  {{ev.msg.name}} booked {{ev.msg.guests}} at {{ev.msg.at}}
-              </div>
+  <section class="notification-menu">
+    <div class="item notifs-btn" @click="openNotiCenter">
+      <el-badge v-if="notiCount > 0" :value="notiCount"></el-badge>
+      <i size="small" class="fas fa-bell"></i>
+    </div>
+    <div class="notifs-dropdown">
+      <div
+        v-for="(value, key) in bookNoti"
+        :key="key"
+        v-if="showNotifDrop && unReadNoti > 0 && !bookNoti[key].isRead"
+      >
+        <div class="notif-item">
+          <span @click="notiRead(key)">X</span>
+          <h1>New event has been booked!</h1>
+          {{bookNoti[key].name}} booked for {{bookNoti[key].guests}} guests at {{bookNoti[key].at}}
         </div>
       </div>
-    </section>  
+    </div>
+  </section>
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -31,63 +28,61 @@ export default {
       events: null,
       showNotifDrop: false,
       dates: [],
-      datos: [],
-      e:{},
-      notiCount:0
+      unReadNoti: 0,
+      bookNoti: []
+      // notiCount:0
     };
   },
   created() {
     this.user = this.$store.getters.getLoggedCook;
-    const cookId = this.user._id
+    const cookId = this.user._id;
     // console.log(this.user);
-    this.$store.dispatch({ type: 'getEventsByCook', cookId }).then(events => {
+    this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
       events.forEach(element => {
-        // console.log('events 45',events);
-        // console.log('...element.dates 46',...element.dates);
-        this.dates.push(...element.dates)   
-            
-      })
-      //  this.events = events;
+        this.dates.push(...element.dates);
       });
-      console.log("this user dates",this.dates)
-       var d = JSON.parse(JSON.stringify(this.dates))
-        console.log("this user datos d",d)
-        console.log('this notiCount',this.notiCount);
+      this.dates = this.dates.filter(count => count.showNoti === true);
+      this.unReadNoti = this.dates.length;
+    });
   },
   computed: {
-    notifsBtnClassObj() {
-      return {
-        'notifs-dot':
-        this.user.bookNoti > 0
-      };
-    },
-    ev(){
-        return this.e;
-    },
-    // notiCount(){
-    //   return 
-    // }
+    notiCount() {
+      return this.unReadNoti;
+    }
+  },
+  methods:{
+    lhitsa(){
+      console.log('i am datos', this.datos)
+    }
+
   },
   sockets: {
     gotBookNoti(obj) {
       if (this.user._id === obj.currCookId) {
-        this.e = obj
-        console.log('Line 82 Socket on',this.e);
-        
-        // console.log(e);
-        
-        // this.$notify({
-        //   group: "foo",
-        //   title: "You've got new message",
-        //   text: (this.msgInput = obj.msg)
-        // });
+        console.log(obj.msg);
+        this.bookNoti.push(obj.msg);
+        this.unReadNoti++;
       }
+      console.log(this.bookNoti);
     }
   },
+  methods: {
+    openNotiCenter() {
+      this.showNotifDrop = !this.showNotifDrop;
+      // this.unReadNoti = 0
+    },
+    notiRead(key) {
+      this.bookNoti[key].isRead = true;
+      this.unReadNoti--;
+      this.dates[key].showNoti = false;
+      
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+
 .notification-menu {
   color: #35495e;
   position: relative;
@@ -101,38 +96,33 @@ export default {
   border-radius: 3px;
   padding: 3px;
   height: 2.2em;
-  width: 2.2em;
-}
-
-.notifs-dot::after {
-  content: '•';
-  color: red;
-  position: relative;
-  position: relative;
-  bottom: 0.5em;
+  // width: 2.2em;
 }
 
 .notifs-dropdown {
-  display: flex;
-  flex-direction: column;
   position: fixed;
   width: max-content;
-  margin-top: 6px;
   right: 0;
+  margin-top: 10px;
+  padding: 2px;
+  // background: gray;
+  display: grid;
+  gap: 1px;
 }
 
 .notif-item {
   cursor: pointer;
+  margin-right: 5px;
   background-color: #ffffff;
   padding: 3px;
   margin-top: 1px;
   color: #35495e;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-}
-
-.notif-item:hover {
-  background-color: #d4d4d4b0;
+  margin: 0;
 }
 
 </style>
+
+
+        

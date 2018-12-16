@@ -21,10 +21,10 @@
       </div>
       <div class="cook-info-box">
         <div class="location">
-          <span>📍{{cook.city}}, &nbsp;</span>
+          <span><i class="fas fa-map-marker-alt"></i> {{cook.city}}, &nbsp;</span>
           <span>{{cook.country}}</span>
         </div>
-        <span class="lang">Languages: {{cook.language}}</span>
+        <span class="lang"><i class="fas fa-globe"></i> {{cook.language}}</span>
         <!-- <a
           id="mail"
           href="https://mail.google.com/mail/
