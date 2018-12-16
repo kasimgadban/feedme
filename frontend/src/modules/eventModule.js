@@ -10,12 +10,14 @@ export default {
   },
   mutations: {
     setEvents(state, { events }) {
+      console.log('events',events);
+      
       state.events = events;
     },
     setEvent(state, { event }) {
       state.currEvent = event;
     },
-    setFilterByEventDate(state,{FilterdEvent}){
+    setEventsByFilter(state,{FilterdEvent}){
       state.FilterdEvent = FilterdEvent;
     }
   },
@@ -47,6 +49,8 @@ export default {
   loadByFilter(context,{filter}){
   console.log('event moudle filter ',filter);
   return eventService.query({byAddress: filter.byAddress}).then(events =>{
+    console.log(events);
+    
     context.commit({type: 'setEvents',events});
   });
 },

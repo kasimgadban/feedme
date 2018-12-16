@@ -2,12 +2,10 @@
   <section class="a">
     <input
       ref="autocomplete"
-      placeholder="Search for a city"
+      :placeholder="comCurrLoc"
       class="search-location"
-      value =""
       type="text"
       v-model="filter.byAddress"
-     
     >
     <button class="search-btn"  @click="setFilter()" >Search</button>
   </section>
@@ -18,6 +16,7 @@
 
 export default {
   name: "searchBar",
+  props:['comCurrLoc'],
   data() {
     return {
       currentLocation: { lat: 0, lng: 0 },
@@ -38,7 +37,8 @@ export default {
   },
   methods: {
     setFilter() {
-      this.$emit("setFilter", this.filter);
+      console.log('test 1', this.filter);
+      this.$emit("set-filter", this.filter);
     }
     // searchLocation: function() {
     //   var geocoder = new google.maps.Geocoder();

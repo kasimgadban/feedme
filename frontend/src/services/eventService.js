@@ -5,17 +5,11 @@ const BASE_URL = process.env.NODE_ENV !== 'development'
     : '//localhost:3000/event'
 
 function query(filter = {}) {
-    // console.log('front eventService query',filter);
-    
-    // const a = [];
-    // a[0] = filter.date;
-    // a[1] = filter.address
     var queryParams = new URLSearchParams()
     if (filter.byCityId) queryParams.append('cityId', filter.byCityId)
     if (filter.byCookId) queryParams.append('cookId', filter.byCookId)
     if(filter.byAddress) queryParams.append('address',filter.byAddress)
     if (filter.byCityId || filter.byCookId || filter.byAddress) {
-        // console.log('CHECK',`${BASE_URL}?${queryParams}` );
         return axios.get(`${BASE_URL}?${queryParams}`)
                         .then(res => res.data)
     }

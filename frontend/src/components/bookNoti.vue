@@ -1,14 +1,14 @@
 <template>
   <section class="notification-menu">
-    <div class="item notifs-btn" @click="openNotiCenter">
+    <div class="item notifs-btn" >
       <el-badge v-if="notiCount > 0" :value="notiCount"></el-badge>
-      <i size="small" class="fas fa-bell"></i>
+      <i size="small" class="fas fa-bell" @click="openNotiCenter"></i>
     </div>
     <div class="notifs-dropdown">
       <div
         v-for="(value, key) in bookNoti"
         :key="key"
-        v-if="showNotifDrop && unReadNoti > 0 && !bookNoti[key].isRead"
+        v-if="showNotifDrop && unReadNoti > 0 "
       >
         <div class="notif-item">
           <span @click="notiRead(key)">X</span>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import eventService from '@/services/eventService'
 export default {
   data() {
     return {
@@ -54,7 +55,6 @@ export default {
     lhitsa(){
       console.log('i am datos', this.datos)
     }
-
   },
   sockets: {
     gotBookNoti(obj) {
@@ -69,16 +69,26 @@ export default {
   methods: {
     openNotiCenter() {
       this.showNotifDrop = !this.showNotifDrop;
-      // this.unReadNoti = 0
+      const cookId = this.user._id;
+      this.unReadNoti = 0
+      // this.dates.forEach(element => element.showNoti = false)
+      // this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
+      // events.forEach(element => {
+      //   element.dates.push(...this.dates);
+      //   console.log(element);
+      // eventService.saveEvent(element);
+      // });
+      // })
     },
     notiRead(key) {
+      // value.isRead = true;
       this.bookNoti[key].isRead = true;
       this.unReadNoti--;
+      // console.log(this.dates[key].showNoti);
       this.dates[key].showNoti = false;
-      
-    }
   }
-};
+}
+}
 </script>
 
 <style lang="scss" scoped>
