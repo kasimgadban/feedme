@@ -70,7 +70,16 @@ export default {
       this.$router.push("event/edit");
     },
     showOrders(orders) {
-      console.log("dates 61", orders);
+      // var d = []
+      // orders.forEach(date => {
+      //   d.push(new Date(date.eventDate))
+      // });
+      // console.log("dates 61 before", d );
+      orders.sort(function(a,b){
+         return new Date(a.eventDate) - new Date(b.eventDate)
+      }
+      )
+      console.log("dates 61", orders );
       this.orders = orders;
       this.isShowOrders = true;
     }

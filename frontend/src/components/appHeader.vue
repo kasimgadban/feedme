@@ -2,7 +2,7 @@
   <section class="header" :style="bgImage">
       <h1>Unforgettable Tastes</h1>
     <div class="search-bar">
-      <search-bar @setFilter="setFilter"></search-bar>
+      <search-bar @set-filter="setFilter" :comCurrLoc="comCurrLoc"></search-bar>
       <!-- <input type="date" placeholder="When?" class="date"> -->
       
     </div>
@@ -16,9 +16,11 @@ import navBar from "@/components/navBar.vue"
 
 export default {
   name: "appHeader",
+  props:['comCurrLoc'],
   methods:{
     setFilter(filter){
-      this.$emit('setFilter',filter)
+      console.log('test',filter);
+      this.$emit('set-filter',filter)
       // this.filter.byAddress = ''
     }
   },  
