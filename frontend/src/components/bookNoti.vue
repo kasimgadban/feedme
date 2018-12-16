@@ -105,7 +105,7 @@ export default {
   right: 0;
   margin-top: 10px;
   padding: 2px;
-  background: gray;
+  // background: gray;
   display: grid;
   gap: 1px;
 }

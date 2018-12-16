@@ -58,7 +58,7 @@ export default {
 
 }
 .card-img:hover{
-  box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
+  // box-shadow: -9px -6px 14px -4px rgba(184, 173, 184, 1);
 }
 
 .city-link{

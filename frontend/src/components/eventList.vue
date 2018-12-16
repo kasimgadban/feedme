@@ -32,7 +32,7 @@ export default {
 .cmp-container {
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
-  gap: 20px;
+  grid-column-gap: 20px;
   text-decoration: none;
 }
 @media only screen and (max-width: 800px) {

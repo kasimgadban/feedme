@@ -59,7 +59,7 @@
       :event="event"
     ></request-modal>
     
-    <button @click="sendBookMsg">TEST</button>
+    <!-- <button @click="sendBookMsg">TEST</button> -->
    
   </section>
 </template>

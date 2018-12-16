@@ -132,7 +132,7 @@ h1 {
 }
 
 .detail-phone {
-  width: 180px;
+  width: 200px;
 }
 
 h3 {

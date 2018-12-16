@@ -58,7 +58,7 @@ export default {
 
 <style scoped lang = "scss">
 input {
-  background-color: rgba(204, 193, 193, 0.959);
+  background-color: white;
   border: none;
   border-right: 2px solid black;
   width: 300px;
