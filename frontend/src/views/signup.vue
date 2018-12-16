@@ -106,8 +106,8 @@ export default {
         cityId:'',
         image: "",
       },
+      example:'test',
       imageData:''
-
     };
   },
   components: {

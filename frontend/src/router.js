@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Cook from './views/cook.vue'
+import reviewPage from './views/review.vue'
 import event from './views/event.vue'
 import Hosting from './views/hosting.vue'
 // import requestModal from './components/requestModal.vue'
@@ -30,6 +31,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/cook/review/:id',
+      name: 'reviewPage',
+      component: reviewPage
     },
     {
       path: '/cook/:id',

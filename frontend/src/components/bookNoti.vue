@@ -42,15 +42,17 @@ export default {
     // console.log(this.user);
     this.$store.dispatch({ type: 'getEventsByCook', cookId }).then(events => {
       events.forEach(element => {
-        this.dates.push(...element.dates)       
+        // console.log('events 45',events);
+        // console.log('...element.dates 46',...element.dates);
+        this.dates.push(...element.dates)   
+            
       })
-      return this.events
+      //  this.events = events;
       });
-        console.log("this user dates",this.dates)
-      this.datos = this.dates.filter(count => count.showNoti === true)
-        console.log("this user datos",this.datos)
+      console.log("this user dates",this.dates)
+       var d = JSON.parse(JSON.stringify(this.dates))
+        console.log("this user datos d",d)
         console.log('this notiCount',this.notiCount);
-    
   },
   computed: {
     notifsBtnClassObj() {

@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const addcookRoutes = require('./routes/cookRoute')
+const addReviewRoutes = require('./routes/reviewRoute')
 const addeventRoutes = require('./routes/eventRoute')
 const addcityRoutes = require('./routes/cityRoute')
 const addchatRoutes = require('./routes/chatRoute')
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 
 
 addcookRoutes(app)
+addReviewRoutes(app)
 addeventRoutes(app)
 addcityRoutes(app)
 addchatRoutes(app)
