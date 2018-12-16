@@ -16,14 +16,15 @@
             read-only="true"
             :show-rating="false"
           ></star-rating>
+          <router-link tag="button" :to="'/cook/review/'+cook._id">Write Your Own Review</router-link>
         </div>
       </div>
       <div class="cook-info-box">
         <div class="location">
-          <span>📍{{cook.city}}, &nbsp;</span>
+          <span><i class="fas fa-map-marker-alt"></i> {{cook.city}}, &nbsp;</span>
           <span>{{cook.country}}</span>
         </div>
-        <span class="lang">Languages: {{cook.language}}</span>
+        <span class="lang"><i class="fas fa-globe"></i> {{cook.language}}</span>
         <!-- <a
           id="mail"
           href="https://mail.google.com/mail/
@@ -44,6 +45,21 @@
         />
       </div>
 
+      <div class="cook-events-reviews">
+      <div class="cook-reviews container-style">
+        <ul>
+          <li v-for="(review,idx) in reviews" :key="idx" >
+            {{review}}
+            </li>
+          </ul>
+        <!-- <cook-review
+          v-for="(review,idx) in reviews"
+          :key="idx"
+          :review="review"
+          class="cook-reviews-list"
+        /> -->
+      </div>
+      </div>
       <!-- *****COMPONENT FOR EDITING EVENTS IN USER PAGE****** -->
       <!-- <div class="events-to-edit container-style">
         <event-edit
@@ -68,7 +84,8 @@ export default {
   data() {
     return {
       cook: {},
-      events: []
+      events: [],
+      reviews:[]
     };
   },
   created() {
@@ -76,6 +93,10 @@ export default {
     if (cookId) {
       this.$store.dispatch({ type: "getCookById", cookId }).then(cook => {
         this.cook = cook;
+        console.log('this.cook.reviews',this.cook.reviews);
+        console.log('this.cook',this.cook);
+        
+        this.reviews = this.cook.review
         this.$store
           .dispatch({ type: "getEventsByCook", cookId })
           .then(events => {
@@ -104,6 +125,14 @@ export default {
 </script>
 
 <style scoped lang = "scss">
+li{
+  border:2px solid gray;
+}
+.cook-events-reviews{
+  margin-top: 30px;
+  background-color: pink;
+  height:700px;
+}
 .cook-info-box {
   display: flex;
   flex-direction: column;

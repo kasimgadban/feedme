@@ -34,7 +34,7 @@
         @input="dateSelected"
         :disabledDates="disabledDates"
       ></v-date-picker>-->
-      <select v-model="book.guestsBooking" class="select" v-if="currMaxGuests > 0">
+      <select v-model="book.guestsBooking" required class="select" v-if="currMaxGuests > 0">
         <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
       </select>
@@ -59,7 +59,7 @@
       :event="event"
     ></request-modal>
     
-    <button @click="sendBookMsg">TEST</button>
+    <!-- <button @click="sendBookMsg">TEST</button> -->
    
   </section>
 </template>

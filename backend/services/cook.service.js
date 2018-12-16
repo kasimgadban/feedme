@@ -23,7 +23,7 @@ function getById(cookId) {
 }
 
 function checkUser(user) {
-    console.log('user from BE 23', user);
+    // console.log('user from BE 23', user);
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('cook_db');
@@ -36,7 +36,7 @@ function checkUser(user) {
                     }
                 ]
             }).then(user => {
-                console.log('user from BE', user);
+                // console.log('user from BE', user);
                 return user;
             })
         })
@@ -70,6 +70,16 @@ function add(cook) {
             })
 
         })
+}
+
+function addReview(rev){
+    rev.cookId = new ObjectId(rev.review.cookId)
+    delete rev.review.cookId
+    return mongoService.connectToDb().then(db => {
+       const collection = db.collection('cook_db')
+       return collection.updateOne({"_id": rev.cookId},{$push : {"review": rev.review}
+        }).then(res => res).catch(err => err)
+    })
 }
 
 function update(cook) {
@@ -111,5 +121,6 @@ module.exports = {
     add,
     update,
     checkLogin,
-    checkUser
+    checkUser,
+    addReview
 }

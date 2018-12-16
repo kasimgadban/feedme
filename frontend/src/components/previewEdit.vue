@@ -1,11 +1,16 @@
 <template>
   <section class="edit-cards">
     <div class="card" @click="$emit('showO',event.dates)">
+      <div class="testflex" style="display:flex; flex-direction:column; flex:1">
       <div class="card-img">
         <div class="card-img-holder" :style="bgImage"></div>
       </div>
       <div class="desc">Title: {{event.description}}</div>
       <div class="edit-sec">
+        </div>
+ </div>
+
+        <div class="edit-btn-icon" style="height:30px; margin-bottom:3px;">
         <router-link
           tag="button"
           :to="'/event/edit/'+event.cookId+'_'+event._id"
@@ -15,8 +20,11 @@
             <i class="far fa-edit"></i>
           </button>
         </router-link>
+        </div>
+
+
       </div>
-    </div>
+   
     
     <!-- <div v-show="isShowOrders" class="orders-container">
       <h3>Orders Details</h3>
@@ -74,6 +82,16 @@ export default {
 
 .card {
   cursor: pointer;
+  height: 255px;
+  display: flex;
+  flex-direction: column;
+}
+
+.testflex{
+  flex: 1;
+}
+.edit-btn-icon{
+  height: 50px;
 }
 .card-img {
   height: 100px;
@@ -90,11 +108,10 @@ export default {
   float: right;
   background: none;
   cursor: pointer;
-  // height: 30px;
-  font-size: 2.3em;
   border: none;
   background: none;
   padding-bottom: 5px;
+  font-size: 2em;
 }
 
 .edit-event {
@@ -124,4 +141,6 @@ export default {
 .card:active{
   border: 5px solid;
 }
+
+
 </style>

@@ -10,7 +10,7 @@ function addcityRoutes(app) {
 
     })
 
-    // SINGLE - GET Full details including reviews
+    // SINGLE - GET Full details
     app.get('/city/:id', (req, res) => {
         const cityId = req.params.id;
         cityService.getById(cityId)
