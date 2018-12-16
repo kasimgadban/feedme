@@ -1,14 +1,14 @@
 <template>
   <section class="notification-menu">
-    <div class="item notifs-btn" >
+    <div class="item notifs-btn" @click="openNotiCenter">
       <el-badge v-if="notiCount > 0" :value="notiCount"></el-badge>
-      <i size="small" class="fas fa-bell" @click="openNotiCenter"></i>
+      <i size="small" class="fas fa-bell" ></i>
     </div>
     <div class="notifs-dropdown">
       <div
         v-for="(value, key) in bookNoti"
         :key="key"
-        v-if="showNotifDrop && unReadNoti > 0 "
+        v-if="showNotifDrop "
       >
         <div class="notif-item">
           <span @click="notiRead(key)">X</span>
@@ -69,7 +69,7 @@ export default {
   methods: {
     openNotiCenter() {
       this.showNotifDrop = !this.showNotifDrop;
-      const cookId = this.user._id;
+      // const cookId = this.user._id;
       this.unReadNoti = 0
       // this.dates.forEach(element => element.showNoti = false)
       // this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
@@ -85,7 +85,7 @@ export default {
       this.bookNoti[key].isRead = true;
       this.unReadNoti--;
       // console.log(this.dates[key].showNoti);
-      this.dates[key].showNoti = false;
+      // this.dates[key].showNoti = false;
   }
 }
 }
