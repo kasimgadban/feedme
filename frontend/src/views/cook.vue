@@ -25,13 +25,6 @@
           <span>{{cook.country}}</span>
         </div>
         <span class="lang"><i class="fas fa-globe"></i> {{cook.language}}</span>
-        <!-- <a
-          id="mail"
-          href="https://mail.google.com/mail/
-                      ?view=cm&fs=1&to=sawsan.elhade@gmail.com&su=new mail from feedMe
-                      &body=Write your message here"
-          target="_blank"
-        >{{cook.email}}</a>-->
         <a class="mail" id="mail" :href="`mailto:${cook.email}`" target="_blank">Contant the host</a>
       </div>
     </div>
@@ -47,28 +40,24 @@
 
       <div class="cook-events-reviews">
       <div class="cook-reviews container-style">
-        <ul>
-          <li v-for="(review,idx) in reviews" :key="idx" >
+        <!-- <ul> -->
+          <div v-for="(review,idx) in reviews" :key="idx" class="review">
             {{review}}
-            </li>
-          </ul>
+            <div class="review-img" style="height:50px;width:50px;">{{review.image}}</div>
+            <div>Name: {{review.name}}</div>
+            <!-- <span>{{review.name}}</span> -->
+            </div>
+          <!-- </ul> -->
+
         <!-- <cook-review
           v-for="(review,idx) in reviews"
           :key="idx"
           :review="review"
           class="cook-reviews-list"
         /> -->
+
       </div>
       </div>
-      <!-- *****COMPONENT FOR EDITING EVENTS IN USER PAGE****** -->
-      <!-- <div class="events-to-edit container-style">
-        <event-edit
-          v-for="event in events"
-          :key="event._id"
-          :event="event"
-        />
-      </div>-->
-      <!-- *****COMPONENT FOR EDITING EVENTS IN USER PAGE****** -->
     </div>
   </section>
 </template>
@@ -286,6 +275,11 @@ li{
 }
 a {
   text-decoration: none;
+}
+
+.review{
+  border: 1px solid blue;
+  height: 70px;
 }
 
 @media only screen and (max-width: 800px) {
