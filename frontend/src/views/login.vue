@@ -14,11 +14,7 @@
     <span>Not a user yet?
       <router-link to="/signup"> Create an account</router-link>
     </span>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
-    <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
   </div>
 
 </form>
@@ -70,7 +66,7 @@ methods:{
 
 form {
   // border: 3px solid #f1f1f1;
-  border: 3px solid blue;
+  // border: 3px solid blue;
   // margin-top: 50px;
 
     // height: 300px;
@@ -132,11 +128,21 @@ img.avatar {
   border-radius: 50%;
 }
 
+.login-form{
+  position: absolute;
+}
 /* Add padding to containers */
 .login-container {
-  padding: 16px;
-  height: 100%;
-  margin-top: 60px;
+  // margin: 0 auto; 
+    position: fixed;
+    /* justify-content: center; */
+    /* margin: 0 auto; */
+    right: 30%;
+    top: 15%;
+    // margin-right: ;
+    height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 /* The "Forgot password" text */
