@@ -88,7 +88,7 @@ export default {
     saveReview(){
         const fullReview = JSON.parse(JSON.stringify(this.review))
         this.$store.dispatch({type: 'saveReview',fullReview})
-        .then(this.$router.go(-1))
+        .then(() => this.$router.go(-1))
     }
   },
   computed: {

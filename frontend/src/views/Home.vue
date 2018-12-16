@@ -4,7 +4,7 @@
     <city-list :cities="cities"/>
     <event-list :events="events"></event-list>
     <app-footer/>
-    <pre>{{events}}</pre>
+    <!-- <pre>{{events}}</pre> -->
   </section>
 </template>
 

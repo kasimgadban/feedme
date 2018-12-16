@@ -72,14 +72,32 @@ function add(cook) {
         })
 }
 
-function addReview(rev){
+async function addReview(rev){
     rev.cookId = new ObjectId(rev.review.cookId)
     delete rev.review.cookId
-    return mongoService.connectToDb().then(db => {
-       const collection = db.collection('cook_db')
-       return collection.updateOne({"_id": rev.cookId},{$push : {"review": rev.review}
-        }).then(res => res).catch(err => err)
-    })
+    const db = await mongoService.connectToDb()
+    const collection = db.collection('cook_db')
+    await collection.updateOne({"_id": rev.cookId},{$push : {"review": rev.review}})
+    return await updateRating(rev.cookId,rev.review.rating)
+}
+
+function updateRating(cookId,newRating){
+    cookId = new ObjectId(cookId)
+    return mongoService.connectToDb()
+        .then(db => {
+            const collection = db.collection('cook_db');
+            return collection.findOne({
+                _id: cookId
+            }).then(cook => {
+                var rating = (cook.rating + newRating)/cook.review.length 
+                return collection.updateOne({
+                    _id: cookId
+                }, {
+                    $set: { rating }
+                })
+
+            })
+        })
 }
 
 function update(cook) {
