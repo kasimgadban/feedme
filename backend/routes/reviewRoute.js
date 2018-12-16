@@ -6,8 +6,8 @@ function addReviewRoutes(app){
         const review = req.body;
         console.log('review BE',review);
         cookService.addReview(review)
-            .then(() => {
-                res.end()
+            .then(updatedCook => {
+                res.json(updatedCook)
             })
     })
 

@@ -13,9 +13,6 @@ export default {
     actions: {
         saveReview(context, { fullReview }) {
            return reviewService.saveReview(fullReview)
-                // .then(review => {
-                // console.log('save review',review);
-                // })
         }
     },
 
