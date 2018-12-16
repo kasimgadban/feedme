@@ -13,9 +13,9 @@
             <span >Hi,{{userName}} &nbsp;<span @click="toggleDropDown"
             class="drop"><i class="fas fa-caret-down"></i></span>
              <div class="dropDown" v-show="isDropDownOpen">
-          <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Profile</span></router-link>
-          <router-link :to="'/myEvents/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Events</span></router-link>
-          <span><button @click="logout" class="log-out">Log Out</button></span>
+          <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Profile <i class="fas fa-user"></i></span></router-link>
+          <router-link :to="'/myEvents/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Events <i class="far fa-calendar-alt"></i></span></router-link>
+          <span><button @click="logout" class="log-out">Log Out <i class="fas fa-sign-out-alt"></i></button></span>
             </div>
             </span>
             </div>
@@ -103,7 +103,8 @@ export default {
   height: 200px; 
   align-items: center;
   margin: 0 auto;
-  margin-top: 17px;
+  margin-top: 12px;
+  left: -50%;
   width: 200px;
   background: #ffffffeb;
   border: 1px solid gainsboro;
@@ -153,12 +154,12 @@ export default {
 .hamburger {
   display: flex;
   align-items: flex-end;
-  margin-right: 20px;
+  // margin-right: 20px;
 }
 
 .nav-bar > * {
   color: black;
-  padding: 10px;
+  padding: 5px;
   font-size: 1.1em;
   font-weight: 600;
   // font-weight: bold;

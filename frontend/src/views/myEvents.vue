@@ -49,7 +49,7 @@ export default {
       cook: {},
       events: [],
       isShowOrders: false,
-      orders: []
+      orders: [],
     };
   },
   created() {
@@ -153,5 +153,11 @@ h3 {
 
 span {
   font-weight: bolder;
+}
+
+@media only screen and (max-width: 800px) {
+  .cook-events{
+  grid-template-columns: 1fr 1fr;
+  }
 }
 </style>

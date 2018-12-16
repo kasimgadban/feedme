@@ -176,5 +176,10 @@ article.card {
     font-size: 1.3em;
 }
 
+@media only screen  and (max-width: 800px){
+  .host-img{
+top: 48%;
+}
+}
 
 </style>

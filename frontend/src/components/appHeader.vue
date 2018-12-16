@@ -1,54 +1,51 @@
 <template>
   <section class="header" :style="bgImage">
-      <h1>Unforgettable Tastes</h1>
+    <div class="text">
+      <h1>Home Dining Experience</h1>
+      <h3>Enjoy new flavors, meet new people and new cultures</h3>
+    </div>
     <div class="search-bar">
       <search-bar @set-filter="setFilter" :comCurrLoc="comCurrLoc"></search-bar>
       <!-- <input type="date" placeholder="When?" class="date"> -->
-      
     </div>
     <router-view/>
   </section>
-
 </template>
 <script>
 import searchBar from "@/components/searchBar.vue";
-import navBar from "@/components/navBar.vue"
+import navBar from "@/components/navBar.vue";
 
 export default {
   name: "appHeader",
-  props:['comCurrLoc'],
-  methods:{
-    setFilter(filter){
-      console.log('test',filter);
-      this.$emit('set-filter',filter)
+  props: ["comCurrLoc"],
+  methods: {
+    setFilter(filter) {
+      console.log("test", filter);
+      this.$emit("set-filter", filter);
       // this.filter.byAddress = ''
     }
-  },  
-  computed:{
-     bgImage() {
-      return (
-        "background-image: url('https://images.pexels.com/photos/1268558/pexels-photo-1268558.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-size: cover; display:block; opacity:0.9; background-position: 50%;"
-      );
-    },
-
+  },
+  computed: {
+    bgImage() {
+      return "background-image: url('https://images.pexels.com/photos/1268558/pexels-photo-1268558.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-size: cover; display:block; opacity:0.9; background-position: 50%;";
+    }
   },
   components: {
     searchBar,
     navBar
-
   }
 };
 </script>
 
 <style scoped lang="scss">
-.logo{
-  width:50px;
-  height:50px;
+.logo {
+  width: 50px;
+  height: 50px;
 }
 
-.img-logo{
-  width:50px;
-  height:50px;
+.img-logo {
+  width: 50px;
+  height: 50px;
 }
 // .search-btn{
 //   font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -63,16 +60,21 @@ export default {
   // background-image: url("https://cdn.shopify.com/s/files/1/2206/4495/articles/main-image_0e2e0e40-2fd0-4c18-a0eb-343072fa341f_2048x.jpg?v=1510690904");
   background-repeat: no-repeat;
   background-size: cover;
-
 }
-.date{
+.date {
   background-color: rgba(204, 193, 193, 0.959);
-    border: none;
-    border-right: 2px solid black;
-    width: 300px;
-    font-size: 1em;
-    height: 48px;
-    padding-left: 5px;
+  border: none;
+  border-right: 2px solid black;
+  width: 300px;
+  font-size: 1em;
+  height: 48px;
+  padding-left: 5px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .nav-container {
   display: flex;
@@ -89,7 +91,7 @@ export default {
   opacity: 1;
 }
 
-.search-bar > *{
+.search-bar > * {
   justify-items: center;
 }
 
@@ -111,60 +113,55 @@ export default {
   padding: 10px;
   font-size: 1.2em;
 }
-// button{
-//     width: 15%;
-//     background-color: #88c888;
-//     border: none;
-//     cursor: pointer;
-//     font-size: 1.1em;
-//     color: black;
-//     font-weight: bolder;
-//     letter-spacing: 2px;
-//     height: 48px;
-// }
 
-// button:focus {
-//     outline:none;
-// }
+h1,h3 {
+  text-align: center;
+  padding-top: 115px;
+  font-size: 45px;
+  color: white;
+  font-family: "Ultra", serif;
+  text-shadow: 1px 1px 10px black;
+}
 
-h1{
-      text-align: center;
-    padding-top: 115px;
-    /* margin-top: 75px; */
-    margin-bottom: 90px;
-    font-size: 45px;
-    color: black;
-    font-family: 'Ultra', serif;
+h3 {
+  font-size: 30px;
+  margin-bottom: 55px;
+  padding-top: 0px;
 }
 @media only screen and (max-width: 800px) {
-    h1{
-    margin-bottom: 70px;
-    font-size: 1.5em;
-    }
+  h1 {
+    margin-bottom: 15px;
+    padding-top: 75px;
+  }
+  h1,h3 {
+    font-size: 1em;
+  }
+  h3 {
+    margin-bottom: 30px;
+  }
 
-.search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 70px;
-  flex-direction: column;
-}
-// button{
-//   width: 25%;
-//   font-size: 1em;
-//   padding: 10px 1px 28px 3px;
-// }
-
-.search-bar>*{
-  border:none;
-}
-.date{
-  padding: 10px;
+  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .search-wrapper {
+    width: 80%;
+  }
+  .search-btn {
+    font-size: 0.9em;
+  }
+  .search-bar > * {
+    border: none;
+  }
+  .date {
+    padding: 10px;
     padding-bottom: 22px;
     margin-bottom: 3px;
-}
-.header{
-  height: 250px;
-}
+  }
+  .header {
+    height: 250px;
+  }
 }
 </style>

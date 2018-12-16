@@ -11,8 +11,7 @@
         v-if="showNotifDrop "
       >
         <div class="notif-item">
-          <span @click="notiRead(key)">X</span>
-          <h1>New event has been booked!</h1>
+          <h1>New event has been booked! <span @click="notiRead(key)"><i class="fas fa-times"></i></span></h1>
           {{bookNoti[key].name}} booked for {{bookNoti[key].guests}} guests at {{bookNoti[key].at}}
         </div>
       </div>

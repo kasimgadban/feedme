@@ -140,9 +140,9 @@ export default {
 
 
 
-      this.book.guestName = ''
-      this.book.guestPhone = ''
-      this.book.guestsBooking = 0;
+      // this.book.guestName = ''
+      // this.book.guestPhone = ''
+      // this.book.guestsBooking = 0;
 
       swal({
             title: "Successfully booked",

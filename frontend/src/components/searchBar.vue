@@ -1,5 +1,5 @@
 <template>
-  <section class="a">
+  <section class="search-wrapper">
     <input
       ref="autocomplete"
       :placeholder="comCurrLoc"
@@ -61,36 +61,39 @@ input {
   background-color: white;
   border: none;
   border-right: 2px solid black;
-  width: 300px;
+  width: 350px;
   font-size: 1em;
   padding: 15px;
+  border-radius: 3px 0px 0px 3px;
 }
 input:focus {
   outline: none;
 }
 
-button {
-  width: 15%;
-  background-color: #88c888;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1em;
-  color: black;
-  font-weight: bolder;
-  letter-spacing: 2px;
-  height: 48px;
+.search-btn {
+  width: 25%;
+  font-weight: bolder; 
+  letter-spacing: 2px; 
+  padding: 1px 7px 1px;
+   background-color: #88c888;
+   font-size: 1em;
+   border: none;
+   border-radius: 0px 3px 3px 0px;
 }
 
-button:focus {
+.search-btn:focus {
   outline: none;
 }
 
 .search-btn {
-  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: inherit;
-  justify-items: center;
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  justify-items: center; 
 }
 
+.search-wrapper{
+  display: flex;
+  height: 50px;
+}
 
 @media only screen and (max-width: 800px) {
   input {
@@ -98,18 +101,11 @@ button:focus {
     margin-bottom: 3px;
     border: none;
   }
-  button {
-    width: 25%;
-    font-size: 1em;
-    padding: 10px 1px 28px 3px;
+  .search-btn {
+    margin-bottom: 3px;
+    letter-spacing: 0px; 
+    
   }
 
-/* .search-btn {
-  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: inherit;
-} */
-  /* .a>*{
-  border:none;
-} */
 }
 </style>
