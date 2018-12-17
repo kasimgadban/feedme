@@ -8,9 +8,8 @@
       <div
         v-for="(value, key) in bookNoti"
         :key="key"
-        v-if="showNotifDrop "
       >
-        <div class="notif-item" @click="notiRead(key)">
+        <div class="notif-item" @click="notiRead(key)"  v-if="showNotifDrop">
           <h1>New event has been booked! <i class="fas fa-times"></i></h1>
           {{bookNoti[key].name}} booked for {{bookNoti[key].guests}} guests at {{bookNoti[key].at}}
         </div>
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-import eventService from '@/services/eventService'
 export default {
   data() {
     return {
@@ -42,17 +40,12 @@ export default {
         this.dates.push(...element.dates);
       });
       this.dates = this.dates.filter(count => count.showNoti === true);
-      this.unReadNoti = this.dates.length;
+      // this.unReadNoti = this.dates.length;
     });
   },
   computed: {
     notiCount() {
       return this.unReadNoti;
-    }
-  },
-  methods:{
-    lhitsa(){
-      console.log('i am datos', this.datos)
     }
   },
   sockets: {
