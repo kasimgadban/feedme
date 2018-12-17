@@ -1,12 +1,13 @@
 <template>
   <section class="edit-cards">
-    <div class="card" @click="$emit('showO',event.dates)">
+    <div class="card" :dates="event.dates">
       <div class="testflex" style="display:flex; flex-direction:column; flex:1">
       <div class="card-img">
         <div class="card-img-holder" :style="bgImage"></div>
       </div>
       <div class="desc">Title: {{event.description}}</div>
       <div class="edit-sec">
+       {{event.guestsCount}}/{{event.maxGuests}} places were booked
         </div>
  </div>
 
@@ -122,7 +123,7 @@ export default {
   background: none;
 }
 
-.desc {
+.desc,.edit-sec {
   text-align: center;
   padding: 3px;
   color: black;

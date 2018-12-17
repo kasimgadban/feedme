@@ -1,5 +1,6 @@
 <template>
   <section class="cards">
+    <!-- <div class="toti">{{(+event.maxGuests)-(+event.guestsCount)}}</div> -->
     <router-link class="link" :to="'/event/'+ event._id">
       <div class="event-card">
         <div class="event-img-holder">
@@ -11,7 +12,8 @@
           </router-link>
           <div class="host-desc">
             <span class="host">
-              <router-link class="link" :to="'/cook/'+ event.cookId">Hosted by
+              <router-link class="link" :to="'/cook/'+ event.cookId">
+                Hosted by
                 <span class="host-name">{{hostName}}</span>
                 in {{cook.city}}
               </router-link>
@@ -124,13 +126,14 @@ export default {
   border: 2px solid white;
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .event-price {
   position: absolute;
   background-color: white;
-  height: 20px;
+  height: 25px;
   width: 100%;
   bottom: 2%;
   right: 0%;
@@ -139,7 +142,7 @@ export default {
   border-top: 1px solid rgba(155, 146, 146, 0.344);
   display: flex;
   justify-content: space-between;
-  padding: 3px;
+  padding: 5px;
 }
 .event-star {
   font-size: small;
@@ -173,11 +176,12 @@ export default {
   padding: 5px;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  // text-align: center;
 }
 
 .host {
   font-size: 0.7em;
+  // text-align: center;
 }
 .desc {
   font-size: 0.8em;
@@ -198,12 +202,15 @@ export default {
 
 @media only screen and (max-width: 740px) {
   .desc {
-    margin-top: 10px;
+    margin-top: 5px;
   }
-  .event-card{
-    border:none;
-    border-bottom: 1px solid #00000030;
+  .event-card {
+    border: none;
+    // border-bottom: 1px solid #00000030;
     width: 100%;
+  }
+  .cards {
+    border: 1px solid #8080801f;
   }
 }
 </style>
