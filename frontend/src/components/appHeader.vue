@@ -2,7 +2,7 @@
   <section class="header" :style="bgImage">
     <div class="text">
       <h1>Home Dining Experience</h1>
-      <h3>Enjoy new flavors, meet new people and new cultures</h3>
+      <h3>Enjoy new flavors, meet new people</h3>
     </div>
     <div class="search-bar">
       <search-bar @set-filter="setFilter" :comCurrLoc="comCurrLoc"></search-bar>
@@ -112,24 +112,26 @@ h1,h3 {
   padding-top: 115px;
   font-size: 45px;
   color: white;
-  font-family: "Ultra", serif;
+  font-family: 'Josefin Sans', sans-serif;
   text-shadow: 1px 1px 10px black;
+}
+h1{
+  font-size: 3.5em;
 }
 
 h3 {
-  font-size: 30px;
-  margin-bottom: 55px;
+  font-size: 1.8em;
+  // margin-bottom: 55px;
   padding-top: 0px;
 }
 @media only screen and (max-width: 800px) {
   h1 {
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
     padding-top: 75px;
+    font-size: 2.2em;
   }
-  h1,h3 {
-    font-size: 1em;
-  }
-  h3 {
+  h3{
+    font-size: 1.2em;
     margin-bottom: 30px;
   }
 

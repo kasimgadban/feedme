@@ -10,8 +10,8 @@
         :key="key"
         v-if="showNotifDrop "
       >
-        <div class="notif-item">
-          <h1>New event has been booked! <span @click="notiRead(key)"><i class="fas fa-times"></i></span></h1>
+        <div class="notif-item" @click="notiRead(key)">
+          <h1>New event has been booked! <i class="fas fa-times"></i></h1>
           {{bookNoti[key].name}} booked for {{bookNoti[key].guests}} guests at {{bookNoti[key].at}}
         </div>
       </div>
@@ -81,6 +81,8 @@ export default {
     },
     notiRead(key) {
       // value.isRead = true;
+      const Id = this.bookNoti.eventId
+      this.$router.push(`/myEvents/+${Id}`)
       this.bookNoti[key].isRead = true;
       this.unReadNoti--;
       // console.log(this.dates[key].showNoti);
