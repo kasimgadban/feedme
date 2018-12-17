@@ -6,7 +6,6 @@
     </div>
     <div class="search-bar">
       <search-bar @set-filter="setFilter" :comCurrLoc="comCurrLoc"></search-bar>
-      <!-- <input type="date" placeholder="When?" class="date"> -->
     </div>
     <router-view/>
   </section>
@@ -20,9 +19,7 @@ export default {
   props: ["comCurrLoc"],
   methods: {
     setFilter(filter) {
-      console.log("test", filter);
       this.$emit("set-filter", filter);
-      // this.filter.byAddress = ''
     }
   },
   computed: {
@@ -47,9 +44,6 @@ export default {
   width: 50px;
   height: 50px;
 }
-// .search-btn{
-//   font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
-// }
 .header {
   background: blue;
   width: 100%;
@@ -57,7 +51,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // background-image: url("https://cdn.shopify.com/s/files/1/2206/4495/articles/main-image_0e2e0e40-2fd0-4c18-a0eb-343072fa341f_2048x.jpg?v=1510690904");
   background-repeat: no-repeat;
   background-size: cover;
 }

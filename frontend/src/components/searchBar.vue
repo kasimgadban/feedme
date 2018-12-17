@@ -1,5 +1,5 @@
 <template>
-  <section class="search-wrapper" v-if="comCurrLoc"
+  <section class="search-wrapper" v-if="comCurrLoc">
     <input
       ref="autocomplete"
       :placeholder="comCurrLoc"
