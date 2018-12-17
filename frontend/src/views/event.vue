@@ -18,7 +18,7 @@
             <div class="menu" v-for="dish in event.menu" :key="dish.id">
               <h3>{{dish.name}}</h3>
               <p>{{dish.desc}}</p>
-              <!-- <span class="star">***</span> -->
+              <span class="star">***</span>
             </div>
           </div>
 
@@ -137,11 +137,12 @@ export default {
 .name {
   color: black;
   background-color: #ffffffb0;
+  text-shadow: 10px 10px 10px white;
   text-align: center;
   margin: 0 auto;
-  font-size: 2.5em;
+  font-size: 1.7em;
   padding: 10px;
-  font-family: "Ultra", serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .event-page-container {
   display: grid;
@@ -265,16 +266,20 @@ p {
 .menu-container {
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #0096880d;
+  /* background-color: #0096880d; */
 }
 
 .josefin-font {
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.1em;
+  color: #000000b8;
 }
 
 .menu-title {
   font-size: 2em;
+}
+.far,.fas{
+  color: #4CAF50;
 }
 
 @media only screen and (max-width: 800px) {

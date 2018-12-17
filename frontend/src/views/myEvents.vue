@@ -8,11 +8,11 @@
         </i>
       </router-link>
       <div class="cook-events">
-        <preview-edit v-for="event in events" @showO="showOrders" :key="event._id" :event="event"/>
+        <preview-edit v-for="event in events" :key="event._Id" :event="event"/>
       </div>
-      <div v-show="isShowOrders" class="orders-container">
+      <div class="orders-container">
         <h3>Orders Details</h3>
-        <div v-for="(day,index) in orders" :key="index" style="display:flex">
+        <div v-for="(day,index) in dates" :key="index" style="display:flex">
           <div class="detail">
             <span>
               <i class="far fa-calendar-check"></i>:&nbsp;
@@ -44,12 +44,13 @@ import swal from "sweetalert";
 
 export default {
   name: "myEvents",
+  // props:['dates'],
   data() {
     return {
       cook: {},
       events: [],
       isShowOrders: false,
-      orders: [],
+      dates: [],
     };
   },
   created() {
@@ -58,9 +59,13 @@ export default {
       .dispatch({ type: "getCookById", cookId })
       .then(cook => (this.cook = cook));
 
-    this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
-      console.log("events cook page", events);
-      this.events = events;
+   this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
+     this.events=events;
+      events.forEach(element => {
+        this.dates.push(...element.dates);
+      });
+
+      this.showOrders(this.dates)
     });
   },
   methods: {
@@ -80,8 +85,8 @@ export default {
       }
       )
       console.log("dates 61", orders );
-      this.orders = orders;
-      this.isShowOrders = true;
+      this.dates = orders;
+      // this.isShowOrders = true;
     }
   },
   components: {
@@ -157,7 +162,7 @@ span {
 
 @media only screen and (max-width: 800px) {
   .cook-events{
-  grid-template-columns: 1fr 1fr;
+     grid-template-columns: 0.5fr 0.5fr 0.5fr
   }
 }
 </style>

@@ -87,8 +87,8 @@ export default {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-bottom: 70px;
   opacity: 1;
+  margin-top: 50px;
 }
 
 .search-bar > * {
@@ -147,9 +147,8 @@ h3 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
-  .search-wrapper {
-    width: 80%;
+    margin-top: 0px;
+    margin-bottom: 70px
   }
   .search-btn {
     font-size: 0.9em;
@@ -164,6 +163,9 @@ h3 {
   }
   .header {
     height: 250px;
+  }
+  .search-wrapper{
+        width: 80%;
   }
 }
 </style>

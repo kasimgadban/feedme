@@ -41,8 +41,8 @@ export default {
       events.forEach(element => {
         this.dates.push(...element.dates);
       });
-      this.dates = this.dates.filter(count => count.showNoti === true);
-      this.unReadNoti = this.dates.length;
+      // this.dates = this.dates.filter(count => count.showNoti === true);
+      // this.unReadNoti = this.dates.length;
     });
   },
   computed: {
@@ -81,8 +81,7 @@ export default {
     },
     notiRead(key) {
       // value.isRead = true;
-      const Id = this.bookNoti.eventId
-      this.$router.push(`/myEvents/+${Id}`)
+      this.$router.push(`/myEvents/${this.user._id}`)
       this.bookNoti[key].isRead = true;
       this.unReadNoti--;
       // console.log(this.dates[key].showNoti);

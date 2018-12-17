@@ -3,14 +3,14 @@
     <div class="nav-container">
       <router-link to="/" class="logo">
         <div style="display:flex; align-items: center;">
-          <img class="img-logo" src="../images/logo40.png">
-          <span class="logo-name">Feed Me</span>
+          <!-- <img class="img-logo" src="../images/logo40.png"> -->
+          <span class="logo-name">FeedMe</span>
         </div>
       </router-link>
       <div class="nav-bar">
         <div class="nav-btns" v-if="user">
           <div class="dad" style="position:relative;">
-            <span >Hi,{{userName}} &nbsp;<span @click="toggleDropDown"
+            <span >Hi, {{userName}} &nbsp;<span @click="toggleDropDown"
             class="drop"><i class="fas fa-caret-down"></i></span>
              <div class="dropDown" v-show="isDropDownOpen">
           <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Profile <i class="fas fa-user"></i></span></router-link>
@@ -177,11 +177,12 @@ export default {
 }
 .logo-name {
   margin-left: 5px;
-  font-family: "Damion", cursive;
+  font-family: 'Overpass', sans-serif;
   font-size: 1.2em;
   position: absolute;
-  top: 17px;
-  left: 65px;
+  top: 8px;
+  font-weight: bold;
+  // left: 65px;
   color: black;
 }
 

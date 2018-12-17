@@ -2,9 +2,9 @@
   <section>
      <form @submit.prevent="isShowModal = true" >
     <div class="book-form" v-if="event">
-      <h3 class="josefin-font">
+      <h3 class="josefin-font price">
         ${{event.price}}
-        {{book.cookId}}
+        <!-- {{book.cookId}} -->
         <span
           class="title-span josefin-font"
         >Price per person</span>
@@ -229,6 +229,10 @@ button.full {
   cursor: unset;
 }
 
+.price{
+  font-weight: bold;
+}
+
 .wrapper {
   display: grid;
   gap: 20px;
@@ -289,6 +293,14 @@ select > * {
 }
 .title {
   font-size: 1em;
+  
+}
+.title:not(:last-child){
+  margin-bottom: 0rem;
+
+}
+.selecto{
+  margin: 0 auto;
 }
 
 .send {
