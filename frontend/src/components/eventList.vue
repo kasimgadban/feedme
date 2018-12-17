@@ -6,7 +6,6 @@
          :key="event._id"
          :event = "event" 
          ></event-preview>
-
       </div>
     </section>
 </template>
@@ -31,18 +30,34 @@ export default {
 
 .cmp-container {
   display: grid;
-  grid-template-columns: 4fr 4fr 4fr;
+  width: 80%;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
   grid-column-gap: 20px;
+   grid-row-gap: 15px;
   text-decoration: none;
 }
-@media only screen and (max-width: 800px) {
+
+@media only screen and (max-width: 1048px) {
+.cmp-container {
+  display: grid;
+  width: 80%;
+  grid-template-columns: 4fr 4fr 4fr;
+  grid-column-gap: 20px;
+   grid-row-gap: 15px;
+  text-decoration: none;
+}
+}
+
+@media only screen and (max-width: 740px) {
    .cmp-container {
   display: grid;
-        grid-template-columns: 1fr;
-    grid-column-gap: 15px;
-    grid-row-gap: 5px;
+  width: 100%;
+  grid-template-columns: 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
 }
 }
+
 li {
   list-style-type: none;
 }

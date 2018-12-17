@@ -33,6 +33,8 @@ export default {
   gap: 15px;
   grid-row-gap: 0;
   text-decoration: none;
+  width:80%;
+  justify-content: center;
 }
 .grid__item:nth-child(9n+0) {
   grid-column: span 2;
@@ -49,6 +51,7 @@ export default {
     grid-template-columns: 6fr 6fr;
     grid-column-gap: 15px;
     grid-row-gap: 5px;
+    padding: 0px;
 
 }
 .grid__item:nth-child(9n+0) {

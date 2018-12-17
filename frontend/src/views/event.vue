@@ -320,5 +320,9 @@ p {
   .map-container {
     height: 230px;
   }
+  .container{
+    /* width: 90%; */
+    /* margin:0 auto; */
+  }
 }
 </style>

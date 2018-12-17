@@ -20,7 +20,6 @@
       <div v-if="(review.image !== '')?review.image:imageData" class="imageHolder">
       <img class="display" style="width:300px;" :src="(review.image !== '')?review.image:imageData" />
     </div>
-    
     </div>
 
     <star-rating class="star" v-model="review.rating" 
