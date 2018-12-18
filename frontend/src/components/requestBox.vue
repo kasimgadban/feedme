@@ -43,9 +43,9 @@
         min="1" :max="currMaxGuests"
       
        > -->
-
+        <div class="selecto">
          <el-input-number 
-         class="selecto"
+         
          required 
           v-if="currMaxGuests > 0"
          v-model="book.guestsBooking" 
@@ -54,6 +54,7 @@
            size="small"
            >
            </el-input-number>
+           </div>
        <!-- </div> -->
       <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name" required>
       <input
@@ -87,6 +88,7 @@ import requestModal from "@/components/requestModal.vue";
 import datePicker from "vuejs-datepicker";
 import eventService from "@/services/eventService";
 import cookService from "@/services/cookService";
+import storageService from "@/services/storageService";
 import moment from "moment";
 import swal from "sweetalert"
 
@@ -120,7 +122,8 @@ export default {
         guests: 0,
         at: '',
         isRead: false,
-        eventId:''
+        eventId:'',
+        userId: ''
       } 
     };
   },
@@ -190,11 +193,13 @@ export default {
       this.msgInput.guests = this.book.guestsBooking;
       this.msgInput.at = this.book.eventDate;
       this.msgInput.eventId = this.$route.params.id;
+      this.msgInput.userId = '';
       const msg = this.msgInput;
       console.log(msg);
       const currCookId = this.event.cookId
+
       this.$socket.emit("newBookMsg", {msg,currCookId});
-    }
+    },
   },
   computed: {
     currMaxGuests() {
@@ -346,6 +351,7 @@ span {
 .josefin-font {
   font-family: "Josefin Sans", sans-serif;
 }
+
 
 @media only screen and (max-width: 800px) {
   .order-form > * {

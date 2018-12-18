@@ -10,7 +10,7 @@
         :key="key"
       >
         <div class="notif-item" @click="notiRead(key)"  v-if="showNotifDrop">
-          <h1>New event has been booked! <i class="fas fa-times"></i></h1>
+          <h1>New event has been booked!</h1>
           {{bookNoti[key].name}} booked for {{bookNoti[key].guests}} guests at {{bookNoti[key].at}}
         </div>
       </div>
@@ -19,7 +19,11 @@
 </template>
 
 <script>
+// <i class="fas fa-times"></i>
+import storageService from "@/services/storageService";
+
 export default {
+  props:['msgToShow'],
   data() {
     return {
       user: {},
@@ -27,20 +31,23 @@ export default {
       showNotifDrop: false,
       dates: [],
       unReadNoti: 0,
-      bookNoti: []
-      // notiCount:0
+      bookNoti: [],
+      // unReadNotiCount:[],
     };
   },
   created() {
     this.user = this.$store.getters.getLoggedCook;
     const cookId = this.user._id;
-    // console.log(this.user);
+    // this.msgToShow.filter(el =>{ 
+    //   if((el.userId === this.user._id) && (el.isRead === false))
+    //   this.unReadNotiCount.push(el)
+    //   })
+    // console.log(this.unReadNotiCount);
+    this.unReadNoti = this.unReadNotiCount.length
     this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
       events.forEach(element => {
         this.dates.push(...element.dates);
       });
-      // this.dates = this.dates.filter(count => count.showNoti === true);
-      // this.unReadNoti = this.dates.length;
     });
   },
   computed: {
@@ -52,31 +59,28 @@ export default {
     gotBookNoti(obj) {
       if (this.user._id === obj.currCookId) {
         console.log(obj.msg);
+        obj.msg.userId = this.user._id
         this.bookNoti.push(obj.msg);
         this.unReadNoti++;
-      }
+        // storageService.saveToStorage('userMsgs',this.bookNoti)
+      } 
       console.log(this.bookNoti);
     }
   },
   methods: {
     openNotiCenter() {
       this.showNotifDrop = !this.showNotifDrop;
-      // const cookId = this.user._id;
       this.unReadNoti = 0
-      // this.dates.forEach(element => element.showNoti = false)
-      // this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
-      // events.forEach(element => {
-      //   element.dates.push(...this.dates);
-      //   console.log(element);
-      // eventService.saveEvent(element);
-      // });
-      // })
+      // this.unReadNotiCount = []
     },
     notiRead(key) {
       // value.isRead = true;
       this.$router.push(`/myEvents/${this.user._id}`)
       this.bookNoti[key].isRead = true;
+      this.showNotifDrop = false;
       this.unReadNoti--;
+      // storageService.saveToStorage('userMsgs',this.bookNoti)
+      // storageService.
       // console.log(this.dates[key].showNoti);
       // this.dates[key].showNoti = false;
   }

@@ -20,7 +20,7 @@
             </span>
             </div>
           <!-- <button @click="toggleDropDown">drop</button> -->
-          <book-noti class="chat-icon" :user="user"></book-noti>
+          <book-noti class="chat-icon" :user="user" :msgToShow="msgToShow"></book-noti>
         </div>
         <router-link to="/login" v-else>Sign In</router-link>
       </div>
@@ -34,6 +34,7 @@ import bookNoti from "@/components/bookNoti.vue";
 
 export default {
   name: "navBar",
+  props: ['msgToShow'],
   data() {
     return {
       fullName: "",

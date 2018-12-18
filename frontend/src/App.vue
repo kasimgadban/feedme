@@ -1,7 +1,7 @@
 <template>
 <section>
   <div id="app">
-    <nav-bar id="nav" :user="user"></nav-bar>
+    <nav-bar id="nav" :user="user" :msgToShow="msgToShow"></nav-bar>
     <router-view ></router-view>
   </div>
   <notifications  group="foo" />
@@ -11,12 +11,12 @@
 <script>
 import navBar from "@/components/navBar.vue";
 import storageService, { LOGGEDIN_USER_KEY } from "./services/storageService";
-
+// import {USER_MSGS} from './services/storageService'
 export default {
   data() {
     return {
       user: {},
-      msgToShow: null,
+      msgToShow: [],
 }
   },
   sockets: {
@@ -28,9 +28,9 @@ export default {
         'this method was fired by the socket server. eg: io.emit("customEmit", data)'
       );
     },
-    renderMsg(msg) {
-      this.msgToShow = msg;
-    }
+    // renderMsg(msg) {
+    //   this.msgToShow = msg;
+    // }
   },
   mounted() {
     var prevScrollpos = window.pageYOffset;
@@ -46,6 +46,9 @@ export default {
   },
   created() {
     const credentials = storageService.loadFromStorage(LOGGEDIN_USER_KEY);
+    // const noti = storageService.loadFromStorage(USER_MSGS);
+    // console.log('check Noti on login',noti);
+    // this.msgToShow = noti;
     if (credentials) {
       this.$store
         .dispatch({ type: "checkLoggedUser", loggedInUser: credentials })

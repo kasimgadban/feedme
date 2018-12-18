@@ -1,4 +1,5 @@
 export const LOGGEDIN_USER_KEY = 'loggedInUser'
+export const USER_MSGS = 'userMsgs'
 
 function loadFromStorage(key) {
   var val = localStorage.getItem(key);
@@ -12,6 +13,10 @@ function saveToStorage(key, val) {
 function clearStorage() {
   localStorage.removeItem(LOGGEDIN_USER_KEY);
 }
+
+// function removeFromStorage(key,val){
+
+// }
 
 export default {
   loadFromStorage,
