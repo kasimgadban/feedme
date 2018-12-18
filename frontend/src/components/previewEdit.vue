@@ -2,16 +2,17 @@
   <section class="edit-cards">
     <div class="card" :dates="event.dates">
       <div class="testflex" style="display:flex; flex-direction:column; flex:1">
-      <div class="card-img">
-        <div class="card-img-holder" :style="bgImage"></div>
-      </div>
-      <div class="desc">Title: {{event.description}}</div>
-      <div class="edit-sec" v-if="currGuests < event.maxGuests">
-       {{currGuests}}/{{event.maxGuests}} places were booked
+        <div class="card-img">
+          <div class="card-img-holder" :style="bgImage"></div>
         </div>
-        <div class="edit-sec" v-else>FULL</div>
- </div>
-        <div class="edit-btn-icon" style="height:30px; margin-bottom:3px;">
+        <div class="desc">Title: {{event.description}}</div>
+        <!-- <div
+          class="edit-sec"
+          v-if="currGuests < event.maxGuests"
+        >{{currGuests}}/{{event.maxGuests}} places were booked</div> -->
+        <!-- <div class="edit-sec" v-else>FULL</div> -->
+      </div>
+      <div class="edit-btn-icon" style="height:30px; margin-bottom:3px;">
         <router-link
           tag="button"
           :to="'/event/edit/'+event.cookId+'_'+event._id"
@@ -21,10 +22,9 @@
             <i class="far fa-edit"></i>
           </button>
         </router-link>
-        </div>
       </div>
-   
-    
+    </div>
+
     <!-- <div v-show="isShowOrders" class="orders-container">
       <h3>Orders Details</h3>
         <div v-for="(day,index) in event.dates" :key="index">
@@ -32,20 +32,19 @@
           <span>Name: {{day.guestName}}</span>
           <span>Guests count: {{day.guestsBooking}}</span>
         </div>
-    </div> -->
-
+    </div>-->
   </section>
-  
 </template>
 <script>
 export default {
   name: "eventEdit",
-  props: ["event",'value8','dates'],
+  // props: ["event", "value8", "dates"],
+   props: ["event"],
   data() {
     return {
       cook: {},
       // currGuests: 0,
-      currBookDate:[]
+      // currBookDate: []
     };
   },
   components: {},
@@ -56,9 +55,7 @@ export default {
       this.cook = cook;
     });
   },
-  methods: {
-  
-  },
+  methods: {},
   computed: {
     bgImage() {
       return (
@@ -67,21 +64,20 @@ export default {
         "); background-size: cover; display:block;"
       );
     },
-    currGuests(){
-      var i 
-      i =  this.dates.filter(dato => dato.eventDate === this.value8);
-       var j = 0;
-       j = i.reduce(
-        (acc, date) => acc + +date.guestsBooking,0);
-        return j;
-    }
+    // currGuests() {
+    //   var i;
+    //   i = this.dates.filter(dato => dato.eventDate === this.value8);
+    //   var j = 0;
+    //   j = i.reduce((acc, date) => acc + +date.guestsBooking, 0);
+    //   return j;
+    // }
   }
 };
 </script>
 
 <style scoped lang="scss">
 .card-img-holder {
-  height: 100%;
+  height: 160px;
 }
 .edit-cards {
   display: flex;
@@ -90,12 +86,8 @@ export default {
 }
 
 .card {
-  // cursor: pointer;
-  // height: 255px;
-  // display: flex;
-  // flex-direction: column;
-   border: 1px solid #00000030;
-  height: 100%;
+  border: 1px solid #00000030;
+  height: 340px;
   border-radius: 3px;
   position: relative;
   margin: 0 auto;
@@ -106,10 +98,10 @@ export default {
   flex-direction: column;
 }
 
-.testflex{
+.testflex {
   flex: 1;
 }
-.edit-btn-icon{
+.edit-btn-icon {
   height: 50px;
 }
 .card-img {
@@ -131,7 +123,7 @@ export default {
   background: none;
   padding-bottom: 5px;
   // font-size: 2em;
-      font-size: 1.4em
+  font-size: 1.4em;
 }
 
 .edit-event {
@@ -142,7 +134,9 @@ export default {
   background: none;
 }
 
-.desc,.edit-sec {
+.desc,
+.edit-sec {
+  margin-top: 70px;
   text-align: center;
   padding: 3px;
   color: black;
@@ -153,12 +147,17 @@ export default {
   color: red;
 }
 
-.orders-container{
+.orders-container {
   height: 300px;
   background-color: pink;
   margin-top: 30px;
 }
 
+@media only screen and (max-width: 800px) {
 
-
+  .card{
+        height: 300px;
+        width: 80%;
+  }
+}
 </style>

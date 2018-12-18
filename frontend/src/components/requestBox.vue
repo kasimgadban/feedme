@@ -22,27 +22,6 @@
         :maximumView="'month'"
         :initialView="'day'"
       ></date-picker>
-      <!-- <AirbnbStyleDatepicker
-        :trigger-element-id="'datepicker-trigger'"
-        :mode="'range'"
-        :fullscreen-mobile="true"
-      />-->
-      <!-- <v-date-picker
-        :is-inline='true'
-        v-model="book.eventDate"
-        :animated='true'
-        @input="dateSelected"
-        :disabledDates="disabledDates"
-      ></v-date-picker>-->
-      <!-- <select v-model="book.guestsBooking" required class="select" v-if="currMaxGuests > 0">
-        <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
-        <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
-      </select> -->
-      <!-- <div v-for="guests in currMaxGuests" :key="guests"> -->
-      <!-- <input type="number" v-model="book.guestsBooking" required  v-if="currMaxGuests > 0"
-        min="1" :max="currMaxGuests"
-      
-       > -->
           <div class="selecto">
          <el-input-number 
          required 

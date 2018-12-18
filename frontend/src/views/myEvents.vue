@@ -2,14 +2,9 @@
   <section>
     <div class="container container-style">
       <h1>My Events</h1>
-      <!-- <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
-        <i class="material-icons">
-          <i class="fas fa-plus-circle"></i>
-        </i>
-      </router-link> -->
       <div class="block" style="display:flex; justify-content:space-between;margin-top:20px;">
         <!-- <span class="demonstration">Calander: </span> -->
-        <el-date-picker
+        <!-- <el-date-picker
         class="date-picker"
           v-model="value8"
           ref="picker"
@@ -17,7 +12,7 @@
           placeholder="Pick a date"
           value-format="dd/MM/yyyy"
           format="dd/MM/yyyy"
-        ></el-date-picker>
+        ></el-date-picker> -->
          <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
         <i class="material-icons">
           <i class="fas fa-plus-circle"></i>
@@ -26,7 +21,7 @@
       </div>
       <div class="grid">
         <div class="cook-events">
-          <preview-edit :value8="value8" :dates="dates" v-for="event in events" :key="event._Id" :event="event"/>
+          <preview-edit  v-for="event in events" :key="event._Id" :event="event"/>
         </div>
         <div>
           <el-collapse
@@ -34,9 +29,8 @@
             v-for="(day,index) in dates"
             :key="index"
             v-model="activeName"
-            accordion
-          >
-            <el-collapse-item :name="index" v-if="value8 === day.eventDate" >
+            accordion>
+            <el-collapse-item :name="index" >
               <template slot="title">
                 <div class="detail">
                   <span>
@@ -102,14 +96,13 @@ import moment from "moment";
 export default {
   name: "myEvents",
   data() {
-    // var vm = this;
     return {
       cook: {},
       events: [],
-      isShowOrders: false,
+      // isShowOrders: false,
       dates: [],
       activeName: "1",
-      value8: '',
+      // value8: '',
     };
   },
   created() {
@@ -122,33 +115,18 @@ export default {
       this.events = events;
       events.forEach(element => {
         this.dates.push(...element.dates);
-        // this.dat.push(...element.days);
-        // this.$refs.picker.unmountPicker();
-        // this.$refs.picker.mountPicker();
       });
       this.showOrders(this.dates);
     });
-    // this.val = this.events.days
-    // console.log(this.dat);
   
         
   },
-  // computed:{
-  //   disabledDates(){
-  //     return this.dat
-  //   }
-  // },
   methods: {
     addEvent() {
       var queryParams = new URLSearchParams();
       queryParams.append("cookId", this.cookId);
       this.$router.push("event/edit");
     },
-    appendDate () {
-			this.disabledDates.push(this.val);
-        this.$refs.picker.unmountPicker();
-        this.$refs.picker.mountPicker();
-		},
     showOrders(orders) {
       // var d = []
       // orders.forEach(date => {
@@ -169,7 +147,6 @@ export default {
 
       console.log("dates 61", orders);
       this.dates = orders;
-      // this.isShowOrders = true;
     }
   },
 
@@ -191,7 +168,6 @@ export default {
 .add-event {
   border: none;
   background: none;
-  /* margin-bottom: 20px; */
   cursor: pointer;
   color: #245e09;
 }
@@ -270,8 +246,9 @@ span {
 
 @media only screen and (max-width: 800px) {
   .grid{
+    grid-template-rows: 0.99fr 1fr;
     grid-template-columns: 1fr;
-  }
+}
   .detail{
         width: 40%;
   }
