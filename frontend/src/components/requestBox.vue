@@ -150,7 +150,10 @@ export default {
           buttons:{
             cancel: false,
           confirm: false}
-        })
+        }).then(
+        // res => this.$router.push("/myprofile/"+this.cook._id),
+         ()=> this.$router.go(-1),
+        )
         this.sendBookMsg()
     },
     dateSelected() {

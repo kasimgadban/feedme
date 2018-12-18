@@ -36,13 +36,8 @@ function saveImage(imageToSave){
 function saveEvent(event) {
 
     if (event._id) {
-        // console.log('I should take care of saving an edit event',event);
-        
-        return axios.put(`${BASE_URL}/${event._id}`, event).then(res=>res.data)
+         return axios.put(`${BASE_URL}/${event._id}`, event).then(res=>res.data)
     } else {
-        // console.log('the url sent is',BASE_URL);
-        // console.log('the event sent to the url above is for saving',event);
-        
         return axios.post(`${BASE_URL}`, event).then(res=>res.data)
     }
 

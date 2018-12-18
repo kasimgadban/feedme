@@ -12,7 +12,6 @@ function query(filter = {}) {
     let byCityId = filter.cityId;
     let byCookId = filter.cookId;
     let byAddress = filter.address
-    // console.log(byAddress);
 
     if (byCityId) {
         byCityId = new ObjectId(byCityId)
@@ -39,9 +38,7 @@ function query(filter = {}) {
                 var events = collection.aggregate([
                     {
                         $match: {
-                            // 'address' : {$regex: filter.address},
                             'address': { $regex: filter.address },
-                            // 'dates.book.eventDate': filter.date
                         }
                     }
                 ]).toArray()

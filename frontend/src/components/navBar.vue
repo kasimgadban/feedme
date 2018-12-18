@@ -181,9 +181,9 @@ export default {
 .logo-name {
   margin-left: 50px;
   font-family: 'Overpass', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.5em;
   position: absolute;
-  top: 8px;
+  top: 3px;
   font-weight: bold;
   // left: 65px;
   color: black;
@@ -203,7 +203,7 @@ export default {
     font-size: 1em;
     margin-left: 42px;
     top: 12px;
-
+   
   }
    .img-logo{
     width: 40px;

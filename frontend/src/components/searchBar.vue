@@ -75,7 +75,7 @@ input:focus {
     padding: 1px 7px 1px;
     color: white;
     background-color: #245e09;
-    font-size: 1em;
+    font-size: 1.3em;
     border: none;
     border-radius: 0px 3px 3px 0px;
     cursor: pointer;
@@ -93,6 +93,9 @@ input:focus {
 .search-wrapper{
   display: flex;
   height: 50px;
+}
+input::placeholder{
+font-size: 1.3em;
 }
 
 @media only screen and (max-width: 800px) {
