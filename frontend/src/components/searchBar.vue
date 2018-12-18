@@ -2,7 +2,7 @@
   <section class="search-wrapper" v-if="comCurrLoc">
     <input
       ref="autocomplete"
-      placeholder="Where you would like to dine?"
+      placeholder='Where would you like to dine'
       class="search-location"
       type="text"
       v-model="filter.byAddress"
@@ -91,7 +91,7 @@ input:focus {
 
 .search-wrapper{
   display: flex;
-  height: 40px;
+  height: 50px;
 }
 
 @media only screen and (max-width: 800px) {
