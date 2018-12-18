@@ -39,7 +39,7 @@ export default {
   margin-top: 20px;
 }
 .name{
-  background: white;
+  background:#ffffffe0;
   color: black;
   text-align: center;
   margin: 0 auto;
