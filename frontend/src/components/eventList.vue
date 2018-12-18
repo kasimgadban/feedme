@@ -1,5 +1,5 @@
 <template>
-  <section class="topCooks">
+  <section class="topCooks" v-if="events">
     <h2>Top Events</h2>
     <div class="cmp-container container-style">
          <event-preview class="card-prev" v-for="event in events" 

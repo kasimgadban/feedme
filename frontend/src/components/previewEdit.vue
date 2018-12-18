@@ -6,11 +6,11 @@
         <div class="card-img-holder" :style="bgImage"></div>
       </div>
       <div class="desc">Title: {{event.description}}</div>
-      <div class="edit-sec">
-       {{event.guestsCount}}/{{event.maxGuests}} places were booked
+      <div class="edit-sec" v-if="currGuests < event.maxGuests">
+       {{currGuests}}/{{event.maxGuests}} places were booked
         </div>
+        <div class="edit-sec" v-else>FULL</div>
  </div>
-
         <div class="edit-btn-icon" style="height:30px; margin-bottom:3px;">
         <router-link
           tag="button"
@@ -22,8 +22,6 @@
           </button>
         </router-link>
         </div>
-
-
       </div>
    
     
@@ -42,10 +40,12 @@
 <script>
 export default {
   name: "eventEdit",
-  props: ["event"],
+  props: ["event",'value8','dates'],
   data() {
     return {
-      cook: Object,
+      cook: {},
+      // currGuests: 0,
+      currBookDate:[]
     };
   },
   components: {},
@@ -66,6 +66,14 @@ export default {
         this.event.image +
         "); background-size: cover; display:block;"
       );
+    },
+    currGuests(){
+      var i 
+      i =  this.dates.filter(dato => dato.eventDate === this.value8);
+       var j = 0;
+       j = i.reduce(
+        (acc, date) => acc + +date.guestsBooking,0);
+        return j;
     }
   }
 };
@@ -82,8 +90,18 @@ export default {
 }
 
 .card {
-  cursor: pointer;
-  height: 255px;
+  // cursor: pointer;
+  // height: 255px;
+  // display: flex;
+  // flex-direction: column;
+   border: 1px solid #00000030;
+  height: 100%;
+  border-radius: 3px;
+  position: relative;
+  margin: 0 auto;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  background-color: #fff;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -112,7 +130,8 @@ export default {
   border: none;
   background: none;
   padding-bottom: 5px;
-  font-size: 2em;
+  // font-size: 2em;
+      font-size: 1.4em
 }
 
 .edit-event {
@@ -131,6 +150,7 @@ export default {
 
 .edit-sec {
   padding: 2px;
+  color: red;
 }
 
 .orders-container{

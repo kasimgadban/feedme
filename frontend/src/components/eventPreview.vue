@@ -1,5 +1,5 @@
 <template>
-  <section class="cards">
+  <section class="cards" v-if="event && cook">
     <!-- <div class="toti">{{(+event.maxGuests)-(+event.guestsCount)}}</div> -->
     <router-link class="link" :to="'/event/'+ event._id">
       <div class="event-card">
@@ -14,7 +14,7 @@
             <span class="host">
               <router-link class="link" :to="'/cook/'+ event.cookId">
                 Hosted by
-                <span class="host-name">{{hostName}}</span>
+                <span v-if="hostName" class="host-name">{{hostName}}</span>
                 in {{cook.city}}
               </router-link>
             </span>
@@ -53,23 +53,13 @@ export default {
   methods: {},
   computed: {
     bgImage() {
-      return (
-        "background-image: url(" +
-        this.event.image +
-        "); background-size: cover; display:block;"
-      );
+      return ("background-image: url(" + this.event.image + "); background-size: cover; display:block;");
     },
     hostImage() {
-      return (
-        "background-image: url(" +
-        this.cook.image +
-        "); background-size: cover; display:block;"
-      );
+      return ("background-image: url(" + this.cook.image + "); background-size: cover; display:block;");
     },
     hostName() {
-      var name = this.cook.fullName;
-      var firstName = name.split(" ")[0];
-      return firstName;
+      return this.cook.fullName.split(" ")[0];
     }
   }
 };
@@ -206,7 +196,6 @@ export default {
   }
   .event-card {
     border: none;
-    // border-bottom: 1px solid #00000030;
     width: 100%;
   }
   .cards {

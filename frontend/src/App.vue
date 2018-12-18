@@ -11,7 +11,6 @@
 <script>
 import navBar from "@/components/navBar.vue";
 import storageService, { LOGGEDIN_USER_KEY } from "./services/storageService";
-// import eventBus, {GET_MSG} from "./services/eventBus.js";
 
 export default {
   data() {
@@ -33,9 +32,6 @@ export default {
       this.msgToShow = msg;
     }
   },
-  components: {
-    navBar
-  },
   mounted() {
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
@@ -51,21 +47,17 @@ export default {
   created() {
     const credentials = storageService.loadFromStorage(LOGGEDIN_USER_KEY);
     if (credentials) {
-      // console.log('I am from app vue and my user is',credentials);
       this.$store
         .dispatch({ type: "checkLoggedUser", loggedInUser: credentials })
         .then(user => {
-          // this.$store.commit({type: "connectSocket",userId: this.$store.getters.getLoggedUser._id});
           this.user = user;
-          // console.log('I was return 42 ',user);
-          // console.log('I was return 43 ',this.user);
         });
     }
   },
 
-  methods: {
-  
-  }
+   components: {
+    navBar
+  },
 };
 </script>
 
