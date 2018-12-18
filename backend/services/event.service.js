@@ -5,17 +5,15 @@ const ObjectId = require('mongodb').ObjectId;
 
 cloudinary.config({
     cloud_name: 'ddi3pg6wq',
-    api_key : '142982186366763',
+    api_key: '142982186366763',
     api_secret: 'RQeNDgU1kV54S-jjviuvFkbCsVs'
 })
 function query(filter = {}) {
-    console.log('backend Service ',filter);
-    
     let byCityId = filter.cityId;
     let byCookId = filter.cookId;
     let byAddress = filter.address
     // console.log(byAddress);
-    
+
     if (byCityId) {
         byCityId = new ObjectId(byCityId)
         filter = { cityId: byCityId }
@@ -25,7 +23,7 @@ function query(filter = {}) {
         filter = { cookId: byCookId }
     }
     if (byAddress) {
-        filter = { 
+        filter = {
             address: byAddress,
         }
     }
@@ -37,16 +35,17 @@ function query(filter = {}) {
                 var events = collection.find({ cityId: byCityId }).toArray()
             else if (byCookId)
                 var events = collection.find({ cookId: byCookId }).toArray()
-            else if (byAddress){
+            else if (byAddress) {
                 var events = collection.aggregate([
-                    {$match : { 
-                        // 'address' : {$regex: filter.address},
-                        'address' : {$regex: filter.address},
-                        // 'dates.book.eventDate': filter.date
+                    {
+                        $match: {
+                            // 'address' : {$regex: filter.address},
+                            'address': { $regex: filter.address },
+                            // 'dates.book.eventDate': filter.date
+                        }
                     }
-}
-]).toArray()
-}else
+                ]).toArray()
+            } else
                 var events = collection.find({}).toArray()
 
             return events
@@ -71,31 +70,19 @@ function remove(eventId) {
         })
 }
 
-function add(event){
-     
+function add(event) {
+
     return mongoService.connectToDb()
         .then(db => {
             const collection = db.collection('event_db')
             event.cityId = new ObjectId(event.cityId)
             event.cookId = new ObjectId(event.cookId)
-
-        console.log('event 82 be',event);
-        
-        // return cityService.getCityByName(event.city).then(city =>{
-                event.cityId = new ObjectId(event.cityId)
-                return collection.insertOne(event)
+            event.cityId = new ObjectId(event.cityId)
+            return collection.insertOne(event)
                 .then(result => {
                     event._id = result.insertedId;
                     return event;
                 })
-            // })
-            // event.image =  "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
-            // event.bgImage = "http://www.trestelle.ca/images/recipes/5866BOC-Puttan-1080.jpg"
-            // return collection.insertOne(event)
-            //     .then(result => {
-            //         event._id = result.insertedId;
-            //         return event;
-            //     })
         })
 }
 
@@ -116,10 +103,11 @@ function update(event) {
         })
 }
 
-function saveImage({imageToSave}){
+function saveImage({ imageToSave }) {
     // console.log('imageToSave',imageToSave);
-    
-    return cloudinary.v2.uploader.upload(imageToSave).then(data => data.secure_url)}
+
+    return cloudinary.v2.uploader.upload(imageToSave).then(data => data.secure_url)
+}
 
 // function update(order){
 //     const cookId = new ObjectId(order.cookId)

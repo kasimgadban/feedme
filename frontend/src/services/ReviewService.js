@@ -5,12 +5,11 @@ const BASE_URL = process.env.NODE_ENV !== 'development'
     : '//localhost:3000/api/review'
 
 function saveReview(review) {
-    console.log('review 8 ',review);
-    
+
     return axios.post(BASE_URL, {
         review
     })
-    .then(res => res.data)
+        .then(res => res.data)
 }
 
 export default {

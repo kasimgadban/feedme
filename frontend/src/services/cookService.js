@@ -36,11 +36,8 @@ function update(cook) {
   
   function saveCook(cook) {
       if (cook._id) {
-          console.log('inside edit cook',cook);
-          
           return axios.put(`${BASE_URL}${cook._id}`, cook)
       } else {
-          console.log('inside add new cook',cook);
           return axios.post(`${BASE_URL}signup`, cook)
           .then(res => {
              storageService.saveToStorage(LOGGEDIN_USER_KEY, res.data)
@@ -50,20 +47,14 @@ function update(cook) {
   }
 
   function checkUser(user){
-
-    console.log('user from axios ',user)
     var loggedUserLS = storageService.loadFromStorage(LOGGEDIN_USER_KEY)
-    console.log('user from LS',loggedUserLS)
-    
     if(loggedUserLS !== null && loggedUserLS.fullName === user.fullName &&
        loggedUserLS.password === user.password ) {
-        console.log('I am equal');
         return Promise.resolve(loggedUserLS)
     }
 
     return axios.post(`${BASE_URL}login`,user)
           .then(res => {
-            console.log('res from axios line: 55',res.data);
             storageService.saveToStorage(LOGGEDIN_USER_KEY, res.data) 
             return res.data
         })
@@ -71,7 +62,6 @@ function update(cook) {
   }
   
 function logout(){
-    console.log('sdas');
     return axios.post(`${BASE_URL}logout`).then(() => {
         storageService.clearStorage()
     })

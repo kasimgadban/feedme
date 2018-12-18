@@ -11,7 +11,10 @@ var socket = null;
 
 
 function connectSocket() {
-    socket = ioClient(BASE_URL);
+    socket = ioClient(BASE_URL,{
+        transports: ['websocket'],
+        upgrade: false
+      });
     socket.on('message', function (msg) {
         console.log(msg); 
     });

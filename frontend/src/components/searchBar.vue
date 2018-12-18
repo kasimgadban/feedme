@@ -2,7 +2,7 @@
   <section class="search-wrapper" v-if="comCurrLoc">
     <input
       ref="autocomplete"
-      :placeholder="comCurrLoc"
+      placeholder="Where you would like to dine?"
       class="search-location"
       type="text"
       v-model="filter.byAddress"

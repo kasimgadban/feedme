@@ -14,8 +14,8 @@ import Notifications from 'vue-notification'
 import NotificationBell from 'vue-notification-bell'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
-Vue.use(ElementUI)
+import locale from 'element-ui/lib/locale/lang/en'
+Vue.use(ElementUI, { locale })
 Vue.use(NotificationBell)
 Vue.use(Notifications)
 const BASE_URL = process.env.NODE_ENV !== 'development'
