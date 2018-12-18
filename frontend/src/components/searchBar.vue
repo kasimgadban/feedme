@@ -2,12 +2,12 @@
   <section class="search-wrapper" v-if="comCurrLoc">
     <input
       ref="autocomplete"
-      placeholder='Where would you like to dine'
+      placeholder="Where would you like to dine"
       class="search-location"
       type="text"
       v-model="filter.byAddress"
     >
-    <button class="search-btn"  @click="setFilter()" >Search</button>
+    <button class="search-btn" @click="setFilter()">Search</button>
   </section>
 </template>
 
@@ -16,12 +16,12 @@
 
 export default {
   name: "searchBar",
-  props:['comCurrLoc'],
+  props: ["comCurrLoc"],
   data() {
     return {
       currentLocation: { lat: 0, lng: 0 },
       searchAddressInput: "",
-      filter: { byAddress: '' },
+      filter: { byAddress: "" },
       handleInput: ""
     };
   },
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     setFilter() {
-      console.log('test 1', this.filter);
+      console.log("test 1", this.filter);
       this.$emit("set-filter", this.filter);
     }
     // searchLocation: function() {
@@ -60,7 +60,8 @@ export default {
 input {
   background-color: white;
   border: none;
-border-right:2px solid #00000029;  width: 350px;
+  border-right: 2px solid #00000029;
+  width: 350px;
   font-size: 1em;
   padding: 15px;
   border-radius: 3px 0px 0px 3px;
@@ -71,14 +72,14 @@ input:focus {
 
 .search-btn {
   width: 25%;
-    font-weight: bolder;
-    padding: 1px 7px 1px;
-    color: white;
-    background-color: #245e09;
-    font-size: 1.3em;
-    border: none;
-    border-radius: 0px 3px 3px 0px;
-    cursor: pointer;
+  font-weight: bolder;
+  padding: 1px 7px 1px;
+  color: white;
+  background-color: #245e09;
+  font-size: 1.3em;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  cursor: pointer;
 }
 
 .search-btn:focus {
@@ -86,16 +87,16 @@ input:focus {
 }
 
 .search-btn {
-  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif; 
-  justify-items: center; 
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  justify-items: center;
 }
 
-.search-wrapper{
+.search-wrapper {
   display: flex;
   height: 50px;
 }
-input::placeholder{
-font-size: 1.3em;
+input::placeholder {
+  font-size: 1.3em;
 }
 
 @media only screen and (max-width: 800px) {
@@ -106,9 +107,11 @@ font-size: 1.3em;
   }
   .search-btn {
     margin-bottom: 3px;
-    letter-spacing: 0px; 
-    
+    letter-spacing: 0px;
+    font-size: 1.2em;
   }
-
+  input::placeholder {
+    font-size: 1em;
+  }
 }
 </style>
