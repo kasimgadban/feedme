@@ -21,3 +21,31 @@ padding: 0 20px;
     bottom: 0px;
 }
 
+.el-input-number__decrease.is-disabled, .el-input-number__increase.is-disabled,.el-input-number__increase
+.el-input-number--small .el-input-number__decrease, .el-input-number--small .el-input-number__increase,
+.el-input-number--small .el-input-number__decrease, .el-input-number--small .el-input-number__increase,
+.el-input-number__decrease{
+    background-color: #88c888;
+    border-radius: 50%;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border: white;
+}
+
+
+
+
+
+
+.el-icon-minus:before{
+    color: white;
+}
+
+.el-input--small .el-input__inner {
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    font-size: 20px;
+    background: none;
+}

@@ -159,9 +159,6 @@ export default {
   margin-top: 30px;
 }
 
-.card:active{
-  border: 5px solid;
-}
 
 
 </style>

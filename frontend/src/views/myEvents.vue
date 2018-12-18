@@ -2,14 +2,15 @@
   <section>
     <div class="container container-style">
       <h1>My Events</h1>
-      <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
+      <!-- <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
         <i class="material-icons">
           <i class="fas fa-plus-circle"></i>
         </i>
-      </router-link>
-      <div class="block">
-        <span class="demonstration">Date:</span>
+      </router-link> -->
+      <div class="block" style="display:flex; justify-content:space-between;margin-top:20px;">
+        <!-- <span class="demonstration">Calander: </span> -->
         <el-date-picker
+        class="date-picker"
           v-model="value8"
           ref="picker"
           type="date"
@@ -17,6 +18,11 @@
           value-format="dd/MM/yyyy"
           format="dd/MM/yyyy"
         ></el-date-picker>
+         <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
+        <i class="material-icons">
+          <i class="fas fa-plus-circle"></i>
+        </i>
+      </router-link>
       </div>
       <div class="grid">
         <div class="cook-events">
@@ -185,9 +191,9 @@ export default {
 .add-event {
   border: none;
   background: none;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   cursor: pointer;
-  color: green;
+  color: #245e09;
 }
 
 .fa-plus-circle {
@@ -222,7 +228,8 @@ h1 {
 }
 
 .orders-container {
-  display: block;
+  /* display: flex; */
+  /* display: block; */
 
   /* margin-top: 20px;
   padding: 15px;
@@ -237,6 +244,9 @@ display: block;
 .el-collapse-item__content {
   display: flex;
   padding-bottom: 0px;
+}
+.date-picker{
+  margin-top: 5px;
 }
 
 .detail {
@@ -259,8 +269,11 @@ span {
 }
 
 @media only screen and (max-width: 800px) {
-  .cook-events {
-    /* grid-template-columns: 0.5fr 0.5fr 0.5fr; */
+  .grid{
+    grid-template-columns: 1fr;
+  }
+  .detail{
+        width: 40%;
   }
 }
 </style>

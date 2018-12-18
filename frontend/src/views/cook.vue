@@ -1,9 +1,7 @@
 <template>
   <section class="container">
     <div class="host-images">
-      <img class="coverL" src="../images/image1.jpg">
-      <img class="coverM" src="../images/image3.jpg">
-      <img class="coverR" src="../images/image2.jpg">
+      <img src="https://res.cloudinary.com/ddi3pg6wq/image/upload/v1545056550/izumxgvrnwv2rwp8uj10.jpg" />
     </div>
     <div class="cook-info">
       <div class="pic-name">
@@ -40,14 +38,24 @@
 
       <div class="cook-events-reviews">
       <div class="cook-reviews container-style">
-        <!-- <ul> -->
           <div v-for="(review,idx) in reviews" :key="idx" class="review">
-            {{review}}
-            <div class="review-img" style="height:50px;width:50px;">{{review.image}}</div>
-            <div>Name: {{review.name}}</div>
-            <!-- <span>{{review.name}}</span> -->
+            <div class="review-sender" style="background:lightgreen;">
+              <div>{{review.name}}</div>
+              <img :src="review.image" style="height:50px;width:100%;">
             </div>
-          <!-- </ul> -->
+            <div class="review-content" style="display:flex; flex-direction:column;">
+              <div>
+            <star-rating
+            v-model="review.rating"
+            v-bind:star-size="15"
+            read-only="true"
+            :show-rating="false"
+            ></star-rating>
+            </div>
+            
+            <div>Content: {{review.subject}}</div>
+            </div>
+            </div>
 
         <!-- <cook-review
           v-for="(review,idx) in reviews"
@@ -203,9 +211,13 @@ li{
 .host-images {
   height: 270px;
   background-color: antiquewhite;
+  /* background-image: url(https://res.cloudinary.com/ddi3pg6wq/image/upload/v1545055585/omo9mkfoxeeolwk5pekd.jpg); */
+  /* background-image: url(https://res.cloudinary.com/ddi3pg6wq/image/upload/v1545056550/izumxgvrnwv2rwp8uj10.jpg); */
+  /* background-size: contain; */
+  /* background-repeat: no-repeat; */
   display: flex;
   flex-direction: row;
-  flex-grow: 1 2 1;
+  /* flex-grow: 1 2 1; */
 }
 
 .coverL,
@@ -278,7 +290,12 @@ a {
 
 .review{
   border: 1px solid blue;
-  height: 70px;
+  height: 150px;
+  display: flex;
+}
+
+.review-sender{
+  width: 100px;
 }
 
 @media only screen and (max-width: 800px) {

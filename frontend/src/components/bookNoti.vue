@@ -43,7 +43,7 @@ export default {
     //   this.unReadNotiCount.push(el)
     //   })
     // console.log(this.unReadNotiCount);
-    this.unReadNoti = this.unReadNotiCount.length
+    // this.unReadNoti = this.unReadNotiCount.length
     this.$store.dispatch({ type: "getEventsByCook", cookId }).then(events => {
       events.forEach(element => {
         this.dates.push(...element.dates);

@@ -43,9 +43,8 @@
         min="1" :max="currMaxGuests"
       
        > -->
-        <div class="selecto">
+          <div class="selecto">
          <el-input-number 
-         
          required 
           v-if="currMaxGuests > 0"
          v-model="book.guestsBooking" 
@@ -55,7 +54,6 @@
            >
            </el-input-number>
            </div>
-       <!-- </div> -->
       <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name" required>
       <input
         type="text"
@@ -270,9 +268,8 @@ button.full {
 .book-form {
   padding: 10px;
   margin-top: 10px;
-  background: #d2cece1f;
-  -webkit-box-shadow: 5px 7px #453e3e1f;
-  box-shadow: 4px 4px 4px #453e;
+  border: 1px solid #8080801c;
+  background: #dfe4e229;
 }
 .menu {
   align-items: center;
@@ -292,10 +289,6 @@ input {
   padding: 7px;
   margin-bottom: 10px;
 }
-select > * {
-  /* font-size: 16px; */
-  /* margin: 20px; */
-}
 .title {
   font-size: 1em;
   
@@ -306,6 +299,7 @@ select > * {
 }
 .selecto{
   margin: 0 auto;
+  margin-top: 6px;
 }
 
 .send {
@@ -315,19 +309,19 @@ select > * {
   width: 100%;
   border: none;
   cursor: pointer;
-  /* font-size: 1.6rem; */
   line-height: 19px;
   background-color: #88c888;
   color: #fff;
   padding: 15px;
   margin-top: 10px !important;
+      border-radius: 2px;
 }
 .buyer {
   padding: 7px;
   margin-top: 5px;
   font-size: 14px;
   border-radius: 5px;
-  border: none;
+  border:1px solid #00000061;
 }
 
 .date:first-child {
@@ -342,9 +336,6 @@ span {
 }
 
 .select {
-  /* padding: 20px; */
-  /* font-size: 16px; */
-  /* height: 30px; */
   border-color: gainsboro;
 }
 
@@ -361,17 +352,11 @@ span {
   .buyer {
     margin: 3px;
   }
-  .select {
-    /* padding: 0px; */
-    /* margin-top: 3px; */
-  }
+  
   .send {
     line-height: 10px;
   }
-  .title{
-    /* margin: 0; */
-   
-  }
+  
   .title:not(:last-child){
      margin-bottom: 0rem;
   }
