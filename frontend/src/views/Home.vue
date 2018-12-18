@@ -30,7 +30,7 @@ export default {
   created() {
     this.currLoc = locationService
       .getCurrAddress()
-      .then(res => (this.currLoc = res));
+      .then(res => this.currLoc = res)
     // this.$store.dispatch({ type: "loadCooks" });
     this.$store.dispatch({ type: "loadCities" });
     // this.$store.dispatch({ type: "loadByFilter", filter }).then(res => this.events = res);

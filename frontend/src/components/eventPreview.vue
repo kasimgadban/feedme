@@ -58,7 +58,7 @@ export default {
       return (
         "background-image: url(" +
         this.cook.image +
-        "); background-size: cover; display:block;"
+        "); background-size: cover; display:block;     opacity: 0.78;"
       );
     }
   }
@@ -76,6 +76,7 @@ export default {
   justify-content: center;
   -webkit-justify-content: center;
   max-width: 820px;
+  width: 100%;
 }
 
 .host-img{
