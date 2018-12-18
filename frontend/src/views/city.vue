@@ -89,7 +89,8 @@ export default {
   margin: 0 auto;
   font-size: 4em;
   padding: 10px;
-  font-family: "Ultra", serif;
+  /* font-family: "Ultra", serif; */
+  font-family: 'Roboto', sans-serif;
 }
 
 .title {

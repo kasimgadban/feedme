@@ -1,31 +1,36 @@
 <template>
-  <section class="cards">
-    <div class="card" style="display:flex; flex-direction:column;">
-      <div class="details-wrapper" style="display:flex; flex:1;">
-      <router-link class="link" :to="'/event/'+ event._id">
-      <div class="card__img">
-        <div class="card__img_holder" :style="bgImage"></div>
-      </div>
-      <div class="card__info">
-        <div class="test1">
-        <h4 class="price">${{event.price}}</h4>
-        <h3 class="card__title">{{event.description}}</h3>
-        <div class="host-img" :style="hostImage"></div>
+  <section class="cards" v-if="event && cook">
+    <!-- <div class="toti">{{(+event.maxGuests)-(+event.guestsCount)}}</div> -->
+    <router-link class="link" :to="'/event/'+ event._id">
+      <div class="event-card">
+        <div class="event-img-holder">
+          <div class="event-img" :style="bgImage"></div>
         </div>
-      </div>
-         </router-link>
-         </div>
-        <div class="host-wrapper" style="display:flex; height:50px; padding:15px;">
-        <span class="card__by">Hosted by
+        <div class="event-details">
           <router-link class="link" :to="'/cook/'+ event.cookId">
-            <a href="#" class="card__author" title="author">{{cook.fullName}} </a>
-             <!-- <div class="host-img" :style="hostImage"></div> -->
+            <div class="host-img" :style="hostImage"></div>
           </router-link>
-          <span>in {{cook.city}}</span>
-        </span>
+          <div class="host-desc">
+            <span class="host">
+              <router-link class="link" :to="'/cook/'+ event.cookId">
+                Hosted by
+                <span v-if="hostName" class="host-name">{{hostName}}</span>
+                in {{cook.city}}
+              </router-link>
+            </span>
+            <h3 class="desc">{{event.description}}</h3>
+          </div>
+          <div class="event-price">
+            <div class="rating-wrapper">
+              <span class="fa fa-star checked event-star"></span>
+              <span class="rating-fix">{{(cook.rating).toFixed(1)}}</span>
+              <span class="rating-count">({{cook.review.length}})</span>
+            </div>
+            <span>${{event.price}}</span>
+          </div>
         </div>
       </div>
-    
+    </router-link>
   </section>
 </template>
 <script>
@@ -48,139 +53,153 @@ export default {
   methods: {},
   computed: {
     bgImage() {
-      return (
-        "background-image: url(" +
-        this.event.image +
-        "); background-size: cover; display:block;"
-      );
+      return ("background-image: url(" + this.event.image + "); background-size: cover; display:block;");
     },
-    hostImage(){
-      return (
-        "background-image: url(" +
-        this.cook.image +
-        "); background-size: cover; display:block;     opacity: 0.78;"
-      );
+    hostImage() {
+      return ("background-image: url(" + this.cook.image + "); background-size: cover; display:block;");
+    },
+    hostName() {
+      return this.cook.fullName.split(" ")[0];
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-.link {
-  text-decoration: none;
-}
-
 .cards {
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  max-width: 820px;
-  width: 100%;
+  height: 100%;
 }
 
-.host-img{
-    width: 60px;
-    height: 60px;
-    border: 1px solid;
-    border-radius: 50%;
-    position: absolute;
-    /* top: 200px; */
-    /* left: 130px; */
-    top: 45%;
-    left: 40%;
-    border:3px solid white;
-}
-
-.card__img {
+.event-img-holder {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 235px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  height: 130px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
   overflow: hidden;
-
-
 }
 
-.card {
+.event-img-holder:hover {
+  background-size: 105%;
+}
+
+.event-img:hover {
+  transform: scale(1.1);
+}
+
+.event-card {
+  border: 1px solid #00000030;
+  height: 100%;
+  border-radius: 3px;
+  position: relative;
   margin: 0 auto;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
   background-color: #fff;
-  position: relative;
-  border-radius: 5px;
   overflow: hidden;
-  // box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
-  .card__img_holder {
-    height: 100%;
-    transition: transform .3s;
-  }
-  &:hover {
-    // box-shadow: 0px 20px 18px -8px rgba(0, 0, 0, 0.1);
-    .card__img {
-      background-size: 105%;
-    }
-    .card__img_holder {
-      transform: scale(1.1);
-    }
-  }
+  display: flex;
+  flex-direction: column;
 }
 
-.card__info {
-  z-index: 2;
-  background-color: #fff;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding: 16px 24px 24px 24px;
+.event-img {
+  height: 100%;
+  transition: transform 0.3s;
+}
+.event-details {
+  height: 100px;
+}
+.host-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.card__category {
-  font-family: "Raleway", sans-serif;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 2px;
-  font-weight: 500;
-  color: #868686;
+.event-price {
+  position: absolute;
+  background-color: white;
+  height: 25px;
+  width: 100%;
+  bottom: 2%;
+  right: 0%;
+  text-align: end;
+  font-weight: bolder;
+  border-top: 1px solid rgba(155, 146, 146, 0.344);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.event-star {
+  font-size: small;
+  color: gold;
+  line-height: 23px;
+}
+.fa-star::before {
+  margin-right: 3px;
+}
+.rating-count {
+  font-size: x-small;
+  color: rgba(164, 160, 160, 0.44);
+  line-height: 25px;
+}
+.rating-wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 50px;
+  line-height: 24px;
 }
 
-.card__title {
+.rating-fix {
+  font-size: small;
+  color: gold;
+  margin-right: 2px;
+}
+
+.host-desc {
+  position: absolute;
+  margin-top: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  // text-align: center;
+}
+
+.host {
+  font-size: 0.7em;
+  // text-align: center;
+}
+.desc {
+  font-size: 0.8em;
   margin-top: 5px;
-  margin-bottom: 10px;
-  font-family: "Roboto Slab", serif;
+  // font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.link {
+  color: black;
 }
 
-.card__by {
-  font-size: 12px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
-}
-
-.card__author {
-  font-weight: 600;
-  text-decoration: none;
+.host-name {
   color: #ad7d52;
 }
 
-
-article.card {
-  width: 100%;
-  border: 1px solid #80808029;
+@media only screen and (max-width: 740px) {
+  .desc {
+    margin-top: 5px;
+  }
+  .event-card {
+    border: none;
+    width: 100%;
+  }
+  .cards {
+    border: 1px solid #8080801f;
+  }
 }
-
-.price,.card__title,.card__by{
-  color: #00000085;
-}
-.price{
-    margin: 0;
-    font-size: 1.3em;
-}
-
-@media only screen  and (max-width: 800px){
-  .host-img{
-top: 48%;
-}
-}
-
 </style>

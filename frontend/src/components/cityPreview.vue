@@ -39,13 +39,15 @@ export default {
   margin-top: 20px;
 }
 .name{
-  background: #e4d3d3;
+  background: white;
   color: black;
-  // width: 50%;
   text-align: center;
   margin: 0 auto;
   font-size: 1.3em;
-  padding: 10px;
+  height: 75px;
+  width: 140px;
+  line-height: 75px;
+  text-align: center;
 }
 .city-router{
   text-decoration: none;
@@ -55,6 +57,7 @@ export default {
   height: 85%;
   border-radius:20%;
   object-fit:cover;
+ 
 
 }
 .card-img:hover{
@@ -62,7 +65,7 @@ export default {
 }
 
 .city-link{
-    height: 230px;
+    height: 160px;
     border-radius: 2px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -70,13 +73,18 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.78;
+     opacity: 0.85;
 }
 
 
 @media only screen and (max-width: 800px) {
   .name{
-    width: 100%;
+    height: 65px;
+    width: 125px;
+    line-height: 65px;
+  }
+  .city-link{
+  height: 160px;;
   }
 }
 

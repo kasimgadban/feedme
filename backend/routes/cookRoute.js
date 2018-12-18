@@ -26,18 +26,9 @@ function addCookRoutes(app){
     //login
     app.post('/api/cook/login', (req, res) => {
         var user = req.body; 
-        console.log('user route',user);
-              
          return cookService.checkUser(user)
              .then(user => {
-                 console.log('user 33',user)
-                 
                  req.session.loggedinUser = user
-
-                //  const userInfo = {
-                //      fullName: user.fullName,
-                //      password: user.password
-                //  }
                  return res.json(user);
              })
              .catch(err=> console.log(err))

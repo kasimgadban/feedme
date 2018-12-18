@@ -2,9 +2,9 @@
   <section>
      <form @submit.prevent="isShowModal = true" >
     <div class="book-form" v-if="event">
-      <h3 class="josefin-font">
+      <h3 class="josefin-font price">
         ${{event.price}}
-        {{book.cookId}}
+        <!-- {{book.cookId}} -->
         <span
           class="title-span josefin-font"
         >Price per person</span>
@@ -34,10 +34,27 @@
         @input="dateSelected"
         :disabledDates="disabledDates"
       ></v-date-picker>-->
-      <select v-model="book.guestsBooking" required class="select" v-if="currMaxGuests > 0">
+      <!-- <select v-model="book.guestsBooking" required class="select" v-if="currMaxGuests > 0">
         <option disabled value="Guests" selected>{{currMaxGuests}} left</option>
         <option v-for="guests in currMaxGuests" :key="guests">{{guests}}</option>
-      </select>
+      </select> -->
+      <!-- <div v-for="guests in currMaxGuests" :key="guests"> -->
+      <!-- <input type="number" v-model="book.guestsBooking" required  v-if="currMaxGuests > 0"
+        min="1" :max="currMaxGuests"
+      
+       > -->
+
+         <el-input-number 
+         class="selecto"
+         required 
+          v-if="currMaxGuests > 0"
+         v-model="book.guestsBooking" 
+           :min="1" 
+           :max="currMaxGuests"
+           size="small"
+           >
+           </el-input-number>
+       <!-- </div> -->
       <input type="text" class="buyer" v-model="book.guestName" placeholder="Enter your name" required>
       <input
         type="text"
@@ -102,7 +119,8 @@ export default {
         name: '',
         guests: 0,
         at: '',
-        isRead: false
+        isRead: false,
+        eventId:''
       } 
     };
   },
@@ -171,6 +189,7 @@ export default {
       this.msgInput.name = this.book.guestName;
       this.msgInput.guests = this.book.guestsBooking;
       this.msgInput.at = this.book.eventDate;
+      this.msgInput.eventId = this.$route.params.id;
       const msg = this.msgInput;
       console.log(msg);
       const currCookId = this.event.cookId
@@ -210,6 +229,10 @@ button.full {
   cursor: unset;
 }
 
+.price{
+  font-weight: bold;
+}
+
 .wrapper {
   display: grid;
   gap: 20px;
@@ -242,7 +265,7 @@ button.full {
 .book-form {
   padding: 10px;
   margin-top: 10px;
-  background: #b0aaaa1f;
+  background: #d2cece1f;
   -webkit-box-shadow: 5px 7px #453e3e1f;
   box-shadow: 4px 4px 4px #453e;
 }
@@ -265,11 +288,19 @@ input {
   margin-bottom: 10px;
 }
 select > * {
-  font-size: 16px;
-  margin: 20px;
+  /* font-size: 16px; */
+  /* margin: 20px; */
 }
 .title {
   font-size: 1em;
+  
+}
+.title:not(:last-child){
+  margin-bottom: 0rem;
+
+}
+.selecto{
+  margin: 0 auto;
 }
 
 .send {
@@ -307,8 +338,8 @@ span {
 
 .select {
   /* padding: 20px; */
-  font-size: 16px;
-  height: 30px;
+  /* font-size: 16px; */
+  /* height: 30px; */
   border-color: gainsboro;
 }
 
@@ -325,11 +356,21 @@ span {
     margin: 3px;
   }
   .select {
-    padding: 0px;
-    margin-top: 3px;
+    /* padding: 0px; */
+    /* margin-top: 3px; */
   }
   .send {
     line-height: 10px;
+  }
+  .title{
+    /* margin: 0; */
+   
+  }
+  .title:not(:last-child){
+     margin-bottom: 0rem;
+  }
+  .book-form>*{
+    margin-top: 0px
   }
 }
 </style>

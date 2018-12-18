@@ -10,8 +10,6 @@ export default {
   },
   mutations: {
     setEvents(state, { events }) {
-      console.log('events',events);
-      
       state.events = events;
     },
     setEvent(state, { event }) {
@@ -24,8 +22,6 @@ export default {
 
   actions: {
     loadEvents(context) {
-      // if(filter['cityId'] !== '') filter.cityId = filter['cityId'];
-      // if(filter['cookId'] !== '') filter.cookId = filter['cookId']
       return eventService.query().then(events => {
         context.commit({ type: 'setEvents', events });
       });
@@ -42,36 +38,23 @@ export default {
       });
     },
     saveImage(context, imageToSave){
-      console.log('imageToSave',imageToSave);
       return eventService.saveImage(imageToSave)
-      // .then(url=>url)
     },
   loadByFilter(context,{filter}){
-  console.log('event moudle filter ',filter);
   return eventService.query({byAddress: filter.byAddress}).then(events =>{
-    console.log(events);
     
     context.commit({type: 'setEvents',events});
   });
 },
     editEvent(context,{event}){
-      // console.log('cook module {} ',{cook})
-      console.log('event module event edit ',event)
-
       return eventService.saveEvent(event)
           .then(event => {
               context.commit({type: 'setEvent', event})
-              console.log('the new event isssss edit:',event)
               return event
       })
   },
   removeEvent(context,{event}){
-    console.log('event module event edit ',event)
-
     return eventService.deleteEvent(event)
-        // .then( events => {
-        //   commit({type: 'setEvents', events})
-        // })
    },
   },
   getters: {

@@ -10,6 +10,19 @@
       <input type="text" id="fullName" name="fullName" placeholder="Enter Your Name"  v-model="cook.fullName" >
     </div>
   </div>
+<div class="row">
+    <div class="col-25">
+      <label for="image">Image</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fullName" 
+      name="EventImage" placeholder="Choose Image"
+      @change="displayImage" accept="image/*">
+      <div v-if="(cook.image !== '')?cook.image:imageData" class="imageHolder">
+      <img class="display" style="width:300px;" :src="(cook.image !== '')?cook.image:imageData" />
+    </div>
+    </div>
+  </div>
  <div class="row">
     <div class="col-25">
       <label for="password">Password</label>
@@ -66,19 +79,6 @@
   </div>
   </form>
 </div>
-
-
-<!-- <div class="container events">
-  <h3>Events</h3>
-   <router-link tag="button" :to="'/event/edit/'+cook._id+'_'" class="add-event">
-   <i class='material-icons' style="font-size: 50px;">add</i>
-   </router-link>
-      <div class="cook-events">
-        <preview-edit v-for="event in events" :key="event._id" :event="event"/>
-      </div>
-    </div> -->
-
-
   </section>
 </template>
 
@@ -91,49 +91,21 @@ export default {
   name: "myprofile",
   data() {
     return {
-      // cook: {
-      //   fullName: "",
-      //   password: "",
-      //   email: "",
-      //   address: "",
-      //   city: "",
-      //   country: "",
-      //   description: "",
-      //   language: "",
-      //   image: "",
-      // },
-      // loggedCook:{},
       cook: {},
+      imageData:'',
       events: []
     };
   },
   created() {
     var cookId = this.$route.params.id
     this.$store.dispatch({type: 'getCookById',cookId}).then(cook => this.cook = cook)
-    // this.cook = this.$store.getters.getLoggedCook
-    
-    this.$store
+   
+   this.$store
       .dispatch({ type: "getEventsByCook", cookId})
       .then(events => {
         console.log("events cook page", events);
         this.events = events;
       });
-
-    // console.log('Sign Up Was Created!');
-    // const cookId = this.$route.params.id;
-    // console.log('the id of the cook is:',cookId);
-
-    // if (cookId) {
-    //   this.$store.dispatch({ type: "getCookById", cookId }).then(cook => {
-    //     // console.log('the cook returned to the profile is:',cook);
-    //     this.cook = cook;
-
-    //     this.$store.dispatch({type: "getEventsByCook", cookId}).then(events => {
-    //       // console.log('events cook page',events)
-    //       this.events = events
-    //     })
-    //   });
-    // }
   },
   methods: {
     editCook() {
@@ -155,13 +127,17 @@ export default {
       var queryParams = new URLSearchParams();
       queryParams.append("cookId", this.cookId);
       this.$router.push("event/edit");
-    }
+    },
+    saveImage(){
+      var imageToSave = this.imageData
+      this.$store.dispatch({type: "saveImage", imageToSave})
+      .then( res => {
+        this.cook.image = res
+      })
+    },
+
   },
-  // computed:{
-  //   cook(){
-  //     return this.$store.getters.getLoggedCook;
-  //   }
-  // },
+  
   components: {
     previewEdit,
     swal

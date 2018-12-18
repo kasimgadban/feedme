@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Ultra');
 @import url('https://fonts.googleapis.com/css?family=Damion|Muli|Noto+Sans+KR');
 @import url('../../../node_modules/buefy/dist/buefy.css');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .requestBoxDate .vdp-datepicker__calendar {
     width: 100%;

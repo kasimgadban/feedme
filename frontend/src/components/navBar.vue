@@ -3,14 +3,14 @@
     <div class="nav-container">
       <router-link to="/" class="logo">
         <div style="display:flex; align-items: center;">
-          <img class="img-logo" src="../images/logo40.png">
-          <span class="logo-name">Feed Me</span>
+          <img class="img-logo" src="../images/logo8.png">
+          <span class="logo-name">FeedMe</span>
         </div>
       </router-link>
       <div class="nav-bar">
         <div class="nav-btns" v-if="user">
           <div class="dad" style="position:relative;">
-            <span >Hi,{{userName}} &nbsp;<span @click="toggleDropDown"
+            <span >Hi, {{userName}} &nbsp;<span @click="toggleDropDown"
             class="drop"><i class="fas fa-caret-down"></i></span>
              <div class="dropDown" v-show="isDropDownOpen">
           <router-link :to="'/myprofile/' + user._id"  class="log-out"><span @click="isDropDownOpen=!isDropDownOpen">My Profile <i class="fas fa-user"></i></span></router-link>
@@ -90,22 +90,24 @@ export default {
 
 
 .img-logo {
-  border: 1px solid;
-  border-radius: 50%;
-  position: absolute;
-  top: 5px;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 0.5px;
 }
 
 .dropDown{
   display: flex;
   flex-direction: column;
   position: absolute;
-  height: 200px; 
+  // height: 200px; 
   align-items: center;
   margin: 0 auto;
   margin-top: 12px;
-  left: -50%;
+  // left: -50%;
   width: 200px;
+  width: 196px;
+
   background: #ffffffeb;
   border: 1px solid gainsboro;
  
@@ -176,18 +178,39 @@ export default {
   font-size: 1.2em;
 }
 .logo-name {
-  margin-left: 5px;
-  font-family: "Damion", cursive;
+  margin-left: 50px;
+  font-family: 'Overpass', sans-serif;
   font-size: 1.2em;
   position: absolute;
-  top: 17px;
-  left: 65px;
+  top: 8px;
+  font-weight: bold;
+  // left: 65px;
   color: black;
 }
 
 @media only screen and (max-width: 800px) {
   .nav-bar > * {
     font-size: 1em;
+    padding: 0px;
+    margin-bottom: 7px;
+  }
+  .nav-container{
+    padding-left: 10px;
+    padding-right: 0px;
+  }
+  .logo-name{
+    font-size: 1em;
+    margin-left: 42px;
+    top: 12px;
+
+  }
+   .img-logo{
+    width: 40px;
+    height: 40px;
+    top: 5px;
+  }
+  .dropDown{
+    left: -34%;
   }
 }
 </style>

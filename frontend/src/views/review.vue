@@ -17,14 +17,14 @@
       <input type="file" id="EventImage" 
       name="EventImage" placeholder="Choose Image"
       @change="displayImage" accept="image/*">
-      <div v-if="(review.image !== '')?review.image:imageData" class="imageHolder">
-      <img class="display" style="width:300px;" :src="(review.image !== '')?review.image:imageData" />
+      <div  class="imageHolder">
+      <img class="display" style="width:300px;" 
+      :src="(review.image !== '')?review.image:imageData" />
     </div>
-    
     </div>
 
     <star-rating class="star" v-model="review.rating" 
-    v-bind:star-size="20"  :show-rating="false">
+    :star-size="20"  :show-rating="false">
 
     </star-rating>
 

@@ -1,8 +1,8 @@
 <template>
-  <section class="search-wrapper">
+  <section class="search-wrapper" v-if="comCurrLoc">
     <input
       ref="autocomplete"
-      :placeholder="comCurrLoc"
+      placeholder='Where would you like to dine'
       class="search-location"
       type="text"
       v-model="filter.byAddress"
@@ -60,8 +60,7 @@ export default {
 input {
   background-color: white;
   border: none;
-  border-right: 2px solid black;
-  width: 350px;
+border-right:2px solid #00000029;  width: 350px;
   font-size: 1em;
   padding: 15px;
   border-radius: 3px 0px 0px 3px;
@@ -73,12 +72,12 @@ input:focus {
 .search-btn {
   width: 25%;
   font-weight: bolder; 
-  letter-spacing: 2px; 
   padding: 1px 7px 1px;
-   background-color: #88c888;
-   font-size: 1em;
+   background-color: #4CAF50;
+   font-size: 0.8em;
    border: none;
    border-radius: 0px 3px 3px 0px;
+   cursor: pointer;
 }
 
 .search-btn:focus {

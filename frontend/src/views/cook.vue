@@ -116,7 +116,6 @@ export default {
     StarRating,
     eventPreview,
     navBar,
-    eventEdit
   }
 };
 </script>

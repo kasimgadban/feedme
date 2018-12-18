@@ -3,8 +3,7 @@
     <app-header class="app-header" @set-filter="setFilter" :comCurrLoc="comCurrLoc"></app-header>
     <city-list :cities="cities"/>
     <event-list :events="events"></event-list>
-    <app-footer/>
-    <!-- <pre>{{events}}</pre> -->
+    <!-- <app-footer/> -->
   </section>
 </template>
 
@@ -28,9 +27,9 @@ export default {
   },
 
   created() {
-    this.currLoc = locationService
+    locationService
       .getCurrAddress()
-      .then(res => this.currLoc = res)
+      .then(res => (this.currLoc = res.split(',')[1]+','+res.split(',')[2]));
     // this.$store.dispatch({ type: "loadCooks" });
     this.$store.dispatch({ type: "loadCities" });
     // this.$store.dispatch({ type: "loadByFilter", filter }).then(res => this.events = res);
