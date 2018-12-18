@@ -265,7 +265,7 @@ button.full {
 .book-form {
   padding: 10px;
   margin-top: 10px;
-  background: #b0aaaa1f;
+  background: #d2cece1f;
   -webkit-box-shadow: 5px 7px #453e3e1f;
   box-shadow: 4px 4px 4px #453e;
 }

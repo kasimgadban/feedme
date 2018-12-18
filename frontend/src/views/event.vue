@@ -101,7 +101,7 @@ export default {
       return (
         "background-image: url(" +
         this.event.image +
-        "); background-size: contain; background-size: cover; background-position: center center;"
+        "); background-size: contain; background-size: cover;"
       );
     }
   },
@@ -142,7 +142,8 @@ export default {
   margin: 0 auto;
   font-size: 1.7em;
   padding: 10px;
-  font-family: 'Josefin Sans', sans-serif;
+  /* font-family: 'Josefin Sans', sans-serif; */
+  font-family: 'Roboto', sans-serif;
 }
 .event-page-container {
   display: grid;
@@ -325,9 +326,8 @@ p {
   .map-container {
     height: 230px;
   }
-  .container{
-    /* width: 90%; */
-    /* margin:0 auto; */
+  .josefin-font{
+    font-size: 15px;
   }
 }
 </style>

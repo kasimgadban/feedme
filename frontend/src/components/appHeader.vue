@@ -1,8 +1,8 @@
 <template>
-  <section class="header" :style="bgImage">
+  <section class="header">
     <div class="text">
       <h1>Home Dining Experience</h1>
-      <h3>Enjoy new flavors, meet new people</h3>
+      <h3>Enjoy different flavors, meet new people</h3>
     </div>
     <div class="search-bar">
       <search-bar @set-filter="setFilter" :comCurrLoc="comCurrLoc"></search-bar>
@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     bgImage() {
-      return "background-image: url('https://images.pexels.com/photos/1268558/pexels-photo-1268558.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); background-size: cover; display:block; opacity:0.9; background-position: 50%;";
+      return "background-image: url(images/bg.jpg);";
     }
   },
   components: {
@@ -57,7 +57,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // background-image: url("https://cdn.shopify.com/s/files/1/2206/4495/articles/main-image_0e2e0e40-2fd0-4c18-a0eb-343072fa341f_2048x.jpg?v=1510690904");
+  background-image: url(../images/bg2.jpg);
+  display:block; 
+  opacity:0.9; 
+  background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -88,7 +91,7 @@ export default {
   width: 100%;
   justify-content: center;
   opacity: 1;
-  margin-top: 50px;
+  margin-top: 45px;
 }
 
 .search-bar > * {
@@ -116,18 +119,18 @@ export default {
 
 h1,h3 {
   text-align: center;
-  padding-top: 115px;
+  padding-top: 100px;
   font-size: 45px;
   color: white;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-shadow: 1px 1px 10px black;
 }
 h1{
-  font-size: 3.5em;
+  font-size: 4.5em;
 }
 
 h3 {
-  font-size: 1.8em;
+  font-size: 2.8em;
   // margin-bottom: 55px;
   padding-top: 0px;
 }
@@ -167,5 +170,7 @@ h3 {
   .search-wrapper{
         width: 80%;
   }
+ 
+  
 }
 </style>
