@@ -71,13 +71,14 @@ input:focus {
 
 .search-btn {
   width: 25%;
-  font-weight: bolder; 
-  padding: 1px 7px 1px;
-   background-color: #4CAF50;
-   font-size: 0.8em;
-   border: none;
-   border-radius: 0px 3px 3px 0px;
-   cursor: pointer;
+    font-weight: bolder;
+    padding: 1px 7px 1px;
+    color: white;
+    background-color: #245e09;
+    font-size: 1em;
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
 }
 
 .search-btn:focus {
